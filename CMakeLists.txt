@@ -131,7 +131,7 @@ set(GAME_SRC
   Classes/GameData.cpp
   Classes/GameLayer.cpp
   Classes/GameScene.cpp
-  Classes/LayerChangeUtil.cpp
+  Classes/StartScene.cpp
   Classes/LevelMsgLayer.cpp
   Classes/MenuLayer.cpp
   Classes/MenuScene.cpp
@@ -151,6 +151,7 @@ set(GAME_HEADERS
   Classes/GameData.h
   Classes/GameLayer.h
   Classes/GameScene.h
+  Classes/StartScene.h
   Classes/LevelMsgLayer.h
   Classes/MenuLayer.h
   Classes/MenuScene.h

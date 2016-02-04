@@ -17,10 +17,12 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
-        glview = GLViewImpl::create("Pop Star");
+        glview = GLViewImpl::create("John's World");
         director->setOpenGLView(glview);
     }
-	glview->setDesignResolutionSize(480,800,ResolutionPolicy::EXACT_FIT);
+	glview->setDesignResolutionSize(1280,720,ResolutionPolicy::EXACT_FIT);
+	//glview->centerWindow();
+
     // turn on display FPS
     //director->setDisplayStats(true);
 
@@ -32,7 +34,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // run
     director->runWithScene(scene);
+
 	Audio::getInstance()->prepare();
+
     return true;
 }
 

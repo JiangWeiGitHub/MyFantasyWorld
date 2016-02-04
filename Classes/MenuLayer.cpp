@@ -2,31 +2,30 @@
 #include "GameScene.h"
 #include "GameData.h"
 #include "Audio.h"
-bool MenuLayer::init(){
-	if(!Layer::init()){
+bool MenuLayer::init()
+{
+	if(!Layer::init())
+	{
 		return false;
 	}
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	/*初始化背景*/
-	Sprite* background = Sprite::create("bg_menuscene.jpg");
+
+	Sprite* background = Sprite::create("material_6.jpg");
 	background->setPosition(visibleSize.width/2,visibleSize.height/2);
 	this->addChild(background,-1);
-	
-	/*初始化菜单*/
-	MenuItemImage* startBtn = MenuItemImage::create(
-		"menu_start.png","menu_star.png",CC_CALLBACK_0(MenuLayer::startGame,this)
-		);
-	Menu* menu = Menu::create(startBtn,NULL);
-	menu->alignItemsVertically();
-	menu->setPosition(visibleSize.width/2,visibleSize.height/2);
-	this->addChild(menu);
+
+    auto button = Button::create("test.png", "test2.png", "test.png");
+    button->addClickEventListener(CC_CALLBACK_0(MenuLayer::startGame,this));
+    button->setPosition(Vec2(visibleSize.width/2,visibleSize.height/3));
+    this->addChild(button);
+
 	return true;
 }
 
-void MenuLayer::startGame(){
+void MenuLayer::startGame()
+{
 	CCLOG("START!");
 	GAMEDATA::getInstance()->init();
 	Director::getInstance()->replaceScene(GameScene::create());
-
 }
