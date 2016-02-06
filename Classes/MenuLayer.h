@@ -12,6 +12,8 @@ public:
 	virtual bool init();
 	CREATE_FUNC(MenuLayer);
 
+	void run();
+
 	void startGame();
 };
 #endif

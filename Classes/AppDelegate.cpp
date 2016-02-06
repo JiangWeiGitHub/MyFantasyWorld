@@ -4,19 +4,23 @@
 
 USING_NS_CC;
 
-AppDelegate::AppDelegate() {
+AppDelegate::AppDelegate()
+{
 
 }
 
 AppDelegate::~AppDelegate()
 {
+
 }
 
-bool AppDelegate::applicationDidFinishLaunching() {
+bool AppDelegate::applicationDidFinishLaunching()
+{
     // initialize director
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
-    if(!glview) {
+    if(!glview)
+    {
         glview = GLViewImpl::create("John's World");
         director->setOpenGLView(glview);
     }
@@ -24,7 +28,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	//glview->centerWindow();
 
     // turn on display FPS
-    //director->setDisplayStats(true);
+    director->setDisplayStats(true);
 
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);
@@ -41,7 +45,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
 }
 
 // This function will be called when the app is inactive. When comes a phone call,it's be invoked too
-void AppDelegate::applicationDidEnterBackground() {
+void AppDelegate::applicationDidEnterBackground()
+{
     Director::getInstance()->stopAnimation();
 
     // if you use SimpleAudioEngine, it must be pause
@@ -49,7 +54,8 @@ void AppDelegate::applicationDidEnterBackground() {
 }
 
 // this function will be called when the app is active again
-void AppDelegate::applicationWillEnterForeground() {
+void AppDelegate::applicationWillEnterForeground()
+{
     Director::getInstance()->startAnimation();
 
     // if you use SimpleAudioEngine, it must resume here
