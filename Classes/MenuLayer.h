@@ -1,5 +1,6 @@
 #ifndef _MENULAYER_H_
 #define _MENULAYER_H_
+
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 

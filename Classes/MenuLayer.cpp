@@ -28,10 +28,30 @@ void MenuLayer::run()
     auto seq_background = Sequence::create(fadeIn_my_background, nullptr);
     background->runAction(seq_background);
 
+    ////////////////////////////////////
+	auto my_title = Label::createWithTTF("John's Dream World", "../Resources/fonts/Marker Felt.ttf", 66);
+	my_title->setPosition(visibleSize.width/2,visibleSize.height/1.5);
+	my_title->setOpacity(0);
+	my_title->enableShadow(Color4B::BLACK, Size(2 ,-2), 0);
+
+	auto fadeIn_my_title = FadeIn::create(3.0f);
+
+	this->addChild(my_title,0);
+
+	auto seq_title = Sequence::create(fadeIn_my_title, nullptr);
+	my_title->runAction(seq_title);
+
+    ////////////////////////////////////
     auto button = Button::create("start_menu_normal.png", "start_menu_clicked.png", "start_menu_clicked.png");
     button->addClickEventListener(CC_CALLBACK_0(MenuLayer::startGame, this));
     button->setPosition(Vec2(visibleSize.width/2,visibleSize.height/3));
+
+    auto fadeIn_my_button = FadeIn::create(3.0f);
+
     this->addChild(button);
+
+    auto seq_button = Sequence::create(fadeIn_my_button, nullptr);
+    button->runAction(seq_button);
 }
 
 void MenuLayer::startGame()

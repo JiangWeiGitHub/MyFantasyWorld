@@ -2,10 +2,8 @@
 #define _STARTLAYER_H_
 
 #include "cocos2d.h"
-//#include "ui/CocosGUI.h"
 
 using namespace cocos2d;
-//using namespace ui;
 
 class StartScene : public Layer
 {

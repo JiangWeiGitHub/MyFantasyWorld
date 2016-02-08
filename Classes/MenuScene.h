@@ -2,7 +2,6 @@
 #define _MENUSCENE_H_
 
 #include "cocos2d.h"
-#include <unistd.h>
 
 using namespace cocos2d;
 
