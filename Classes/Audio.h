@@ -1,6 +1,14 @@
 #ifndef _AUDIO_H_
 #define _AUDIO_H_
-class Audio{
+
+#include "cocos2d.h"
+#include "SimpleAudioEngine.h"
+
+using namespace cocos2d;
+using namespace CocosDenshion;
+
+class Audio
+{
 public:
 	static Audio* getInstance();
 	void playBGM();

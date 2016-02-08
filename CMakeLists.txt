@@ -131,10 +131,10 @@ set(GAME_SRC
   Classes/GameData.cpp
   Classes/GameLayer.cpp
   Classes/GameScene.cpp
-  Classes/StartScene.cpp
   Classes/LevelMsgLayer.cpp
   Classes/MenuLayer.cpp
   Classes/MenuScene.cpp
+  Classes/StartScene.cpp
   Classes/Star.cpp
   Classes/StarMatrix.cpp
   Classes/StarParticle.cpp
@@ -151,10 +151,10 @@ set(GAME_HEADERS
   Classes/GameData.h
   Classes/GameLayer.h
   Classes/GameScene.h
-  Classes/StartScene.h
   Classes/LevelMsgLayer.h
   Classes/MenuLayer.h
   Classes/MenuScene.h
+  Classes/StartScene.h
   Classes/Star.h
   Classes/StarMatrix.h
   Classes/StarParticle.h

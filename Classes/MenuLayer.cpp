@@ -17,10 +17,8 @@ void MenuLayer::run()
 {
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 
-	Sprite* background = Sprite::create("material_6.jpg");
+	Sprite* background = Sprite::create("../Resources/background.jpg");
 	background->setPosition(visibleSize.width/2,visibleSize.height/2);
-	//this->addChild(background,-1);
-
 	background->setOpacity(0);
 
     auto fadeIn_my_background = FadeIn::create(3.0f);
@@ -30,11 +28,7 @@ void MenuLayer::run()
     auto seq_background = Sequence::create(fadeIn_my_background, nullptr);
     background->runAction(seq_background);
 
-
-
-
-
-    auto button = Button::create("test.png", "test2.png", "test.png");
+    auto button = Button::create("start_menu_normal.png", "start_menu_clicked.png", "start_menu_clicked.png");
     button->addClickEventListener(CC_CALLBACK_0(MenuLayer::startGame, this));
     button->setPosition(Vec2(visibleSize.width/2,visibleSize.height/3));
     this->addChild(button);
