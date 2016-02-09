@@ -10,21 +10,21 @@ bool TopMenu::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	highestScore = Label::create(
 		"Highest Score: " + cocos2d::String::createWithFormat("%d",GAMEDATA::getInstance()->getHistoryScore())->_string,
-		"../Resources/Verdana Bold.ttf",30
+		"fonts/Verdana Bold.ttf",30
 	);
 	highestScore->setPosition(visibleSize.width/2,visibleSize.height - 50);
 	this->addChild(highestScore);
 
 	level = Label::create(
 		"Level: " + cocos2d::String::createWithFormat("%d",GAMEDATA::getInstance()->getNextLevel())->_string,
-		"../Resources/Verdana Bold.ttf",30
+		"fonts/Verdana Bold.ttf",30
 	);
 	level->setPosition(visibleSize.width/2,visibleSize.height - 100);
 	this->addChild(level);
 
 	targetScore = Label::create(
 		"Goal: " + cocos2d::String::createWithFormat("%d",GAMEDATA::getInstance()->getNextScore())->_string + "Gold",
-		"../Resources/Verdana Bold.ttf",30
+		"fonts/Verdana Bold.ttf",30
 	);
 
 	targetScore->setPosition(visibleSize.width/2,visibleSize.height - 150);
@@ -32,7 +32,7 @@ bool TopMenu::init()
 
 	curScore = Label::create(
 	    cocos2d::String::createWithFormat("%d",GAMEDATA::getInstance()->getCurScore())->_string,
-		"../Resources/Verdana Bold.ttf",50
+		"fonts/Verdana Bold.ttf",50
 	);
 	curScore->setPosition(visibleSize.width/2,visibleSize.height - 200);
 	this->addChild(curScore);

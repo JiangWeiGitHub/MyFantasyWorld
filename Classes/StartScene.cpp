@@ -35,7 +35,7 @@ void StartScene::run()
 	auto thanks_layer = LayerColor::create();
 	this->addChild(thanks_layer);
 
-	auto my_thanks = Label::createWithTTF("JOHN'S PRODUCT", "../Resources/fonts/Verdana Bold.ttf", 66);
+	auto my_thanks = Label::createWithTTF("JOHN'S PRODUCT", "fonts/Verdana Bold.ttf", 66);
 	my_thanks->setPosition(visibleSize.width/2,visibleSize.height/2);
 	my_thanks->setOpacity(0);
 	my_thanks->enableOutline(Color4B::GRAY, 3);

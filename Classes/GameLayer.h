@@ -1,12 +1,20 @@
 #ifndef _GAMELAYER_H_
 #define _GAMELAYER_H_
+
 #include "cocos2d.h"
 #include "FloatWord.h"
 #include "TopMenu.h"
 #include "StarMatrix.h"
+#include "GameData.h"
+#include "StarMatrix.h"
+#include "MenuScene.h"
+#include "Audio.h"
+
 using namespace cocos2d;
+
 class StarMatrix;
-class GameLayer : public Layer{
+class GameLayer : public Layer
+{
 public:
 	virtual bool init();
 	CREATE_FUNC(GameLayer);
@@ -29,4 +37,5 @@ private:
 	StarMatrix* matrix;
 	Label* linkNum;
 };
+
 #endif

@@ -1,14 +1,21 @@
 #include "ComboEffect.h"
-void showComboEffect(int size,Node* node){
+
+void showComboEffect(int size,Node* node)
+{
 	if(size<5)
 		return;
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Sprite* comboSprite;
-	if(size>=10){
+	if(size>=10)
+	{
 		comboSprite = Sprite::create("combo_3.png");
-	}else if(size>=7){
+	}
+	else if(size>=7)
+	{
 		comboSprite = Sprite::create("combo_2.png");
-	}else{
+	}
+	else
+	{
 		comboSprite = Sprite::create("combo_1.png");
 	}
 

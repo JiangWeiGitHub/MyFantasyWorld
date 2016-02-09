@@ -19,4 +19,5 @@ public:
 private:
 	static Audio* m_instance;
 };
+
 #endif

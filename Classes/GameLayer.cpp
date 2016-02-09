@@ -1,10 +1,4 @@
 #include "GameLayer.h"
-#include "FloatWord.h"
-#include "GameData.h"
-#include "Chinese.h"
-#include "StarMatrix.h"
-#include "MenuScene.h"
-#include "Audio.h"
 
 bool GameLayer::init()
 {
@@ -25,7 +19,7 @@ bool GameLayer::init()
 
 	menu = TopMenu::create();
 	this->addChild(menu);
-	linkNum = Label::create("","Arial",40);
+	linkNum = Label::create("","fonts/Verdana Bold.ttf",40);
 	linkNum->setPosition(visibleSize.width/2,visibleSize.height-250);
 	linkNum->setVisible(false);
 	this->addChild(linkNum,1);

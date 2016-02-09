@@ -125,7 +125,6 @@ endif( WIN32 )
 set(GAME_SRC
   Classes/AppDelegate.cpp
   Classes/Audio.cpp
-  Classes/Chinese.cpp
   Classes/ComboEffect.cpp
   Classes/FloatWord.cpp
   Classes/GameData.cpp
@@ -145,7 +144,6 @@ set(GAME_SRC
 set(GAME_HEADERS
   Classes/AppDelegate.h
   Classes/Audio.h
-  Classes/Chinese.h
   Classes/ComboEffect.h
   Classes/FloatWord.h
   Classes/GameData.h

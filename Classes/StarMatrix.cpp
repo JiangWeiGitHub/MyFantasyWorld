@@ -30,6 +30,7 @@ bool StarMatrix::init(GameLayer* layer)
 	needClear = false;
 	clearSumTime = 0;
 	memset(stars, 0, sizeof(Star*) * ROW_NUM * COL_NUM);
+
 	initMatrix();
 
 	return true;
@@ -100,16 +101,20 @@ void StarMatrix::initMatrix()
 
 Point StarMatrix::getPositionByIndex(int i,int j)
 {
-	float x = j * Star::STAR_WIDTH + Star::STAR_WIDTH/2;
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+
+	float x = j * Star::STAR_WIDTH + Star::STAR_WIDTH/2 + visibleSize.width/2 - ROW_NUM * Star::STAR_WIDTH/2;
 	float y = (StarMatrix::COL_NUM - i)*Star::STAR_HEIGHT - Star::STAR_HEIGHT/2;
 	return Point(x,y);
 }
 
 Star* StarMatrix::getStarByTouch(const Point& p)
 {
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+
 	int k = p.y/Star::STAR_HEIGHT;
 	int i = ROW_NUM - 1 - k;
-	int j = p.x/Star::STAR_WIDTH;
+	int j = (p.x - visibleSize.width/2 + ROW_NUM * Star::STAR_WIDTH/2)/Star::STAR_WIDTH;
 
 	if(i >= 0 && i < ROW_NUM && 
 	   j >= 0 && j < COL_NUM &&

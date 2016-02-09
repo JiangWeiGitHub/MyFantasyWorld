@@ -1,13 +1,17 @@
 #ifndef _STARMATRIX_H_
 #define _STARMATRIX_H_
+
 #include "cocos2d.h"
 #include "Star.h"
 #include "GameLayer.h"
 #include <deque>
+
 using namespace cocos2d;
 using namespace std;
+
 class GameLayer;
-class StarMatrix : public Node{
+class StarMatrix : public Node
+{
 public:
 	static StarMatrix* create(GameLayer* layer);
 	virtual bool init(GameLayer* layer);
@@ -38,4 +42,5 @@ private:
     static float ONE_CLEAR_TIME;
 	float clearSumTime;
 };
+
 #endif
