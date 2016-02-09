@@ -1,7 +1,9 @@
 #include "LevelMsgLayer.h"
 
-bool LevelMsgLayer::init(){
-	if(!Layer::init()){
+bool LevelMsgLayer::init()
+{
+	if(!Layer::init())
+	{
 		return false;
 	}
 

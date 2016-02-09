@@ -5,21 +5,24 @@
 #include "StarMatrix.h"
 #include "MenuScene.h"
 #include "Audio.h"
-bool GameLayer::init(){
-	if(!Layer::init()){
+
+bool GameLayer::init()
+{
+	if(!Layer::init())
+	{
 		return false;
 	}
 
 	matrix = nullptr;
 	this->scheduleUpdate();
 	EventListenerTouchOneByOne* listener = EventListenerTouchOneByOne::create();
-	listener->onTouchBegan = CC_CALLBACK_2(GameLayer::onTouchBegan,this);
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener,this);
+	listener->onTouchBegan = CC_CALLBACK_2(GameLayer::onTouchBegan,this);	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener,this);
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Sprite* background = Sprite::create("bg_mainscene.jpg");
+	Sprite* background = Sprite::create("bg_mainscene_2.jpg");
 	background->setPosition(visibleSize.width/2,visibleSize.height/2);
 	this->addChild(background,-1);
+
 	menu = TopMenu::create();
 	this->addChild(menu);
 	linkNum = Label::create("","Arial",40);
@@ -68,33 +71,38 @@ void GameLayer::update(float delta){
 	}
 }
 
-bool GameLayer::onTouchBegan(Touch* touch,Event* event){
+bool GameLayer::onTouchBegan(Touch* touch, Event* event)
+{
 	Point p = touch->getLocationInView();
 	p = Director::getInstance()->convertToGL(p);
-	CCLOG("x=%f y=%f",p.x,p.y);
-	if(matrix){
+	CCLOG("x=%f y=%f", p.x, p.y);
+	if(matrix)
+	{
 		matrix->onTouch(p);
 	}
+
 	return true;
 }
 
-void GameLayer::refreshMenu(){
+void GameLayer::refreshMenu()
+{
 	menu->refresh();
 }
 
-void GameLayer::showLinkNum(int size){
-
-	string s = String::createWithFormat("%d",size)->_string + "Combo" +
-		String::createWithFormat("%d",size*size*5)->_string + "Gold";
+void GameLayer::showLinkNum(int size)
+{
+	string s = String::createWithFormat("%d",size)->_string + "Combo" + String::createWithFormat("%d",size*size*5)->_string + "Gold";
 	linkNum->setString(s);
 	linkNum->setVisible(true);
 }
 
-void GameLayer::hideLinkNum(){
+void GameLayer::hideLinkNum()
+{
 	linkNum->setVisible(false);
 }
 
-void GameLayer::floatLeftStarMsg(int leftNum){
+void GameLayer::floatLeftStarMsg(int leftNum)
+{
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	FloatWord* leftStarMsg1 = FloatWord::create("Remainder" + String::createWithFormat("%d",leftNum)->_string +"Gold",
 		50,Point(visibleSize.width,visibleSize.height/2));
@@ -124,7 +132,7 @@ void GameLayer::gotoNextLevel(){
 }
 
 void GameLayer::gotoGameOver(){
-	//������߷�?
+	//������߷�?
 	GAMEDATA::getInstance()->saveHighestScore();
 	//Ʈ�֣��л�scene
 	Size visibleSize = Director::getInstance()->getVisibleSize();

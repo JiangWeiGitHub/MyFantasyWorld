@@ -24,7 +24,7 @@ bool AppDelegate::applicationDidFinishLaunching()
         glview = GLViewImpl::create("John's World");
         director->setOpenGLView(glview);
     }
-	glview->setDesignResolutionSize(1280,720,ResolutionPolicy::EXACT_FIT);
+	glview->setDesignResolutionSize(1280,720,ResolutionPolicy::FIXED_HEIGHT);
 	//glview->centerWindow();
 
     // turn on display FPS
