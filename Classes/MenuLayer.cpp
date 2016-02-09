@@ -29,7 +29,7 @@ void MenuLayer::run()
     background->runAction(seq_background);
 
     ////////////////////////////////////
-	auto my_title = Label::createWithTTF("John's Dream World", "../Resources/fonts/Marker Felt.ttf", 66);
+	auto my_title = Label::createWithTTF("John's Dream World", "../Resources/fonts/Verdana Bold.ttf", 66);
 	my_title->setPosition(visibleSize.width/2,visibleSize.height/1.5);
 	my_title->setOpacity(0);
 	my_title->enableShadow(Color4B::BLACK, Size(2 ,-2), 0);
@@ -45,8 +45,9 @@ void MenuLayer::run()
     auto button = Button::create("start_menu_normal.png", "start_menu_clicked.png", "start_menu_clicked.png");
     button->addClickEventListener(CC_CALLBACK_0(MenuLayer::startGame, this));
     button->setPosition(Vec2(visibleSize.width/2,visibleSize.height/3));
+    button->setOpacity(0);
 
-    auto fadeIn_my_button = FadeIn::create(3.0f);
+    auto fadeIn_my_button = FadeIn::create(5.0f);
 
     this->addChild(button);
 
