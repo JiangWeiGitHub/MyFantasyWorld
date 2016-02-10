@@ -158,7 +158,7 @@ public:
 	inline FlightLayer* getLayer(){return m_layer;}
 	
 protected:
-	int m_id;	//id
+	int m_id;
 	
 	Role* m_attackTarget;
 	Role** m_attackTargetPtr;
