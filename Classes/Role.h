@@ -1,14 +1,17 @@
 #ifndef _ROLE_H_
 #define _ROLE_H_
+
 #include "cocos2d.h"
 #include "CocoStudio.h"
 #include "RoleProtocol.h"
 #include "FlightLayer.h"
 #include "cocos-ext.h"
 #include <string>
+
 USING_NS_CC_EXT;
 using namespace cocos2d;
 using namespace cocostudio;
+
 class FlightLayer;
 class Role : public Node,public RoleProtocol{
 friend class FlightLayer;
@@ -30,7 +33,7 @@ public:
 	};
 public:
 	Role();
-/*create Ö®Ç°,ÇëÏÈÈ·ÈÏÒÑ¾­½«ÎÄ¼þÌí¼Óµ½ArmatureManager*/
+/*create Ö®Ç°,ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Óµï¿½ArmatureManager*/
 	static Role* create(const std::string& name,FlightLayer* layer);
 	virtual bool init(const std::string& name,FlightLayer* layer);
 	void setControlable(bool b);
@@ -46,7 +49,7 @@ protected:
 	virtual Point getHpSliderPos();
 
 protected:
-/*updateÏà¹ØµÄ*/
+/*updateï¿½ï¿½Øµï¿½*/
 	virtual void update(float delta);
 	virtual void update_checkHL();
 	virtual void update_trace();
@@ -54,7 +57,7 @@ protected:
 	virtual void update_attackTarget();
 	virtual void update_hp();
 
-/*´ÓRoleProtocolÖÐ¼Ì³ÐÏÂÀ´µÄ·½·¨*/
+/*ï¿½ï¿½RoleProtocolï¿½Ð¼Ì³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½*/
 public:
 	virtual void stand();
 	virtual void move();
@@ -70,7 +73,7 @@ public:
 	void onBondAnimationFinish(Armature* arm,MovementEventType type,const std::string& name);
 
 protected:
-	/*ÓëÏÔÊ¾Ïà¹ØµÄ*/
+	/*ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Øµï¿½*/
 	bool m_controlable;
 	Armature* m_arm;
 	int m_arm_offsetX;
@@ -78,15 +81,15 @@ protected:
 
 	Sprite* m_trace;
 	Point m_endPoint;
-	bool m_armFaceTo;	//³¯Ïò£¬Ä¬ÈÏÎªtrue£¬Ïò×ó
-	bool m_isHL;	//ÊÇ·ñ¸ßÁÁÏÔÊ¾
+	bool m_armFaceTo;	//ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½ï¿½Îªtrueï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	bool m_isHL;	//ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
 	Color3B m_defalutColor;
 	ControlSlider* m_hpSlider;
 	Sprite* m_selectCircle;
 
 
 public:
-	/*Íâ²¿µ÷ÓÃ½Ó¿Ú*/
+	/*ï¿½â²¿ï¿½ï¿½ï¿½Ã½Ó¿ï¿½*/
 	virtual inline void setDesPoint(const Point& p){m_desPoint = p;}
 
 	virtual void setAttackTarget(Role** targetPtr);
@@ -94,118 +97,118 @@ public:
 	//ID
 	virtual inline int getId(){return m_id;}
 	
-	//½ÇÉ«×´Ì¬¡¢ÊôÐÔ
+	//ï¿½ï¿½É«×´Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	inline ROLE_STAT getRoleStat(){return en_stat;}
 	inline ROLE_TYPE getRoleType(){return m_type;}
 	
-	//·¢Éä×Óµ¯
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½
 	void sendBullet();
 
-	//ÅÜ¼¼ÄÜÐ§¹û£¨³£ÓÃÓÚ±»»÷ÖÐÐ§¹û£©
+	//ï¿½Ü¼ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½ï¿½Ú±ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
 	void runSkillEffect(int skill_id,int loop =1);
 
 public:
-	//ÊôÐÔget/set
+	//ï¿½ï¿½ï¿½ï¿½get/set
 
-	//ÒÆ¶¯ËÙ¶È
+	//ï¿½Æ¶ï¿½ï¿½Ù¶ï¿½
 	inline int getSpeed(){return m_speed;}
 	inline void setSpeed(int speed){m_speed = speed;}
 	inline int getInitSpeed(){return m_initSpeed;}
 	inline void setInitSpeed(int speed){m_initSpeed = speed;}
 
-	//¹¥»÷ËÙ¶È
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½
 	inline double getAtkSpeed(){return m_atkSpeed;}
 	inline void setAtkSpeed(double speed){m_atkSpeed = speed;}
 	inline double getInitAtkSpeed(){return m_initAtkSpeed;}
 	inline void setInitAtkSpeed(double speed){m_initAtkSpeed = speed;}
 
-	//ÉúÃüÖµ
+	//ï¿½ï¿½ï¿½ï¿½Öµ
 	inline int getHp(){return m_hp;}
 	inline void setHp(int hp){m_hp = hp;}
 	inline int getInitHp(){return m_initHp;}
 	inline void setInitHp(int hp){m_initHp = hp;}
 
-	//¹¥»÷¾àÀë
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	inline int getAttackDistance(){return m_attackDistance;}
 	inline void setAttackDistance(int distance){m_attackDistance = distance;}
 	inline int getInitAttackDistance(){return m_initAttackDistance;}
 	inline void setInitAttackDistance(int distance){m_initAttackDistance = distance;}
 
-	//¹¥»÷Á¦
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	inline int getAtk(){return m_atk;}
 	inline void setAtk(int atk){m_atk = atk;}
 	inline int getInitAtk(){return m_initAtk;}
 	inline void setInitAtk(int atk){m_initAtk = atk;}
 	
-	//¹¥»÷¸½¼Ó³ðºÞÖµ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½Öµ
 	inline int getAtkHateValue(){return m_atkHateValue;}
 	inline void setAtkHateValue(int value){m_atkHateValue = value;}
 	
-	//·ÀÓùÁ¦
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	inline void setDefence(int defence){m_defence = defence;}
 	inline int getDefence(){return m_defence;}
 	inline void setInitDefence(int def){m_initDefence = def;}
 	inline int getInitDefence(){return m_initDefence;}
 
 
-	//ÊÇ²»ÊÇÄÌÂè
+	//ï¿½Ç²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	inline bool isNaima(){return m_isNaima;}
 	inline void setNaima(bool b){m_isNaima = b;}
     
-	//×Óµ¯Í¼Æ¬
+	//ï¿½Óµï¿½Í¼Æ¬
 	std::string getBulletImg();
 	void setBulletImg(std::string img);
 	
-	//×Óµ¯ËÙ¶È
+	//ï¿½Óµï¿½ï¿½Ù¶ï¿½
 	inline int getBulletSpeed(){return m_bulletSpeed;}
 	inline void setBulletSpeed(int speed){m_bulletSpeed = speed;}
 	inline int getInitBulletSpeed(){return m_initBulletSpeed;}
 	inline void setInitBulletSpeed(int speed){m_initBulletSpeed = speed;}
 
-	//»ñÈ¡¸¸¿Ø¼þ
+	//ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ø¼ï¿½
 	inline FlightLayer* getLayer(){return m_layer;}
 	
 protected:
-	/*ÓëÕ½¶·Ïà¹ØµÄÊý¾Ý*/
+	/*ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½ï¿½*/
 	int m_id;	//id
 	
 	Role* m_attackTarget;
-	Role** m_attackTargetPtr;//¹¥»÷Ä¿±ê
+	Role** m_attackTargetPtr;//ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½
 
-	Point m_desPoint;//Ä¿±êÎ»ÖÃ
+	Point m_desPoint;//Ä¿ï¿½ï¿½Î»ï¿½ï¿½
 	
-	ROLE_STAT en_stat;	//µ±Ç°×´Ì¬
+	ROLE_STAT en_stat;	//ï¿½ï¿½Ç°×´Ì¬
 	
-	FlightLayer* m_layer;	//¸¸¿Ø¼þ
+	FlightLayer* m_layer;	//ï¿½ï¿½ï¿½Ø¼ï¿½
 
 
-	int m_speed;	//ÒÆ¶¯ËÙ¶È
+	int m_speed;	//ï¿½Æ¶ï¿½ï¿½Ù¶ï¿½
 	int m_initSpeed;
 	
-	int m_attackDistance;	//¹¥»÷¾àÀë
+	int m_attackDistance;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	int m_initAttackDistance;
 
-	int m_hp;//ÉúÃüÖµ
+	int m_hp;//ï¿½ï¿½ï¿½ï¿½Öµ
 	int m_initHp;
 
-	int m_atk;//¹¥»÷Á¦
+	int m_atk;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	int m_initAtk;
 
-	int m_defence;//·ÀÓùÁ¦
+	int m_defence;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	int m_initDefence;
 
-	ROLE_TYPE m_type;//½ÇÉ«ÀàÐÍ£ºMonster Or Hero
+	ROLE_TYPE m_type;//ï¿½ï¿½É«ï¿½ï¿½ï¿½Í£ï¿½Monster Or Hero
 	
-	int m_atkHateValue;//¹¥»÷¸½´ø³ðºÞ
+	int m_atkHateValue;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	bool m_isNaima;//ÊÇ²»ÊÇÄÌÂè
+	bool m_isNaima;//ï¿½Ç²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
-	std::string m_bulletImg;//×Óµ¯
+	std::string m_bulletImg;//ï¿½Óµï¿½
 
-	int m_bulletSpeed;//×Óµ¯ËÙ¶È
+	int m_bulletSpeed;//ï¿½Óµï¿½ï¿½Ù¶ï¿½
 	int m_initBulletSpeed;
 
-	double m_atkSpeed;//¹¥»÷ËÙ¶È
+	double m_atkSpeed;//ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½
 	double m_initAtkSpeed;
 
 };
