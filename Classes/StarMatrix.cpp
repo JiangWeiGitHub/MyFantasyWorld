@@ -114,7 +114,18 @@ Star* StarMatrix::getStarByTouch(const Point& p)
 
 	int k = p.y/Star::STAR_HEIGHT;
 	int i = ROW_NUM - 1 - k;
-	int j = (p.x - visibleSize.width/2 + ROW_NUM * Star::STAR_WIDTH/2)/Star::STAR_WIDTH;
+
+	int tmp;
+	if((p.x - (visibleSize.width/2 - ROW_NUM * Star::STAR_WIDTH/2)) > 0)
+	{
+		tmp = p.x;
+	}
+	else
+	{
+		return nullptr;
+	}
+
+	int j = (tmp - visibleSize.width/2 + ROW_NUM * Star::STAR_WIDTH/2)/Star::STAR_WIDTH;
 
 	if(i >= 0 && i < ROW_NUM && 
 	   j >= 0 && j < COL_NUM &&
