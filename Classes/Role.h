@@ -169,7 +169,6 @@ protected:
 	
 	FlightLayer* m_layer;
 
-
 	int m_speed;
 	int m_initSpeed;
 	
