@@ -10,7 +10,6 @@
 
 USING_NS_CC_EXT;
 using namespace cocos2d;
-using namespace cocostudio;
 
 class FlightLayer;
 class Role : public Node, public RoleProtocol
