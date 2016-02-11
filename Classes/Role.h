@@ -2,13 +2,9 @@
 #define _ROLE_H_
 
 #include "cocos2d.h"
-#include "CocoStudio.h"
 #include "RoleProtocol.h"
-#include "FlightLayer.h"
-#include "cocos-ext.h"
 #include <string>
 
-USING_NS_CC_EXT;
 using namespace cocos2d;
 
 class Role : public Node, public RoleProtocol
@@ -16,7 +12,7 @@ class Role : public Node, public RoleProtocol
 public:
 	enum ROLE_STAT
 	{
-		ROLE_ATTACK = 1,
+		ROLE_ATTACK,
 		ROLE_DEFENCE,
 		ROLE_MAD,
 		ROLE_CONFUSE,
@@ -79,10 +75,37 @@ public:
 
 	enum ROLE_TYPE
 	{
-		ROLE_TYPE_NULL = 1,
 		ROLE_TYPE_HERO,
 		ROLE_TYPE_MONSTER,
 		ROLE_TYPE_FRIEND
+	};
+
+	struct role_data
+	{
+		int m_hp;
+		int m_mp;
+		int m_atk;
+		int m_defence;
+		int m_magicAtk;
+		int m_magicDefence;
+		int m_speed;
+		int m_evade;
+		int m_atkSpeed;
+		int m_luck;
+	};
+
+	struct role_initData
+	{
+		int m_initHp;
+		int m_initMp;
+		int m_initAtk;
+		int m_initDefence;
+		int m_initMagicAtk;
+		int m_initMagicDefence;
+		int m_initSpeed;
+		int m_initEvade;
+		int m_initAtkSpeed;
+		int m_initLuck;
 	};
 
 public:
@@ -105,6 +128,11 @@ public:
 	virtual void onTouchEnded(Touch* touch,Event* event);
 
 public:
+	inline struct role_data getAllData(){return m_role_data;}
+	inline void setAllData(struct role_data role_data){m_role_data = role_data;}
+	inline struct role_data getAllInitData(){return m_role_initData;}
+	inline void setAllInitData(struct role_initData role_initData){m_role_initData = role_initData;}
+
 	inline int getSpeed(){return m_speed;}
 	inline void setSpeed(int speed){m_speed = speed;}
 	inline int getInitSpeed(){return m_initSpeed;}
@@ -136,6 +164,9 @@ protected:
 	ROLE_STAT en_stat;
 	ROLE_TYPE m_type;
 	
+	struct role_data m_role_data;
+	struct role_initData m_role_initData;
+
 	int m_hp;
 	int m_initHp;
 
