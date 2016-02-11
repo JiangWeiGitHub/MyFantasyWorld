@@ -1,7 +1,5 @@
 #include "Role.h"
-#include "DefaultData.h"
-#include "Bullet.h"
-#include "EffectUtil.h"
+
 Role::Role():m_controlable(false),m_arm(nullptr),m_trace(nullptr),m_isHL(false),
 	m_attackTarget(nullptr),m_attackTargetPtr(nullptr),m_hpSlider(nullptr)
 {
@@ -92,7 +90,7 @@ void Role::onBondAnimationFinish(Armature* arm,MovementEventType type,const std:
 		}
 		if(name == "attack"){
 			CCLOG("ATTACK COMPLETE");
-			//恢复速度
+
 			m_speed = m_initSpeed;
 			m_arm->getAnimation()->setSpeedScale(1.0f);
 			this->stand();
@@ -212,7 +210,7 @@ void Role::update_checkHL(){
 
 void Role::update_pos(){
 	if(en_stat == ROLE_ATTACK){
-		//如果是攻击状态 位置属性不需改变
+
 		return;
 	}
 	if(m_attackTarget){
@@ -282,14 +280,17 @@ void Role::update_pos(){
 	
 }
 
-void Role::update_hp(){
-	if(m_hpSlider){
+void Role::update_hp()
+{
+	if(m_hpSlider)
+	{
 		m_hpSlider->setValue(m_hp);
 		m_hpSlider->setPosition(getHpSliderPos());
 	}
 }
 
-void Role::update(float delta){
+void Role::update(float delta)
+{
 	update_attackTarget();
 	update_trace();
 	update_checkHL();
@@ -297,33 +298,44 @@ void Role::update(float delta){
 	update_hp();
 }
 
-void Role::stand(){
-	if(en_stat == ROLE_INJURED){
+void Role::stand()
+{
+	if(en_stat == ROLE_INJURED)
+	{
 		return;
 	}
-	if(m_arm && en_stat!=ROLE_STAND){
+
+	if(m_arm && en_stat!=ROLE_STAND)
+	{
 		m_arm->getAnimation()->play("stand");
 		CCLOG("id=%d:stand",m_id);
 		en_stat = ROLE_STAND;
 	}
 }
-void Role::move(){
-	if(en_stat == ROLE_ATTACK){
+
+void Role::move()
+{
+	if(en_stat == ROLE_ATTACK)
+	{
 		return;
 	}
-	if(m_arm && en_stat!=ROLE_MOVE){
+
+	if(m_arm && en_stat!=ROLE_MOVE)
+	{
 		en_stat = ROLE_MOVE;
 		m_arm->getAnimation()->play("walk");
 		CCLOG("id=%d:move",m_id);
 		CCLOG("move");
 	}
 }
-void Role::attack(){
+
+void Role::attack()
+{
 	if(en_stat == ROLE_INJURED)
 		return;
 	if(m_arm && en_stat!=ROLE_ATTACK){
 		en_stat = ROLE_ATTACK;
-		//攻击过程中速度为O
+
 		m_speed = 0;
 		m_arm->getAnimation()->setSpeedScale(m_atkSpeed);
 		m_arm->getAnimation()->play("attack");
@@ -331,10 +343,13 @@ void Role::attack(){
 		CCLOG("id=%d send a hitOnMessage to id=%d",m_id,m_attackTarget->getId());
 	}
 }
-void Role::skill(){
+
+void Role::skill()
+{
 	
 }
-void Role::injured(int effect,int damage){
+void Role::injured(int effect,int damage)
+{
 	runSkillEffect(effect);
 	if(damage < 0){
 		m_hp -= damage;
@@ -363,31 +378,7 @@ void Role::injured(int effect,int damage){
 	m_arm->runAction(seq);
 }
 
-void Role::die(){
+void Role::die()
+{
 	en_stat = ROLE_DIE;
-}
-
-void Role::setBulletImg(string img){
-	m_bulletImg = img;
-}
-
-string Role::getBulletImg(){
-	return m_bulletImg;
-}
-
-void Role::sendBullet(){
-	if(m_attackTarget && m_layer){
-		m_layer->addBullet(this,m_attackTargetPtr);
-	}
-}
-
-void Role::runSkillEffect(int id,int loop){
-	Sprite* sp = Sprite::create("Skill/null.png");
-	sp->setAnchorPoint(Point(0.5f,0));
-	sp->setPosition(0,0);
-	this->addChild(sp,10);
-	Animate* animate = EffectUtil::getInstance()->getSkillEffectById(id,loop);
-	CallFunc* call = CallFunc::create([=](){sp->removeFromParentAndCleanup(true);});
-	Sequence* action = Sequence::create(animate,call,NULL);
-	sp->runAction(action);
 }
