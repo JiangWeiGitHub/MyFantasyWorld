@@ -1,7 +1,6 @@
 #include "Role.h"
 
-Role::Role():m_controlable(false),m_arm(nullptr),m_trace(nullptr),m_isHL(false),
-	m_attackTarget(nullptr),m_attackTargetPtr(nullptr),m_hpSlider(nullptr)
+Role::Role()
 {
 	m_arm_offsetX = m_arm_offsetY = 0;
 	m_atkHateValue = HERO_ATK_HATE_VALUE;
@@ -30,19 +29,25 @@ Role::Role():m_controlable(false),m_arm(nullptr),m_trace(nullptr),m_isHL(false),
 	m_bulletSpeed = m_initBulletSpeed = ROLE_DEFAULT_BULLET_SPEED;
 }
 
-Role* Role::create(const std::string& name,FlightLayer* layer){
+Role* Role::create(const std::string& name,FlightLayer* layer)
+{
 	Role* ret = new Role();
-	if(ret && ret->init(name,layer)){
+	if(ret && ret->init(name,layer))
+	{
 		ret->autorelease();
 		return ret;
 	}
+
 	CC_SAFE_DELETE(ret);
+
 	return nullptr;
 }
 
-bool Role::init(const std::string& name,FlightLayer* layer){
+bool Role::init(const std::string& name,FlightLayer* layer)
+{
 	m_layer = layer;
-	if(!m_arm){
+	if(!m_arm)
+	{
 		m_arm = Armature::create(name);
 		m_arm->setPosition(m_arm_offsetX,m_arm_offsetY);
 		m_arm->getAnimation()->setMovementEventCallFunc(CC_CALLBACK_3(Role::onBondAnimationFinish,this));
@@ -62,69 +67,11 @@ bool Role::init(const std::string& name,FlightLayer* layer){
 		this->addChild(m_selectCircle);
 
 		return true;
-	}else{
+	}
+	else
+	{
 		return false;
 	}
-}
-
-void Role::initHpSlider(){
-	m_hpSlider = ControlSlider::create("bloodbg.png","blood.png","sliderThumb.png");
-	m_hpSlider->setTouchEnabled(false);
-	m_hpSlider->setMaximumValue(m_initHp);
-	m_hpSlider->setMinimumValue(0);
-	m_hpSlider->setValue(m_hp);
-	m_hpSlider->setPosition(getHpSliderPos());
-	this->addChild(m_hpSlider);
-}
-
-Point Role::getHpSliderPos(){
-	return Point(0,0);
-}
-
-
-void Role::onBondAnimationFinish(Armature* arm,MovementEventType type,const std::string& name){
-	if(type == COMPLETE){
-		if(name == "hit"){
-			CCLOG("HIT COMPLETE");
-			en_stat = ROLE_STAND;
-		}
-		if(name == "attack"){
-			CCLOG("ATTACK COMPLETE");
-
-			m_speed = m_initSpeed;
-			m_arm->getAnimation()->setSpeedScale(1.0f);
-			this->stand();
-		}
-	}
-	if(type == START){
-		if(name == "attack"){
-			CCLOG("SEND BULLET");
-			sendBullet();
-		}
-	}
-}
-
-void Role::setControlable(bool b){
-	m_controlable = b;
-}
-
-void Role::setAttackTarget(Role** targetPtr){
-	m_attackTargetPtr = targetPtr;
-	if(targetPtr){
-		m_attackTarget = *m_attackTargetPtr;
-	}else{
-		m_attackTarget = nullptr;
-	}
-}
-
-Rect Role::getBoundingBox(){
-	Size heroSize = m_arm->getContentSize();
-	Rect heroRect(this->getPositionX()- heroSize.width/4,this->getPositionY(),heroSize.width/2,heroSize.height); 
-	return heroRect;
-}
-
-void Role::setHeightLight(bool b){
-	m_isHL = b;
 }
 
 void Role::setEndPoint(const Point& p){
