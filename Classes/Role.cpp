@@ -110,34 +110,45 @@ bool Role::onTouchBegan(Touch* touch,Event* event){
 	return false;
 }
 
-void Role::onTouchMoved(Touch* touch,Event* event){
+void Role::onTouchMoved(Touch* touch,Event* event)
+{
 	Point point = touch->getLocationInView();
 	point = Director::getInstance()->convertToGL(point);
 	m_endPoint = point;
 	
 }
 
-void Role::onTouchEnded(Touch* touch,Event* event){
-	if(m_trace){
+void Role::onTouchEnded(Touch* touch,Event* event)
+{
+	if(m_trace)
+	{
 		m_trace->removeFromParentAndCleanup(true);
 		m_trace = nullptr;
 		setHeightLight(false);
 	}
 }
 
-void Role::update_attackTarget(){
-	if(m_attackTargetPtr){
+void Role::update_attackTarget()
+{
+	if(m_attackTargetPtr)
+	{
 		m_attackTarget = *m_attackTargetPtr;		
-	}else{
+	}
+	else
+	{
 		m_attackTarget = nullptr;
 	}
 }
 
-void Role::update_trace(){
-	if(m_trace){
-		if(getBoundingBox().containsPoint(m_endPoint)){
+void Role::update_trace()
+{
+	if(m_trace)
+	{
+		if(getBoundingBox().containsPoint(m_endPoint))
+		{
 			m_endPoint = this->getPosition();
 		}
+
 		Point begin(CCDirector::getInstance()->convertToGL(this->getPosition()));
 		Point end(CCDirector::getInstance()->convertToGL(m_endPoint));
 		m_trace->setRotation(CC_RADIANS_TO_DEGREES(ccpToAngle(end - begin)));
@@ -145,43 +156,62 @@ void Role::update_trace(){
 	}
 }
 
-void Role::update_checkHL(){
-	if(m_isHL){
+void Role::update_checkHL()
+{
+	if(m_isHL)
+	{
 		m_arm->setColor(Color3B(199,243,62));
 		m_selectCircle->setVisible(true);
-	}else{
+	}
+	else
+	{
 		m_arm->setColor(m_defalutColor);
 		m_selectCircle->setVisible(false);
 	}
 }
 
-void Role::update_pos(){
-	if(en_stat == ROLE_ATTACK){
+void Role::update_pos()
+{
+	if(en_stat == ROLE_ATTACK)
+	{
 
 		return;
 	}
-	if(m_attackTarget){
+
+	if(m_attackTarget)
+	{
 		m_desPoint.y = m_attackTarget->getPositionY();
 		m_desPoint.x = m_attackTarget->getPositionX();
 	}
-	if(m_attackTarget){
-		if(m_attackTarget->getPositionX() > getPositionX()){
+
+	if(m_attackTarget)
+	{
+		if(m_attackTarget->getPositionX() > getPositionX())
+		{
 			m_armFaceTo = false;
-		}else{
+		}
+		else
+		{
 			m_armFaceTo = true;
 		}
-		if(m_armFaceTo){
+
+		if(m_armFaceTo)
+		{
 			m_arm->setVisible(false);
 			m_arm->setPosition(m_arm_offsetX,m_arm_offsetY);
 			m_arm->setScaleX(1.0f);
 			m_arm->setVisible(true);
-		}else{
+		}
+		else
+		{
 			m_arm->setVisible(false);
 			m_arm->setScaleX(-1.0f);
 			m_arm->setPosition(-m_arm_offsetX,m_arm_offsetY);
 			m_arm->setVisible(true);
 		}
-		if(!Rect(getPositionX()-m_attackDistance,getPositionY()-m_attackDistance,2*m_attackDistance,2*m_attackDistance).containsPoint(m_desPoint)){
+
+		if(!Rect(getPositionX()-m_attackDistance,getPositionY()-m_attackDistance,2*m_attackDistance,2*m_attackDistance).containsPoint(m_desPoint))
+		{
 			this->move();
 			float distance = ccpDistance(getPosition(),m_desPoint);
 			float t = distance / m_speed;
@@ -190,29 +220,42 @@ void Role::update_pos(){
 
 			setPositionX(getPositionX() + speed_x);
 			setPositionY(getPositionY() + speed_y);
-		}else{
+		}
+		else
+		{
 			this->attack();
 			//this->setDesPoint(getPosition());
 		}
-	}else{
-		if(m_desPoint.x > this->getPosition().x && m_armFaceTo == true){	
+	}
+	else
+	{
+		if(m_desPoint.x > this->getPosition().x && m_armFaceTo == true)
+		{
 			m_armFaceTo = false;
 		}
-		if(m_desPoint.x < this->getPosition().x && m_armFaceTo == false){
+
+		if(m_desPoint.x < this->getPosition().x && m_armFaceTo == false)
+		{
 			m_armFaceTo = true;
 		}
-		if(m_armFaceTo){
+
+		if(m_armFaceTo)
+		{
 			m_arm->setVisible(false);
 			m_arm->setPosition(m_arm_offsetX,m_arm_offsetY);
 			m_arm->setScaleX(1.0f);
 			m_arm->setVisible(true);
-		}else{
+		}
+		else
+		{
 			m_arm->setVisible(false);
 			m_arm->setScaleX(-1.0f);
 			m_arm->setPosition(-m_arm_offsetX,m_arm_offsetY);
 			m_arm->setVisible(true);
 		}
-		if(!Rect(m_desPoint.x-m_speed/2,m_desPoint.y-m_speed/2,m_speed,m_speed).containsPoint(getPosition())){
+
+		if(!Rect(m_desPoint.x-m_speed/2,m_desPoint.y-m_speed/2,m_speed,m_speed).containsPoint(getPosition()))
+		{
 			this->move();
 			float distance = ccpDistance(getPosition(),m_desPoint);
 			float t = distance / m_speed;
@@ -220,7 +263,9 @@ void Role::update_pos(){
 			float speed_y = (m_desPoint.y - getPositionY()) / t;
 			setPositionX(getPositionX() + speed_x);
 			setPositionY(getPositionY() + speed_y);
-		}else{
+		}
+		else
+		{
 			this->stand();
 		}
 	}
