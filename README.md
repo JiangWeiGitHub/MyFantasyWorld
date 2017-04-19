@@ -15,7 +15,7 @@ sudo cp ./external/linux-specific/fmod/prebuilt/64-bit/libfmod.so /usr/local/lib
 sudo cp ./external/linux-specific/fmod/prebuilt/64-bit/libfmodL.so /usr/local/lib/
 ln -s libfmod.so libfmod.so.6
 ```
-+ enter `/build` folder
++ enter into `/build` folder
 + cd `./build`
 + run `./install-deps-linux.sh`
 + run `cmake ..`
