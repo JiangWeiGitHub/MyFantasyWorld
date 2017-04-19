@@ -19,7 +19,6 @@
 ```
 PS: [*because of this*](http://discuss.cocos2d-x.org/t/error-while-building-for-linux-libfmod-so-6/26553)
 
-+ enter into `/build` folder
 + cd `./build`
 + run `./install-deps-linux.sh`
 + run `cmake ..`
