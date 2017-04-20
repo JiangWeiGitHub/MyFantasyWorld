@@ -6,6 +6,7 @@
 + Host: **Ubuntu 16.04.1 Desktop amd64**
 + [Official Site](http://cocos2d-x.org/)
 + [Official Github](https://github.com/cocos2d/cocos2d-x)
++ [Cocos command-line tool](http://cocos2d-x.org/docs/editors_and_tools/cocosCLTool/)
 
 ### Run Test Sample
 + download
@@ -24,3 +25,20 @@ PS: [*because of this*](http://discuss.cocos2d-x.org/t/error-while-building-for-
 + run `cmake ..`
 + run `make`
 + run test sample like `./bin/cpp-tests/cpp-tests`
+
+### Create A New Project
++ Using Sample
+
+  `cocos new <game name> -p <package identifier> -l <language> -d <location>`
+  
+  Like: `cocos new helloWorld -p helloWorld -l cpp -d ./`
+  
++ Compiling Sample
+
+  `cocos compile -s <path to your project> -p <platform> -m <mode> -o <output directory>`
+  
+  Like: `cocos compile . -p linux -m release`
+
++ Add Files
+
+  ...
