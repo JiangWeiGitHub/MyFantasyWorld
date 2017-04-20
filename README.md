@@ -27,6 +27,10 @@ PS: [*because of this*](http://discuss.cocos2d-x.org/t/error-while-building-for-
 + run test sample like `./bin/cpp-tests/cpp-tests`
 
 ### Create A New Project
++ Setting up cocos
+  
+  `./setup.py`
+  
 + Using Sample
 
   `cocos new <game name> -p <package identifier> -l <language> -d <location>`
