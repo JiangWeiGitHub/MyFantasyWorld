@@ -3,9 +3,7 @@
 USING_NS_CC;
 
 Role::Role()
-{
-  log("Only for test");
-}
+{}
 
 Role::~Role()
 {}
@@ -13,7 +11,6 @@ Role::~Role()
 void Role::setName(std::string name)
 {
   this->_name = name;
-  log("Only for test");
 }
 
 std::string Role::getName()

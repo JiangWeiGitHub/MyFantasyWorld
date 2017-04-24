@@ -31,6 +31,13 @@ bool HelloWorld::init()
   auto visibleSize = Director::getInstance()->getVisibleSize();
   Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
+  std::cout << "visibleSize: " << visibleSize.height << std::endl;
+  std::cout << "visibleSize: " << visibleSize.width << std::endl;
+
+  std::cout << "origin: " << origin.x << std::endl;
+  std::cout << "origin: " << origin.y << std::endl;
+
+
   /////////////////////////////
   // 2. add a menu item with "X" image, which is clicked to quit the program
   //    you may modify it.
@@ -117,9 +124,8 @@ bool HelloWorld::init()
 
 
   test = new Role();
-  log("aaaaaaaaaaaa");
   test->setName("John");
-  log("bbbbbbbbbbbbbbbbbb");
+
 
   this->flag_top = false;
   this->flag_bottom = false;
@@ -158,94 +164,28 @@ bool HelloWorld::init()
 
 void HelloWorld::update(float delta)
 {
-  // Register an update function that checks to see if the CTRL key is pressed
-  // and if it is displays how long, otherwise tell the user to press it
-  // Node::update(delta);
-
-  // auto textTure = Director::getInstance()->getTextureCache()->addImage("sabin.png");
-  // // top
-  // SpriteFrame* frame0 = SpriteFrame::createWithTexture(textTure, Rect(270,0,30,50));
-  // SpriteFrame* frame1 = SpriteFrame::createWithTexture(textTure, Rect(300,0,30,50));
-  // SpriteFrame* frame2 = SpriteFrame::createWithTexture(textTure, Rect(330,0,30,50));
-  // SpriteFrame* frame3 = SpriteFrame::createWithTexture(textTure, Rect(300,0,30,50));
-
-  // // bottom
-  // SpriteFrame* frame4 = SpriteFrame::createWithTexture(textTure, Rect(0,0,30,50));
-  // SpriteFrame* frame5 = SpriteFrame::createWithTexture(textTure, Rect(30,0,30,50));
-  // SpriteFrame* frame6 = SpriteFrame::createWithTexture(textTure, Rect(60,0,30,50));
-  // SpriteFrame* frame7 = SpriteFrame::createWithTexture(textTure, Rect(30,0,30,50));
-
-  // // left
-  // SpriteFrame* frame8 = SpriteFrame::createWithTexture(textTure, Rect(90,0,30,50));
-  // SpriteFrame* frame9 = SpriteFrame::createWithTexture(textTure, Rect(120,0,30,50));
-  // SpriteFrame* frame10 = SpriteFrame::createWithTexture(textTure, Rect(150,0,30,50));
-  // SpriteFrame* frame11 = SpriteFrame::createWithTexture(textTure, Rect(120,0,30,50));
-
-  // // right
-  // SpriteFrame* frame12 = SpriteFrame::createWithTexture(textTure, Rect(180,0,30,50));
-  // SpriteFrame* frame13 = SpriteFrame::createWithTexture(textTure, Rect(210,0,30,50));
-  // SpriteFrame* frame14 = SpriteFrame::createWithTexture(textTure, Rect(240,0,30,50));
-  // SpriteFrame* frame15 = SpriteFrame::createWithTexture(textTure, Rect(210,0,30,50));
-    
-  // Vector<SpriteFrame*> top;
-  // top.pushBack(frame0);
-  // top.pushBack(frame1);
-  // top.pushBack(frame2);
-  // top.pushBack(frame3);
-
-  // Vector<SpriteFrame*> bottom;
-  // bottom.pushBack(frame4);
-  // bottom.pushBack(frame5);
-  // bottom.pushBack(frame6);
-  // bottom.pushBack(frame7);
-
-  // Vector<SpriteFrame*> left;
-  // left.pushBack(frame8);
-  // left.pushBack(frame9);
-  // left.pushBack(frame10);
-  // left.pushBack(frame11);
-
-  // Vector<SpriteFrame*> right;
-  // right.pushBack(frame12);
-  // right.pushBack(frame13);
-  // right.pushBack(frame14);
-  // right.pushBack(frame15);
-
-  // auto animation_top = Animation::createWithSpriteFrames(top,0.2f);
-  // auto animation_bottom = Animation::createWithSpriteFrames(bottom,0.2f);
-  // auto animation_left = Animation::createWithSpriteFrames(left,0.2f);
-  // auto animation_right = Animation::createWithSpriteFrames(right,0.2f);
-
   if(this->flag_top == true)
   {
     this->_yyy += 1;
-    // sprite->stopAllActions();
     sprite->setPosition(Vec2(this->_xxx, this->_yyy));
-    // sprite->runAction(RepeatForever::create(Animate::create(animation_bottom)));
   }
 
   if(this->flag_bottom == true)
   {
     this->_yyy -= 1;
-    // sprite->stopAllActions();
     sprite->setPosition(Vec2(this->_xxx, this->_yyy));
-    // sprite->runAction(RepeatForever::create(Animate::create(animation_top)));
   }
 
   if(this->flag_left == true)
   {
     this->_xxx -= 1;
-    // sprite->stopAllActions();
     sprite->setPosition(Vec2(this->_xxx, this->_yyy));
-    // sprite->runAction(RepeatForever::create(Animate::create(animation_left)));
   }
 
   if(this->flag_right == true)
   {
     this->_xxx += 1;
-    // sprite->stopAllActions();
     sprite->setPosition(Vec2(this->_xxx, this->_yyy));
-    // sprite->runAction(RepeatForever::create(Animate::create(animation_right)));
   }
 }
 
@@ -306,10 +246,6 @@ void HelloWorld::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
   auto animation_left = Animation::createWithSpriteFrames(left,0.2f);
   auto animation_right = Animation::createWithSpriteFrames(right,0.2f);
 
-
-
-
-  log("Key with keycode %d pressed", keyCode);
   switch((int)keyCode)
   {
     case 28:
@@ -347,7 +283,6 @@ void HelloWorld::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 
 void HelloWorld::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
 {
-  log("Key with keycode %d released", keyCode);
   switch((int)keyCode)
   {
     case 28:
@@ -383,7 +318,5 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
   /*To navigate back to native iOS screen(if present) without quitting the application  ,do not use Director::getInstance()->end() and exit(0) as given above,instead trigger a custom event created in RootViewController.mm as below*/
   
   //EventCustom customEndEvent("game_scene_close_event");
-  //_eventDispatcher->dispatchEvent(&customEndEvent);
-    
-    
+  //_eventDispatcher->dispatchEvent(&customEndEvent);    
 }
