@@ -1,99 +1,99 @@
 #include "./KeyTop.h"
 
-void KeyTop::pressTop()
+void KeyTop::pressTop(cocos2d::Sprite* sprite, float x, float y)
 {
   if(obstacle_top == true)
   {
-    setState(STOPWALK);
+    setState(KeyManager::keyStop);
 
     return;
   }
 
   if(obstacle_bottom == true || obstacle_left == true || obstacle_right == true)
   {
-    this->_xxx += 1;
-    sprite->setPosition(Vec2(this->_xxx, this->_yyy));
+    x += 1;
+    sprite->setPosition(cocos2d::Vec2(x, y));
 
     return;
   }
 
-  this->_xxx += 1;
-  sprite->setPosition(Vec2(this->_xxx, this->_yyy));
-  
+  x += 1;
+  sprite->setPosition(cocos2d::Vec2(x, y));
+
   return;
 }
 
 
 
-void KeyTop::pressBottom()
+void KeyTop::pressBottom(cocos2d::Sprite* sprite, float x, float y)
 {
   if(obstacle_bottom == true)
   {
-    setState(STOPWALK);
+    setState(KeyManager::keyStop);
 
     return;
   }
 
   if(obstacle_top == true || obstacle_left == true || obstacle_right == true)
   {
-    this->_xxx -= 1;
-    sprite->setPosition(Vec2(this->_xxx, this->_yyy));
+    x -= 1;
+    sprite->setPosition(cocos2d::Vec2(x, y));
 
     return;
   }
 
-  this->_xxx -= 1;
-  sprite->setPosition(Vec2(this->_xxx, this->_yyy));
-  
+  x -= 1;
+  sprite->setPosition(cocos2d::Vec2(x, y));
+
   return;
 }
 
 
 
-void KeyTop::pressLeft()
+void KeyTop::pressLeft(cocos2d::Sprite* sprite, float x, float y)
 {
   if(obstacle_left == true)
   {
-    setState(STOPWALK);
+    setState(KeyManager::keyStop);
 
     return;
   }
 
   if(obstacle_top == true || obstacle_bottom == true || obstacle_right == true)
   {
-    this->_yyy -= 1;
-    sprite->setPosition(Vec2(this->_xxx, this->_yyy));
+    y -= 1;
+    sprite->setPosition(cocos2d::Vec2(x, y));
 
     return;
   }
 
-  this->_yyy -= 1;
-  sprite->setPosition(Vec2(this->_xxx, this->_yyy));
+  y -= 1;
+  sprite->setPosition(cocos2d::Vec2(x, y));
   
   return;
 }
 
 
 
-void KeyTop::pressRight()
+void KeyTop::pressRight(cocos2d::Sprite* sprite, float x, float y)
 {
   if(obstacle_right == true)
   {
-    setState(STOPWALK);
+    setState(KeyManager::keyStop);
 
     return;
   }
 
   if(obstacle_top == true || obstacle_bottom == true || obstacle_left == true)
   {
-    this->_yyy += 1;
-    sprite->setPosition(Vec2(this->_xxx, this->_yyy));
+    y += 1;
+    sprite->setPosition(cocos2d::Vec2(x, y));
 
     return;
   }
 
-  this->_yyy += 1;
-  sprite->setPosition(Vec2(this->_xxx, this->_yyy));
+  y += 1;
+  sprite->setPosition(cocos2d::Vec2(x, y));
   
   return;
 }

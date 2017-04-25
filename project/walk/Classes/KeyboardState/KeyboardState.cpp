@@ -1,13 +1,11 @@
-#include "./keyBoard.h"
+#include "./KeyboardState.h"
 
-void StopWalk::pressTop()
+KeyboardState::KeyboardState()
 {
-  if(obstacle_top == true)
-  {
-    return;
-  }
+  obstacle_top =  obstacle_bottom = obstacle_left = obstacle_right = false;
+}
 
-  this->_xxx += 1;
-  sprite->setPosition(Vec2(this->_xxx, this->_yyy));
-  return;
+void KeyboardState::setState(KeyboardState* nextState)
+{
+  this->state = nextState;
 }

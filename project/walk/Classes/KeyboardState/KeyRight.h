@@ -1,5 +1,5 @@
-#ifndef __KEYBOTTOM_H__
-#define __KEYBOTTOM_H__
+#ifndef __KEYRIGHT_H__
+#define __KEYRIGHT_H__
 
 #include "iostream"
 #include "cocos2d.h"
@@ -9,7 +9,7 @@
 
 class KeyManager;
 
-class KeyBottom : public KeyboardState
+class KeyRight : public KeyboardState
 {
 public:
   void pressTop(cocos2d::Sprite* sprite, float x, float y);
@@ -20,4 +20,4 @@ public:
   void setState(KeyboardState* nextState);
 };
 
-#endif // __KEYBOTTOM_H__
+#endif // __KEYRIGHT_H__

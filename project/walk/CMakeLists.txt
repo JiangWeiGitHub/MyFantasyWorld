@@ -131,7 +131,13 @@ set(GAME_SRC
   Classes/AppDelegate.cpp
   Classes/HelloWorldScene.cpp
   Classes/Role/Role.cpp
-  Classes/KeyBoardRole/KeyBoard.cpp
+  Classes/KeyboardState/KeyboardState.cpp
+  Classes/KeyboardState/KeyBottom.cpp
+  Classes/KeyboardState/KeyLeft.cpp
+  Classes/KeyboardState/KeyManager.cpp
+  Classes/KeyboardState/KeyRight.cpp
+  Classes/KeyboardState/KeyStop.cpp
+  Classes/KeyboardState/KeyTop.cpp
   ${PLATFORM_SPECIFIC_SRC}
 )
 
@@ -139,7 +145,13 @@ set(GAME_HEADERS
   Classes/AppDelegate.h
   Classes/HelloWorldScene.h
   Classes/Role/Role.h
-  Classes/KeyBoard/KeyBoard.h
+  Classes/KeyboardState/KeyboardState.h
+  Classes/KeyboardState/KeyBottom.h
+  Classes/KeyboardState/KeyLeft.h
+  Classes/KeyboardState/KeyManager.h
+  Classes/KeyboardState/KeyRight.h
+  Classes/KeyboardState/KeyStop.h
+  Classes/KeyboardState/KeyTop.h
   ${PLATFORM_SPECIFIC_HEADERS}
 )
 

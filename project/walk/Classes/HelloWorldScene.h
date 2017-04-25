@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "Role/Role.h"
+#include "KeyboardState/KeyManager.h"
 
 class HelloWorld : public cocos2d::Layer
 {
@@ -32,6 +33,8 @@ private:
   cocos2d::Sprite* test;
 
   bool flag_top, flag_bottom, flag_left, flag_right;
+
+  KeyManager* keyManager;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

@@ -1,42 +1,28 @@
-#ifndef __KEYBOARD_H__
-#define __KEYBOARD_H__
+#ifndef __KEYBOARDSTATE_H__
+#define __KEYBOARDSTATE_H__
 
 #include "iostream"
 #include "cocos2d.h"
+
+class KeyManager;
 
 // top bottom left right stop -> five states
 
 class KeyboardState
 {
 public:
-  virtual void pressTop();
-  virtual void pressBottom();
-  virtual void pressLeft();
-  virtual void pressRight();
+  KeyboardState();
+  virtual void pressTop(cocos2d::Sprite* sprite, float x, float y) {};
+  virtual void pressBottom(cocos2d::Sprite* sprite, float x, float y) {};
+  virtual void pressLeft(cocos2d::Sprite* sprite, float x, float y) {};
+  virtual void pressRight(cocos2d::Sprite* sprite, float x, float y) {};
 
-private:
-  static const int TOPWALK = 1;
-  static const int BOTTOMWALK = 2;
-  static const int LEFTWALK = 3;
-  static const int RIGHTWALK = 4;
-  static const int STOPWALK = 5;
+  bool obstacle_top, obstacle_bottom, obstacle_left, obstacle_right;
 
-  bool obstacle_top, _obstacle_bottom, _obstacle_left, _obstacle_right;
+  void setState(KeyboardState* nextState);
 
-  virtual KeyboardState* setState(int nextState);
-  int state;
+private:  
+  KeyboardState* state;
 };
 
-class StopWalk : public KeyboardState
-{
-public:
-  void pressTop();
-  void pressBottom();
-  void pressLeft();
-  void pressRight();
-
-private:
-  KeyboardState* setState(int nextState);
-};
-
-#endif // __KEYBOARD_H__
+#endif // __KEYBOARDSTATE_H__

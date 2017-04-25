@@ -1,6 +1,6 @@
-#include "./KeyBottom.h"
+#include "./KeyRight.h"
 
-void KeyBottom::pressTop(cocos2d::Sprite* sprite, float x, float y)
+void KeyRight::pressTop(cocos2d::Sprite* sprite, float x, float y)
 {
   if(obstacle_top == true)
   {
@@ -25,7 +25,7 @@ void KeyBottom::pressTop(cocos2d::Sprite* sprite, float x, float y)
 
 
 
-void KeyBottom::pressBottom(cocos2d::Sprite* sprite, float x, float y)
+void KeyRight::pressBottom(cocos2d::Sprite* sprite, float x, float y)
 {
   if(obstacle_bottom == true)
   {
@@ -50,7 +50,7 @@ void KeyBottom::pressBottom(cocos2d::Sprite* sprite, float x, float y)
 
 
 
-void KeyBottom::pressLeft(cocos2d::Sprite* sprite, float x, float y)
+void KeyRight::pressLeft(cocos2d::Sprite* sprite, float x, float y)
 {
   if(obstacle_left == true)
   {
@@ -75,7 +75,7 @@ void KeyBottom::pressLeft(cocos2d::Sprite* sprite, float x, float y)
 
 
 
-void KeyBottom::pressRight(cocos2d::Sprite* sprite, float x, float y)
+void KeyRight::pressRight(cocos2d::Sprite* sprite, float x, float y)
 {
   if(obstacle_right == true)
   {

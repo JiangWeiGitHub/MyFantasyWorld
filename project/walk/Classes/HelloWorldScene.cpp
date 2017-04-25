@@ -168,6 +168,10 @@ bool HelloWorld::init()
 
   stop_top = stop_bottom = stop_left = stop_right = false;
 
+
+  keyManager = new KeyManager();
+  keyManager->setInitState(new KeyStop()); // STOP state
+
   return true;
 }
 
@@ -175,90 +179,110 @@ void HelloWorld::update(float delta)
 {
   if(this->flag_top == true)
   {
-    rectangleZone = Vec2(this->_xxx, this->_yyy);
-
-    if (rectangle.containsPoint(rectangleZone))
-    {
-      stop_top = true;
-    }
-
-    if((this->_yyy <= (720 - 25) && stop_top == false) || stop_bottom == true || stop_left == true || stop_right == true )
-    {
-      this->_yyy += 1;
-    }
-
-    sprite->setPosition(Vec2(this->_xxx, this->_yyy));
-
-    stop_top = false;
-
-    return;
+    keyManager->pressTop(this->sprite, this->_xxx, this->_yyy);
   }
 
   if(this->flag_bottom == true)
   {
-
-    rectangleZone = Vec2(this->_xxx, this->_yyy);
-
-    if (rectangle.containsPoint(rectangleZone))
-    {
-      stop_bottom = true;
-    }
-
-    if((this->_yyy >= 25 && stop_bottom == false) || stop_top == true || stop_left == true || stop_right == true )
-    {
-      this->_yyy -= 1;
-    }
-
-    sprite->setPosition(Vec2(this->_xxx, this->_yyy));
-
-    stop_bottom = false;
-
-    return;
+    keyManager->pressBottom(this->sprite, this->_xxx, this->_yyy);
   }
 
   if(this->flag_left == true)
   {
-
-    rectangleZone = Vec2(this->_xxx, this->_yyy);
-
-    if (rectangle.containsPoint(rectangleZone))
-    {
-      stop_left = true;
-    }
-
-    if((this->_xxx >= 15 && stop_left == false) || stop_top == true || stop_bottom == true || stop_right == true )
-    {
-      this->_xxx -= 1;
-    }
-
-    sprite->setPosition(Vec2(this->_xxx, this->_yyy));
-
-    stop_left = false;
-
-    return;
+    keyManager->pressLeft(this->sprite, this->_xxx, this->_yyy);
   }
 
   if(this->flag_right == true)
   {
-
-    rectangleZone = Vec2(this->_xxx, this->_yyy);
-
-    if (rectangle.containsPoint(rectangleZone))
-    {
-      stop_right = true;
-    }
-
-    if((this->_xxx <= (1280 - 15) && stop_right == false) || stop_top == true || stop_left == true || stop_bottom == true )
-    {
-      this->_xxx += 1;
-    }
-
-    sprite->setPosition(Vec2(this->_xxx, this->_yyy));
-
-    stop_right = false;
-
-    return;
+    keyManager->pressRight(this->sprite, this->_xxx, this->_yyy);
   }
+
+//   if(this->flag_top == true)
+//   {
+//     rectangleZone = Vec2(this->_xxx, this->_yyy);
+
+//     if (rectangle.containsPoint(rectangleZone))
+//     {
+//       stop_top = true;
+//     }
+
+//     if((this->_yyy <= (720 - 25) && stop_top == false) || stop_bottom == true || stop_left == true || stop_right == true )
+//     {
+//       this->_yyy += 1;
+//     }
+
+//     sprite->setPosition(Vec2(this->_xxx, this->_yyy));
+
+//     stop_top = false;
+
+//     return;
+//   }
+
+//   if(this->flag_bottom == true)
+//   {
+
+//     rectangleZone = Vec2(this->_xxx, this->_yyy);
+
+//     if (rectangle.containsPoint(rectangleZone))
+//     {
+//       stop_bottom = true;
+//     }
+
+//     if((this->_yyy >= 25 && stop_bottom == false) || stop_top == true || stop_left == true || stop_right == true )
+//     {
+//       this->_yyy -= 1;
+//     }
+
+//     sprite->setPosition(Vec2(this->_xxx, this->_yyy));
+
+//     stop_bottom = false;
+
+//     return;
+//   }
+
+//   if(this->flag_left == true)
+//   {
+
+//     rectangleZone = Vec2(this->_xxx, this->_yyy);
+
+//     if (rectangle.containsPoint(rectangleZone))
+//     {
+//       stop_left = true;
+//     }
+
+//     if((this->_xxx >= 15 && stop_left == false) || stop_top == true || stop_bottom == true || stop_right == true )
+//     {
+//       this->_xxx -= 1;
+//     }
+
+//     sprite->setPosition(Vec2(this->_xxx, this->_yyy));
+
+//     stop_left = false;
+
+//     return;
+//   }
+
+//   if(this->flag_right == true)
+//   {
+
+//     rectangleZone = Vec2(this->_xxx, this->_yyy);
+
+//     if (rectangle.containsPoint(rectangleZone))
+//     {
+//       stop_right = true;
+//     }
+
+//     if((this->_xxx <= (1280 - 15) && stop_right == false) || stop_top == true || stop_left == true || stop_bottom == true )
+//     {
+//       this->_xxx += 1;
+//     }
+
+//     sprite->setPosition(Vec2(this->_xxx, this->_yyy));
+
+//     stop_right = false;
+
+//     return;
+//   }
 }
 
 // Implementation of the keyboard event callback function prototype

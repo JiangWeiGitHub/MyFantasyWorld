@@ -4,16 +4,20 @@
 #include "iostream"
 #include "cocos2d.h"
 
+#include "./KeyboardState.h"
+#include "./KeyManager.h"
+
+class KeyManager;
+
 class KeyTop : public KeyboardState
 {
 public:
-  void pressTop();
-  void pressBottom();
-  void pressLeft();
-  void pressRight();
+  void pressTop(cocos2d::Sprite* sprite, float x, float y);
+  void pressBottom(cocos2d::Sprite* sprite, float x, float y);
+  void pressLeft(cocos2d::Sprite* sprite, float x, float y);
+  void pressRight(cocos2d::Sprite* sprite, float x, float y);
 
-private:
-  KeyboardState* setState(int nextState);
+  void setState(KeyboardState* nextState);
 };
 
 #endif // __KEYTOP_H__
