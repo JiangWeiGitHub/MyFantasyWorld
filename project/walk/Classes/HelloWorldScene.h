@@ -25,6 +25,9 @@ public:
 
 private:
   int _xxx, _yyy;
+  cocos2d::Rect rectangle;
+  cocos2d::Vec2 rectangleZone;
+  bool stop_top, stop_bottom, stop_left, stop_right;
   cocos2d::Sprite* sprite;
   cocos2d::Sprite* test;
 

@@ -31,13 +31,6 @@ bool HelloWorld::init()
   auto visibleSize = Director::getInstance()->getVisibleSize();
   Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-  std::cout << "visibleSize: " << visibleSize.height << std::endl;
-  std::cout << "visibleSize: " << visibleSize.width << std::endl;
-
-  std::cout << "origin: " << origin.x << std::endl;
-  std::cout << "origin: " << origin.y << std::endl;
-
-
   /////////////////////////////
   // 2. add a menu item with "X" image, which is clicked to quit the program
   //    you may modify it.
@@ -122,9 +115,23 @@ bool HelloWorld::init()
 
   sprite = Sprite::createWithSpriteFrame(frame0);
 
+  // Sprite* backgroud = Sprite::create("backgroud.png");
+  // this->addChild(backgroud, -100);
+
+  auto backgroud=Sprite::create("backgroud.png"); 
+  backgroud->setTag(10); 
+
+  backgroud->setAnchorPoint(Vec2(0,0));
+  backgroud->setPosition(Vec2(0,0));
+  backgroud->setTag(10); 
+
+  this->addChild(backgroud, -100);
 
   test = new Role();
   test->setName("John");
+
+  rectangle = Rect(0,0,500,500);
+  rectangleZone = Vec2(0, 0); //init
 
 
   this->flag_top = false;
@@ -133,8 +140,8 @@ bool HelloWorld::init()
   this->flag_right = false;
 
   sprite->setPosition(Vec2(visibleSize.width/2,visibleSize.height/2));
-  addChild(sprite);
-    
+  this->addChild(sprite, 100);
+
   auto animation_top = Animation::createWithSpriteFrames(top,0.2f);
   auto animation_bottom = Animation::createWithSpriteFrames(bottom,0.2f);
   auto animation_left = Animation::createWithSpriteFrames(left,0.2f);
@@ -159,6 +166,8 @@ bool HelloWorld::init()
 
   _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
+  stop_top = stop_bottom = stop_left = stop_right = false;
+
   return true;
 }
 
@@ -166,26 +175,89 @@ void HelloWorld::update(float delta)
 {
   if(this->flag_top == true)
   {
-    this->_yyy += 1;
+    rectangleZone = Vec2(this->_xxx, this->_yyy);
+
+    if (rectangle.containsPoint(rectangleZone))
+    {
+      stop_top = true;
+    }
+
+    if((this->_yyy <= (720 - 25) && stop_top == false) || stop_bottom == true || stop_left == true || stop_right == true )
+    {
+      this->_yyy += 1;
+    }
+
     sprite->setPosition(Vec2(this->_xxx, this->_yyy));
+
+    stop_top = false;
+
+    return;
   }
 
   if(this->flag_bottom == true)
   {
-    this->_yyy -= 1;
+
+    rectangleZone = Vec2(this->_xxx, this->_yyy);
+
+    if (rectangle.containsPoint(rectangleZone))
+    {
+      stop_bottom = true;
+    }
+
+    if((this->_yyy >= 25 && stop_bottom == false) || stop_top == true || stop_left == true || stop_right == true )
+    {
+      this->_yyy -= 1;
+    }
+
     sprite->setPosition(Vec2(this->_xxx, this->_yyy));
+
+    stop_bottom = false;
+
+    return;
   }
 
   if(this->flag_left == true)
   {
-    this->_xxx -= 1;
+
+    rectangleZone = Vec2(this->_xxx, this->_yyy);
+
+    if (rectangle.containsPoint(rectangleZone))
+    {
+      stop_left = true;
+    }
+
+    if((this->_xxx >= 15 && stop_left == false) || stop_top == true || stop_bottom == true || stop_right == true )
+    {
+      this->_xxx -= 1;
+    }
+
     sprite->setPosition(Vec2(this->_xxx, this->_yyy));
+
+    stop_left = false;
+
+    return;
   }
 
   if(this->flag_right == true)
   {
-    this->_xxx += 1;
+
+    rectangleZone = Vec2(this->_xxx, this->_yyy);
+
+    if (rectangle.containsPoint(rectangleZone))
+    {
+      stop_right = true;
+    }
+
+    if((this->_xxx <= (1280 - 15) && stop_right == false) || stop_top == true || stop_left == true || stop_bottom == true )
+    {
+      this->_xxx += 1;
+    }
+
     sprite->setPosition(Vec2(this->_xxx, this->_yyy));
+
+    stop_right = false;
+
+    return;
   }
 }
 
