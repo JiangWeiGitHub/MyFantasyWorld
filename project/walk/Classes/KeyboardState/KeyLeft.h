@@ -5,9 +5,18 @@
 #include "cocos2d.h"
 
 #include "./KeyboardState.h"
-#include "./KeyManager.h"
 
-class KeyManager;
+#include "./KeyboardState.h"
+#include "./KeyTop.h"
+#include "./KeyBottom.h"
+// #include "./KeyLeft.h"
+#include "./KeyRight.h"
+#include "./KeyStop.h"
+
+class KeyTop;
+class KeyBottom;
+class KeyRight;
+class KeyStop;
 
 class KeyLeft : public KeyboardState
 {
@@ -16,9 +25,6 @@ public:
   void pressBottom(cocos2d::Sprite* sprite, float& x, float& y);
   void pressLeft(cocos2d::Sprite* sprite, float& x, float& y);
   void pressRight(cocos2d::Sprite* sprite, float& x, float& y);
-
-private:
-  void setState(KeyboardState* nextState);
 };
 
 #endif // __KEYLEFT_H__

@@ -167,7 +167,7 @@ bool HelloWorld::init()
 
 
   keyManager = new KeyManager();
-  keyManager->setInitState(new KeyStop()); // STOP state
+  keyManager->setState(new KeyStop()); // STOP state
 
   return true;
 }

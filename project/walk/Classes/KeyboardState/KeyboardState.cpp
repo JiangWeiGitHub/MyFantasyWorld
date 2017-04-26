@@ -2,13 +2,17 @@
 
 KeyboardState::KeyboardState()
 {
-  obstacle_top =  obstacle_bottom = obstacle_left = obstacle_right = false;
+  this->keyManager = new KeyManager();
 
-  // rectangle = Rect(0,0,500,500);
-  // rectangleZone = Vec2(0, 0); //init
+  obstacle_top = obstacle_bottom = obstacle_left = obstacle_right = false;
 }
 
-void KeyboardState::setState(KeyboardState* nextState)
+KeyboardState::~KeyboardState()
 {
-  this->state = nextState;
+  delete this->keyManager;
+}
+
+void KeyboardState::setKeyManager(KeyManager* keyManager)
+{
+  this->keyManager = keyManager;
 }

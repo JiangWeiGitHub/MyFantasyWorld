@@ -6,36 +6,25 @@
 
 #include "./KeyboardState.h"
 
-#include "./KeyTop.h"
-#include "./KeyBottom.h"
-#include "./KeyLeft.h"
-#include "./KeyRight.h"
-#include "./KeyStop.h"
+class KeyboardState;
 
-class KeyTop;
-class KeyBottom;
-class KeyLeft;
-class KeyRight;
-class KeyStop;
-
-class KeyManager : public KeyboardState
+class KeyManager
 {
-public:
+public:  
+  // KeyManager(KeyboardState* initState);
   KeyManager();
-  void setInitState(KeyboardState* initState);
+  ~KeyManager();
+ 
+  void setState(KeyboardState* state);
+  KeyboardState* getState();
+
   void pressTop(cocos2d::Sprite* sprite, float& x, float& y);
   void pressBottom(cocos2d::Sprite* sprite, float& x, float& y);
   void pressLeft(cocos2d::Sprite* sprite, float& x, float& y);
   void pressRight(cocos2d::Sprite* sprite, float& x, float& y);
 
-  KeyTop* keyTop;
-  KeyBottom* keyBottom;
-  KeyLeft* keyLeft;
-  KeyRight* keyRight;
-  KeyStop* keyStop;
-
-private:
-  KeyboardState* state;
+private:  
+  KeyboardState* _state; 
 };
 
 #endif // __KEYMANAGER_H__
