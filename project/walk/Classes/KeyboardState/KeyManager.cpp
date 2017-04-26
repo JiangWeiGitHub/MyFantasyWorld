@@ -1,29 +1,60 @@
 #include "./KeyManager.h"
 
-// KeyManager::KeyManager(KeyboardState* initState)
-// {
-//   this->_state = initState;
-// }
+KeyManager::KeyManager(KeyboardState* initState)
+{
+  this->_state = initState;
+
+  this->_keyTop = new KeyTop(this);
+  this->_keyBottom = new KeyBottom(this);
+  this->_keyLeft = new KeyLeft(this);
+  this->_keyRight = new KeyRight(this);
+  this->_keyStop = new KeyStop(this); 
+}
 
 KeyManager::KeyManager()
 {
-  this->_state = NULL;
+  this->_keyTop = new KeyTop(this);
+  this->_keyBottom = new KeyBottom(this);
+  this->_keyLeft = new KeyLeft(this);
+  this->_keyRight = new KeyRight(this);
+  this->_keyStop = new KeyStop(this);
+
+  this->_state = _keyStop;
 }
 
 KeyManager::~KeyManager()
 {
-  delete _state;
+
 }
 
 void KeyManager::setState(KeyboardState* state)
 {
-  delete _state;
   this->_state = state;
 }
 
-KeyboardState* KeyManager::getState()
+KeyboardState* KeyManager::getStateTop()
 {
-  return this->state;
+  return this->_keyTop;
+}
+
+KeyboardState* KeyManager::getStateBottom()
+{
+  return this->_keyBottom;
+}
+
+KeyboardState* KeyManager::getStateLeft()
+{
+  return this->_keyLeft;
+}
+
+KeyboardState* KeyManager::getStateRight()
+{
+  return this->_keyRight;
+}
+
+KeyboardState* KeyManager::getStateStop()
+{
+  return this->_keyStop;
 }
 
 void KeyManager::pressTop(cocos2d::Sprite* sprite, float& x, float& y)

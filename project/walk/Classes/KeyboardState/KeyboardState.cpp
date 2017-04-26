@@ -2,17 +2,17 @@
 
 KeyboardState::KeyboardState()
 {
-  this->keyManager = new KeyManager();
+  // this->keyManager = NULL;
 
   obstacle_top = obstacle_bottom = obstacle_left = obstacle_right = false;
 }
 
 KeyboardState::~KeyboardState()
 {
-  delete this->keyManager;
+  // delete this->keyManager;
 }
 
-void KeyboardState::setKeyManager(KeyManager* keyManager)
-{
-  this->keyManager = keyManager;
-}
+// void KeyboardState::setKeyManager(KeyManager* keyManager)
+// {
+//   this->keyManager = keyManager;
+// }

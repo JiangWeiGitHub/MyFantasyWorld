@@ -4,25 +4,26 @@
 #include "iostream"
 #include "cocos2d.h"
 
-#include "./KeyManager.h"
+// #include "./KeyManager.h"
 
 // top bottom left right stop -> five states
 
-class KeyManager;
+// class KeyManager;
 
 class KeyboardState
 {
 public:
   KeyboardState();
   ~KeyboardState();
+
   virtual void pressTop() {};
   virtual void pressBottom() {};
   virtual void pressLeft() {};
   virtual void pressRight() {};
 
-  void setKeyManager(KeyManager* keyManager);
+  // void setKeyManager(KeyManager* keyManager);
   
-  KeyManager* keyManager;
+  // KeyManager* keyManager;
 
   bool obstacle_top, obstacle_bottom, obstacle_left, obstacle_right;
 };

@@ -1,11 +1,21 @@
 #include "./KeyBottom.h"
 
+KeyBottom::KeyBottom(KeyManager* keyManager)
+{
+  this->keyManager = keyManager;
+}
+
+KeyBottom::~KeyBottom()
+{
+
+}
+
 void KeyBottom::pressTop(cocos2d::Sprite* sprite, float& x, float& y)
 {
   if(KeyboardState::obstacle_top == true)
   {
-    (KeyboardState::keyManager)->setState(new KeyStop());
-    (KeyboardState::keyManager)->getState()->pressTop(sprite, x, y);
+    this->keyManager->setState(this->keyManager->getStateStop());
+    this->keyManager->pressTop(sprite, x, y);
 
     return;
   }
@@ -15,8 +25,8 @@ void KeyBottom::pressTop(cocos2d::Sprite* sprite, float& x, float& y)
     // y += 1;
     // sprite->setPosition(cocos2d::Vec2(x, y));
 
-    (KeyboardState::keyManager)->setState(new KeyTop());
-    (KeyboardState::keyManager)->getState()->pressTop(sprite, x, y);
+    this->keyManager->setState(this->keyManager->getStateTop());
+    this->keyManager->pressTop(sprite, x, y);
 
     return;
   }
@@ -24,8 +34,8 @@ void KeyBottom::pressTop(cocos2d::Sprite* sprite, float& x, float& y)
   // y += 1;
   // sprite->setPosition(cocos2d::Vec2(x, y));
 
-  (KeyboardState::keyManager)->setState(new KeyTop());
-  (KeyboardState::keyManager)->getState()->pressTop(sprite, x, y);
+  this->keyManager->setState(this->keyManager->getStateTop());
+  this->keyManager->pressTop(sprite, x, y);
 
   return;
 }
@@ -34,8 +44,8 @@ void KeyBottom::pressBottom(cocos2d::Sprite* sprite, float& x, float& y)
 {
   if(KeyboardState::obstacle_bottom == true)
   {
-    (KeyboardState::keyManager)->setState(new KeyStop());
-    (KeyboardState::keyManager)->getState()->pressBottom(sprite, x, y);
+    this->keyManager->setState(this->keyManager->getStateStop());
+    this->keyManager->pressBottom(sprite, x, y);
 
     return;
   }
@@ -58,8 +68,8 @@ void KeyBottom::pressLeft(cocos2d::Sprite* sprite, float& x, float& y)
 {
   if(KeyboardState::obstacle_left == true)
   {
-    (KeyboardState::keyManager)->setState(new KeyStop());
-    (KeyboardState::keyManager)->getState()->pressLeft(sprite, x, y);
+    this->keyManager->setState(this->keyManager->getStateStop());
+    this->keyManager->pressLeft(sprite, x, y);
 
     return;
   }
@@ -69,8 +79,8 @@ void KeyBottom::pressLeft(cocos2d::Sprite* sprite, float& x, float& y)
     // x -= 1;
     // sprite->setPosition(cocos2d::Vec2(x, y));
 
-    (KeyboardState::keyManager)->setState(new KeyLeft());
-    (KeyboardState::keyManager)->getState()->pressLeft(sprite, x, y);
+    this->keyManager->setState(this->keyManager->getStateLeft());
+    this->keyManager->pressLeft(sprite, x, y);
 
     return;
   }
@@ -78,8 +88,8 @@ void KeyBottom::pressLeft(cocos2d::Sprite* sprite, float& x, float& y)
   // x -= 1;
   // sprite->setPosition(cocos2d::Vec2(x, y));
 
-  (KeyboardState::keyManager)->setState(new KeyLeft());
-  (KeyboardState::keyManager)->getState()->pressLeft(sprite, x, y);
+  this->keyManager->setState(this->keyManager->getStateLeft());
+  this->keyManager->pressLeft(sprite, x, y);
   
   return;
 }
@@ -88,8 +98,8 @@ void KeyBottom::pressRight(cocos2d::Sprite* sprite, float& x, float& y)
 {
   if(KeyboardState::obstacle_right == true)
   {
-    (KeyboardState::keyManager)->setState(new KeyStop());
-    (KeyboardState::keyManager)->getState()->pressRight(sprite, x, y);
+    this->keyManager->setState(this->keyManager->getStateStop());
+    this->keyManager->pressRight(sprite, x, y);
 
     return;
   }
@@ -99,8 +109,8 @@ void KeyBottom::pressRight(cocos2d::Sprite* sprite, float& x, float& y)
     // x += 1;
     // sprite->setPosition(cocos2d::Vec2(x, y));
 
-    (KeyboardState::keyManager)->setState(new KeyRight());
-    (KeyboardState::keyManager)->getState()->pressRight(sprite, x, y);
+    this->keyManager->setState(this->keyManager->getStateRight());
+    this->keyManager->pressRight(sprite, x, y);
 
     return;
   }
@@ -108,8 +118,8 @@ void KeyBottom::pressRight(cocos2d::Sprite* sprite, float& x, float& y)
   // x += 1;
   // sprite->setPosition(cocos2d::Vec2(x, y));
 
-  (KeyboardState::keyManager)->setState(new KeyRight());
-  (KeyboardState::keyManager)->getState()->pressRight(sprite, x, y);
+  this->keyManager->setState(this->keyManager->getStateRight());
+  this->keyManager->pressRight(sprite, x, y);
   
   return;
 }
