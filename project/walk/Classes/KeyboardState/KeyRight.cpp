@@ -1,23 +1,23 @@
 #include "./KeyRight.h"
 
-void KeyRight::pressTop(cocos2d::Sprite* sprite, float x, float y)
+void KeyRight::pressTop(cocos2d::Sprite* sprite, float& x, float& y)
 {
   if(obstacle_top == true)
   {
-    setState(KeyManager::keyStop);
+    KeyboardState::setState(new KeyStop());
 
     return;
   }
 
   if(obstacle_bottom == true || obstacle_left == true || obstacle_right == true)
   {
-    x += 1;
+    y += 1;
     sprite->setPosition(cocos2d::Vec2(x, y));
 
     return;
   }
 
-  x += 1;
+  y += 1;
   sprite->setPosition(cocos2d::Vec2(x, y));
 
   return;
@@ -25,41 +25,16 @@ void KeyRight::pressTop(cocos2d::Sprite* sprite, float x, float y)
 
 
 
-void KeyRight::pressBottom(cocos2d::Sprite* sprite, float x, float y)
+void KeyRight::pressBottom(cocos2d::Sprite* sprite, float& x, float& y)
 {
   if(obstacle_bottom == true)
   {
-    setState(KeyManager::keyStop);
+    KeyboardState::setState(new KeyStop());
 
     return;
   }
 
   if(obstacle_top == true || obstacle_left == true || obstacle_right == true)
-  {
-    x -= 1;
-    sprite->setPosition(cocos2d::Vec2(x, y));
-
-    return;
-  }
-
-  x -= 1;
-  sprite->setPosition(cocos2d::Vec2(x, y));
-
-  return;
-}
-
-
-
-void KeyRight::pressLeft(cocos2d::Sprite* sprite, float x, float y)
-{
-  if(obstacle_left == true)
-  {
-    setState(KeyManager::keyStop);
-
-    return;
-  }
-
-  if(obstacle_top == true || obstacle_bottom == true || obstacle_right == true)
   {
     y -= 1;
     sprite->setPosition(cocos2d::Vec2(x, y));
@@ -69,30 +44,55 @@ void KeyRight::pressLeft(cocos2d::Sprite* sprite, float x, float y)
 
   y -= 1;
   sprite->setPosition(cocos2d::Vec2(x, y));
+
+  return;
+}
+
+
+
+void KeyRight::pressLeft(cocos2d::Sprite* sprite, float& x, float& y)
+{
+  if(obstacle_left == true)
+  {
+    KeyboardState::setState(new KeyStop());
+
+    return;
+  }
+
+  if(obstacle_top == true || obstacle_bottom == true || obstacle_right == true)
+  {
+    x -= 1;
+    sprite->setPosition(cocos2d::Vec2(x, y));
+
+    return;
+  }
+
+  x -= 1;
+  sprite->setPosition(cocos2d::Vec2(x, y));
   
   return;
 }
 
 
 
-void KeyRight::pressRight(cocos2d::Sprite* sprite, float x, float y)
+void KeyRight::pressRight(cocos2d::Sprite* sprite, float& x, float& y)
 {
   if(obstacle_right == true)
   {
-    setState(KeyManager::keyStop);
+    KeyboardState::setState(new KeyStop());
 
     return;
   }
 
   if(obstacle_top == true || obstacle_bottom == true || obstacle_left == true)
   {
-    y += 1;
+    x += 1;
     sprite->setPosition(cocos2d::Vec2(x, y));
 
     return;
   }
 
-  y += 1;
+  x += 1;
   sprite->setPosition(cocos2d::Vec2(x, y));
   
   return;

@@ -115,9 +115,6 @@ bool HelloWorld::init()
 
   sprite = Sprite::createWithSpriteFrame(frame0);
 
-  // Sprite* backgroud = Sprite::create("backgroud.png");
-  // this->addChild(backgroud, -100);
-
   auto backgroud=Sprite::create("backgroud.png"); 
   backgroud->setTag(10); 
 
@@ -142,12 +139,12 @@ bool HelloWorld::init()
   sprite->setPosition(Vec2(visibleSize.width/2,visibleSize.height/2));
   this->addChild(sprite, 100);
 
-  auto animation_top = Animation::createWithSpriteFrames(top,0.2f);
-  auto animation_bottom = Animation::createWithSpriteFrames(bottom,0.2f);
+  auto animation_top = Animation::createWithSpriteFrames(bottom,0.2f);
+  auto animation_bottom = Animation::createWithSpriteFrames(top,0.2f);
   auto animation_left = Animation::createWithSpriteFrames(left,0.2f);
   auto animation_right = Animation::createWithSpriteFrames(right,0.2f);
 
-  sprite->runAction(RepeatForever::create(Animate::create(animation_top)));
+  sprite->runAction(RepeatForever::create(Animate::create(animation_bottom)));
 
   // position the sprite on the center of the screen
   this->_xxx = visibleSize.width/2 + origin.x;

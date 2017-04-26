@@ -23,16 +23,16 @@ class KeyManager : public KeyboardState
 public:
   KeyManager();
   void setInitState(KeyboardState* initState);
-  void pressTop(cocos2d::Sprite* sprite, float x, float y);
-  void pressBottom(cocos2d::Sprite* sprite, float x, float y);
-  void pressLeft(cocos2d::Sprite* sprite, float x, float y);
-  void pressRight(cocos2d::Sprite* sprite, float x, float y);
+  void pressTop(cocos2d::Sprite* sprite, float& x, float& y);
+  void pressBottom(cocos2d::Sprite* sprite, float& x, float& y);
+  void pressLeft(cocos2d::Sprite* sprite, float& x, float& y);
+  void pressRight(cocos2d::Sprite* sprite, float& x, float& y);
 
-  static KeyTop* keyTop;
-  static KeyBottom* keyBottom;
-  static KeyLeft* keyLeft;
-  static KeyRight* keyRight;
-  static KeyStop* keyStop;
+  KeyTop* keyTop;
+  KeyBottom* keyBottom;
+  KeyLeft* keyLeft;
+  KeyRight* keyRight;
+  KeyStop* keyStop;
 
 private:
   KeyboardState* state;

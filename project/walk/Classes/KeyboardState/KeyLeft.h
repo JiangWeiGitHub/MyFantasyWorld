@@ -12,10 +12,10 @@ class KeyManager;
 class KeyLeft : public KeyboardState
 {
 public:
-  void pressTop(cocos2d::Sprite* sprite, float x, float y);
-  void pressBottom(cocos2d::Sprite* sprite, float x, float y);
-  void pressLeft(cocos2d::Sprite* sprite, float x, float y);
-  void pressRight(cocos2d::Sprite* sprite, float x, float y);
+  void pressTop(cocos2d::Sprite* sprite, float& x, float& y);
+  void pressBottom(cocos2d::Sprite* sprite, float& x, float& y);
+  void pressLeft(cocos2d::Sprite* sprite, float& x, float& y);
+  void pressRight(cocos2d::Sprite* sprite, float& x, float& y);
 
 private:
   void setState(KeyboardState* nextState);
