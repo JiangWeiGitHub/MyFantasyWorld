@@ -12,6 +12,15 @@ public:
   static Obstacle* getInstance();
   ~Obstacle();
 
+  enum EXCEPTION
+  {
+    TOP = 1,
+    BOTTOM = 2,
+    LEFT = 3,
+    RIGHT = 4,
+    NONE = 5
+  };
+
   void obstacleTop() { obstacle_top = true; };
   void obstacleBottom() { obstacle_bottom = true; };
   void obstacleLeft() { obstacle_left = true; };
@@ -27,9 +36,13 @@ public:
   bool getLeftState() { return obstacle_left; };
   bool getRightState() { return obstacle_right; };
 
+  void setException(EXCEPTION name) { exc = name; };
+  EXCEPTION getException() { return exc; };
+
 private:
   Obstacle();
   bool obstacle_top, obstacle_bottom, obstacle_left, obstacle_right;
+  EXCEPTION exc;
   static Obstacle* instance;
 };
 

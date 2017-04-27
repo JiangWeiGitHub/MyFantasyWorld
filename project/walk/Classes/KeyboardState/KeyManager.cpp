@@ -32,14 +32,6 @@ KeyManager::KeyManager(std::string name)
   {
     _state = NULL;
   }
-
-  std::cout << "      State Top: " << _stateTop << std::endl;
-  std::cout << "      State Bottom: " << _stateBottom << std::endl;
-  std::cout << "      State Left: " << _stateLeft << std::endl;
-  std::cout << "      State Right: " << _stateRight << std::endl;
-  std::cout << "      State Stop: " << _stateStop << std::endl;
-
-  std::cout << "      State Current: " << _state << std::endl;
 }
 
 KeyManager::~KeyManager()
@@ -100,7 +92,6 @@ void KeyManager::pressLeft(cocos2d::Sprite* sprite, float& x, float& y)
 
 void KeyManager::pressRight(cocos2d::Sprite* sprite, float& x, float& y)
 {
-  std::cout << "      State Current & Right: " << _state << std::endl;
   _state->pressRight(sprite, x, y);
 }
 

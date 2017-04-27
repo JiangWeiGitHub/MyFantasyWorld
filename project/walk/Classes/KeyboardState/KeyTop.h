@@ -5,14 +5,6 @@
 #include "cocos2d.h"
 
 #include "./KeyboardState.h"
-// #include "./KeyManager.h"
-
-// #include "./KeyboardState.h"
-// #include "./KeyTop.h"
-// #include "./KeyBottom.h"
-// #include "./KeyLeft.h"
-// #include "./KeyRight.h"
-// #include "./KeyStop.h"
 
 class KeyManager;
 

@@ -124,6 +124,17 @@ bool HelloWorld::init()
 
   this->addChild(backgroud, -100);
 
+  DrawNode* drawNode=DrawNode::create();
+
+  Vec2 point[4];
+  point[0] = Vec2(0, 0);
+  point[1] = Vec2(0, 477);
+  point[2] = Vec2(485, 477);
+  point[3] = Vec2(485, 0);
+  drawNode->drawPolygon(point,4,Color4F::BLUE,1,Color4F::RED);    
+   
+  this->addChild(drawNode, 100);
+
   test = new Role();
   test->setName("John");
 
@@ -177,161 +188,79 @@ void HelloWorld::update(float delta)
 {
   rectangleZone = Vec2(this->_xxx, this->_yyy);
 
-  if(this->flag_top == true)
+  if(rectangle.containsPoint(rectangleZone))
   {
-    if (rectangle.containsPoint(rectangleZone))
+    if(this->flag_top == true)
     {
-      if(flag_obstacle_top == false)
+      if(obstacle->getException() == Obstacle::NONE)
       {
-        obstacle->obstacleTop();
-      }
-      else
-      {
-        
+        obstacle->setException(Obstacle::BOTTOM);
       }
 
       obstacle->obstacleTop();
-      obstacle->unObstacleBottom();
-    }
-    else
-    {
-      obstacle->unObstacleTop();
-    }
 
-    keyManager->pressTop(this->sprite, this->_xxx, this->_yyy);
-  }
-
-  if(this->flag_bottom == true)
-  {
-    if (rectangle.containsPoint(rectangleZone))
+      keyManager->pressTop(this->sprite, this->_xxx, this->_yyy);
+    }
+    else if(this->flag_bottom == true)
     {
+      if(obstacle->getException() == Obstacle::NONE)
+      {
+        obstacle->setException(Obstacle::TOP);
+      }
+
       obstacle->obstacleBottom();
-      obstacle->unObstacleTop();
-    }
-    else
-    {
-      obstacle->unObstacleBottom();
-    }
 
-    keyManager->pressBottom(this->sprite, this->_xxx, this->_yyy);
-  }
-
-  if(this->flag_left == true)
-  {
-    if (rectangle.containsPoint(rectangleZone))
+      keyManager->pressBottom(this->sprite, this->_xxx, this->_yyy);
+    }
+    else if(this->flag_left == true)
     {
+      if(obstacle->getException() == Obstacle::NONE)
+      {
+        obstacle->setException(Obstacle::RIGHT);
+      }
+
       obstacle->obstacleLeft();
-      obstacle->unObstacleRight();
-    }
-    else
-    {
-      obstacle->unObstacleLeft();
-    }
 
-    keyManager->pressLeft(this->sprite, this->_xxx, this->_yyy);
-  }
-
-  if(this->flag_right == true)
-  {
-    if (rectangle.containsPoint(rectangleZone))
+      keyManager->pressLeft(this->sprite, this->_xxx, this->_yyy);
+    }
+    else if(this->flag_right == true)
     {
+      if(obstacle->getException() == Obstacle::NONE)
+      {
+        obstacle->setException(Obstacle::LEFT);
+      }
+
       obstacle->obstacleRight();
-      obstacle->unObstacleLeft();
-    }
-    else
-    {
-      obstacle->unObstacleRight();
-    }
 
-    keyManager->pressRight(this->sprite, this->_xxx, this->_yyy);
+      keyManager->pressRight(this->sprite, this->_xxx, this->_yyy);
+    }
   }
+  else
+  {
+    obstacle->setException(Obstacle::NONE);
 
-//   if(this->flag_top == true)
-//   {
-//     rectangleZone = Vec2(this->_xxx, this->_yyy);
+    obstacle->unObstacleTop();
+    obstacle->unObstacleBottom();
+    obstacle->unObstacleLeft();
+    obstacle->unObstacleRight();
 
-//     if (rectangle.containsPoint(rectangleZone))
-//     {
-//       keyboardState.obstacleTop();
-//     }
-
-//     if((this->_yyy <= (720 - 25) && stop_top == false) || stop_bottom == true || stop_left == true || stop_right == true )
-//     {
-//       this->_yyy += 1;
-//     }
-
-//     sprite->setPosition(Vec2(this->_xxx, this->_yyy));
-
-//     stop_top = false;
-
-//     return;
-//   }
-
-//   if(this->flag_bottom == true)
-//   {
-
-//     rectangleZone = Vec2(this->_xxx, this->_yyy);
-
-//     if (rectangle.containsPoint(rectangleZone))
-//     {
-//       stop_bottom = true;
-//     }
-
-//     if((this->_yyy >= 25 && stop_bottom == false) || stop_top == true || stop_left == true || stop_right == true )
-//     {
-//       this->_yyy -= 1;
-//     }
-
-//     sprite->setPosition(Vec2(this->_xxx, this->_yyy));
-
-//     stop_bottom = false;
-
-//     return;
-//   }
-
-//   if(this->flag_left == true)
-//   {
-
-//     rectangleZone = Vec2(this->_xxx, this->_yyy);
-
-//     if (rectangle.containsPoint(rectangleZone))
-//     {
-//       stop_left = true;
-//     }
-
-//     if((this->_xxx >= 15 && stop_left == false) || stop_top == true || stop_bottom == true || stop_right == true )
-//     {
-//       this->_xxx -= 1;
-//     }
-
-//     sprite->setPosition(Vec2(this->_xxx, this->_yyy));
-
-//     stop_left = false;
-
-//     return;
-//   }
-
-//   if(this->flag_right == true)
-//   {
-
-//     rectangleZone = Vec2(this->_xxx, this->_yyy);
-
-//     if (rectangle.containsPoint(rectangleZone))
-//     {
-//       stop_right = true;
-//     }
-
-//     if((this->_xxx <= (1280 - 15) && stop_right == false) || stop_top == true || stop_left == true || stop_bottom == true )
-//     {
-//       this->_xxx += 1;
-//     }
-
-//     sprite->setPosition(Vec2(this->_xxx, this->_yyy));
-
-//     stop_right = false;
-
-//     return;
-//   }
+    if(this->flag_top == true)
+    {
+      keyManager->pressTop(this->sprite, this->_xxx, this->_yyy);
+    }
+    else if(this->flag_bottom == true)
+    {
+      keyManager->pressBottom(this->sprite, this->_xxx, this->_yyy);
+    }
+    else if(this->flag_left == true)
+    {
+      keyManager->pressLeft(this->sprite, this->_xxx, this->_yyy);
+    }
+    else if(this->flag_right == true)
+    {
+      keyManager->pressRight(this->sprite, this->_xxx, this->_yyy);
+    }
+  }
 }
 
 // Implementation of the keyboard event callback function prototype
