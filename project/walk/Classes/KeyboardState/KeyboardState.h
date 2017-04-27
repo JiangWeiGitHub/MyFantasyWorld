@@ -1,14 +1,16 @@
 #ifndef __KEYBOARDSTATE_H__
 #define __KEYBOARDSTATE_H__
 
+#pragma once
+
 #include "iostream"
 #include "cocos2d.h"
 
-// #include "./KeyManager.h"
+#include "../Obstacle/Obstacle.h"
 
 // top bottom left right stop -> five states
 
-// class KeyManager;
+class KeyManager;
 
 class KeyboardState
 {
@@ -16,16 +18,12 @@ public:
   KeyboardState();
   ~KeyboardState();
 
-  virtual void pressTop() {};
-  virtual void pressBottom() {};
-  virtual void pressLeft() {};
-  virtual void pressRight() {};
-
-  // void setKeyManager(KeyManager* keyManager);
+  virtual void pressTop(cocos2d::Sprite* sprite, float& x, float& y) {};
+  virtual void pressBottom(cocos2d::Sprite* sprite, float& x, float& y) {};
+  virtual void pressLeft(cocos2d::Sprite* sprite, float& x, float& y) {};
+  virtual void pressRight(cocos2d::Sprite* sprite, float& x, float& y) {};
   
-  // KeyManager* keyManager;
-
-  bool obstacle_top, obstacle_bottom, obstacle_left, obstacle_right;
+  Obstacle* obstacle;
 };
 
 #endif // __KEYBOARDSTATE_H__

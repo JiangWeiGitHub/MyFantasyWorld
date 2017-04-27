@@ -1,6 +1,8 @@
 #ifndef __KEYMANAGER_H__
 #define __KEYMANAGER_H__
 
+#pragma once  
+
 #include "iostream"
 #include "cocos2d.h"
 
@@ -11,13 +13,10 @@
 #include "./KeyRight.h"
 #include "./KeyStop.h"
 
-class KeyboardState;
-
 class KeyManager
 {
 public:  
-  KeyManager(KeyboardState* initState);
-  KeyManager();
+  KeyManager(std::string name);
   ~KeyManager();
  
   void setState(KeyboardState* state);
@@ -34,11 +33,11 @@ public:
 
 private:  
   KeyboardState* _state;
-  KeyboardState* _keyTop;
-  KeyboardState* _keyBottom;
-  KeyboardState* _keyLeft;
-  KeyboardState* _keyRight;
-  KeyboardState* _keyStop; 
+  KeyboardState* _stateTop;
+  KeyboardState* _stateBottom;
+  KeyboardState* _stateLeft;
+  KeyboardState* _stateRight;
+  KeyboardState* _stateStop; 
 };
 
 #endif // __KEYMANAGER_H__

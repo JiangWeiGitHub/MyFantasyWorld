@@ -5,7 +5,7 @@
 #include "cocos2d.h"
 
 #include "./KeyboardState.h"
-#include "./KeyManager.h"
+// #include "./KeyManager.h"
 // #include "./KeyTop.h"
 // // #include "./KeyBottom.h"
 // #include "./KeyLeft.h"
@@ -16,11 +16,13 @@
 // class KeyRight;
 // class KeyLeft;
 // class KeyStop;
+
 class KeyManager;
+
 class KeyBottom : public KeyboardState
 {
 public:
-  KeyBottom(KeyManager* keyManager);
+  KeyBottom(KeyManager* km);
   ~KeyBottom();
   void pressTop(cocos2d::Sprite* sprite, float& x, float& y);
   void pressBottom(cocos2d::Sprite* sprite, float& x, float& y);

@@ -130,6 +130,9 @@ bool HelloWorld::init()
   rectangle = Rect(0,0,500,500);
   rectangleZone = Vec2(0, 0); //init
 
+  flag_obstacle_top = flag_obstacle_bottom = flag_obstacle_left = flag_obstacle_right = false;
+
+  obstacle = Obstacle::getInstance();
 
   this->flag_top = false;
   this->flag_bottom = false;
@@ -165,32 +168,81 @@ bool HelloWorld::init()
 
   stop_top = stop_bottom = stop_left = stop_right = false;
 
-
-  keyManager = new KeyManager();
-  //keyManager->setState(new KeyStop(this)); // STOP state
+  keyManager = new KeyManager("STOP");
 
   return true;
 }
 
 void HelloWorld::update(float delta)
 {
+  rectangleZone = Vec2(this->_xxx, this->_yyy);
+
   if(this->flag_top == true)
   {
+    if (rectangle.containsPoint(rectangleZone))
+    {
+      if(flag_obstacle_top == false)
+      {
+        obstacle->obstacleTop();
+      }
+      else
+      {
+        
+      }
+
+      obstacle->obstacleTop();
+      obstacle->unObstacleBottom();
+    }
+    else
+    {
+      obstacle->unObstacleTop();
+    }
+
     keyManager->pressTop(this->sprite, this->_xxx, this->_yyy);
   }
 
   if(this->flag_bottom == true)
   {
+    if (rectangle.containsPoint(rectangleZone))
+    {
+      obstacle->obstacleBottom();
+      obstacle->unObstacleTop();
+    }
+    else
+    {
+      obstacle->unObstacleBottom();
+    }
+
     keyManager->pressBottom(this->sprite, this->_xxx, this->_yyy);
   }
 
   if(this->flag_left == true)
   {
+    if (rectangle.containsPoint(rectangleZone))
+    {
+      obstacle->obstacleLeft();
+      obstacle->unObstacleRight();
+    }
+    else
+    {
+      obstacle->unObstacleLeft();
+    }
+
     keyManager->pressLeft(this->sprite, this->_xxx, this->_yyy);
   }
 
   if(this->flag_right == true)
   {
+    if (rectangle.containsPoint(rectangleZone))
+    {
+      obstacle->obstacleRight();
+      obstacle->unObstacleLeft();
+    }
+    else
+    {
+      obstacle->unObstacleRight();
+    }
+
     keyManager->pressRight(this->sprite, this->_xxx, this->_yyy);
   }
 
@@ -200,7 +252,7 @@ void HelloWorld::update(float delta)
 
 //     if (rectangle.containsPoint(rectangleZone))
 //     {
-//       stop_top = true;
+//       keyboardState.obstacleTop();
 //     }
 
 //     if((this->_yyy <= (720 - 25) && stop_top == false) || stop_bottom == true || stop_left == true || stop_right == true )

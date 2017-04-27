@@ -138,6 +138,7 @@ set(GAME_SRC
   Classes/KeyboardState/KeyRight.cpp
   Classes/KeyboardState/KeyStop.cpp
   Classes/KeyboardState/KeyTop.cpp
+  Classes/Obstacle/Obstacle.cpp
   ${PLATFORM_SPECIFIC_SRC}
 )
 
@@ -152,6 +153,7 @@ set(GAME_HEADERS
   Classes/KeyboardState/KeyRight.h
   Classes/KeyboardState/KeyStop.h
   Classes/KeyboardState/KeyTop.h
+  Classes/Obstacle/Obstacle.cpp
   ${PLATFORM_SPECIFIC_HEADERS}
 )
 

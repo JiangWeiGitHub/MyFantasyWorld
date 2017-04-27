@@ -1,18 +1,12 @@
 #include "./KeyboardState.h"
+#include "./KeyManager.h"
 
 KeyboardState::KeyboardState()
 {
-  // this->keyManager = NULL;
-
-  obstacle_top = obstacle_bottom = obstacle_left = obstacle_right = false;
+  obstacle = Obstacle::getInstance();
 }
 
 KeyboardState::~KeyboardState()
 {
-  // delete this->keyManager;
+  delete obstacle;
 }
-
-// void KeyboardState::setKeyManager(KeyManager* keyManager)
-// {
-//   this->keyManager = keyManager;
-// }
