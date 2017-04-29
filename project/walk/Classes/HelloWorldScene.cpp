@@ -115,14 +115,14 @@ bool HelloWorld::init()
 
   sprite = Sprite::createWithSpriteFrame(frame0);
 
-  auto backgroud=Sprite::create("backgroud.png"); 
-  backgroud->setTag(10); 
+  // auto backgroud=Sprite::create("backgroud.png"); 
+  // backgroud->setTag(10); 
 
-  backgroud->setAnchorPoint(Vec2(0,0));
-  backgroud->setPosition(Vec2(0,0));
-  backgroud->setTag(10); 
+  // backgroud->setAnchorPoint(Vec2(0,0));
+  // backgroud->setPosition(Vec2(0,0));
+  // backgroud->setTag(10); 
 
-  this->addChild(backgroud, -100);
+  // this->addChild(backgroud, -100);
 
   DrawNode* drawNode=DrawNode::create();
 
@@ -167,6 +167,16 @@ bool HelloWorld::init()
 
   // add the sprite as a child to this layer
   this->addChild(sprite, 0);
+
+// reading in a tiled map.
+    auto map = TMXTiledMap::create("/home/john/git/Cocos2d-X/project/walk/Resources/homebbb.tmx");
+    addChild(map, 0, 1);
+
+    map->setScale(0.25f);
+    Size CC_UNUSED s = map->getContentSize();
+    CCLOG("ContentSize: %f, %f", s.width,s.height);
+
+
 
   this->scheduleUpdate();
 
