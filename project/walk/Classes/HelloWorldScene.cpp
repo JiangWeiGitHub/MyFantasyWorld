@@ -124,16 +124,16 @@ bool HelloWorld::init()
 
   // this->addChild(backgroud, -100);
 
-  DrawNode* drawNode=DrawNode::create();
+  // DrawNode* drawNode=DrawNode::create();
 
-  Vec2 point[4];
-  point[0] = Vec2(0, 0);
-  point[1] = Vec2(0, 477);
-  point[2] = Vec2(485, 477);
-  point[3] = Vec2(485, 0);
-  drawNode->drawPolygon(point,4,Color4F::BLUE,1,Color4F::RED);    
+  // Vec2 point[4];
+  // point[0] = Vec2(0, 0);
+  // point[1] = Vec2(0, 477);
+  // point[2] = Vec2(485, 477);
+  // point[3] = Vec2(485, 0);
+  // drawNode->drawPolygon(point,4,Color4F::BLUE,1,Color4F::RED);    
    
-  this->addChild(drawNode, 100);
+  // this->addChild(drawNode, 100);
 
   test = new Role();
   test->setName("John");
@@ -168,14 +168,12 @@ bool HelloWorld::init()
   // add the sprite as a child to this layer
   this->addChild(sprite, 0);
 
-// reading in a tiled map.
-    auto map = TMXTiledMap::create("/home/john/git/Cocos2d-X/project/walk/Resources/homebbb.tmx");
-    addChild(map, 0, 1);
 
-    map->setScale(0.25f);
-    Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
-
+  auto map = TMXTiledMap::create("home.tmx");
+  float tileX = (visibleSize.width - map->getContentSize().width) / 2;
+  float tileY = (visibleSize.height - map->getContentSize().height) / 2;
+  map->setPosition(Vec2(tileX, tileY));
+  addChild(map, -10);
 
 
   this->scheduleUpdate();

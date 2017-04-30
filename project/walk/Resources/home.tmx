@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="24" tileheight="24" nextobjectid="1">
  <tileset firstgid="1" name="Inside_A4" tilewidth="24" tileheight="24" tilecount="960">
   <image source="Inside_A4.png" trans="ff00ff" width="768" height="720"/>
@@ -18,14 +19,34 @@
  <tileset firstgid="4033" name="Inside_C" tilewidth="24" tileheight="24" tilecount="1024">
   <image source="Inside_C.png" trans="ff00ff" width="768" height="768"/>
  </tileset>
- <layer name="backgroud" width="40" height="20">
+ <layer name="backgroud-1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJy1VkFSAjEQDAfZdT9APiDyEZAbfkLkpp/QG8gn9GYVH6FKH6L4BJMyY7WdmWws9NC1SaVnpjNpEtYD5zYBDwVsKlCKr83BebYBzwG3Ae89uKnkHZvnkBB5L0nfLuDE5RgGNGksvJbWWiXOyoV5OB7nw8QTffF75nKMA87TWHgTWpsocVau+N0nfRyP87Gib+pyzAIu0lh4c1qbK3FWrino43icz0hf5F+5HMuA6zQW/orWVkqclUvyxHocj/Ol0r+mK6PEa3tiEdI/a71NeAucD9A36soo8XxPLELqWus+QTyJdXkPwsX+eeJ5JTf2dATzOJazHNFaSznEk5Y+rGWdL+bEeE1fo+jzBX3cP96r5T/W0VB91s5ndxdq3ru8Tk3/PHE1fR60WD7keg2MH0PNJ/ezZ9q5vZ5+AfvXdvnZSLz4mv3ZkDb0BPeRvck1Svq0eNzb9xvU5b8LrM/eYI+u07tf6rsHntY/zVPiV0sbegd7ovl4R/cA/459l9/P1j0mecSvNXdw6U4UfZqHfUGf9R7I3vje6oOlXfTx/nFfrdG/0nvwmzeihH3Fe+WBF7+Xg/7/v3+FRWW9RdIX741j/xP/Bw7pPvsEALUH4w==
+   eJzNlk0OgjAQhctC5SIiFwHd4SVUdnoJ3YFeQncmXoTEi/hzBKfJTNIMxQ4piJN8oU3fzLyUplAESpXA8QulgG/50hq8zgm4Ajvg6WAr1PnWeSFad0d/N2Ck6oyBCY5JF7K10JLXVMusw/PN+Rh15E8/p6pOBMxwTLqYrcWWvKZa+lmhP55vziOLv0TVSYE5jkm3YGsLS15TrcTwx/PNecr8af1K1VkDGxyTPmdruSWvqRbV0f14vjlfW/bPFVKdK2j/XPEAzXsAf9TXFXQmf+2P3qUr6Ez+q7+h9m8PHAS6ofbvDFxa6KV9pee665D6o2+QbxT43ZfqpP7ovPoG3c8SXZv7mc6rb/TlT3ovSPr24a+rqIT9SKefy8D9/9sVmbBfhv70veH7T9wHL7zPPrTv3Wc=
   </data>
  </layer>
- <layer name="furniture" width="40" height="20">
+ <layer name="backgroud-2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJztlVlPE1EYhg8kGsROl4F7hUQTcGW5R0VBRRaXPwBFFAoo6h8AxYSdvyAJJi2L/AW4o2zqvQvctYDbvcJDmJP50k6ngBCI8U2e9HT6nu97M1/njFL/dRia9ig149mZZyfedJozlJo3ttf11GqAIDSmqLvM9RXrt098foYv8NWT7JFeLd1DKuBXyvQ791sl25qVr5N9XfASXqXIl4E30/L/xvMHNra8RrJHerV0D6kishWnyHfSq5THa3/v9in1Gjqhy2dfP8E6G/Lol28k15HSHifvVWpcg3K4DjegAirhpi+51jmynRf5RvG8hTcwIvwFrAsd9mvdIsdtqII7UA01UAt1ImM9NRogCI3wEJrgETx2qZ+oY3iPC38G60yX/c1kaIEQtEIbtMMTeJrmfu9FZ8hyVuTJY53vkq+HDL3QB/0wAIMwBMPwgf/cxz0+yz1Z1IY+6M/avlbNzGu87vukwmSIwBiMwwRMwjuYgp9k+5WQT89kmj4zLr3CZIrAGIxb+drwt+8iXzoFyGgmzFnPZJk+Ky69ZskUhTmYt/IN4B8Ue/Q5uQCLsATvRT85g16HefyNYtSIwyqsWfUmyDYp8ulzch2+wXf4IfLJGUQc5nFQOkWG04Z9ThrgBR/4RX45g6jDPLQCzNOEHMjdxXmSSmVku2LY5+QFuAiX4LLIJ2cQd5iHVhGZiqEESvch32FLv7dmuRfRfXxetapM3iem/T2HHrmiz11634P78MDhfur3Vow98QPIFyJbq8hXQo9S0aeD3s/gObz4B+Z9VLQJCBaDWQ==
+   eJztVMsOwzAIy40oP1D+/0u3w6JZlnm0O00KEmpLCXacwBjHjh37d7M1xlzf537f35j31KM6Uzwrfv726+O+4ryr6YyLccSchKdw1b6yvEirbp0JvHzV+uF+lX47h/Uxwrtu8HPA6pxvVFdh4l3g2J1zmA/4Vfcv4tbRz4K11f3L9FP8mEumn4l8XlfpZyvXj/fqUH/HjWKRfojR5dc5F67Nzj3Z4Yce8cOexJ7CPO5XNVuc1md9hvyy+axmV3T/slnssDbiZyIn46d0Y7wZ/K9cnUM379hv9gKKYiMG
+  </data>
+ </layer>
+ <layer name="backgroup-3" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztzjkNACAABLBb8a8IHIAiMMDKk7QKmgAAp9SStHJ7sdfXbTz8A/43AYHVA0s=
+  </data>
+ </layer>
+ <layer name="furniture-1" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztlVlPE1EYhk9JJBFmWoHeKySQsCPlXkSUfecPAAWUTUX/AFVJXFj+AiaQsPMX4I5FWe5Z71gF7gEfQk960ukyLUuN4U2e9HT6nu97M1/njBD3ioRmNSHmNHMeM95gWtSFWNKv1g3UaoQmcPqpu831Hfdv63xuwCZsaUaP6pWSPcxqn2wH7nw97HPBJ/jsp4YFb5Tbf4bnHC4uvbrRo3qlZA+zirUKoVk937/YhOiFHnDZPNcfso6BRPol6cY6qqTHl/c5NQrgBRTCS3gFRVBsM9ZKJ1uGkm8YzwgMwU/Fn8o6zcd+qRJylEIZlEMFVEIVVCsZG6jRCE3ghGZogVZ4HaC+tx7gjVb8FtZRAfa/IUMbtEMHdEIXvIV3Qe53OEomS4qSJ5F1UoB8X8nwDb7DD+iDfhiAQVjlP7d2zWdZVQUzr7QG90mNkmEMxmECJmEKpmEGTsh26pVPzmSWPnMh9LpUJ/6uEPcEUhwZ473mLGeyTZ+dEHv14e9X9shz8hf8hmVYuYX/lVlNkm1KySfPyUM4gj9wHMF8Uo/J8ET3nJM6WMEGj8KYfxzzjIcEsIdwnvjTM7Ll655zMhOyIBtywsj3lEy54IC8G8gXacn31jz3YuEGn1d/SqCHXelTQ+9aqIN6H/dTvrd22bN3B/kc9MhT+ryndzd8gI//wbz/Ff0FgzBfcQ==
+  </data>
+ </layer>
+ <layer name="furniture-2" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztkUEKgDAQA/fYr1v9iNWPWP2I1UeYY0DwsBTcQwbmGkJiJoQQIjpDMstwhFP6u82bGZ0KXOAasN+GThXu8HD04/0z2euPExkNXvB25PH+hYzyB+9fSe8fveH9G+n9QwjxzQMQRCR1
+  </data>
+ </layer>
+ <layer name="furniture-3" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztzkkRACAMBMGVAHECNsAJ+H8TA/ly1bSCloA9cpIsnV7Eit/qxT8AAF7TTOp2ehEbfpsX/361AHlWAn0=
   </data>
  </layer>
  <layer name="shadow" width="40" height="20" opacity="0.42">

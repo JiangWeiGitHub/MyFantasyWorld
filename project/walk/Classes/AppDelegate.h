@@ -3,6 +3,9 @@
 
 #include "cocos2d.h"
 
+#include "HelloWorldScene.h"
+#include "./Scene/Loading/LoadingScene.h"
+
 /**
 @brief    The cocos2d Application.
 

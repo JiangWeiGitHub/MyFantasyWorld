@@ -2,18 +2,18 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
-#include "Role/Role.h"
+#include "./Sprite/Role/Role.h"
 
-#include "KeyboardState/KeyboardState.h"
-#include "KeyboardState/KeyManager.h"
+#include "./Producer/KeyboardState/KeyboardState.h"
+#include "./Producer/KeyboardState/KeyManager.h"
 
-#include "./KeyboardState/KeyTop.h"
-#include "./KeyboardState/KeyBottom.h"
-#include "./KeyboardState/KeyLeft.h"
-#include "./KeyboardState/KeyRight.h"
-#include "./KeyboardState/KeyStop.h"
+#include "./Producer/KeyboardState/KeyTop.h"
+#include "./Producer/KeyboardState/KeyBottom.h"
+#include "./Producer/KeyboardState/KeyLeft.h"
+#include "./Producer/KeyboardState/KeyRight.h"
+#include "./Producer/KeyboardState/KeyStop.h"
 
-#include "./Obstacle/Obstacle.h"
+#include "./Producer/Obstacle/Obstacle.h"
 
 class HelloWorld : public cocos2d::Layer
 {
