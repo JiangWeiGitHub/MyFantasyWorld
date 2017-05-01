@@ -22,6 +22,8 @@ namespace jiangweigithub {
 
     CREATE_FUNC(LoadingScene);
 
+    void myThreadA();
+
     static cocos2d::Scene* getLoadingScene();
     static void loadingSceneCallback(cocos2d::Ref* pSender);
 

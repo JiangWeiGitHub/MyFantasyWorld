@@ -40,7 +40,22 @@ namespace jiangweigithub {
 
 
 
+    // std::thread tA(&LoadingScene::myThreadA,this);
+    // tA.detach();
+
     return true;
+  }
+
+  void LoadingScene::myThreadA()
+  {
+    std::cout<<"aaaaaaaaaaaa"<<std::endl;
+    sleep(5);
+    std::cout<<"bbbbbbbbbbbb"<<std::endl;
+    
+    auto homeScene = jiangweigithub::Home::getHomeScene();
+    cocos2d::Director::getInstance()->replaceScene(homeScene);
+
+    std::cout<<"cccccccccccc"<<std::endl;
   }
 
   cocos2d::Scene* LoadingScene::getLoadingScene()
