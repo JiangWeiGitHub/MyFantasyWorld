@@ -10,20 +10,24 @@
 
 // top bottom left right stop -> five states
 
-class KeyManager;
+namespace jiangweigithub {
 
-class KeyboardState
-{
-public:
-  KeyboardState();
-  ~KeyboardState();
+  class KeyManager;
 
-  virtual void pressTop(cocos2d::Sprite* sprite, float& x, float& y) {};
-  virtual void pressBottom(cocos2d::Sprite* sprite, float& x, float& y) {};
-  virtual void pressLeft(cocos2d::Sprite* sprite, float& x, float& y) {};
-  virtual void pressRight(cocos2d::Sprite* sprite, float& x, float& y) {};
-  
-  Obstacle* obstacle;
-};
+  class KeyboardState
+  {
+  public:
+    KeyboardState();
+    ~KeyboardState();
+
+    virtual void pressTop(cocos2d::Sprite* sprite, float& x, float& y) {};
+    virtual void pressBottom(cocos2d::Sprite* sprite, float& x, float& y) {};
+    virtual void pressLeft(cocos2d::Sprite* sprite, float& x, float& y) {};
+    virtual void pressRight(cocos2d::Sprite* sprite, float& x, float& y) {};
+    
+    Obstacle* obstacle;
+  };
+
+}
 
 #endif // __KEYBOARDSTATE_H__

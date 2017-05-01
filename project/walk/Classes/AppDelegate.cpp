@@ -38,6 +38,9 @@ static int register_all_packages()
 }
 
 bool AppDelegate::applicationDidFinishLaunching() {
+
+  register_all_packages();
+
   // initialize director
   auto director = Director::getInstance();
   auto glview = director->getOpenGLView();
@@ -76,15 +79,50 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->setContentScaleFactor(MIN(smallResolutionSize.height/designResolutionSize.height, smallResolutionSize.width/designResolutionSize.width));
   }
 
-  register_all_packages();
 
   // create a scene. it's an autorelease object
   // auto scene = HelloWorld::createScene();
 
-  auto scene = (new LoadingScene())->getLoadingScene();
+  // auto tmp = new jiangweigithub::LoadingScene();
+  // auto scene = tmp->getLoadingScene();
+
+// auto dirs = Director::getInstance();
+// Size visibleSize = dirs->getVisibleSize();
+
+// auto myScene = Scene::create();
+
+// std::cout<<myScene->getDescription()<<std::endl;
+
+// auto label1 = Label::createWithTTF("My Game", "Marker Felt.ttf", 36);
+
+// std::cout<<label1->getString()<<std::endl;
+
+// label1->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+
+// myScene->addChild(label1);
+
+// auto sprite1 = Sprite::create("mysprite.png");
+// sprite1->setPosition(Vec2(100, 100));
+
+// myScene->addChild(sprite1);
+  // auto aaa = new jiangweigithub::Home();
+  // auto bbb = aaa->getMainScene();
 
   // run
-  director->runWithScene(scene);
+  auto loadingScene = jiangweigithub::LoadingScene::getLoadingScene();
+
+  // auto homeScene = jiangweigithub::Home::getHomeScene();
+
+  director->runWithScene(loadingScene);
+
+
+
+  //   // CCLOG("hehe scene: %p", hehe);
+
+  // std::thread wa(&jiangweigithub::LoadingScene::loadingSceneCallback, homeScene);
+  // wa.detach();
+
+  // tmp->loadingSceneCallback(director, hehe);
 
   return true;
 }

@@ -45,8 +45,8 @@ private:
   bool flag_top, flag_bottom, flag_left, flag_right;
   bool flag_obstacle_top, flag_obstacle_bottom, flag_obstacle_left, flag_obstacle_right;
 
-  KeyManager* keyManager;
-  Obstacle* obstacle;
+  jiangweigithub::KeyManager* keyManager;
+  jiangweigithub::Obstacle* obstacle;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

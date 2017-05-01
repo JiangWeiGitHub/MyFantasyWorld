@@ -6,19 +6,22 @@
 
 #include "./KeyboardState.h"
 
-class KeyManager;
+namespace jiangweigithub {
 
-class KeyTop : public KeyboardState
-{
-public:
-  KeyTop(KeyManager* km);
-  ~KeyTop();
-  void pressTop(cocos2d::Sprite* sprite, float& x, float& y);
-  void pressBottom(cocos2d::Sprite* sprite, float& x, float& y);
-  void pressLeft(cocos2d::Sprite* sprite, float& x, float& y);
-  void pressRight(cocos2d::Sprite* sprite, float& x, float& y);
-private:
-  KeyManager* keyManager;
-};
+  class KeyManager;
 
+  class KeyTop : public KeyboardState
+  {
+  public:
+    KeyTop(KeyManager* km);
+    ~KeyTop();
+    void pressTop(cocos2d::Sprite* sprite, float& x, float& y);
+    void pressBottom(cocos2d::Sprite* sprite, float& x, float& y);
+    void pressLeft(cocos2d::Sprite* sprite, float& x, float& y);
+    void pressRight(cocos2d::Sprite* sprite, float& x, float& y);
+  private:
+    KeyManager* keyManager;
+  };
+  
+}
 #endif // __KEYTOP_H__

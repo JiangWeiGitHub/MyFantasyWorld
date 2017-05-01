@@ -1,12 +1,16 @@
 #include "./KeyboardState.h"
 #include "./KeyManager.h"
 
-KeyboardState::KeyboardState()
-{
-  obstacle = Obstacle::getInstance();
-}
+namespace jiangweigithub {
 
-KeyboardState::~KeyboardState()
-{
-  delete obstacle;
+  KeyboardState::KeyboardState()
+  {
+    obstacle = Obstacle::getInstance();
+  }
+
+  KeyboardState::~KeyboardState()
+  {
+    delete obstacle;
+  }
+
 }

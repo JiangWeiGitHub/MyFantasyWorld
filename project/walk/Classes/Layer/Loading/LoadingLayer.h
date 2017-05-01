@@ -7,19 +7,28 @@
 #include "cocos2d.h"
 
 #include "../../Sprite/Loading/LoadingSprite.h"
+#include "../../Sprite/Loading/LoadingTitleSprite.h"
 
-class LoadingLayer
-{
-public:
-  LoadingLayer();
-  ~LoadingLayer();
+namespace jiangweigithub {
 
-  cocos2d::Layer* getLoadingLayer();
+  class LoadingLayer : public cocos2d::Layer
+  {
+  public:
+    // LoadingLayer();
+    // ~LoadingLayer();
+    
+    virtual bool init();
 
-private:
-  cocos2d::Layer* loadingLayer;
-  cocos2d::Sprite* loadingSprite;
-  cocos2d::Label* loadingTitle;
-};
+    static cocos2d::Layer* getLoadingLayer();
+
+    CREATE_FUNC(LoadingLayer);
+
+  private:
+    // static cocos2d::Layer* loadingLayer;
+    // static cocos2d::Sprite* loadingSprite;
+    // static cocos2d::Label* loadingTitle;
+  };
+
+}
 
 #endif // __LOADINGLAYER_H__

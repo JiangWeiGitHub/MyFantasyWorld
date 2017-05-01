@@ -13,31 +13,35 @@
 #include "./KeyRight.h"
 #include "./KeyStop.h"
 
-class KeyManager
-{
-public:  
-  KeyManager(std::string name);
-  ~KeyManager();
- 
-  void setState(KeyboardState* state);
-  KeyboardState* getStateTop();
-  KeyboardState* getStateBottom();
-  KeyboardState* getStateLeft();
-  KeyboardState* getStateRight();
-  KeyboardState* getStateStop();
+namespace jiangweigithub {
 
-  void pressTop(cocos2d::Sprite* sprite, float& x, float& y);
-  void pressBottom(cocos2d::Sprite* sprite, float& x, float& y);
-  void pressLeft(cocos2d::Sprite* sprite, float& x, float& y);
-  void pressRight(cocos2d::Sprite* sprite, float& x, float& y);
+  class KeyManager
+  {
+  public:  
+    KeyManager(std::string name);
+    ~KeyManager();
+  
+    void setState(KeyboardState* state);
+    KeyboardState* getStateTop();
+    KeyboardState* getStateBottom();
+    KeyboardState* getStateLeft();
+    KeyboardState* getStateRight();
+    KeyboardState* getStateStop();
 
-private:  
-  KeyboardState* _state;
-  KeyboardState* _stateTop;
-  KeyboardState* _stateBottom;
-  KeyboardState* _stateLeft;
-  KeyboardState* _stateRight;
-  KeyboardState* _stateStop; 
-};
+    void pressTop(cocos2d::Sprite* sprite, float& x, float& y);
+    void pressBottom(cocos2d::Sprite* sprite, float& x, float& y);
+    void pressLeft(cocos2d::Sprite* sprite, float& x, float& y);
+    void pressRight(cocos2d::Sprite* sprite, float& x, float& y);
+
+  private:  
+    KeyboardState* _state;
+    KeyboardState* _stateTop;
+    KeyboardState* _stateBottom;
+    KeyboardState* _stateLeft;
+    KeyboardState* _stateRight;
+    KeyboardState* _stateStop; 
+  };
+
+}
 
 #endif // __KEYMANAGER_H__

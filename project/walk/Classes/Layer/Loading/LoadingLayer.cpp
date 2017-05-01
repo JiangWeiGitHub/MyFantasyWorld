@@ -1,34 +1,63 @@
 #include "./LoadingLayer.h"
 
-LoadingLayer::LoadingLayer()
-{
-  loadingLayer = NULL;
+namespace jiangweigithub {
 
-  loadingSprite = NULL;
-  loadingTitle = NULL;
-}
+  // LoadingLayer::LoadingLayer()
+  // {
+  //   loadingLayer = NULL;
 
-LoadingLayer::~LoadingLayer()
-{
-  delete loadingTitle;
-  delete loadingSprite;
-  delete loadingLayer;
-}
+  //   loadingSprite = NULL;
+  //   loadingTitle = NULL;
+  // }
 
-cocos2d::Layer* LoadingLayer::getLoadingLayer()
-{
-  loadingLayer = cocos2d::Layer::create();
+  // LoadingLayer::~LoadingLayer()
+  // {
+  //   delete loadingTitle;
+  //   delete loadingSprite;
+  //   delete loadingLayer;
+  // }
 
-  loadingSprite = (new LoadingSprite())->getLoadingSprite();
-  loadingTitle = (new LoadingSprite())->getLoadingTitle();
+  bool LoadingLayer::init()
+  {
+    if ( !Layer::init() )
+    {
+      return false;
+    }
 
-  auto spriteSize = loadingSprite->getContentSize();
-  auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
+    auto loadingSprite = LoadingSprite::getLoadingSprite();
+    auto loadingTitle = LoadingTitleSprite::getLoadingTitle();
 
-  loadingSprite->setPosition(cocos2d::Vec2((visibleSize.width - spriteSize.width) / 2, (visibleSize.height - spriteSize.height) / 2));
-  loadingTitle->setPosition(cocos2d::Vec2((visibleSize.width - spriteSize.width) / 2, (visibleSize.height - spriteSize.height) / 2 + 60));
+    auto spriteSize = loadingSprite->getContentSize();
+    auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
 
-  loadingLayer->addChild(loadingSprite);
-  loadingLayer->addChild(loadingTitle);
-  return loadingLayer;
+    loadingSprite->setPosition(cocos2d::Vec2((visibleSize.width - spriteSize.width) / 2, (visibleSize.height - spriteSize.height) / 2));
+    loadingTitle->setPosition(cocos2d::Vec2((visibleSize.width - spriteSize.width) / 2, (visibleSize.height - spriteSize.height) / 2 + 60));
+
+    this->addChild(loadingSprite);
+    this->addChild(loadingTitle);
+
+    return true;
+  }
+
+  cocos2d::Layer* LoadingLayer::getLoadingLayer()
+  {
+    // loadingLayer = cocos2d::Layer::create();
+
+    // loadingSprite = (new LoadingSprite())->getLoadingSprite();
+    // loadingTitle = (new LoadingSprite())->getLoadingTitle();
+
+    // auto spriteSize = loadingSprite->getContentSize();
+    // auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
+
+    // loadingSprite->setPosition(cocos2d::Vec2((visibleSize.width - spriteSize.width) / 2, (visibleSize.height - spriteSize.height) / 2));
+    // loadingTitle->setPosition(cocos2d::Vec2((visibleSize.width - spriteSize.width) / 2, (visibleSize.height - spriteSize.height) / 2 + 60));
+
+    // loadingLayer->addChild(loadingSprite);
+    // loadingLayer->addChild(loadingTitle);
+
+    auto tmp = LoadingLayer::create();
+
+    return tmp;
+  }
+
 }

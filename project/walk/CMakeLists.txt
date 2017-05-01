@@ -140,8 +140,13 @@ set(GAME_SRC
   Classes/Producer/KeyboardState/KeyTop.cpp
   Classes/Producer/Obstacle/Obstacle.cpp
   Classes/Scene/Loading/LoadingScene.cpp
+  Classes/Scene/Main/Home/Home.cpp
   Classes/Layer/Loading/LoadingLayer.cpp
+  Classes/Layer/Main/MainLayer.cpp
   Classes/Sprite/Loading/LoadingSprite.cpp
+  Classes/Sprite/Loading/LoadingTitleSprite.cpp
+  Classes/Sprite/Main/MainSprite.cpp
+  Classes/Director/Director.cpp
   ${PLATFORM_SPECIFIC_SRC}
 )
 
@@ -158,8 +163,13 @@ set(GAME_HEADERS
   Classes/Producer/KeyboardState/KeyTop.h
   Classes/Producer/Obstacle/Obstacle.h
   Classes/Scene/Loading/LoadingScene.h
+  Classes/Scene/Main/Home/Home.h
   Classes/Layer/Loading/LoadingLayer.h
+  Classes/Layer/Main/MainLayer.h
   Classes/Sprite/Loading/LoadingSprite.h
+  Classes/Sprite/Loading/LoadingTitleSprite.h
+  Classes/Sprite/Main/MainSprite.cpp
+  Classes/Director/Director.h
   ${PLATFORM_SPECIFIC_HEADERS}
 )
 

@@ -4,20 +4,34 @@
 #pragma once
 
 #include "iostream"
+#include <unistd.h>
 #include "cocos2d.h"
 
 #include "../../Layer/Loading/LoadingLayer.h"
+#include "../../Scene/Main/Home/Home.h"
 
-class LoadingScene
-{
-public:
-  LoadingScene();
-  ~LoadingScene();
+namespace jiangweigithub {
 
-  cocos2d::Scene* getLoadingScene();
+  class LoadingScene: public cocos2d::Scene
+  {
+  public:
+    // LoadingScene();
+    // ~LoadingScene();
 
-private:
-  cocos2d::Scene* loadingScene;
-};
+    virtual bool init();
+
+    CREATE_FUNC(LoadingScene);
+
+    static cocos2d::Scene* getLoadingScene();
+    static void loadingSceneCallback(cocos2d::Ref* pSender);
+
+    // a selector callback
+    void menuCloseCallback(cocos2d::Ref* pSender);
+
+  private:
+    // static cocos2d::Scene* loadingScene;
+  };
+  
+}
 
 #endif // __LOADING_H__

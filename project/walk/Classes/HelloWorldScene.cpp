@@ -143,7 +143,7 @@ bool HelloWorld::init()
 
   flag_obstacle_top = flag_obstacle_bottom = flag_obstacle_left = flag_obstacle_right = false;
 
-  obstacle = Obstacle::getInstance();
+  obstacle = jiangweigithub::Obstacle::getInstance();
 
   this->flag_top = false;
   this->flag_bottom = false;
@@ -187,7 +187,7 @@ bool HelloWorld::init()
 
   stop_top = stop_bottom = stop_left = stop_right = false;
 
-  keyManager = new KeyManager("STOP");
+  keyManager = new jiangweigithub::KeyManager("STOP");
 
   return true;
 }
@@ -200,9 +200,9 @@ void HelloWorld::update(float delta)
   {
     if(this->flag_top == true)
     {
-      if(obstacle->getException() == Obstacle::NONE)
+      if(obstacle->getException() == jiangweigithub::Obstacle::NONE)
       {
-        obstacle->setException(Obstacle::BOTTOM);
+        obstacle->setException(jiangweigithub::Obstacle::BOTTOM);
       }
 
       obstacle->obstacleTop();
@@ -211,9 +211,9 @@ void HelloWorld::update(float delta)
     }
     else if(this->flag_bottom == true)
     {
-      if(obstacle->getException() == Obstacle::NONE)
+      if(obstacle->getException() == jiangweigithub::Obstacle::NONE)
       {
-        obstacle->setException(Obstacle::TOP);
+        obstacle->setException(jiangweigithub::Obstacle::TOP);
       }
 
       obstacle->obstacleBottom();
@@ -222,9 +222,9 @@ void HelloWorld::update(float delta)
     }
     else if(this->flag_left == true)
     {
-      if(obstacle->getException() == Obstacle::NONE)
+      if(obstacle->getException() == jiangweigithub::Obstacle::NONE)
       {
-        obstacle->setException(Obstacle::RIGHT);
+        obstacle->setException(jiangweigithub::Obstacle::RIGHT);
       }
 
       obstacle->obstacleLeft();
@@ -233,9 +233,9 @@ void HelloWorld::update(float delta)
     }
     else if(this->flag_right == true)
     {
-      if(obstacle->getException() == Obstacle::NONE)
+      if(obstacle->getException() == jiangweigithub::Obstacle::NONE)
       {
-        obstacle->setException(Obstacle::LEFT);
+        obstacle->setException(jiangweigithub::Obstacle::LEFT);
       }
 
       obstacle->obstacleRight();
@@ -245,7 +245,7 @@ void HelloWorld::update(float delta)
   }
   else
   {
-    obstacle->setException(Obstacle::NONE);
+    obstacle->setException(jiangweigithub::Obstacle::NONE);
 
     obstacle->unObstacleTop();
     obstacle->unObstacleBottom();

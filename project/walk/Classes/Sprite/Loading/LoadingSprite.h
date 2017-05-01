@@ -6,21 +6,25 @@
 #include "iostream"
 #include "cocos2d.h"
 
-class LoadingSprite
-{
-public:
-  LoadingSprite();
-  ~LoadingSprite();
+namespace jiangweigithub {
 
-  cocos2d::Sprite* getLoadingSprite();
-  cocos2d::Label* getLoadingTitle();
+  class LoadingSprite: public cocos2d::Sprite
+  {
+  public:
+    virtual bool init();
 
-private:
-  bool setAnimation();
-  bool createTitle(std::string name);
+    static cocos2d::Sprite* getLoadingSprite();
+    // static cocos2d::Label* getLoadingTitle();
 
-  cocos2d::Sprite* loadingSprite;
-  cocos2d::Label* loadingTitle;
-};
+    CREATE_FUNC(LoadingSprite);
 
+  private:
+    cocos2d::Sprite* createLoadingSprite();
+    // bool createTitle(std::string name);
+
+    // static cocos2d::Sprite* loadingSprite;
+    // static cocos2d::Label* loadingTitle;
+  };
+  
+}
 #endif // __LOADINGSPRITE_H__
