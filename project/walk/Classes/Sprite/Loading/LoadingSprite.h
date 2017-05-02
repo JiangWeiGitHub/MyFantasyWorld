@@ -8,22 +8,11 @@
 
 namespace jiangweigithub {
 
-  class LoadingSprite: public cocos2d::Sprite
+  class LoadingSprite
   {
   public:
-    virtual bool init();
-
     static cocos2d::Sprite* getLoadingSprite();
-    // static cocos2d::Label* getLoadingTitle();
-
-    CREATE_FUNC(LoadingSprite);
-
-  private:
-    cocos2d::Sprite* createLoadingSprite();
-    // bool createTitle(std::string name);
-
-    // static cocos2d::Sprite* loadingSprite;
-    // static cocos2d::Label* loadingTitle;
+    static cocos2d::Label* getLoadingTitle();
   };
   
 }

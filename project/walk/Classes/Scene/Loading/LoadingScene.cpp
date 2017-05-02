@@ -2,16 +2,6 @@
 
 namespace jiangweigithub {
 
-  // LoadingScene::LoadingScene()
-  // {
-  //   loadingScene = NULL;
-  // }
-
-  // LoadingScene::~LoadingScene()
-  // {
-  //   delete loadingScene;
-  // }
-
   bool LoadingScene::init()
   {
     if(!Scene::init())
@@ -38,58 +28,54 @@ namespace jiangweigithub {
     menu->setPosition(cocos2d::Vec2::ZERO);
     this->addChild(menu, 1);
 
-
+    cocos2d::Director::getInstance()->getTextureCache()
+                                    ->addImageAsync("Sabin.png", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
+    cocos2d::Director::getInstance()->getTextureCache()
+                                    ->addImageAsync("backgroud.png", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
+    cocos2d::Director::getInstance()->getTextureCache()
+                                    ->addImageAsync("Inside_A1.png", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
+    cocos2d::Director::getInstance()->getTextureCache()
+                                    ->addImageAsync("Inside_A2.png", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
+    cocos2d::Director::getInstance()->getTextureCache()
+                                    ->addImageAsync("Inside_A4.png", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
+    cocos2d::Director::getInstance()->getTextureCache()
+                                    ->addImageAsync("Inside_A5.png", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
+    cocos2d::Director::getInstance()->getTextureCache()
+                                    ->addImageAsync("Inside_B.png", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
+    cocos2d::Director::getInstance()->getTextureCache()
+                                    ->addImageAsync("Inside_C.png", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
+    cocos2d::Director::getInstance()->getTextureCache()
+                                    ->addImageAsync("1.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
+    cocos2d::Director::getInstance()->getTextureCache()
+                                    ->addImageAsync("2.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
+    cocos2d::Director::getInstance()->getTextureCache()
+                                    ->addImageAsync("3.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
+    cocos2d::Director::getInstance()->getTextureCache()
+                                    ->addImageAsync("4.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
+    cocos2d::Director::getInstance()->getTextureCache()
+                                    ->addImageAsync("5.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
+    cocos2d::Director::getInstance()->getTextureCache()
+                                    ->addImageAsync("6.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
+    cocos2d::Director::getInstance()->getTextureCache()
+                                    ->addImageAsync("7.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
+    cocos2d::Director::getInstance()->getTextureCache()
+                                    ->addImageAsync("8.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
+    cocos2d::Director::getInstance()->getTextureCache()
+                                    ->addImageAsync("9.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
+    cocos2d::Director::getInstance()->getTextureCache()
+                                    ->addImageAsync("10.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
 
     return true;
   }
 
   cocos2d::Scene* LoadingScene::getLoadingScene()
   {
-    // loadingScene = cocos2d::Scene::create();
-
-// cocos2d::Label* label1 = cocos2d::Label::createWithTTF("My Game", "Marker Felt.ttf", 36);
-//  loadingScene->addChild(label1);
-
-    // loadingScene->addChild((new LoadingLayer())->getLoadingLayer());
-
     auto tmp = LoadingScene::create();
     return tmp;
   }
 
-  void LoadingScene::loadingSceneCallback(Ref* pSender)
+  void LoadingScene::menuCloseCallback(cocos2d::Ref* pSender)
   {
-    // std::cout<<"aaaaaaaaaaaa"<<std::endl;
-    // sleep(5);
-    // std::cout<<"bbbbbbbbbbbbbbbbb"<<std::endl;
-
-    // // cocos2d::Scene* myScene = cocos2d::Scene::create();
-
-    // // std::cout<<"ccccccccccccccc"<<std::endl;
-
-    // // cocos2d::Layer* haha = cocos2d::Layer::create();
-    // // cocos2d::Label* label1 = cocos2d::Label::createWithTTF("wawawa", "fonts/arial.ttf", 24);
-    // // label1->setPosition(cocos2d::Vec2(200, 200));
-
-    // // std::cout<<"ddddddddddddddddd"<<std::endl;
-    // // CCLOG("my scene: %p", scene);
-
-    // // haha->addChild(label1);
-    // // myScene->addChild(haha);
-
-    // // std::cout<<"eeeeeeeeeeeeeeeeeeeee"<<std::endl;
-
-    // // (*callback)->replaceScene(*scene);
-    // cocos2d::Director::getInstance()->replaceScene(pSender);
-
-    // // cocos2d::Director::getInstance()->replaceScene(cocos2d::TransitionFade::create(0.5, scene, cocos2d::Color3B(0,255,255)));
-    // std::cout<<"fffffffffffffffffffff"<<std::endl;
-    // sleep(55);
-  }  
-
-  void LoadingScene::menuCloseCallback(Ref* pSender)
-  {
-    //Close the cocos2d-x game scene and quit the application
-
     auto homeScene = jiangweigithub::Home::getHomeScene();
     // cocos2d::Director::getInstance()->end();
     cocos2d::Director::getInstance()->replaceScene(homeScene);
@@ -97,12 +83,20 @@ namespace jiangweigithub {
     #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
       exit(0);
     #endif
-      
-    /*To navigate back to native iOS screen(if present) without quitting the application  ,do not use Director::getInstance()->end() and exit(0) as given above,instead trigger a custom event created in RootViewController.mm as below*/
-    
-    //EventCustom customEndEvent("game_scene_close_event");
-    //_eventDispatcher->dispatchEvent(&customEndEvent);    
   }
 
+  void LoadingScene::loadingCallback(cocos2d::Ref* callback)
+  {
+    if((this->flag)++ >= 17)
+    {
+      this->gotoHomeScene();
+    }
+  }
+
+  void LoadingScene::gotoHomeScene()
+  {
+    auto homeScene = jiangweigithub::Home::getHomeScene();
+    cocos2d::Director::getInstance()->replaceScene(homeScene);
+  }
 
 }

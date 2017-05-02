@@ -25,7 +25,7 @@ namespace jiangweigithub {
     }
 
     auto loadingSprite = LoadingSprite::getLoadingSprite();
-    auto loadingTitle = LoadingTitleSprite::getLoadingTitle();
+    auto loadingTitle = LoadingSprite::getLoadingTitle();
 
     auto spriteSize = loadingSprite->getContentSize();
     auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();

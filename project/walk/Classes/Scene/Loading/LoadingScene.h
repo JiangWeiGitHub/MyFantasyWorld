@@ -23,13 +23,15 @@ namespace jiangweigithub {
     CREATE_FUNC(LoadingScene);
 
     static cocos2d::Scene* getLoadingScene();
-    static void loadingSceneCallback(cocos2d::Ref* pSender);
+    // void loadingSceneCallback();
 
-    // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);
 
+    void loadingCallback(cocos2d::Ref* callback);
+    void gotoHomeScene();
+
   private:
-    // static cocos2d::Scene* loadingScene;
+    int flag = 0;
   };
   
 }
