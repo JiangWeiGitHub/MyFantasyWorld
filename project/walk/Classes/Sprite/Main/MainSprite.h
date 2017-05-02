@@ -6,15 +6,31 @@
 #include "iostream"
 #include "cocos2d.h"
 
+#include "../../Scene/Main/Home/Home.h"
+
 namespace jiangweigithub {
 
   class MainSprite
   {
   public:
+    // Home
     static cocos2d::Sprite* getLeaderSprite();
     static cocos2d::Label* getHomeTitle();
     static cocos2d::Rect getObstacle();
     static cocos2d::TMXTiledMap* getTileMapSprite();
+
+    // Login
+    static cocos2d::Sprite* getBackgroundSprite();
+    cocos2d::Menu* getLoginMenu();
+
+  private:
+    // callback
+    // Login
+    void onConfig(cocos2d::Ref* callback);
+    void onNewGame(cocos2d::Ref* callback);
+    void onLoad(cocos2d::Ref* callback);
+
+    void gotoHomeScene();
   };
   
 }

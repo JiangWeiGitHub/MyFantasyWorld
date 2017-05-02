@@ -1,22 +1,22 @@
-#include "./Home.h"
+#include "./Login.h"
 
 namespace jiangweigithub {
 
-  cocos2d::Scene* Home::getHomeScene()
+  cocos2d::Scene* Login::getLoginScene()
   {
-    auto tmp = Home::create();
+    auto tmp = Login::create();
 
     return tmp;
   }
 
-  bool Home::init()
+  bool Login::init()
   {
     if(!Scene::create())
     {
       return false;
     }
 
-    auto tmp = HomeLayer::getHomeLayer();
+    auto tmp = LoginLayer::getLoginLayer();
     this->addChild(tmp);
 
     return true;

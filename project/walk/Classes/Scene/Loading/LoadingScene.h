@@ -8,7 +8,7 @@
 #include "cocos2d.h"
 
 #include "../../Layer/Loading/LoadingLayer.h"
-#include "../../Scene/Main/Home/Home.h"
+#include "../../Scene/Main/Login/Login.h"
 
 namespace jiangweigithub {
 
@@ -28,7 +28,7 @@ namespace jiangweigithub {
     void menuCloseCallback(cocos2d::Ref* pSender);
 
     void loadingCallback(cocos2d::Ref* callback);
-    void gotoHomeScene();
+    void gotoLoginScene();
 
   private:
     int flag = 0;

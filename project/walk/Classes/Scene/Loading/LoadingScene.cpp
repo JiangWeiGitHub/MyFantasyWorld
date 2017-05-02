@@ -89,14 +89,14 @@ namespace jiangweigithub {
   {
     if((this->flag)++ >= 17)
     {
-      this->gotoHomeScene();
+      this->gotoLoginScene();
     }
   }
 
-  void LoadingScene::gotoHomeScene()
+  void LoadingScene::gotoLoginScene()
   {
-    auto homeScene = jiangweigithub::Home::getHomeScene();
-    cocos2d::Director::getInstance()->replaceScene(homeScene);
+    auto loginScene = jiangweigithub::Login::getLoginScene();
+    cocos2d::Director::getInstance()->replaceScene(loginScene);
   }
 
 }

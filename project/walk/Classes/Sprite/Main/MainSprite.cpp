@@ -94,5 +94,54 @@ namespace jiangweigithub {
     return obstacle;
   }
 
+  cocos2d::Sprite* MainSprite::getBackgroundSprite()
+  {
+    auto tmp = cocos2d::Sprite::create("login.jpg");
+
+    return tmp;
+  }
+
+  cocos2d::Menu* MainSprite::getLoginMenu()
+  {
+    auto menuItemLabel1 = cocos2d::MenuItemLabel::
+         create(cocos2d::Label::createWithTTF("New Game", "fonts/arial.ttf", 30)
+         ,CC_CALLBACK_1(MainSprite::onNewGame, this)
+         );
+    auto menuItemLabel2 = cocos2d::MenuItemLabel::
+         create(cocos2d::Label::createWithTTF("Load", "fonts/arial.ttf", 30)
+         ,CC_CALLBACK_1(MainSprite::onLoad, this)
+         );
+    auto menuItemLabel3 = cocos2d::MenuItemLabel::
+         create(cocos2d::Label::createWithTTF("Config", "fonts/arial.ttf", 30)
+         ,CC_CALLBACK_1(MainSprite::onConfig, this)
+         );
+
+    auto tmp = cocos2d::Menu::create(menuItemLabel1, menuItemLabel2, menuItemLabel3, NULL);
+    tmp->alignItemsVerticallyWithPadding(30);
+
+    return tmp;
+  }
+
+  void MainSprite::onConfig(cocos2d::Ref* callback)
+  {
+    this->gotoHomeScene();
+  }
+
+  void MainSprite::onNewGame(cocos2d::Ref* callback)
+  {
+    this->gotoHomeScene();
+  }
+
+  void MainSprite::onLoad(cocos2d::Ref* callback)
+  {
+    this->gotoHomeScene();
+  }
+
+  void MainSprite::gotoHomeScene()
+  {
+    auto homeScene = jiangweigithub::Home::getHomeScene();
+    cocos2d::Director::getInstance()->replaceScene(homeScene);
+  }
+
 }
 

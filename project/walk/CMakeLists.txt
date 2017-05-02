@@ -141,8 +141,10 @@ set(GAME_SRC
   Classes/Producer/Obstacle/Obstacle.cpp
   Classes/Scene/Loading/LoadingScene.cpp
   Classes/Scene/Main/Home/Home.cpp
+  Classes/Scene/Main/Login/Login.cpp
   Classes/Layer/Loading/LoadingLayer.cpp
-  Classes/Layer/Main/MainLayer.cpp
+  Classes/Layer/Main/Home/HomeLayer.cpp
+  Classes/Layer/Main/Login/LoginLayer.cpp
   Classes/Sprite/Loading/LoadingSprite.cpp
   Classes/Sprite/Main/MainSprite.cpp
   Classes/Director/Director.cpp
@@ -163,8 +165,10 @@ set(GAME_HEADERS
   Classes/Producer/Obstacle/Obstacle.h
   Classes/Scene/Loading/LoadingScene.h
   Classes/Scene/Main/Home/Home.h
+  Classes/Scene/Main/Login/Login.h
   Classes/Layer/Loading/LoadingLayer.h
-  Classes/Layer/Main/MainLayer.h
+  Classes/Layer/Main/Home/HomeLayer.h
+  Classes/Layer/Main/Login/LoginLayer.h
   Classes/Sprite/Loading/LoadingSprite.h
   Classes/Sprite/Main/MainSprite.cpp
   Classes/Director/Director.h

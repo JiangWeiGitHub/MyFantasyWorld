@@ -6,8 +6,7 @@
 #include "iostream"
 #include "cocos2d.h"
 
-#include "../../../Layer/Main/MainLayer.h"
-#include "../../Loading/LoadingScene.h"
+#include "../../../Layer/Main/Home/HomeLayer.h"
 
 namespace jiangweigithub {
 
@@ -16,6 +15,7 @@ namespace jiangweigithub {
   public:
     static cocos2d::Scene* getHomeScene();
     virtual bool init();
+
     CREATE_FUNC(Home);
   };
 
