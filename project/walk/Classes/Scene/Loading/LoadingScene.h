@@ -8,7 +8,7 @@
 #include "cocos2d.h"
 
 #include "../../Layer/Loading/LoadingLayer.h"
-#include "../../Scene/Main/Home/Home.h"
+#include "../../Scene/Main/Login/Login.h"
 
 namespace jiangweigithub {
 
@@ -25,13 +25,15 @@ namespace jiangweigithub {
     void myThreadA();
 
     static cocos2d::Scene* getLoadingScene();
-    static void loadingSceneCallback(cocos2d::Ref* pSender);
+    // void loadingSceneCallback();
 
-    // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);
 
+    void loadingCallback(cocos2d::Ref* callback);
+    void gotoLoginScene();
+
   private:
-    // static cocos2d::Scene* loadingScene;
+    int flag = 0;
   };
   
 }

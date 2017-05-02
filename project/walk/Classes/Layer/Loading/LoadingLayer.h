@@ -7,7 +7,6 @@
 #include "cocos2d.h"
 
 #include "../../Sprite/Loading/LoadingSprite.h"
-#include "../../Sprite/Loading/LoadingTitleSprite.h"
 
 namespace jiangweigithub {
 

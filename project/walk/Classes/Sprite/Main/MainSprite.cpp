@@ -2,26 +2,6 @@
 
 namespace jiangweigithub {
 
-  // MainSprite::MainSprite()
-  // {
-  //   tileMapSprite = NULL;
-  //   homeTitle = NULL;
-  //   leaderSprite = NULL;
-  //   obstacle = cocos2d::Rect(0, 0, 0, 0);
-
-  //   createTitle("Home");
-  //   createLeaderSprite();
-  //   createMapSprite();
-  // }
-
-  // MainSprite::~MainSprite()
-  // {
-  //   obstacle = cocos2d::Rect(0, 0, 0, 0);
-  //   delete leaderSprite;
-  //   delete homeTitle;
-  //   delete tileMapSprite;
-  // }
-
   cocos2d::Label* MainSprite::getHomeTitle()
   {
     auto homeTitle = cocos2d::Label::createWithTTF("Home", "fonts/arial.ttf", 24);
@@ -114,87 +94,53 @@ namespace jiangweigithub {
     return obstacle;
   }
 
-  bool MainSprite::createTitle(std::string name)
+  cocos2d::Sprite* MainSprite::getBackgroundSprite()
   {
-    homeTitle = cocos2d::Label::createWithTTF(name, "fonts/arial.ttf", 24);
-    homeTitle->enableBold();
-    homeTitle->setAdditionalKerning(1);
+    auto tmp = cocos2d::Sprite::create("login.jpg");
+
+    return tmp;
   }
 
-  bool MainSprite::createLeaderSprite()
+  cocos2d::Menu* MainSprite::getLoginMenu()
   {
-    cocos2d::Texture2D* textTure = cocos2d::TextureCache::getInstance()->addImage("sabin.png");
+    auto menuItemLabel1 = cocos2d::MenuItemLabel::
+         create(cocos2d::Label::createWithTTF("New Game", "fonts/arial.ttf", 30)
+         ,CC_CALLBACK_1(MainSprite::onNewGame, this)
+         );
+    auto menuItemLabel2 = cocos2d::MenuItemLabel::
+         create(cocos2d::Label::createWithTTF("Load", "fonts/arial.ttf", 30)
+         ,CC_CALLBACK_1(MainSprite::onLoad, this)
+         );
+    auto menuItemLabel3 = cocos2d::MenuItemLabel::
+         create(cocos2d::Label::createWithTTF("Config", "fonts/arial.ttf", 30)
+         ,CC_CALLBACK_1(MainSprite::onConfig, this)
+         );
 
-    // top
-    cocos2d::SpriteFrame* frame0 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(270,0,30,50));
-    cocos2d::SpriteFrame* frame1 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(300,0,30,50));
-    cocos2d::SpriteFrame* frame2 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(330,0,30,50));
-    cocos2d::SpriteFrame* frame3 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(300,0,30,50));
+    auto tmp = cocos2d::Menu::create(menuItemLabel1, menuItemLabel2, menuItemLabel3, NULL);
+    tmp->alignItemsVerticallyWithPadding(30);
 
-    // bottom
-    cocos2d::SpriteFrame* frame4 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(0,0,30,50));
-    cocos2d::SpriteFrame* frame5 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(30,0,30,50));
-    cocos2d::SpriteFrame* frame6 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(60,0,30,50));
-    cocos2d::SpriteFrame* frame7 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(30,0,30,50));
-
-    // left
-    cocos2d::SpriteFrame* frame8 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(90,0,30,50));
-    cocos2d::SpriteFrame* frame9 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(120,0,30,50));
-    cocos2d::SpriteFrame* frame10 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(150,0,30,50));
-    cocos2d::SpriteFrame* frame11 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(120,0,30,50));
-
-    // right
-    cocos2d::SpriteFrame* frame12 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(180,0,30,50));
-    cocos2d::SpriteFrame* frame13 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(210,0,30,50));
-    cocos2d::SpriteFrame* frame14 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(240,0,30,50));
-    cocos2d::SpriteFrame* frame15 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(210,0,30,50));
-      
-    cocos2d::Vector<cocos2d::SpriteFrame*> top;
-    top.pushBack(frame0);
-    top.pushBack(frame1);
-    top.pushBack(frame2);
-    top.pushBack(frame3);
-
-    cocos2d::Vector<cocos2d::SpriteFrame*> bottom;
-    bottom.pushBack(frame4);
-    bottom.pushBack(frame5);
-    bottom.pushBack(frame6);
-    bottom.pushBack(frame7);
-
-    cocos2d::Vector<cocos2d::SpriteFrame*> left;
-    left.pushBack(frame8);
-    left.pushBack(frame9);
-    left.pushBack(frame10);
-    left.pushBack(frame11);
-
-    cocos2d::Vector<cocos2d::SpriteFrame*> right;
-    right.pushBack(frame12);
-    right.pushBack(frame13);
-    right.pushBack(frame14);
-    right.pushBack(frame15);
-
-    leaderSprite = cocos2d::Sprite::createWithSpriteFrame(frame0);
-
-    auto animation_top = cocos2d::Animation::createWithSpriteFrames(bottom,0.2f);
-    auto animation_bottom = cocos2d::Animation::createWithSpriteFrames(top,0.2f);
-    auto animation_left = cocos2d::Animation::createWithSpriteFrames(left,0.2f);
-    auto animation_right = cocos2d::Animation::createWithSpriteFrames(right,0.2f);
-
-    leaderSprite->setPosition(cocos2d::Vec2(100,360));
-
-    auto animationTop = cocos2d::Animation::createWithSpriteFrames(top,0.2f);
-
-    leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(animationTop)));
+    return tmp;
   }
 
-  bool MainSprite::createMapSprite()
+  void MainSprite::onConfig(cocos2d::Ref* callback)
   {
-    tileMapSprite = cocos2d::TMXTiledMap::create("home.tmx");
+    this->gotoHomeScene();
   }
 
-  bool MainSprite::createObstacle()
+  void MainSprite::onNewGame(cocos2d::Ref* callback)
   {
+    this->gotoHomeScene();
+  }
 
+  void MainSprite::onLoad(cocos2d::Ref* callback)
+  {
+    this->gotoHomeScene();
+  }
+
+  void MainSprite::gotoHomeScene()
+  {
+    auto homeScene = jiangweigithub::Home::getHomeScene();
+    cocos2d::Director::getInstance()->replaceScene(homeScene);
   }
 
 }

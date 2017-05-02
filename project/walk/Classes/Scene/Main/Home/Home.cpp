@@ -2,20 +2,8 @@
 
 namespace jiangweigithub {
 
-  // Home::Home()
-  // {
-  //   mainScene = cocos2d::Scene::create();
-  // }
-  
-  // Home::~Home()
-  // {
-  //   delete mainScene;
-  // }  
-
   cocos2d::Scene* Home::getHomeScene()
   {
-    // mainScene->addChild((new MainLayer())->getMainLayer());
-    // return mainScene;
     auto tmp = Home::create();
 
     return tmp;
@@ -28,16 +16,10 @@ namespace jiangweigithub {
       return false;
     }
 
-    auto tmp = MainLayer::getMainLayer();
+    auto tmp = HomeLayer::getHomeLayer();
     this->addChild(tmp);
 
     return true;
   }
-
-  // void Home::loadingSceneCallback(cocos2d::director* callback)
-  // {
-  //   sleep(5);
-  //   callback();
-  // }
 
 }
