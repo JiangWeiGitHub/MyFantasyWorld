@@ -16,84 +16,11 @@ namespace jiangweigithub {
       return false;
     }
 
-    // auto leaderSprite = Leader::getLeader();
-
     auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
 
-
-    auto textTure = cocos2d::Director::getInstance()->getTextureCache()->addImage("sabin.png");
-    cocos2d::SpriteFrame* frame0 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(270,0,30,50));
-    auto leaderSprite = cocos2d::Sprite::createWithSpriteFrame(frame0);
+    leaderSprite = cocos2d::Sprite::create();
     leaderSprite->setPosition(cocos2d::Vec2(visibleSize.width/2,visibleSize.height/2));
-
-
-
-
-
-    // cocos2d::Texture2D* textTure = cocos2d::Director::getInstance()->getTextureCache()->addImage("sabin.png");
-
-    // top
-    // cocos2d::SpriteFrame* frame0 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(270,0,30,50));
-    cocos2d::SpriteFrame* frame1 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(300,0,30,50));
-    cocos2d::SpriteFrame* frame2 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(330,0,30,50));
-    cocos2d::SpriteFrame* frame3 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(300,0,30,50));
-
-    // bottom
-    cocos2d::SpriteFrame* frame4 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(0,0,30,50));
-    cocos2d::SpriteFrame* frame5 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(30,0,30,50));
-    cocos2d::SpriteFrame* frame6 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(60,0,30,50));
-    cocos2d::SpriteFrame* frame7 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(30,0,30,50));
-
-    // left
-    cocos2d::SpriteFrame* frame8 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(90,0,30,50));
-    cocos2d::SpriteFrame* frame9 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(120,0,30,50));
-    cocos2d::SpriteFrame* frame10 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(150,0,30,50));
-    cocos2d::SpriteFrame* frame11 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(120,0,30,50));
-
-    // right
-    cocos2d::SpriteFrame* frame12 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(180,0,30,50));
-    cocos2d::SpriteFrame* frame13 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(210,0,30,50));
-    cocos2d::SpriteFrame* frame14 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(240,0,30,50));
-    cocos2d::SpriteFrame* frame15 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(210,0,30,50));
-      
-    cocos2d::Vector<cocos2d::SpriteFrame*> top;
-    top.pushBack(frame0);
-    top.pushBack(frame1);
-    top.pushBack(frame2);
-    top.pushBack(frame3);
-
-    cocos2d::Vector<cocos2d::SpriteFrame*> bottom;
-    bottom.pushBack(frame4);
-    bottom.pushBack(frame5);
-    bottom.pushBack(frame6);
-    bottom.pushBack(frame7);
-
-    cocos2d::Vector<cocos2d::SpriteFrame*> left;
-    left.pushBack(frame8);
-    left.pushBack(frame9);
-    left.pushBack(frame10);
-    left.pushBack(frame11);
-
-    cocos2d::Vector<cocos2d::SpriteFrame*> right;
-    right.pushBack(frame12);
-    right.pushBack(frame13);
-    right.pushBack(frame14);
-    right.pushBack(frame15);
-
-
-
-
-
-
-
-
-    // auto haha = (new Leader());
-    // std::cout<<"name: "<<haha->getName()<<std::endl;
-    // std::cout<<"HP: "<<haha->getHP()<<std::endl;
-    // leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(cocos2d::Animation::createWithSpriteFrames(top,0.2f))));
-// std::cout<<"size: "<<Leader::getAnimationTop()->getFrames()).size()<<std::endl;
     leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationTop())));
-
 
     auto homeTitle = MainSprite::getHomeTitle();
     auto tileMapSprite = MainSprite::getTileMapSprite();
@@ -101,7 +28,6 @@ namespace jiangweigithub {
 
     auto mapSpriteSize = tileMapSprite->getContentSize();
     auto homeTitleSpriteSize = homeTitle->getContentSize();
-
 
     tileMapSprite->setPosition(cocos2d::Vec2((visibleSize.width - mapSpriteSize.width) / 2, (visibleSize.height - mapSpriteSize.height) / 2));
     homeTitle->setPosition(cocos2d::Vec2((visibleSize.width - homeTitleSpriteSize.width) / 2, 660));
@@ -111,7 +37,215 @@ namespace jiangweigithub {
     this->addChild(homeTitle, 0);
     this->addChild(leaderSprite, 1);
 
+
+
+
+
+
+    // cocos2d::Size visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
+    cocos2d::Vec2 origin = cocos2d::Director::getInstance()->getVisibleOrigin();
+
+
+  rectangle = cocos2d::Rect(0,0,500,500);
+  rectangleZone = cocos2d::Vec2(0, 0); //init
+
+  flag_obstacle_top = flag_obstacle_bottom = flag_obstacle_left = flag_obstacle_right = false;
+
+  this->obstacle = Obstacle::getInstance();
+
+  this->flag_top = false;
+  this->flag_bottom = false;
+  this->flag_left = false;
+  this->flag_right = false;
+
+  // sprite = Sprite::createWithSpriteFrame(frame0);
+  // sprite->setPosition(Vec2(visibleSize.width/2,visibleSize.height/2));
+  // this->addChild(sprite, 100);
+
+  // auto animation_top = Leader::getAnimationTop();
+  // auto animation_bottom = Leader::getAnimationBottom();
+  // auto animation_left = Leader::getAnimationLeft();
+  // auto animation_right = Leader::getAnimationRight();
+
+  // sprite->runAction(RepeatForever::create(Animate::create(animation_bottom)));
+
+  // position the sprite on the center of the screen
+  this->_xxx = visibleSize.width/2 + origin.x;
+  this->_yyy = visibleSize.height/2 + origin.y;
+  // sprite->setPosition(Vec2(this->_xxx, this->_yyy));
+
+  // add the sprite as a child to this layer
+  // this->addChild(sprite, 0);
+
+  // creating a keyboard event listener
+  auto listener = cocos2d::EventListenerKeyboard::create();
+  listener->onKeyPressed = CC_CALLBACK_2(HomeLayer::onKeyPressed, this);
+  listener->onKeyReleased = CC_CALLBACK_2(HomeLayer::onKeyReleased, this);
+
+  _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+
+  stop_top = stop_bottom = stop_left = stop_right = false;
+
+  keyManager = new KeyManager("STOP");
+
+  // animation_bottom = Leader::getAnimationBottom();
+  // animation_top = Leader::getAnimationTop();
+  // animation_left = Leader::getAnimationLeft();
+  // animation_right = Leader::getAnimationRight();
+
+
+    this->scheduleUpdate();
+
+
+
+
     return true;
+  }
+
+
+
+
+
+
+  void HomeLayer::update(float delta)
+  {
+    rectangleZone = cocos2d::Vec2(this->_xxx, this->_yyy);
+
+    if(rectangle.containsPoint(rectangleZone))
+    {
+      if(this->flag_top == true)
+      {
+        if(obstacle->getException() == jiangweigithub::Obstacle::NONE)
+        {
+          obstacle->setException(jiangweigithub::Obstacle::BOTTOM);
+        }
+
+        obstacle->obstacleTop();
+
+        keyManager->pressTop(this->leaderSprite, this->_xxx, this->_yyy);
+      }
+      else if(this->flag_bottom == true)
+      {
+        if(obstacle->getException() == jiangweigithub::Obstacle::NONE)
+        {
+          obstacle->setException(jiangweigithub::Obstacle::TOP);
+        }
+
+        obstacle->obstacleBottom();
+
+        keyManager->pressBottom(this->leaderSprite, this->_xxx, this->_yyy);
+      }
+      else if(this->flag_left == true)
+      {
+        if(obstacle->getException() == jiangweigithub::Obstacle::NONE)
+        {
+          obstacle->setException(jiangweigithub::Obstacle::RIGHT);
+        }
+
+        obstacle->obstacleLeft();
+
+        keyManager->pressLeft(this->leaderSprite, this->_xxx, this->_yyy);
+      }
+      else if(this->flag_right == true)
+      {
+        if(obstacle->getException() == jiangweigithub::Obstacle::NONE)
+        {
+          obstacle->setException(jiangweigithub::Obstacle::LEFT);
+        }
+
+        obstacle->obstacleRight();
+
+        keyManager->pressRight(this->leaderSprite, this->_xxx, this->_yyy);
+      }
+    }
+    else
+    {
+      obstacle->setException(jiangweigithub::Obstacle::NONE);
+
+      obstacle->unObstacleTop();
+      obstacle->unObstacleBottom();
+      obstacle->unObstacleLeft();
+      obstacle->unObstacleRight();
+
+      if(this->flag_top == true)
+      {
+        keyManager->pressTop(this->leaderSprite, this->_xxx, this->_yyy);
+      }
+      else if(this->flag_bottom == true)
+      {
+        keyManager->pressBottom(this->leaderSprite, this->_xxx, this->_yyy);
+      }
+      else if(this->flag_left == true)
+      {
+        keyManager->pressLeft(this->leaderSprite, this->_xxx, this->_yyy);
+      }
+      else if(this->flag_right == true)
+      {
+        keyManager->pressRight(this->leaderSprite, this->_xxx, this->_yyy);
+      }
+    }
+  }
+
+  void HomeLayer::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event)
+  {
+    switch((int)keyCode)
+    {
+      case 28:
+        // top
+        this->flag_top = true;
+
+        leaderSprite->stopAllActions();
+        leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationBottom())));
+        break;
+      case 29:
+        // bottom
+        this->flag_bottom = true;
+
+        leaderSprite->stopAllActions();
+        leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationTop())));
+        break;
+      case 26:
+        // left
+        this->flag_left = true;
+
+        leaderSprite->stopAllActions();
+        leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationLeft())));
+        break;
+      case 27:
+        // right
+        this->flag_right = true;
+
+        leaderSprite->stopAllActions();
+        leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationRight())));
+        break;
+      default:
+        break;
+    }
+  }
+
+  void HomeLayer::onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event)
+  {
+    switch((int)keyCode)
+    {
+      case 28:
+        // top
+        this->flag_top = false;
+        break;
+      case 29:
+        // bottom
+        this->flag_bottom = false;
+        break;
+      case 26:
+        // left
+        this->flag_left = false;
+        break;
+      case 27:
+        // right
+        this->flag_right = false;
+        break;
+      default:
+        break;
+    }
   }
 
 }
