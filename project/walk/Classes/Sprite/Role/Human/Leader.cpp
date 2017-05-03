@@ -1,26 +1,83 @@
-#include "./MainSprite.h"
+#include "./Leader.h"
 
 namespace jiangweigithub {
 
-  cocos2d::Label* MainSprite::getHomeTitle()
-  {
-    auto homeTitle = cocos2d::Label::createWithTTF("Home", "fonts/arial.ttf", 24);
-    homeTitle->enableBold();
-    homeTitle->setAdditionalKerning(1);
+  // Leader::Leader()
+  // {
+  //   this->HP = 200;
+  //   this->name = "Baobao";
 
-    return homeTitle;
+  //   this->createAnimation("sabin.png");
+  // }
+
+  // Leader::~Leader()
+  // {
+  //   this->HP = 200;
+  //   this->name = "Baobao";
+  // }
+
+  Leader::HP = 200;
+  Leader::name = "Baobao";
+  Leader::animationTop = NULL;
+  Leader::animationBottom = NULL;
+  Leader::animationLeft = NULL;
+  Leader::animationRight = NULL;
+
+  bool Leader::setHP(unsigned int number)
+  {
+    Leader::HP = number;
+
+    return true;
   }
 
-  cocos2d::TMXTiledMap* MainSprite::getTileMapSprite()
+  unsigned int Leader::getHP()
   {
-    auto tileMapSprite = cocos2d::TMXTiledMap::create("home.tmx");
-
-    return tileMapSprite;
+    return Leader::HP;
   }
 
-  cocos2d::Sprite* MainSprite::getLeaderSprite()
+  bool Leader::setName(std::string name)
   {
-    cocos2d::Texture2D* textTure = cocos2d::TextureCache::getInstance()->addImage("sabin.png");
+    Leader::name = name;
+
+    return true;
+  }
+
+  std::string Leader::getName()
+  {
+    return Leader::name;
+  }
+
+  cocos2d::Animation* Leader::getAnimationTop()
+  {
+    Leader::createAnimation("sabin.png");
+
+    return Leader::animationTop;
+  }
+
+  cocos2d::Animation* Leader::getAnimationBottom()
+  {
+    Leader::createAnimation("sabin.png");
+
+    return Leader::animationBottom;
+  }
+
+  cocos2d::Animation* Leader::getAnimationLeft()
+  {
+    Leader::createAnimation("sabin.png");
+
+    return Leader::animationLeft;
+  }
+
+  cocos2d::Animation* Leader::getAnimationRight()
+  {
+    Leader::createAnimation("sabin.png");
+
+    return Leader::animationRight;
+  }
+
+  bool Leader::createAnimation(std::string fileName)
+  {
+    cocos2d::Texture2D* textTure = cocos2d::Director::getInstance()->getTextureCache()->addImage(name);
 
     // top
     cocos2d::SpriteFrame* frame0 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(270,0,30,50));
@@ -70,68 +127,12 @@ namespace jiangweigithub {
     right.pushBack(frame14);
     right.pushBack(frame15);
 
-    auto leaderSprite = cocos2d::Sprite::createWithSpriteFrame(frame0);
+    Leader::animationTop = cocos2d::Animation::createWithSpriteFrames(top,0.2f);
+    Leader::animationBottom = cocos2d::Animation::createWithSpriteFrames(bottom,0.2f);
+    Leader::animationLeft = cocos2d::Animation::createWithSpriteFrames(left,0.2f);
+    Leader::animationRight = cocos2d::Animation::createWithSpriteFrames(right,0.2f);
 
-    auto animation_top = cocos2d::Animation::createWithSpriteFrames(bottom,0.2f);
-    auto animation_bottom = cocos2d::Animation::createWithSpriteFrames(top,0.2f);
-    auto animation_left = cocos2d::Animation::createWithSpriteFrames(left,0.2f);
-    auto animation_right = cocos2d::Animation::createWithSpriteFrames(right,0.2f);
-
-    leaderSprite->setPosition(cocos2d::Vec2(100,360));
-
-    auto animationTop = cocos2d::Animation::createWithSpriteFrames(top,0.2f);
-
-    leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(animationTop)));
-
-
-    return leaderSprite;
-  }
-
-  cocos2d::Rect MainSprite::getObstacle()
-  {
-    auto obstacle = cocos2d::Rect(0, 0, 0, 0);
-
-    return obstacle;
-  }
-
-  cocos2d::Sprite* MainSprite::getBackgroundSprite()
-  {
-    auto tmp = cocos2d::Sprite::create("login.jpg");
-
-    return tmp;
-  }
-
-  cocos2d::MenuItemLabel* MainSprite::getNewGame()
-  {
-    auto myLabel = cocos2d::Label::createWithTTF("New Game", "fonts/arial.ttf", 30);
-    myLabel->enableShadow();
-    myLabel->enableBold();
-    myLabel->enableOutline(cocos2d::Color4B::BLACK, 1);
-
-    auto tmp = cocos2d::MenuItemLabel::create(myLabel);
-
-    return tmp;
-  }
-
-  cocos2d::MenuItemLabel* MainSprite::getLoadGame()
-  {
-    cocos2d::TTFConfig ttfConfig("fonts/arial.ttf", 30, cocos2d::GlyphCollection::DYNAMIC, NULL, false, 1);
-
-    auto tmp = cocos2d::MenuItemLabel::
-         create(cocos2d::Label::createWithTTF(ttfConfig, "Load Game"));
-
-    return tmp;
-  }
-
-  cocos2d::MenuItemLabel* MainSprite::getConfigGame()
-  {
-    cocos2d::TTFConfig ttfConfig("fonts/arial.ttf", 30, cocos2d::GlyphCollection::DYNAMIC, NULL, false, 1);
-
-    auto tmp = cocos2d::MenuItemLabel::
-         create(cocos2d::Label::createWithTTF(ttfConfig, "Config"));
-
-    return tmp;
+    return true;
   }
 
 }
-
