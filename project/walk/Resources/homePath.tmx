@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="24" tileheight="24" nextobjectid="11">
+ <tileset firstgid="1" name="Inside_A4" tilewidth="24" tileheight="24" tilecount="960">
+  <image source="Inside_A4.png" trans="ff00ff" width="768" height="720"/>
+ </tileset>
+ <tileset firstgid="961" name="Inside_A1" tilewidth="24" tileheight="24" tilecount="768">
+  <image source="Inside_A1.png" trans="ff00ff" width="768" height="576"/>
+ </tileset>
+ <tileset firstgid="1729" name="Inside_A2" tilewidth="24" tileheight="24" tilecount="768">
+  <image source="Inside_A2.png" trans="ff00ff" width="768" height="576"/>
+ </tileset>
+ <tileset firstgid="2497" name="Inside_A5" tilewidth="24" tileheight="24" tilecount="512">
+  <image source="Inside_A5.png" trans="ff00ff" width="384" height="768"/>
+ </tileset>
+ <tileset firstgid="3009" name="Inside_B" tilewidth="24" tileheight="24" tilecount="1024">
+  <image source="Inside_B.png" trans="ff00ff" width="768" height="768"/>
+ </tileset>
+ <tileset firstgid="4033" name="Inside_C" tilewidth="24" tileheight="24" tilecount="1024">
+  <image source="Inside_C.png" trans="ff00ff" width="768" height="768"/>
+ </tileset>
+ <layer name="backgroud-1" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzNlk0OgjAQhctC5SIiFwHd4SVUdnoJ3YFeQncmXoTEi/hzBKfJTNIMxQ4piJN8oU3fzLyUplAESpXA8QulgG/50hq8zgm4Ajvg6WAr1PnWeSFad0d/N2Ck6oyBCY5JF7K10JLXVMusw/PN+Rh15E8/p6pOBMxwTLqYrcWWvKZa+lmhP55vziOLv0TVSYE5jkm3YGsLS15TrcTwx/PNecr8af1K1VkDGxyTPmdruSWvqRbV0f14vjlfW/bPFVKdK2j/XPEAzXsAf9TXFXQmf+2P3qUr6Ez+q7+h9m8PHAS6ofbvDFxa6KV9pee665D6o2+QbxT43ZfqpP7ovPoG3c8SXZv7mc6rb/TlT3ovSPr24a+rqIT9SKefy8D9/9sVmbBfhv70veH7T9wHL7zPPrTv3Wc=
+  </data>
+ </layer>
+ <layer name="backgroud-2" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztVMsOwzAIy40oP1D+/0u3w6JZlnm0O00KEmpLCXacwBjHjh37d7M1xlzf537f35j31KM6Uzwrfv726+O+4ryr6YyLccSchKdw1b6yvEirbp0JvHzV+uF+lX47h/Uxwrtu8HPA6pxvVFdh4l3g2J1zmA/4Vfcv4tbRz4K11f3L9FP8mEumn4l8XlfpZyvXj/fqUH/HjWKRfojR5dc5F67Nzj3Z4Yce8cOexJ7CPO5XNVuc1md9hvyy+axmV3T/slnssDbiZyIn46d0Y7wZ/K9cnUM379hv9gKKYiMG
+  </data>
+ </layer>
+ <layer name="backgroup-3" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztzjkNACAABLBb8a8IHIAiMMDKk7QKmgAAp9SStHJ7sdfXbTz8A/43AYHVA0s=
+  </data>
+ </layer>
+ <layer name="furniture-1" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztlVlPE1EYhk9JJBFmWoHeKySQsCPlXkSUfecPAAWUTUX/AFVJXFj+AiaQsPMX4I5FWe5Z71gF7gEfQk960ukyLUuN4U2e9HT6nu97M1/njBD3ioRmNSHmNHMeM95gWtSFWNKv1g3UaoQmcPqpu831Hfdv63xuwCZsaUaP6pWSPcxqn2wH7nw97HPBJ/jsp4YFb5Tbf4bnHC4uvbrRo3qlZA+zirUKoVk937/YhOiFHnDZPNcfso6BRPol6cY6qqTHl/c5NQrgBRTCS3gFRVBsM9ZKJ1uGkm8YzwgMwU/Fn8o6zcd+qRJylEIZlEMFVEIVVCsZG6jRCE3ghGZogVZ4HaC+tx7gjVb8FtZRAfa/IUMbtEMHdEIXvIV3Qe53OEomS4qSJ5F1UoB8X8nwDb7DD+iDfhiAQVjlP7d2zWdZVQUzr7QG90mNkmEMxmECJmEKpmEGTsh26pVPzmSWPnMh9LpUJ/6uEPcEUhwZ473mLGeyTZ+dEHv14e9X9shz8hf8hmVYuYX/lVlNkm1KySfPyUM4gj9wHMF8Uo/J8ET3nJM6WMEGj8KYfxzzjIcEsIdwnvjTM7Ll655zMhOyIBtywsj3lEy54IC8G8gXacn31jz3YuEGn1d/SqCHXelTQ+9aqIN6H/dTvrd22bN3B/kc9MhT+ryndzd8gI//wbz/Ff0FgzBfcQ==
+  </data>
+ </layer>
+ <layer name="furniture-2" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztkUEKgDAQA/fYr1v9iNWPWP2I1UeYY0DwsBTcQwbmGkJiJoQQIjpDMstwhFP6u82bGZ0KXOAasN+GThXu8HD04/0z2euPExkNXvB25PH+hYzyB+9fSe8fveH9G+n9QwjxzQMQRCR1
+  </data>
+ </layer>
+ <layer name="furniture-3" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztzkkRACAMBMGVAHECNsAJ+H8TA/ly1bSCloA9cpIsnV7Eit/qxT8AAF7TTOp2ehEbfpsX/361AHlWAn0=
+  </data>
+ </layer>
+ <layer name="shadow" width="40" height="20" opacity="0.42">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF1AAHOamrjtrmDBX3EdI36j786ge7+6htLrXMGXUfZeZQy30geXx4oN1HLLg4yN1HKhgp6Y9c+6hV7hJK9+S6j1rqSU3XlNqHy15a5wNq+XMU4AcAR0IywQ==
+  </data>
+ </layer>
+ <objectgroup name="path">
+  <object id="10" name="can" x="49.3333" y="166.667">
+   <polyline points="0,0 46,0.666667 46.6667,-24 91.3333,-23.3333 93.3333,-5.33333 189.333,-5.33333 189.333,10.6667 150.667,10.6667 150,36.6667 139.333,37.3333 139.333,145.333 187.333,146 188,239.333 242,240.667 240.667,193.333 382.667,194 382,97.3333 238.667,96.6667 238.667,36 286.667,36.6667 287.333,-23.3333 623.333,-23.3333 623.333,30 428,36 430,74.6667 620,75.3333 620,120.667 672.667,123.333 671.333,2.66667 861.333,0.666667 861.333,96 904.667,96.6667 906,144 863.333,144 860,219.333 767.333,218 766.667,263.333 714.667,259.333 715.333,222 671.333,222 671.333,192.667 768,194.667 768.667,144 622,144 621.333,221.333 581.333,212.667 580.667,261.333 95.3333,265.333 96,220.667 -1.33333,222 1.33333,0.666667"/>
+  </object>
+ </objectgroup>
+</map>
