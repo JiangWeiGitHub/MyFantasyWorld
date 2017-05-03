@@ -131,6 +131,7 @@ set(GAME_SRC
   Classes/AppDelegate.cpp
   Classes/HelloWorldScene.cpp
   Classes/Sprite/Role/Role.cpp
+  Classes/Sprite/Role/Human/Leader.cpp
   Classes/Producer/KeyboardState/KeyboardState.cpp
   Classes/Producer/KeyboardState/KeyBottom.cpp
   Classes/Producer/KeyboardState/KeyLeft.cpp
@@ -155,6 +156,7 @@ set(GAME_HEADERS
   Classes/AppDelegate.h
   Classes/HelloWorldScene.h
   Classes/Sprite/Role/Role.h
+  Classes/Sprite/Role/Human/Leader.h
   Classes/Producer/KeyboardState/KeyboardState.h
   Classes/Producer/KeyboardState/KeyBottom.h
   Classes/Producer/KeyboardState/KeyLeft.h

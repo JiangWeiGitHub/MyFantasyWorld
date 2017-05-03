@@ -21,11 +21,6 @@ namespace jiangweigithub {
     static cocos2d::Layer* getLoadingLayer();
 
     CREATE_FUNC(LoadingLayer);
-
-  private:
-    // static cocos2d::Layer* loadingLayer;
-    // static cocos2d::Sprite* loadingSprite;
-    // static cocos2d::Label* loadingTitle;
   };
 
 }

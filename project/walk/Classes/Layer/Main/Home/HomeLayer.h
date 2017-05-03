@@ -7,6 +7,7 @@
 #include "cocos2d.h"
 
 #include "../../../Sprite/Main/MainSprite.h"
+#include "../../../Sprite/Role/Human/Leader.h"
 
 namespace jiangweigithub {
   

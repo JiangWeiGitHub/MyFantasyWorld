@@ -21,16 +21,10 @@ namespace jiangweigithub {
 
     // Login
     static cocos2d::Sprite* getBackgroundSprite();
-    cocos2d::Menu* getLoginMenu();
+    static cocos2d::MenuItemLabel* getNewGame();
+    static cocos2d::MenuItemLabel* getLoadGame();
+    static cocos2d::MenuItemLabel* getConfigGame();
 
-  private:
-    // callback
-    // Login
-    void onConfig(cocos2d::Ref* callback);
-    void onNewGame(cocos2d::Ref* callback);
-    void onLoad(cocos2d::Ref* callback);
-
-    void gotoHomeScene();
   };
   
 }

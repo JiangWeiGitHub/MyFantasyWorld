@@ -17,6 +17,14 @@ namespace jiangweigithub {
     virtual bool init();
 
     CREATE_FUNC(LoginLayer);
+
+  private:
+    // Login callback
+    void onConfigGame(cocos2d::Ref* callback);
+    void onNewGame(cocos2d::Ref* callback);
+    void onLoadGame(cocos2d::Ref* callback);
+
+    void gotoHomeScene();
   };
 
 }
