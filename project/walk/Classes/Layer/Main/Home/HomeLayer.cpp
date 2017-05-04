@@ -17,6 +17,7 @@ namespace jiangweigithub {
     }
 
     auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
+    cocos2d::Vec2 origin = cocos2d::Director::getInstance()->getVisibleOrigin();
 
     leaderSprite = cocos2d::Sprite::create();
     leaderSprite->setPosition(cocos2d::Vec2(visibleSize.width/2,visibleSize.height/2));
@@ -37,13 +38,7 @@ namespace jiangweigithub {
     this->addChild(homeTitle, 0);
     this->addChild(leaderSprite, 1);
 
-
-
-
-
-
-    // cocos2d::Size visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
-    cocos2d::Vec2 origin = cocos2d::Director::getInstance()->getVisibleOrigin();
+    
 
 
   rectangle = cocos2d::Rect(0,0,500,500);
@@ -58,26 +53,9 @@ namespace jiangweigithub {
   this->flag_left = false;
   this->flag_right = false;
 
-  // sprite = Sprite::createWithSpriteFrame(frame0);
-  // sprite->setPosition(Vec2(visibleSize.width/2,visibleSize.height/2));
-  // this->addChild(sprite, 100);
-
-  // auto animation_top = Leader::getAnimationTop();
-  // auto animation_bottom = Leader::getAnimationBottom();
-  // auto animation_left = Leader::getAnimationLeft();
-  // auto animation_right = Leader::getAnimationRight();
-
-  // sprite->runAction(RepeatForever::create(Animate::create(animation_bottom)));
-
-  // position the sprite on the center of the screen
   this->_xxx = visibleSize.width/2 + origin.x;
   this->_yyy = visibleSize.height/2 + origin.y;
-  // sprite->setPosition(Vec2(this->_xxx, this->_yyy));
 
-  // add the sprite as a child to this layer
-  // this->addChild(sprite, 0);
-
-  // creating a keyboard event listener
   auto listener = cocos2d::EventListenerKeyboard::create();
   listener->onKeyPressed = CC_CALLBACK_2(HomeLayer::onKeyPressed, this);
   listener->onKeyReleased = CC_CALLBACK_2(HomeLayer::onKeyReleased, this);
@@ -88,16 +66,70 @@ namespace jiangweigithub {
 
   keyManager = new KeyManager("STOP");
 
-  // animation_bottom = Leader::getAnimationBottom();
-  // animation_top = Leader::getAnimationTop();
-  // animation_left = Leader::getAnimationLeft();
-  // animation_right = Leader::getAnimationRight();
+
+
+// auto map = cocos2d::TMXTiledMap::create("homePath.tmx");
+// // map->setPosition(Point(winSize.width / 2 - map->getContentSize().width / 2,winSize.height / 2 - map->getContentSize().height / 2));
+// // addChild(map,0,1);
+// auto group = map->getObjectGroup("path");
+// auto obj = group->getObject("can");
+// // auto dict = obj.asValueMap();
+// // float cx = dict["x"].asFloat();
+// // float cy = dict["y"].asFloat();
+// // int index = dict["index"].asInt();
+// cocos2d::Value haha = obj["x"];
+// std::cout<< "cx: "  <<haha.asFloat()<<std::endl;
+// // std::cout<< "cy: "  <<cy<<std::endl;
+// // std::cout<< "index: "  <<index<<std::endl;
+
+
+
+auto map = cocos2d::TMXTiledMap::create("homePath.tmx");
+
+    auto objectGroup = map->getObjectGroup("path");
+    auto objects = objectGroup->getObjects();
+
+    for (auto object: objects)
+    {
+
+        auto dic= object.asValueMap();
+        float objectX = dic.at("x").asFloat();
+std::cout<< "objectX: " <<objectX<<std::endl;
+        float objectY = dic.at("y").asFloat();
+std::cout<< "objectY: " <<objectY<<std::endl;
+        auto drawNode= cocos2d::DrawNode::create();
+
+        auto pointsVector = dic.at("polylinePoints").asValueVector();
+
+        auto size = pointsVector.size();
+
+        if (size>0)
+        {
+            cocos2d::Vec2* points= new cocos2d::Vec2[size];
+            int i =0 ;
+
+            for (auto pointValue:pointsVector)
+            {
+
+                auto dicp = pointValue.asValueMap();
+                auto x  = dicp.at("x").asFloat();
+
+                auto y  = -dicp.at("y").asFloat();//y取负值
+                points[i]= cocos2d::Vec2( x , y );
+                i++;
+            }
+
+            drawNode->drawPoly(points, size, false, cocos2d::Color4F::RED);
+            delete[] points;
+            drawNode->setPosition(objectX+160, objectY+120);
+            this->addChild(drawNode,10);
+        }
+    }
+
+
 
 
     this->scheduleUpdate();
-
-
-
 
     return true;
   }
