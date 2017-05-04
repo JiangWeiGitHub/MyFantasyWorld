@@ -41,7 +41,7 @@ namespace jiangweigithub {
     
 
 
-  rectangle = cocos2d::Rect(0,0,500,500);
+  rectangle = cocos2d::Rect(0,0,1,1);
   rectangleZone = cocos2d::Vec2(0, 0); //init
 
   flag_obstacle_top = flag_obstacle_bottom = flag_obstacle_left = flag_obstacle_right = false;
@@ -84,6 +84,9 @@ namespace jiangweigithub {
 
 
 
+cocos2d::Vec2 verts[] = {};
+int counter = 0;
+
 auto map = cocos2d::TMXTiledMap::create("homePath.tmx");
 
     auto objectGroup = map->getObjectGroup("path");
@@ -115,9 +118,14 @@ std::cout<< "objectY: " <<objectY<<std::endl;
                 auto x  = dicp.at("x").asFloat();
 
                 auto y  = -dicp.at("y").asFloat();//y取负值
+
+                verts->add(cocos2d::Vec2(x , y));
+
                 points[i]= cocos2d::Vec2( x , y );
                 i++;
             }
+
+            counter = i;
 
             drawNode->drawPoly(points, size, false, cocos2d::Color4F::RED);
             delete[] points;
@@ -127,6 +135,41 @@ std::cout<< "objectY: " <<objectY<<std::endl;
     }
 
 
+
+
+
+// cocos2d::Sprite* hero = cocos2d::Sprite::create();
+// this->addChild(hero, 0);
+// hero->setPosition(Vec2(winSize.width / 2, hero->getContentSize().height / 2 + 10));
+// //auto herobody = PhysicsBody::createBox(hero->getContentSize()); //这样设置不太精准
+// cocos2d::PhysicsBody* herobody = cocos2d::PhysicsBody::create();
+// Vec2 verts[] = {Vec2(0, 55), Vec2(50, -30), Vec2(-50, -30)}; //根据点组成一个多边形，这样设置的PhysicsBody是一个三角形,这里面的点的先后顺序必须可以连成一条线，不能随便写的，不然会停止运行
+// //herobody->addShape(PhysicsShapeEdgePolygon::create(verts, 3));（如果是边界的话用这句）
+
+// herobody->addShape(PhysicsShapePolygon::create(verts, 3));
+// herobody->setCollisionBitmask(0x0); //不进行碰撞模拟
+// herobody->setContactTestBitmask(HERO_CONTACTMASKBIT);
+
+// herobody->setPositionOffset(Vec2(30, 0));
+// hero->setPhysicsBody(herobody);
+
+
+        cocos2d::Sprite* edgeSpace = cocos2d::Sprite::create();
+        this->addChild(edgeSpace, 100);
+        edgeSpace->setPosition(cocos2d::Vec2(0,720));
+
+        cocos2d::PhysicsBody* boundBody = cocos2d::PhysicsBody::create();
+        boundBody->addShape(cocos2d::PhysicsShapePolygon::create(verts, counter));
+        // boundBody->getShape(0)->setFriction(0.0f); 
+        // boundBody->getShape(0)->setRestitution(1.0f); 
+     
+        edgeSpace->setPhysicsBody(boundBody); 
+ 
+        this->addChild(edgeSpace); 
+
+// http://www.cnblogs.com/HangZhe/p/5762552.html
+// http://www.cocoachina.com/bbs/read.php?tid=221969
+// http://blog.csdn.net/w18767104183/article/details/39241151
 
 
     this->scheduleUpdate();
