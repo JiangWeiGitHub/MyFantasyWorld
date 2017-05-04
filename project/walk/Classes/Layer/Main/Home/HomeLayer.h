@@ -47,6 +47,9 @@ namespace jiangweigithub {
     KeyManager* keyManager;
     Obstacle* obstacle;
 
+    cocos2d::Vec2 verts[] = {};
+    int counter = 0;
+
   };
 
 }

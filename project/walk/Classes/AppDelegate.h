@@ -8,6 +8,8 @@
 #include "./Scene/Loading/LoadingScene.h"
 #include "./Scene/Main/Home/Home.h"
 
+#include "./Scene/HelloWorld/HelloWorld.h"
+
 /**
 @brief    The cocos2d Application.
 

@@ -84,8 +84,8 @@ namespace jiangweigithub {
 
 
 
-cocos2d::Vec2 verts[] = {};
-int counter = 0;
+// cocos2d::Vec2 verts[] = {};
+// int counter = 0;
 
 auto map = cocos2d::TMXTiledMap::create("homePath.tmx");
 

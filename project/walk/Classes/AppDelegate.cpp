@@ -109,7 +109,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
   // auto bbb = aaa->getMainScene();
 
   // run
-  auto loadingScene = jiangweigithub::LoadingScene::getLoadingScene();
+  auto loadingScene = jiangweigithub::HelloWorld::createScene();
 
   // auto homeScene = jiangweigithub::Home::getHomeScene();
 

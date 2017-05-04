@@ -141,6 +141,7 @@ set(GAME_SRC
   Classes/Producer/KeyboardState/KeyTop.cpp
   Classes/Producer/Obstacle/Obstacle.cpp
   Classes/Scene/Loading/LoadingScene.cpp
+  Classes/Scene/HelloWorld/HelloWorld.cpp
   Classes/Scene/Main/Home/Home.cpp
   Classes/Scene/Main/Login/Login.cpp
   Classes/Layer/Loading/LoadingLayer.cpp
@@ -166,6 +167,7 @@ set(GAME_HEADERS
   Classes/Producer/KeyboardState/KeyTop.h
   Classes/Producer/Obstacle/Obstacle.h
   Classes/Scene/Loading/LoadingScene.h
+  Classes/Scene/HelloWorld/HelloWorld.h
   Classes/Scene/Main/Home/Home.h
   Classes/Scene/Main/Login/Login.h
   Classes/Layer/Loading/LoadingLayer.h
