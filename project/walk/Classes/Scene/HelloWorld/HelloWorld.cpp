@@ -47,7 +47,7 @@ namespace jiangweigithub {
 
 
       ballTwo=cocos2d::Sprite::create("CloseNormal.png"); 
-      ballTwo->setPosition(visibleSize.width/3,visibleSize.height/3); 
+      ballTwo->setPosition(visibleSize.width/2 + 100,visibleSize.height/2 + 50); 
       cocos2d::PhysicsBody* ballBodyTwo=cocos2d::PhysicsBody::createCircle(ballOne->getContentSize().width/2,cocos2d::PHYSICSBODY_MATERIAL_DEFAULT); 
 
       ballBodyTwo->getShape(0)->setRestitution(1.0f); 
@@ -97,10 +97,10 @@ std::cout<< "objectY: " <<objectY<<std::endl;
 
                 auto dicp = pointValue.asValueMap();
                 auto x  = dicp.at("x").asFloat();
-
+std::cout<< "x: " <<x<<std::endl;
                 auto y  = -dicp.at("y").asFloat();//y取负值
-
-                // verts->add(cocos2d::Vec2(x , y));
+std::cout<< "y: " <<y<<std::endl;
+                verts->add(cocos2d::Vec2(x , y));
 
                 points[i]= cocos2d::Vec2( x , y );
                 i++;
@@ -119,7 +119,21 @@ std::cout<< "objectY: " <<objectY<<std::endl;
 
 
       cocos2d::Sprite* edgeSpace=cocos2d::Sprite::create(); 
-      cocos2d::PhysicsBody* boundBody=cocos2d::PhysicsBody::createEdgeBox(visibleSize,cocos2d::PHYSICSBODY_MATERIAL_DEFAULT,3); 
+    //   cocos2d::PhysicsBody* boundBody=cocos2d::PhysicsBody::createEdgeBox(visibleSize,cocos2d::PHYSICSBODY_MATERIAL_DEFAULT,3); 
+
+
+cocos2d::Vec2 aaa[] = {
+                        cocos2d::Vec2(200, 100),
+                        cocos2d::Vec2(200, -100),
+                        cocos2d::Vec2(100, -200),
+                        cocos2d::Vec2(-100, -200),
+                        cocos2d::Vec2(-200, -100),
+                        cocos2d::Vec2(-200, 100),
+                        cocos2d::Vec2(-100, 200),
+                        cocos2d::Vec2(100, 200),
+                      };
+      cocos2d::PhysicsBody* boundBody=cocos2d::PhysicsBody::createEdgePolygon(aaa, 8, cocos2d::PHYSICSBODY_MATERIAL_DEFAULT, 1);
+
       boundBody->getShape(0)->setFriction(0.0f); 
       boundBody->getShape(0)->setRestitution(1.0f); 
 
