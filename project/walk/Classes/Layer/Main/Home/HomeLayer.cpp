@@ -11,7 +11,7 @@ namespace jiangweigithub {
 
   bool HomeLayer::init()
   {
-    if(!Layer::create())
+    if(!Layer::init())
     {
       return false;
     }
@@ -153,19 +153,68 @@ std::cout<< "objectY: " <<objectY<<std::endl;
 // herobody->setPositionOffset(Vec2(30, 0));
 // hero->setPhysicsBody(herobody);
 
+      cocos2d::Sprite* ballOne = cocos2d::Sprite::create("CloseNormal.png"); 
+      ballOne->setPosition(visibleSize.width/2,visibleSize.height/2); 
 
-        cocos2d::Sprite* edgeSpace = cocos2d::Sprite::create();
-        this->addChild(edgeSpace, 100);
-        edgeSpace->setPosition(cocos2d::Vec2(0,720));
+      cocos2d::PhysicsBody* ballBodyOne=cocos2d::PhysicsBody::createCircle(ballOne->getContentSize().width/2,cocos2d::PHYSICSBODY_MATERIAL_DEFAULT); 
 
-        cocos2d::PhysicsBody* boundBody = cocos2d::PhysicsBody::create();
-        boundBody->addShape(cocos2d::PhysicsShapePolygon::create(verts, counter));
-        // boundBody->getShape(0)->setFriction(0.0f); 
-        // boundBody->getShape(0)->setRestitution(1.0f); 
-     
-        edgeSpace->setPhysicsBody(boundBody); 
+      ballBodyOne->getShape(0)->setRestitution(1.0f); 
+
+      ballBodyOne->getShape(0)->setFriction(0.0f); 
+
+      ballBodyOne->getShape(0)->setDensity(1.0f); 
+
+      ballBodyOne->setGravityEnable(false); 
+
+      cocos2d::Vect force=cocos2d::Vect(500000.0f, 500000.0f); 
+      ballBodyOne->applyImpulse(force); 
+
+      ballOne->setPhysicsBody(ballBodyOne); 
  
-        this->addChild(edgeSpace); 
+      ballOne->setTag(1); 
+      this->addChild(ballOne); 
+
+
+      cocos2d::Sprite* ballTwo=cocos2d::Sprite::create("CloseNormal.png"); 
+      ballTwo->setPosition(visibleSize.width/2 + 100,visibleSize.height/2 + 50); 
+      cocos2d::PhysicsBody* ballBodyTwo=cocos2d::PhysicsBody::createCircle(ballOne->getContentSize().width/2,cocos2d::PHYSICSBODY_MATERIAL_DEFAULT); 
+
+      ballBodyTwo->getShape(0)->setRestitution(1.0f); 
+      ballBodyTwo->getShape(0)->setFriction(0.0f); 
+      ballBodyTwo->getShape(0)->setDensity(1.0f); 
+
+      ballBodyTwo->setGravityEnable(false); 
+
+
+      force=cocos2d::Vect(-500000.0f, -500000.0f); 
+      ballBodyTwo->applyImpulse(force); 
+      ballTwo->setPhysicsBody(ballBodyTwo); 
+      ballTwo->setTag(2); 
+      this->addChild(ballTwo); 
+
+      cocos2d::Sprite* edgeSpace=cocos2d::Sprite::create(); 
+    //   cocos2d::PhysicsBody* boundBody=cocos2d::PhysicsBody::createEdgeBox(visibleSize,cocos2d::PHYSICSBODY_MATERIAL_DEFAULT,3); 
+
+
+cocos2d::Vec2 aaa[] = {
+                        cocos2d::Vec2(200, 100),
+                        cocos2d::Vec2(200, -100),
+                        cocos2d::Vec2(100, -200),
+                        cocos2d::Vec2(-100, -200),
+                        cocos2d::Vec2(-200, -100),
+                        cocos2d::Vec2(-200, 100),
+                        cocos2d::Vec2(-100, 200),
+                        cocos2d::Vec2(100, 200),
+                      };
+      cocos2d::PhysicsBody* boundBody=cocos2d::PhysicsBody::createEdgePolygon(aaa, 8, cocos2d::PHYSICSBODY_MATERIAL_DEFAULT, 1);
+
+      boundBody->getShape(0)->setFriction(0.0f); 
+      boundBody->getShape(0)->setRestitution(1.0f); 
+
+      edgeSpace->setPhysicsBody(boundBody); 
+      edgeSpace->setPosition(cocos2d::Point(visibleSize.width/2,visibleSize.height/2)); 
+      this->addChild(edgeSpace, 200); 
+      edgeSpace->setTag(0);
 
 // http://www.cnblogs.com/HangZhe/p/5762552.html
 // http://www.cocoachina.com/bbs/read.php?tid=221969

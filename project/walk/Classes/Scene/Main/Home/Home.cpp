@@ -11,10 +11,12 @@ namespace jiangweigithub {
 
   bool Home::init()
   {
-    if(!Scene::create())
+    if(!cocos2d::Scene::initWithPhysics()) 
     {
       return false;
     }
+
+    this->getPhysicsWorld()->setDebugDrawMask(cocos2d::PhysicsWorld::DEBUGDRAW_ALL);
 
     auto tmp = HomeLayer::getHomeLayer();
     this->addChild(tmp);
