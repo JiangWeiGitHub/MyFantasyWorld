@@ -8,7 +8,7 @@ namespace jiangweigithub {
     scene->getPhysicsWorld()->setDebugDrawMask(cocos2d::PhysicsWorld::DEBUGDRAW_ALL);
     HelloWorld* layer=HelloWorld::create();
 
-    layer->setPhyWorld(scene->getPhysicsWorld());
+    // layer->setPhyWorld(scene->getPhysicsWorld());
     scene->addChild(layer);
 
     return scene;  
@@ -68,52 +68,52 @@ namespace jiangweigithub {
 
 
 
-auto map = cocos2d::TMXTiledMap::create("homePath.tmx");
+// auto map = cocos2d::TMXTiledMap::create("homePath.tmx");
 
-    auto objectGroup = map->getObjectGroup("path");
-    auto objects = objectGroup->getObjects();
+//     auto objectGroup = map->getObjectGroup("path");
+//     auto objects = objectGroup->getObjects();
 
-    for (auto object: objects)
-    {
+//     for (auto object: objects)
+//     {
 
-        auto dic= object.asValueMap();
-        objectX = dic.at("x").asFloat();
-std::cout<< "objectX: " <<objectX<<std::endl;
-        objectY = dic.at("y").asFloat();
-std::cout<< "objectY: " <<objectY<<std::endl;
-        auto drawNode= cocos2d::DrawNode::create();
+//         auto dic= object.asValueMap();
+//         objectX = dic.at("x").asFloat();
+// std::cout<< "objectX: " <<objectX<<std::endl;
+//         objectY = dic.at("y").asFloat();
+// std::cout<< "objectY: " <<objectY<<std::endl;
+//         auto drawNode= cocos2d::DrawNode::create();
 
-        auto pointsVector = dic.at("polylinePoints").asValueVector();
+//         auto pointsVector = dic.at("polylinePoints").asValueVector();
 
-        auto size = pointsVector.size();
+//         auto size = pointsVector.size();
 
-        if (size>0)
-        {
-            cocos2d::Vec2* points= new cocos2d::Vec2[size];
-            int i =0 ;
+//         if (size>0)
+//         {
+//             cocos2d::Vec2* points= new cocos2d::Vec2[size];
+//             int i =0 ;
 
-            for (auto pointValue:pointsVector)
-            {
+//             for (auto pointValue:pointsVector)
+//             {
 
-                auto dicp = pointValue.asValueMap();
-                auto x  = dicp.at("x").asFloat();
-std::cout<< "x: " <<x<<std::endl;
-                auto y  = -dicp.at("y").asFloat();//y取负值
-std::cout<< "y: " <<y<<std::endl;
-                verts->add(cocos2d::Vec2(x , y));
+//                 auto dicp = pointValue.asValueMap();
+//                 auto x  = dicp.at("x").asFloat();
+// std::cout<< "x: " <<x<<std::endl;
+//                 auto y  = -dicp.at("y").asFloat();//y取负值
+// std::cout<< "y: " <<y<<std::endl;
+//                 verts->add(cocos2d::Vec2(x , y));
 
-                points[i]= cocos2d::Vec2( x , y );
-                i++;
-            }
+//                 points[i]= cocos2d::Vec2( x , y );
+//                 i++;
+//             }
 
-            counter = i;
+//             counter = i;
 
-            // drawNode->drawPoly(points, size, false, cocos2d::Color4F::RED);
-            delete[] points;
-            // drawNode->setPosition(objectX+160, objectY+120);
-            // this->addChild(drawNode,10);
-        }
-    }
+//             // drawNode->drawPoly(points, size, false, cocos2d::Color4F::RED);
+//             delete[] points;
+//             // drawNode->setPosition(objectX+160, objectY+120);
+//             // this->addChild(drawNode,10);
+//         }
+//     }
 
 
 
