@@ -30,6 +30,7 @@ namespace jiangweigithub {
 
   private:
     float _xxx, _yyy;
+    
     cocos2d::Rect rectangle;
     cocos2d::Vec2 rectangleZone;
     bool stop_top, stop_bottom, stop_left, stop_right;
@@ -47,8 +48,12 @@ namespace jiangweigithub {
     KeyManager* keyManager;
     Obstacle* obstacle;
 
-    cocos2d::Vec2 verts[] = {};
+    cocos2d::Vec2 verts[50];
     int counter = 0;
+
+    cocos2d::TMXTiledMap* map;
+    float objectX, objectY;
+    cocos2d::DrawNode* drawNode;
 
   };
 
