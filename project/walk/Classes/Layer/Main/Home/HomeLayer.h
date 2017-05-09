@@ -28,6 +28,8 @@ namespace jiangweigithub {
 
     void onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
 
+    void hello(const cocos2d::PhysicsContact& contact);
+
   private:
     float _xxx, _yyy;
     

@@ -20,7 +20,31 @@ namespace jiangweigithub {
     cocos2d::Vec2 origin = cocos2d::Director::getInstance()->getVisibleOrigin();
 
     leaderSprite = cocos2d::Sprite::create();
-    leaderSprite->setPosition(cocos2d::Vec2(visibleSize.width/2,visibleSize.height/2));
+    cocos2d::PhysicsBody* physicsBody = cocos2d::PhysicsBody::createBox(cocos2d::Size(30, 50), cocos2d::PHYSICSBODY_MATERIAL_DEFAULT);
+    leaderSprite->setPhysicsBody(physicsBody);
+
+      // cocos2d::Sprite* ballOne = cocos2d::Sprite::create("CloseNormal.png"); 
+      // ballOne->setPosition(visibleSize.width/2,visibleSize.height/2); 
+
+      // cocos2d::PhysicsBody* ballBodyOne=cocos2d::PhysicsBody::createCircle(ballOne->getContentSize().width/2,cocos2d::PHYSICSBODY_MATERIAL_DEFAULT); 
+
+      // ballBodyOne->getShape(0)->setRestitution(1.0f); 
+
+      // ballBodyOne->getShape(0)->setFriction(0.0f); 
+
+      // ballBodyOne->getShape(0)->setDensity(1.0f); 
+
+      // ballBodyOne->setGravityEnable(false); 
+
+      // cocos2d::Vect force=cocos2d::Vect(500000.0f, 500000.0f); 
+      // ballBodyOne->applyImpulse(force); 
+
+      // ballOne->setPhysicsBody(ballBodyOne); 
+ 
+      // ballOne->setTag(1); 
+      // this->addChild(ballOne); 
+
+
     leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationTop())));
 
     auto homeTitle = MainSprite::getHomeTitle();
@@ -68,42 +92,18 @@ namespace jiangweigithub {
 
 
 
-// auto map = cocos2d::TMXTiledMap::create("homePath.tmx");
-// // map->setPosition(Point(winSize.width / 2 - map->getContentSize().width / 2,winSize.height / 2 - map->getContentSize().height / 2));
-// // addChild(map,0,1);
-// auto group = map->getObjectGroup("path");
-// auto obj = group->getObject("can");
-// // auto dict = obj.asValueMap();
-// // float cx = dict["x"].asFloat();
-// // float cy = dict["y"].asFloat();
-// // int index = dict["index"].asInt();
-// cocos2d::Value haha = obj["x"];
-// std::cout<< "cx: "  <<haha.asFloat()<<std::endl;
-// // std::cout<< "cy: "  <<cy<<std::endl;
-// // std::cout<< "index: "  <<index<<std::endl;
-
-
-
-
-
-
-
-
     cocos2d::TMXTiledMap* map = cocos2d::TMXTiledMap::create("homePath.tmx");
 
     auto objectGroup = map->getObjectGroup("path");
-    auto objects = objectGroup->getObjects();
-
-    
+    auto objects = objectGroup->getObjects();    
 
     for (auto object: objects)
     {
 
         auto dic= object.asValueMap();
         objectX = dic.at("x").asFloat();
-std::cout<<objectX<<std::endl;
         objectY = dic.at("y").asFloat();        
-std::cout<<objectY<<std::endl;
+
         auto pointsVector = dic.at("polylinePoints").asValueVector();
 
         auto size = pointsVector.size();
@@ -117,9 +117,7 @@ std::cout<<objectY<<std::endl;
             {
                 auto dicp = pointValue.asValueMap();
                 auto x  = dicp.at("x").asFloat();
-                std::cout<<x<<std::endl;
                 auto y  = -dicp.at("y").asFloat();
-                std::cout<<y<<std::endl;
 
                 verts[counter].setPoint(x + (1280 - 960) / 2, y + (720 - 480) / 2 + 480);
                 counter++;
@@ -132,22 +130,6 @@ std::cout<<objectY<<std::endl;
       boundBody->getShape(0)->setFriction(0.0f); 
       boundBody->getShape(0)->setRestitution(1.0f); 
 
-// 0 480
-
-
-// 160 600 -> 0 -0
-// 1120 600 -> 960 -0
-// 1120 120 -> 960 -480
-// 160 120 -> 0 -480
-
-
-// 8 459
-// 0 -0
-// 955 -0
-// 962 -480
-// 0 -478
-
-
       edgeSpace->setPhysicsBody(boundBody); 
       edgeSpace->setPosition(objectX , objectY - 480);
       this->addChild(edgeSpace, 200); 
@@ -159,14 +141,6 @@ std::cout<<objectY<<std::endl;
 
 
     }
-
-    // drawNode= cocos2d::DrawNode::create();
-    // drawNode->drawPoly(verts, counter, false, cocos2d::Color4F::RED);
-    // // delete[] points;
-    // drawNode->setPosition(objectX+160, objectY+120);
-    // this->addChild(drawNode,10);
-
-
 
 // cocos2d::Sprite* hero = cocos2d::Sprite::create();
 // this->addChild(hero, 0);
@@ -222,6 +196,12 @@ std::cout<<objectY<<std::endl;
       // ballTwo->setTag(2); 
       // this->addChild(ballTwo); 
 
+
+        cocos2d::EventListenerPhysicsContact* contactListener = cocos2d::EventListenerPhysicsContact::create(); 
+
+        contactListener->onContactBegin = CC_CALLBACK_1(HomeLayer::hello, this); 
+
+        _eventDispatcher->addEventListenerWithSceneGraphPriority(contactListener, this); 
 
 
 
@@ -375,6 +355,11 @@ std::cout<<objectY<<std::endl;
       default:
         break;
     }
+  }
+
+  void HomeLayer::hello(cocos2d::PhysicsContact& contact)
+  {
+std::cout<<"aaaaa"<<std::endl;
   }
 
 }
