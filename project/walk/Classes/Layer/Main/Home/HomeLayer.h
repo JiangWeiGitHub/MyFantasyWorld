@@ -48,12 +48,9 @@ namespace jiangweigithub {
     KeyManager* keyManager;
     Obstacle* obstacle;
 
-    cocos2d::Vec2 verts[50];
-    int counter = 0;
-
-    cocos2d::TMXTiledMap* map;
+    //  map;
     float objectX, objectY;
-    cocos2d::DrawNode* drawNode;
+    // drawNode;
 
   };
 

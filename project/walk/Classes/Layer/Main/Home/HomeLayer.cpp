@@ -84,13 +84,12 @@ namespace jiangweigithub {
 
 
 
-// cocos2d::Vec2 verts[] = {};
-// int counter = 0;
 
-counter = 0;
-// cocos2d::Vec2 verts[50];
 
-    map = cocos2d::TMXTiledMap::create("homePathTest.tmx");
+
+
+
+    cocos2d::TMXTiledMap* map = cocos2d::TMXTiledMap::create("homePath.tmx");
 
     auto objectGroup = map->getObjectGroup("path");
     auto objects = objectGroup->getObjects();
@@ -109,6 +108,9 @@ std::cout<<objectY<<std::endl;
 
         auto size = pointsVector.size();
 
+        cocos2d::Vec2 verts[size] = {};
+        int counter = 0;
+
         if (size>0)
         {
             for (auto pointValue:pointsVector)
@@ -116,13 +118,45 @@ std::cout<<objectY<<std::endl;
                 auto dicp = pointValue.asValueMap();
                 auto x  = dicp.at("x").asFloat();
                 std::cout<<x<<std::endl;
-                auto y  = dicp.at("y").asFloat();
+                auto y  = -dicp.at("y").asFloat();
                 std::cout<<y<<std::endl;
 
-                verts[counter].setPoint(x - objectX + (1280 - 960) / 2, 720 - y - (720 - objectY) / 2);
+                verts[counter].setPoint(x + (1280 - 960) / 2, y + (720 - 480) / 2 + 480);
                 counter++;
             }
         }
+
+      cocos2d::Sprite* edgeSpace=cocos2d::Sprite::create(); 
+      cocos2d::PhysicsBody* boundBody=cocos2d::PhysicsBody::createEdgePolygon(verts, counter, cocos2d::PHYSICSBODY_MATERIAL_DEFAULT, 1);
+
+      boundBody->getShape(0)->setFriction(0.0f); 
+      boundBody->getShape(0)->setRestitution(1.0f); 
+
+// 0 480
+
+
+// 160 600 -> 0 -0
+// 1120 600 -> 960 -0
+// 1120 120 -> 960 -480
+// 160 120 -> 0 -480
+
+
+// 8 459
+// 0 -0
+// 955 -0
+// 962 -480
+// 0 -478
+
+
+      edgeSpace->setPhysicsBody(boundBody); 
+      edgeSpace->setPosition(objectX , objectY - 480);
+      this->addChild(edgeSpace, 200); 
+      edgeSpace->setTag(0);
+
+// http://www.cnblogs.com/HangZhe/p/5762552.html
+// http://www.cocoachina.com/bbs/read.php?tid=221969
+// http://blog.csdn.net/w18767104183/article/details/39241151
+
 
     }
 
@@ -189,28 +223,7 @@ std::cout<<objectY<<std::endl;
       // this->addChild(ballTwo); 
 
 
-      cocos2d::Sprite* edgeSpace=cocos2d::Sprite::create(); 
-      cocos2d::PhysicsBody* boundBody=cocos2d::PhysicsBody::createEdgePolygon(verts, counter, cocos2d::PHYSICSBODY_MATERIAL_DEFAULT, 1);
 
-      boundBody->getShape(0)->setFriction(0.0f); 
-      boundBody->getShape(0)->setRestitution(1.0f); 
-
-// 0 480
-
-
-// 160 600 -> 0 0
-// 1120 600 -> 960 0
-// 1120 120 -> 960 480
-// 160 120 -> 0 480
-
-      edgeSpace->setPhysicsBody(boundBody); 
-      edgeSpace->setPosition(0 , 0);
-      this->addChild(edgeSpace, 200); 
-      edgeSpace->setTag(0);
-
-// http://www.cnblogs.com/HangZhe/p/5762552.html
-// http://www.cocoachina.com/bbs/read.php?tid=221969
-// http://blog.csdn.net/w18767104183/article/details/39241151
 
 
     this->scheduleUpdate();
