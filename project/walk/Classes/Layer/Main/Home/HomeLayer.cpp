@@ -20,8 +20,17 @@ namespace jiangweigithub {
     cocos2d::Vec2 origin = cocos2d::Director::getInstance()->getVisibleOrigin();
 
     leaderSprite = cocos2d::Sprite::create();
+    
     cocos2d::PhysicsBody* physicsBody = cocos2d::PhysicsBody::createBox(cocos2d::Size(30, 50), cocos2d::PHYSICSBODY_MATERIAL_DEFAULT);
+
+    // physicsBody->setCollisionBitmask(0x0);
+    // physicsBody->setMass(0);
+
+    physicsBody->setDynamic(false);
+
     leaderSprite->setPhysicsBody(physicsBody);
+    leaderSprite->setTag(1);
+
 
       // cocos2d::Sprite* ballOne = cocos2d::Sprite::create("CloseNormal.png"); 
       // ballOne->setPosition(visibleSize.width/2,visibleSize.height/2); 
@@ -56,7 +65,7 @@ namespace jiangweigithub {
 
     tileMapSprite->setPosition(cocos2d::Vec2((visibleSize.width - mapSpriteSize.width) / 2, (visibleSize.height - mapSpriteSize.height) / 2));
     homeTitle->setPosition(cocos2d::Vec2((visibleSize.width - homeTitleSpriteSize.width) / 2, 660));
-    leaderSprite->setPosition(cocos2d::Vec2(280, 350));
+    leaderSprite->setPosition(cocos2d::Vec2(1200, 700));
 
     this->addChild(tileMapSprite, -1);
     this->addChild(homeTitle, 0);
@@ -127,8 +136,9 @@ namespace jiangweigithub {
       cocos2d::Sprite* edgeSpace=cocos2d::Sprite::create(); 
       cocos2d::PhysicsBody* boundBody=cocos2d::PhysicsBody::createEdgePolygon(verts, counter, cocos2d::PHYSICSBODY_MATERIAL_DEFAULT, 1);
 
-      boundBody->getShape(0)->setFriction(0.0f); 
-      boundBody->getShape(0)->setRestitution(1.0f); 
+      boundBody->setCollisionBitmask(0x1);
+      // boundBody->getShape(0)->setFriction(0.0f); 
+      // boundBody->getShape(0)->setRestitution(1.0f); 
 
       edgeSpace->setPhysicsBody(boundBody); 
       edgeSpace->setPosition(objectX , objectY - 480);
@@ -203,7 +213,7 @@ namespace jiangweigithub {
 
         _eventDispatcher->addEventListenerWithSceneGraphPriority(contactListener, this); 
 
-
+// http://blog.csdn.net/w18767104183/article/details/39241151
 
 
     this->scheduleUpdate();
@@ -357,9 +367,11 @@ namespace jiangweigithub {
     }
   }
 
-  void HomeLayer::hello(cocos2d::PhysicsContact& contact)
+  bool HomeLayer::hello(const cocos2d::PhysicsContact& contact)
   {
 std::cout<<"aaaaa"<<std::endl;
+
+return true;
   }
 
 }
