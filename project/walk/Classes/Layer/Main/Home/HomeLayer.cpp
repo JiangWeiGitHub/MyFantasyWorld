@@ -31,6 +31,10 @@ namespace jiangweigithub {
     leaderSprite->setPhysicsBody(physicsBody);
     leaderSprite->setTag(1);
 
+    leaderSprite->getPhysicsBody()->setCategoryBitmask(0x01); // 0001
+    leaderSprite->getPhysicsBody()->setContactTestBitmask(0x02); // 0100
+    leaderSprite->getPhysicsBody()->setCollisionBitmask(0x00); // 0011
+
 
       // cocos2d::Sprite* ballOne = cocos2d::Sprite::create("CloseNormal.png"); 
       // ballOne->setPosition(visibleSize.width/2,visibleSize.height/2); 
@@ -65,17 +69,17 @@ namespace jiangweigithub {
 
     tileMapSprite->setPosition(cocos2d::Vec2((visibleSize.width - mapSpriteSize.width) / 2, (visibleSize.height - mapSpriteSize.height) / 2));
     homeTitle->setPosition(cocos2d::Vec2((visibleSize.width - homeTitleSpriteSize.width) / 2, 660));
-    leaderSprite->setPosition(cocos2d::Vec2(1200, 700));
+    leaderSprite->setPosition(cocos2d::Vec2(280, 350));
 
-    this->addChild(tileMapSprite, -1);
-    this->addChild(homeTitle, 0);
+    // this->addChild(tileMapSprite, -1);
+    // this->addChild(homeTitle, 0);
     this->addChild(leaderSprite, 1);
 
     
 
 
-  rectangle = cocos2d::Rect(0,0,1,1);
-  rectangleZone = cocos2d::Vec2(0, 0); //init
+  // rectangle = cocos2d::Rect(0,0,1,1);
+  // rectangleZone = cocos2d::Vec2(0, 0); //init
 
   flag_obstacle_top = flag_obstacle_bottom = flag_obstacle_left = flag_obstacle_right = false;
 
@@ -145,9 +149,11 @@ namespace jiangweigithub {
       this->addChild(edgeSpace, 200); 
       edgeSpace->setTag(0);
 
-// http://www.cnblogs.com/HangZhe/p/5762552.html
-// http://www.cocoachina.com/bbs/read.php?tid=221969
-// http://blog.csdn.net/w18767104183/article/details/39241151
+    edgeSpace->getPhysicsBody()->setCategoryBitmask(0x02); // 0001
+    edgeSpace->getPhysicsBody()->setContactTestBitmask(0x01); // 0100
+    edgeSpace->getPhysicsBody()->setCollisionBitmask(0x00); // 0011
+
+
 
 
     }
@@ -228,12 +234,14 @@ namespace jiangweigithub {
 
   void HomeLayer::update(float delta)
   {
-    rectangleZone = cocos2d::Vec2(this->_xxx, this->_yyy);
+    // rectangleZone = cocos2d::Vec2(this->_xxx, this->_yyy);
 
-    if(rectangle.containsPoint(rectangleZone))
+    if(this->kissed == true)
     {
+      std::cout<<"1"<<std::endl;
       if(this->flag_top == true)
       {
+        std::cout<<"2"<<std::endl;
         if(obstacle->getException() == jiangweigithub::Obstacle::NONE)
         {
           obstacle->setException(jiangweigithub::Obstacle::BOTTOM);
@@ -279,6 +287,7 @@ namespace jiangweigithub {
     }
     else
     {
+      std::cout<<"3"<<std::endl;
       obstacle->setException(jiangweigithub::Obstacle::NONE);
 
       obstacle->unObstacleTop();
@@ -288,6 +297,8 @@ namespace jiangweigithub {
 
       if(this->flag_top == true)
       {
+
+        std::cout<<"4"<<std::endl;
         keyManager->pressTop(this->leaderSprite, this->_xxx, this->_yyy);
       }
       else if(this->flag_bottom == true)
@@ -303,6 +314,17 @@ namespace jiangweigithub {
         keyManager->pressRight(this->leaderSprite, this->_xxx, this->_yyy);
       }
     }
+
+    // if(rectangle.containsPoint(rectangleZone))
+    // {
+
+    // }
+    // else
+    // {
+
+    // }
+
+    // this->kissed = false;
   }
 
   void HomeLayer::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event)
@@ -370,6 +392,7 @@ namespace jiangweigithub {
   bool HomeLayer::hello(const cocos2d::PhysicsContact& contact)
   {
 std::cout<<"aaaaa"<<std::endl;
+this->kissed = true;
 
 return true;
   }

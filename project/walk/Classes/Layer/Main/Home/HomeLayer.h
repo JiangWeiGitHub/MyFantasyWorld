@@ -33,8 +33,8 @@ namespace jiangweigithub {
   private:
     float _xxx, _yyy;
     
-    cocos2d::Rect rectangle;
-    cocos2d::Vec2 rectangleZone;
+    // cocos2d::Rect rectangle;
+    // cocos2d::Vec2 rectangleZone;
     bool stop_top, stop_bottom, stop_left, stop_right;
     cocos2d::Sprite* leaderSprite;
     cocos2d::Sprite* test;
@@ -53,6 +53,8 @@ namespace jiangweigithub {
     //  map;
     float objectX, objectY;
     // drawNode;
+
+    bool kissed = false;
 
   };
 
