@@ -21,42 +21,15 @@ namespace jiangweigithub {
 
     leaderSprite = cocos2d::Sprite::create();
     
-    cocos2d::PhysicsBody* physicsBody = cocos2d::PhysicsBody::createBox(cocos2d::Size(30, 50), cocos2d::PHYSICSBODY_MATERIAL_DEFAULT);
-
-    // physicsBody->setCollisionBitmask(0x0);
-    // physicsBody->setMass(0);
+    cocos2d::PhysicsBody* physicsBody = cocos2d::PhysicsBody::createBox(cocos2d::Size(30, 20), cocos2d::PHYSICSBODY_MATERIAL_DEFAULT, cocos2d::Vec2(15, 10));
 
     physicsBody->setDynamic(false);
 
     leaderSprite->setPhysicsBody(physicsBody);
-    leaderSprite->setTag(1);
 
-    leaderSprite->getPhysicsBody()->setCategoryBitmask(0x01); // 0001
-    leaderSprite->getPhysicsBody()->setContactTestBitmask(0x02); // 0100
-    leaderSprite->getPhysicsBody()->setCollisionBitmask(0x00); // 0011
-
-
-      // cocos2d::Sprite* ballOne = cocos2d::Sprite::create("CloseNormal.png"); 
-      // ballOne->setPosition(visibleSize.width/2,visibleSize.height/2); 
-
-      // cocos2d::PhysicsBody* ballBodyOne=cocos2d::PhysicsBody::createCircle(ballOne->getContentSize().width/2,cocos2d::PHYSICSBODY_MATERIAL_DEFAULT); 
-
-      // ballBodyOne->getShape(0)->setRestitution(1.0f); 
-
-      // ballBodyOne->getShape(0)->setFriction(0.0f); 
-
-      // ballBodyOne->getShape(0)->setDensity(1.0f); 
-
-      // ballBodyOne->setGravityEnable(false); 
-
-      // cocos2d::Vect force=cocos2d::Vect(500000.0f, 500000.0f); 
-      // ballBodyOne->applyImpulse(force); 
-
-      // ballOne->setPhysicsBody(ballBodyOne); 
- 
-      // ballOne->setTag(1); 
-      // this->addChild(ballOne); 
-
+    leaderSprite->getPhysicsBody()->setCategoryBitmask(heroMask);
+    leaderSprite->getPhysicsBody()->setContactTestBitmask(heroMask | wallMask);
+    leaderSprite->getPhysicsBody()->setCollisionBitmask(0x00);
 
     leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationTop())));
 
@@ -71,38 +44,31 @@ namespace jiangweigithub {
     homeTitle->setPosition(cocos2d::Vec2((visibleSize.width - homeTitleSpriteSize.width) / 2, 660));
     leaderSprite->setPosition(cocos2d::Vec2(280, 350));
 
-    // this->addChild(tileMapSprite, -1);
-    // this->addChild(homeTitle, 0);
+    this->addChild(tileMapSprite, -1);
+    this->addChild(homeTitle, 0);
     this->addChild(leaderSprite, 1);
 
-    
+    flag_obstacle_top = flag_obstacle_bottom = flag_obstacle_left = flag_obstacle_right = false;
 
+    this->obstacle = Obstacle::getInstance();
 
-  // rectangle = cocos2d::Rect(0,0,1,1);
-  // rectangleZone = cocos2d::Vec2(0, 0); //init
+    this->flag_top = false;
+    this->flag_bottom = false;
+    this->flag_left = false;
+    this->flag_right = false;
 
-  flag_obstacle_top = flag_obstacle_bottom = flag_obstacle_left = flag_obstacle_right = false;
+    this->_xxx = 280;
+    this->_yyy = 350;
 
-  this->obstacle = Obstacle::getInstance();
+    auto listener = cocos2d::EventListenerKeyboard::create();
+    listener->onKeyPressed = CC_CALLBACK_2(HomeLayer::onKeyPressed, this);
+    listener->onKeyReleased = CC_CALLBACK_2(HomeLayer::onKeyReleased, this);
 
-  this->flag_top = false;
-  this->flag_bottom = false;
-  this->flag_left = false;
-  this->flag_right = false;
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
-  this->_xxx = 280;
-  this->_yyy = 350;
+    stop_top = stop_bottom = stop_left = stop_right = false;
 
-  auto listener = cocos2d::EventListenerKeyboard::create();
-  listener->onKeyPressed = CC_CALLBACK_2(HomeLayer::onKeyPressed, this);
-  listener->onKeyReleased = CC_CALLBACK_2(HomeLayer::onKeyReleased, this);
-
-  _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-
-  stop_top = stop_bottom = stop_left = stop_right = false;
-
-  keyManager = new KeyManager("STOP");
-
+    keyManager = new KeyManager("STOP");
 
 
     cocos2d::TMXTiledMap* map = cocos2d::TMXTiledMap::create("homePath.tmx");
@@ -113,113 +79,48 @@ namespace jiangweigithub {
     for (auto object: objects)
     {
 
-        auto dic= object.asValueMap();
-        objectX = dic.at("x").asFloat();
-        objectY = dic.at("y").asFloat();        
+      auto dic= object.asValueMap();
+      objectX = dic.at("x").asFloat();
+      objectY = dic.at("y").asFloat();        
 
-        auto pointsVector = dic.at("polylinePoints").asValueVector();
+      auto pointsVector = dic.at("polylinePoints").asValueVector();
 
-        auto size = pointsVector.size();
+      auto size = pointsVector.size();
 
-        cocos2d::Vec2 verts[size] = {};
-        int counter = 0;
+      cocos2d::Vec2 verts[size] = {};
+      int counter = 0;
 
-        if (size>0)
+      if (size>0)
+      {
+        for (auto pointValue:pointsVector)
         {
-            for (auto pointValue:pointsVector)
-            {
-                auto dicp = pointValue.asValueMap();
-                auto x  = dicp.at("x").asFloat();
-                auto y  = -dicp.at("y").asFloat();
+          auto dicp = pointValue.asValueMap();
+          auto x  = dicp.at("x").asFloat();
+          auto y  = -dicp.at("y").asFloat();
 
-                verts[counter].setPoint(x + (1280 - 960) / 2, y + (720 - 480) / 2 + 480);
-                counter++;
-            }
+          verts[counter].setPoint(x + (1280 - 960) / 2, y + (720 - 480) / 2 + 480);
+          counter++;
         }
+      }
 
       cocos2d::Sprite* edgeSpace=cocos2d::Sprite::create(); 
       cocos2d::PhysicsBody* boundBody=cocos2d::PhysicsBody::createEdgePolygon(verts, counter, cocos2d::PHYSICSBODY_MATERIAL_DEFAULT, 1);
 
-      boundBody->setCollisionBitmask(0x1);
-      // boundBody->getShape(0)->setFriction(0.0f); 
-      // boundBody->getShape(0)->setRestitution(1.0f); 
-
       edgeSpace->setPhysicsBody(boundBody); 
       edgeSpace->setPosition(objectX , objectY - 480);
-      this->addChild(edgeSpace, 200); 
-      edgeSpace->setTag(0);
+      this->addChild(edgeSpace, 0); 
 
-    edgeSpace->getPhysicsBody()->setCategoryBitmask(0x02); // 0001
-    edgeSpace->getPhysicsBody()->setContactTestBitmask(0x01); // 0100
-    edgeSpace->getPhysicsBody()->setCollisionBitmask(0x00); // 0011
-
-
-
-
+      edgeSpace->getPhysicsBody()->setCategoryBitmask(wallMask);
+      edgeSpace->getPhysicsBody()->setContactTestBitmask(heroMask | wallMask);
+      edgeSpace->getPhysicsBody()->setCollisionBitmask(0x00);
     }
 
-// cocos2d::Sprite* hero = cocos2d::Sprite::create();
-// this->addChild(hero, 0);
-// hero->setPosition(Vec2(winSize.width / 2, hero->getContentSize().height / 2 + 10));
-// //auto herobody = PhysicsBody::createBox(hero->getContentSize()); //这样设置不太精准
-// cocos2d::PhysicsBody* herobody = cocos2d::PhysicsBody::create();
-// Vec2 verts[] = {Vec2(0, 55), Vec2(50, -30), Vec2(-50, -30)}; //根据点组成一个多边形，这样设置的PhysicsBody是一个三角形,这里面的点的先后顺序必须可以连成一条线，不能随便写的，不然会停止运行
-// //herobody->addShape(PhysicsShapeEdgePolygon::create(verts, 3));（如果是边界的话用这句）
+    cocos2d::EventListenerPhysicsContact* contactListener = cocos2d::EventListenerPhysicsContact::create(); 
 
-// herobody->addShape(PhysicsShapePolygon::create(verts, 3));
-// herobody->setCollisionBitmask(0x0); //不进行碰撞模拟
-// herobody->setContactTestBitmask(HERO_CONTACTMASKBIT);
+    contactListener->onContactBegin = CC_CALLBACK_1(HomeLayer::onContactBegin, this);
+    contactListener->onContactSeparate = CC_CALLBACK_1(HomeLayer::onContactSeparate, this); 
 
-// herobody->setPositionOffset(Vec2(30, 0));
-// hero->setPhysicsBody(herobody);
-
-      // cocos2d::Sprite* ballOne = cocos2d::Sprite::create("CloseNormal.png"); 
-      // ballOne->setPosition(visibleSize.width/2,visibleSize.height/2); 
-
-      // cocos2d::PhysicsBody* ballBodyOne=cocos2d::PhysicsBody::createCircle(ballOne->getContentSize().width/2,cocos2d::PHYSICSBODY_MATERIAL_DEFAULT); 
-
-      // ballBodyOne->getShape(0)->setRestitution(1.0f); 
-
-      // ballBodyOne->getShape(0)->setFriction(0.0f); 
-
-      // ballBodyOne->getShape(0)->setDensity(1.0f); 
-
-      // ballBodyOne->setGravityEnable(false); 
-
-      // cocos2d::Vect force=cocos2d::Vect(500000.0f, 500000.0f); 
-      // ballBodyOne->applyImpulse(force); 
-
-      // ballOne->setPhysicsBody(ballBodyOne); 
- 
-      // ballOne->setTag(1); 
-      // this->addChild(ballOne); 
-
-
-      // cocos2d::Sprite* ballTwo=cocos2d::Sprite::create("CloseNormal.png"); 
-      // ballTwo->setPosition(visibleSize.width/2 + 100,visibleSize.height/2 + 50); 
-      // cocos2d::PhysicsBody* ballBodyTwo=cocos2d::PhysicsBody::createCircle(ballOne->getContentSize().width/2,cocos2d::PHYSICSBODY_MATERIAL_DEFAULT); 
-
-      // ballBodyTwo->getShape(0)->setRestitution(1.0f); 
-      // ballBodyTwo->getShape(0)->setFriction(0.0f); 
-      // ballBodyTwo->getShape(0)->setDensity(1.0f); 
-
-      // ballBodyTwo->setGravityEnable(false); 
-
-
-      // force=cocos2d::Vect(-500000.0f, -500000.0f); 
-      // ballBodyTwo->applyImpulse(force); 
-      // ballTwo->setPhysicsBody(ballBodyTwo); 
-      // ballTwo->setTag(2); 
-      // this->addChild(ballTwo); 
-
-
-        cocos2d::EventListenerPhysicsContact* contactListener = cocos2d::EventListenerPhysicsContact::create(); 
-
-        contactListener->onContactBegin = CC_CALLBACK_1(HomeLayer::hello, this); 
-
-        _eventDispatcher->addEventListenerWithSceneGraphPriority(contactListener, this); 
-
-// http://blog.csdn.net/w18767104183/article/details/39241151
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(contactListener, this);
 
 
     this->scheduleUpdate();
@@ -227,21 +128,14 @@ namespace jiangweigithub {
     return true;
   }
 
-
-
-
-
-
   void HomeLayer::update(float delta)
   {
     // rectangleZone = cocos2d::Vec2(this->_xxx, this->_yyy);
 
     if(this->kissed == true)
     {
-      std::cout<<"1"<<std::endl;
       if(this->flag_top == true)
       {
-        std::cout<<"2"<<std::endl;
         if(obstacle->getException() == jiangweigithub::Obstacle::NONE)
         {
           obstacle->setException(jiangweigithub::Obstacle::BOTTOM);
@@ -287,7 +181,6 @@ namespace jiangweigithub {
     }
     else
     {
-      std::cout<<"3"<<std::endl;
       obstacle->setException(jiangweigithub::Obstacle::NONE);
 
       obstacle->unObstacleTop();
@@ -297,8 +190,6 @@ namespace jiangweigithub {
 
       if(this->flag_top == true)
       {
-
-        std::cout<<"4"<<std::endl;
         keyManager->pressTop(this->leaderSprite, this->_xxx, this->_yyy);
       }
       else if(this->flag_bottom == true)
@@ -389,12 +280,56 @@ namespace jiangweigithub {
     }
   }
 
-  bool HomeLayer::hello(const cocos2d::PhysicsContact& contact)
+  bool HomeLayer::onContactBegin(const cocos2d::PhysicsContact& contact)
   {
-std::cout<<"aaaaa"<<std::endl;
-this->kissed = true;
 
-return true;
+    if((contact.getShapeA()->getBody()->getCategoryBitmask() & heroMask) == heroMask)
+    {  
+      this->kissed = true;
+    }
+
+    if((contact.getShapeB()->getBody()->getCategoryBitmask() & heroMask) == heroMask)
+    {  
+      this->kissed = true;
+    }
+
+    if((contact.getShapeA()->getBody()->getCategoryBitmask() & wallMask) == wallMask)
+    {  
+      this->kissed = true;
+    }
+
+    if((contact.getShapeB()->getBody()->getCategoryBitmask() & wallMask) == wallMask)
+    {  
+      this->kissed = true;
+    }    
+
+    return true;
+  }
+
+  bool HomeLayer::onContactSeparate(const cocos2d::PhysicsContact& contact)
+  {
+
+    if((contact.getShapeA()->getBody()->getCategoryBitmask() & heroMask) == heroMask)
+    {  
+      this->kissed = false;
+    }
+
+    if((contact.getShapeB()->getBody()->getCategoryBitmask() & heroMask) == heroMask)
+    {  
+      this->kissed = false;
+    }
+
+    if((contact.getShapeA()->getBody()->getCategoryBitmask() & wallMask) == wallMask)
+    {  
+      this->kissed = false;
+    }
+
+    if((contact.getShapeB()->getBody()->getCategoryBitmask() & wallMask) == wallMask)
+    {  
+      this->kissed = false;
+    } 
+
+    return true;
   }
 
 }

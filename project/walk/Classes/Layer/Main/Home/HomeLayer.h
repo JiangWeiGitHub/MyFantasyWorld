@@ -28,7 +28,8 @@ namespace jiangweigithub {
 
     void onKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
 
-    bool hello(const cocos2d::PhysicsContact& contact);
+    bool onContactBegin(const cocos2d::PhysicsContact& contact);
+    bool onContactSeparate(const cocos2d::PhysicsContact& contact);
 
   private:
     float _xxx, _yyy;
@@ -55,6 +56,9 @@ namespace jiangweigithub {
     // drawNode;
 
     bool kissed = false;
+
+    int heroMask = 1 << 0;
+    int wallMask = 1 << 1;
 
   };
 
