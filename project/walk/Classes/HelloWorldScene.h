@@ -42,7 +42,7 @@ private:
   cocos2d::Sprite* sprite;
   cocos2d::Sprite* test;
 
-  bool flag_top, flag_bottom, flag_left, flag_right;
+  bool durationTop, durationBottom, durationLeft, durationRight;
   bool flag_obstacle_top, flag_obstacle_bottom, flag_obstacle_left, flag_obstacle_right;
 
   jiangweigithub::KeyManager* keyManager;

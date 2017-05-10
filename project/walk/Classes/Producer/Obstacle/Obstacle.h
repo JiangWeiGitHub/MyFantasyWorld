@@ -14,7 +14,7 @@ namespace jiangweigithub {
     static Obstacle* getInstance();
     ~Obstacle();
 
-    enum EXCEPTION
+    enum BLOCKDIRECTION
     {
       TOP = 1,
       BOTTOM = 2,
@@ -23,29 +23,30 @@ namespace jiangweigithub {
       NONE = 5
     };
 
-    void obstacleTop() { obstacle_top = true; };
-    void obstacleBottom() { obstacle_bottom = true; };
-    void obstacleLeft() { obstacle_left = true; };
-    void obstacleRight() { obstacle_right = true; };
+    void obstacleTop() { _obstacleTop = true; };
+    void obstacleBottom() { _obstacleBottom = true; };
+    void obstacleLeft() { _obstacleLeft = true; };
+    void obstacleRight() { _obstacleRight = true; };
 
-    void unObstacleTop() { obstacle_top = false; };
-    void unObstacleBottom() { obstacle_bottom = false; };
-    void unObstacleLeft() { obstacle_left = false; };
-    void unObstacleRight() { obstacle_right = false; };
+    void unObstacleTop() { _obstacleTop = false; };
+    void unObstacleBottom() { _obstacleBottom = false; };
+    void unObstacleLeft() { _obstacleLeft = false; };
+    void unObstacleRight() { _obstacleRight = false; };
 
-    bool getTopState() { return obstacle_top; };
-    bool getBottomState() { return obstacle_bottom; };
-    bool getLeftState() { return obstacle_left; };
-    bool getRightState() { return obstacle_right; };
+    bool getTopState() { return _obstacleTop; };
+    bool getBottomState() { return _obstacleBottom; };
+    bool getLeftState() { return _obstacleLeft; };
+    bool getRightState() { return _obstacleRight; };
 
-    void setException(EXCEPTION name) { exc = name; };
-    EXCEPTION getException() { return exc; };
+    void setBlockDirection(BLOCKDIRECTION name) { _dir = name; };
+    BLOCKDIRECTION geBlockDirection() { return _dir; };
 
   private:
     Obstacle();
-    bool obstacle_top, obstacle_bottom, obstacle_left, obstacle_right;
-    EXCEPTION exc;
-    static Obstacle* instance;
+    bool _obstacleTop, _obstacleBottom, _obstacleLeft, _obstacleRight;
+    BLOCKDIRECTION _dir;
+
+    static Obstacle* _instance;
   };
 
 }

@@ -145,10 +145,10 @@ USING_NS_CC;
 
 //   obstacle = jiangweigithub::Obstacle::getInstance();
 
-//   this->flag_top = false;
-//   this->flag_bottom = false;
-//   this->flag_left = false;
-//   this->flag_right = false;
+//   this->durationTop = false;
+//   this->durationBottom = false;
+//   this->durationLeft = false;
+//   this->durationRight = false;
 
 //   sprite->setPosition(Vec2(visibleSize.width/2,visibleSize.height/2));
 //   this->addChild(sprite, 100);
@@ -198,7 +198,7 @@ USING_NS_CC;
 
 //   if(rectangle.containsPoint(rectangleZone))
 //   {
-//     if(this->flag_top == true)
+//     if(this->durationTop == true)
 //     {
 //       if(obstacle->getException() == jiangweigithub::Obstacle::NONE)
 //       {
@@ -209,7 +209,7 @@ USING_NS_CC;
 
 //       keyManager->pressTop(this->sprite, this->_xxx, this->_yyy);
 //     }
-//     else if(this->flag_bottom == true)
+//     else if(this->durationBottom == true)
 //     {
 //       if(obstacle->getException() == jiangweigithub::Obstacle::NONE)
 //       {
@@ -220,7 +220,7 @@ USING_NS_CC;
 
 //       keyManager->pressBottom(this->sprite, this->_xxx, this->_yyy);
 //     }
-//     else if(this->flag_left == true)
+//     else if(this->durationLeft == true)
 //     {
 //       if(obstacle->getException() == jiangweigithub::Obstacle::NONE)
 //       {
@@ -231,7 +231,7 @@ USING_NS_CC;
 
 //       keyManager->pressLeft(this->sprite, this->_xxx, this->_yyy);
 //     }
-//     else if(this->flag_right == true)
+//     else if(this->durationRight == true)
 //     {
 //       if(obstacle->getException() == jiangweigithub::Obstacle::NONE)
 //       {
@@ -252,19 +252,19 @@ USING_NS_CC;
 //     obstacle->unObstacleLeft();
 //     obstacle->unObstacleRight();
 
-//     if(this->flag_top == true)
+//     if(this->durationTop == true)
 //     {
 //       keyManager->pressTop(this->sprite, this->_xxx, this->_yyy);
 //     }
-//     else if(this->flag_bottom == true)
+//     else if(this->durationBottom == true)
 //     {
 //       keyManager->pressBottom(this->sprite, this->_xxx, this->_yyy);
 //     }
-//     else if(this->flag_left == true)
+//     else if(this->durationLeft == true)
 //     {
 //       keyManager->pressLeft(this->sprite, this->_xxx, this->_yyy);
 //     }
-//     else if(this->flag_right == true)
+//     else if(this->durationRight == true)
 //     {
 //       keyManager->pressRight(this->sprite, this->_xxx, this->_yyy);
 //     }
@@ -332,28 +332,28 @@ USING_NS_CC;
 //   {
 //     case 28:
 //       // top
-//       this->flag_top = true;
+//       this->durationTop = true;
 
 //       sprite->stopAllActions();
 //       sprite->runAction(RepeatForever::create(Animate::create(animation_bottom)));
 //       break;
 //     case 29:
 //       // bottom
-//       this->flag_bottom = true;
+//       this->durationBottom = true;
 
 //       sprite->stopAllActions();
 //       sprite->runAction(RepeatForever::create(Animate::create(animation_top)));
 //       break;
 //     case 26:
 //       // left
-//       this->flag_left = true;
+//       this->durationLeft = true;
 
 //       sprite->stopAllActions();
 //       sprite->runAction(RepeatForever::create(Animate::create(animation_left)));
 //       break;
 //     case 27:
 //       // right
-//       this->flag_right = true;
+//       this->durationRight = true;
 
 //       sprite->stopAllActions();
 //       sprite->runAction(RepeatForever::create(Animate::create(animation_right)));
@@ -369,19 +369,19 @@ USING_NS_CC;
 //   {
 //     case 28:
 //       // top
-//       this->flag_top = false;
+//       this->durationTop = false;
 //       break;
 //     case 29:
 //       // bottom
-//       this->flag_bottom = false;
+//       this->durationBottom = false;
 //       break;
 //     case 26:
 //       // left
-//       this->flag_left = false;
+//       this->durationLeft = false;
 //       break;
 //     case 27:
 //       // right
-//       this->flag_right = false;
+//       this->durationRight = false;
 //       break;
 //     default:
 //       break;

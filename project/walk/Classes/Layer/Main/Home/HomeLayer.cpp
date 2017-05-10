@@ -52,10 +52,10 @@ namespace jiangweigithub {
 
     this->obstacle = Obstacle::getInstance();
 
-    this->flag_top = false;
-    this->flag_bottom = false;
-    this->flag_left = false;
-    this->flag_right = false;
+    this->durationTop = false;
+    this->durationBottom = false;
+    this->durationLeft = false;
+    this->durationRight = false;
 
     this->_xxx = 280;
     this->_yyy = 350;
@@ -134,73 +134,93 @@ namespace jiangweigithub {
 
     if(this->kissed == true)
     {
-      if(this->flag_top == true)
+      if(this->durationTop == true)
       {
-        if(obstacle->getException() == jiangweigithub::Obstacle::NONE)
-        {
-          obstacle->setException(jiangweigithub::Obstacle::BOTTOM);
-        }
+        // if(obstacle->getException() == jiangweigithub::Obstacle::NONE)
+        // {
+        //   obstacle->setException(jiangweigithub::Obstacle::BOTTOM);
+        // }
 
-        obstacle->obstacleTop();
+        // obstacle->obstacleTop();
+        // if(this->dir == TOP)
+        // {
+        // obstacle->obstacleTop();
+        // obstacle->unObstacleBottom();
+        // obstacle->unObstacleLeft();
+        // obstacle->unObstacleRight();
+        // }
 
         keyManager->pressTop(this->leaderSprite, this->_xxx, this->_yyy);
       }
-      else if(this->flag_bottom == true)
+      else if(this->durationBottom == true)
       {
-        if(obstacle->getException() == jiangweigithub::Obstacle::NONE)
-        {
-          obstacle->setException(jiangweigithub::Obstacle::TOP);
-        }
+        // if(obstacle->getException() == jiangweigithub::Obstacle::NONE)
+        // {
+        //   obstacle->setException(jiangweigithub::Obstacle::TOP);
+        // }
 
-        obstacle->obstacleBottom();
+        // obstacle->obstacleBottom();
+        // obstacle->obstacleBottom();
+        // obstacle->unObstacleTop();
+        // obstacle->unObstacleLeft();
+        // obstacle->unObstacleRight();
 
         keyManager->pressBottom(this->leaderSprite, this->_xxx, this->_yyy);
       }
-      else if(this->flag_left == true)
+      else if(this->durationLeft == true)
       {
-        if(obstacle->getException() == jiangweigithub::Obstacle::NONE)
-        {
-          obstacle->setException(jiangweigithub::Obstacle::RIGHT);
-        }
+        // if(obstacle->getException() == jiangweigithub::Obstacle::NONE)
+        // {
+        //   obstacle->setException(jiangweigithub::Obstacle::RIGHT);
+        // }
 
-        obstacle->obstacleLeft();
+        // obstacle->obstacleLeft();
+        // obstacle->obstacleLeft();
+        // obstacle->unObstacleBottom();
+        // obstacle->unObstacleTop();
+        // obstacle->unObstacleRight();
 
         keyManager->pressLeft(this->leaderSprite, this->_xxx, this->_yyy);
       }
-      else if(this->flag_right == true)
+      else if(this->durationRight == true)
       {
-        if(obstacle->getException() == jiangweigithub::Obstacle::NONE)
-        {
-          obstacle->setException(jiangweigithub::Obstacle::LEFT);
-        }
+        // if(obstacle->getException() == jiangweigithub::Obstacle::NONE)
+        // {
+        //   obstacle->setException(jiangweigithub::Obstacle::LEFT);
+        // }
 
-        obstacle->obstacleRight();
+        // obstacle->obstacleRight();
+
+        // obstacle->obstacleRight();
+        // obstacle->unObstacleBottom();
+        // obstacle->unObstacleLeft();
+        // obstacle->unObstacleTop();
 
         keyManager->pressRight(this->leaderSprite, this->_xxx, this->_yyy);
       }
     }
     else
     {
-      obstacle->setException(jiangweigithub::Obstacle::NONE);
+      // obstacle->setException(jiangweigithub::Obstacle::NONE);
 
-      obstacle->unObstacleTop();
-      obstacle->unObstacleBottom();
-      obstacle->unObstacleLeft();
-      obstacle->unObstacleRight();
+      // obstacle->unObstacleTop();
+      // obstacle->unObstacleBottom();
+      // obstacle->unObstacleLeft();
+      // obstacle->unObstacleRight();
 
-      if(this->flag_top == true)
+      if(this->durationTop == true)
       {
         keyManager->pressTop(this->leaderSprite, this->_xxx, this->_yyy);
       }
-      else if(this->flag_bottom == true)
+      else if(this->durationBottom == true)
       {
         keyManager->pressBottom(this->leaderSprite, this->_xxx, this->_yyy);
       }
-      else if(this->flag_left == true)
+      else if(this->durationLeft == true)
       {
         keyManager->pressLeft(this->leaderSprite, this->_xxx, this->_yyy);
       }
-      else if(this->flag_right == true)
+      else if(this->durationRight == true)
       {
         keyManager->pressRight(this->leaderSprite, this->_xxx, this->_yyy);
       }
@@ -224,28 +244,44 @@ namespace jiangweigithub {
     {
       case 28:
         // top
-        this->flag_top = true;
+        this->durationTop = true;
+        this->durationBottom = false;
+        this->durationLeft = false;
+        this->durationRight = false;
+        this->dir = TOP;
 
         leaderSprite->stopAllActions();
         leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationBottom())));
         break;
       case 29:
         // bottom
-        this->flag_bottom = true;
+        this->durationBottom = true;
+        this->durationTop = false;
+        this->durationLeft = false;
+        this->durationRight = false;
+        this->dir = BOTTOM;
 
         leaderSprite->stopAllActions();
         leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationTop())));
         break;
       case 26:
         // left
-        this->flag_left = true;
+        this->durationLeft = true;
+        this->durationTop = false;
+        this->durationBottom = false;
+        this->durationRight = false;
+        this->dir = LEFT;
 
         leaderSprite->stopAllActions();
         leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationLeft())));
         break;
       case 27:
         // right
-        this->flag_right = true;
+        this->durationRight = true;
+        this->durationTop = false;
+        this->durationLeft = false;
+        this->durationBottom = false;
+        this->dir = RIGHT;
 
         leaderSprite->stopAllActions();
         leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationRight())));
@@ -261,19 +297,35 @@ namespace jiangweigithub {
     {
       case 28:
         // top
-        this->flag_top = false;
+        this->durationTop = false;
+        this->durationBottom = false;
+        this->durationLeft = false;
+        this->durationRight = false;
+        this->dir = NONE;
         break;
       case 29:
         // bottom
-        this->flag_bottom = false;
+        this->durationTop = false;
+        this->durationBottom = false;
+        this->durationLeft = false;
+        this->durationRight = false;
+        this->dir = NONE;
         break;
       case 26:
         // left
-        this->flag_left = false;
+        this->durationTop = false;
+        this->durationBottom = false;
+        this->durationLeft = false;
+        this->durationRight = false;
+        this->dir = NONE;
         break;
       case 27:
         // right
-        this->flag_right = false;
+        this->durationTop = false;
+        this->durationBottom = false;
+        this->durationLeft = false;
+        this->durationRight = false;
+        this->dir = NONE;
         break;
       default:
         break;
@@ -301,7 +353,53 @@ namespace jiangweigithub {
     if((contact.getShapeB()->getBody()->getCategoryBitmask() & wallMask) == wallMask)
     {  
       this->kissed = true;
-    }    
+    }
+
+    // if(this->dir == TOP)
+    // {
+    //   obstacle->obstacleTop();
+    // }
+    // else if(this->dir == BOTTOM)
+    // {
+    //   obstacle->obstacleBottom();
+    // }
+    // else if(this->dir == LEFT)
+    // {
+    //   obstacle->obstacleLeft();
+    // }
+    // else if(this->dir == RIGHT)
+    // {
+    //   obstacle->obstacleRight();
+    // }
+
+    if(this->durationTop == true)
+    {
+      obstacle->obstacleTop();
+      obstacle->unObstacleBottom();
+      obstacle->unObstacleLeft();
+      obstacle->unObstacleRight();
+    }
+    else if(this->durationBottom == true)
+    {
+      obstacle->obstacleBottom();
+      obstacle->unObstacleTop();
+      obstacle->unObstacleLeft();
+      obstacle->unObstacleRight();
+    }
+    else if(this->durationLeft == true)
+    {
+      obstacle->obstacleLeft();
+      obstacle->unObstacleTop();
+      obstacle->unObstacleBottom();
+      obstacle->unObstacleRight();
+    }
+    else if(this->durationRight == true)
+    {
+      obstacle->obstacleRight();
+      obstacle->unObstacleTop();
+      obstacle->unObstacleLeft();
+      obstacle->unObstacleBottom();
+    }
 
     return true;
   }
@@ -328,6 +426,11 @@ namespace jiangweigithub {
     {  
       this->kissed = false;
     } 
+
+    obstacle->unObstacleTop();
+    obstacle->unObstacleBottom();
+    obstacle->unObstacleLeft();
+    obstacle->unObstacleRight();
 
     return true;
   }

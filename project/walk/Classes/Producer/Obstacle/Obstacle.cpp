@@ -4,28 +4,28 @@ namespace jiangweigithub {
 
   Obstacle::Obstacle()
   {
-    obstacle_top = false;
-    obstacle_bottom = false;
-    obstacle_left = false;
-    obstacle_right = false;
+    _obstacleTop = false;
+    _obstacleBottom = false;
+    _obstacleLeft = false;
+    _obstacleRight = false;
 
-    exc = NONE;
+    _dir = NONE;
   }
 
   Obstacle::~Obstacle()
   {
-    obstacle_top = false;
-    obstacle_bottom = false;
-    obstacle_left = false;
-    obstacle_right = false;
+    _obstacleTop = false;
+    _obstacleBottom = false;
+    _obstacleLeft = false;
+    _obstacleRight = false;
     
-    exc = NONE;
+    _dir = NONE;
   }
 
-  Obstacle* Obstacle::instance = new Obstacle();
+  Obstacle* Obstacle::_instance = new Obstacle();
   Obstacle* Obstacle::getInstance()
   {
-    return instance;
+    return _instance;
   }
 
 }

@@ -15,37 +15,37 @@ namespace jiangweigithub {
 
   void KeyBottom::pressTop(cocos2d::Sprite* sprite, float& x, float& y)
   {
-    if(KeyboardState::obstacle->getTopState() == true)
-    {
-      if(obstacle->getException() == Obstacle::TOP)
-      {
-        keyManager->setState(keyManager->getStateTop());
-      }
-      else
-      {
-        keyManager->setState(keyManager->getStateStop());
-      }
+    // if(KeyboardState::obstacle->getTopState() == true)
+    // {
+    //   // if(obstacle->geBlockDirection() == Obstacle::TOP)
+    //   // {
+    //   //   keyManager->setState(keyManager->getStateStop());
+    //   // }
+    //   // else
+    //   // {
+    //   //   keyManager->setState(keyManager->getStateTop());
+    //   // }
 
-      keyManager->pressTop(sprite, x, y);
+    //   keyManager->setState(keyManager->getStateStop());
 
-      return;
+    //   keyManager->pressTop(sprite, x, y);
 
-      return;
-    }
+    //   return;
+    // }
 
-    if(KeyboardState::obstacle->getBottomState() == true || KeyboardState::obstacle->getLeftState() == true || KeyboardState::obstacle->getRightState() == true)
-    {
-      // y += 1;
-      // sprite->setPosition(cocos2d::Vec2(x, y));
+    // if(KeyboardState::obstacle->getBottomState() == true || KeyboardState::obstacle->getLeftState() == true || KeyboardState::obstacle->getRightState() == true)
+    // {
+    //   // y += 1;
+    //   // sprite->setPosition(cocos2d::Vec2(x, y));
 
-      keyManager->setState(keyManager->getStateTop());
-      keyManager->pressTop(sprite, x, y);
+    //   keyManager->setState(keyManager->getStateTop());
+    //   keyManager->pressTop(sprite, x, y);
 
-      return;
-    }
+    //   return;
+    // }
 
-    // y += 1;
-    // sprite->setPosition(cocos2d::Vec2(x, y));
+    // // y += 1;
+    // // sprite->setPosition(cocos2d::Vec2(x, y));
 
     keyManager->setState(keyManager->getStateTop());
     keyManager->pressTop(sprite, x, y);
@@ -57,27 +57,19 @@ namespace jiangweigithub {
   {
     if(KeyboardState::obstacle->getBottomState() == true)
     {
-      if(obstacle->getException() == Obstacle::BOTTOM)
-      {
-        y -= 1;
-        sprite->setPosition(cocos2d::Vec2(x, y));
-      }
-      else
-      {
-        keyManager->setState(keyManager->getStateStop());
-        keyManager->pressBottom(sprite, x, y);
-      }    
+      keyManager->setState(keyManager->getStateStop());
+      keyManager->pressBottom(sprite, x, y);  
 
       return;
     }
 
-    if(KeyboardState::obstacle->getTopState() == true || KeyboardState::obstacle->getLeftState() == true || KeyboardState::obstacle->getRightState() == true)
-    {
-      y -= 1;
-      sprite->setPosition(cocos2d::Vec2(x, y));
+    // if(KeyboardState::obstacle->getTopState() == true || KeyboardState::obstacle->getLeftState() == true || KeyboardState::obstacle->getRightState() == true)
+    // {
+    //   y -= 1;
+    //   sprite->setPosition(cocos2d::Vec2(x, y));
 
-      return;
-    }
+    //   return;
+    // }
 
     y -= 1;
     sprite->setPosition(cocos2d::Vec2(x, y));
@@ -87,35 +79,28 @@ namespace jiangweigithub {
 
   void KeyBottom::pressLeft(cocos2d::Sprite* sprite, float& x, float& y)
   {
-    if(KeyboardState::obstacle->getLeftState() == true)
-    {
-      if(obstacle->getException() == Obstacle::LEFT)
-      {
-        keyManager->setState(keyManager->getStateLeft());
-      }
-      else
-      {
-        keyManager->setState(keyManager->getStateStop());
-      }
+    // if(KeyboardState::obstacle->getLeftState() == true)
+    // {
+    //   keyManager->setState(keyManager->getStateStop());
 
-      keyManager->pressLeft(sprite, x, y);
+    //   keyManager->pressLeft(sprite, x, y);
 
-      return;
-    }
+    //   return;
+    // }
 
-    if(KeyboardState::obstacle->getTopState() == true || KeyboardState::obstacle->getBottomState() == true || KeyboardState::obstacle->getRightState() == true)
-    {
-      // x -= 1;
-      // sprite->setPosition(cocos2d::Vec2(x, y));
+    // if(KeyboardState::obstacle->getTopState() == true || KeyboardState::obstacle->getBottomState() == true || KeyboardState::obstacle->getRightState() == true)
+    // {
+    //   // x -= 1;
+    //   // sprite->setPosition(cocos2d::Vec2(x, y));
 
-      keyManager->setState(keyManager->getStateLeft());
-      keyManager->pressLeft(sprite, x, y);
+    //   keyManager->setState(keyManager->getStateLeft());
+    //   keyManager->pressLeft(sprite, x, y);
 
-      return;
-    }
+    //   return;
+    // }
 
-    // x -= 1;
-    // sprite->setPosition(cocos2d::Vec2(x, y));
+    // // x -= 1;
+    // // sprite->setPosition(cocos2d::Vec2(x, y));
 
     keyManager->setState(keyManager->getStateLeft());
     keyManager->pressLeft(sprite, x, y);
@@ -125,35 +110,28 @@ namespace jiangweigithub {
 
   void KeyBottom::pressRight(cocos2d::Sprite* sprite, float& x, float& y)
   {
-    if(KeyboardState::obstacle->getRightState() == true)
-    {
-      if(obstacle->getException() == Obstacle::RIGHT)
-      {
-        keyManager->setState(keyManager->getStateRight());
-      }
-      else
-      {
-        keyManager->setState(keyManager->getStateStop());
-      }
+    // if(KeyboardState::obstacle->getRightState() == true)
+    // {
+    //   keyManager->setState(keyManager->getStateRight());
 
-      keyManager->pressRight(sprite, x, y);
+    //   keyManager->pressRight(sprite, x, y);
 
-      return;
-    }
+    //   return;
+    // }
 
-    if(KeyboardState::obstacle->getTopState() == true || KeyboardState::obstacle->getBottomState() == true || KeyboardState::obstacle->getLeftState() == true)
-    {
-      // x += 1;
-      // sprite->setPosition(cocos2d::Vec2(x, y));
+    // if(KeyboardState::obstacle->getTopState() == true || KeyboardState::obstacle->getBottomState() == true || KeyboardState::obstacle->getLeftState() == true)
+    // {
+    //   // x += 1;
+    //   // sprite->setPosition(cocos2d::Vec2(x, y));
 
-      keyManager->setState(keyManager->getStateRight());
-      keyManager->pressRight(sprite, x, y);
+    //   keyManager->setState(keyManager->getStateRight());
+    //   keyManager->pressRight(sprite, x, y);
 
-      return;
-    }
+    //   return;
+    // }
 
-    // x += 1;
-    // sprite->setPosition(cocos2d::Vec2(x, y));
+    // // x += 1;
+    // // sprite->setPosition(cocos2d::Vec2(x, y));
 
     keyManager->setState(keyManager->getStateRight());
     keyManager->pressRight(sprite, x, y);
