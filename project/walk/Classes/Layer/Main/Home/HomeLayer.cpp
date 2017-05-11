@@ -16,79 +16,62 @@ namespace jiangweigithub {
       return false;
     }
 
+    // clean keyboardName Cache
     if(this->_keyboardNameCache.size() != 0)
     {
-      std::cout<<"Something not good"<<std::endl;
       while(this->_keyboardNameCache.empty() == false)
       {
         this->_keyboardNameCache.pop();
       }
     }
 
+    // get view size
     auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
     cocos2d::Vec2 origin = cocos2d::Director::getInstance()->getVisibleOrigin();
 
-    leaderSprite = cocos2d::Sprite::create();
-    
+    // create hero with physicsBody
+    leaderSprite = cocos2d::Sprite::create();    
     cocos2d::PhysicsBody* physicsBody = cocos2d::PhysicsBody::createBox(cocos2d::Size(30, 20), cocos2d::PHYSICSBODY_MATERIAL_DEFAULT, cocos2d::Vec2(15, 10));
-
     physicsBody->setDynamic(false);
-
     leaderSprite->setPhysicsBody(physicsBody);
-
     leaderSprite->getPhysicsBody()->setCategoryBitmask(heroMask);
     leaderSprite->getPhysicsBody()->setContactTestBitmask(heroMask | wallMask);
     leaderSprite->getPhysicsBody()->setCollisionBitmask(0x00);
-
     leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationTop())));
 
+    // create background
     auto homeTitle = MainSprite::getHomeTitle();
     auto tileMapSprite = MainSprite::getTileMapSprite();
-    auto obstacle = MainSprite::getObstacle();
-
     auto mapSpriteSize = tileMapSprite->getContentSize();
     auto homeTitleSpriteSize = homeTitle->getContentSize();
 
     tileMapSprite->setPosition(cocos2d::Vec2((visibleSize.width - mapSpriteSize.width) / 2, (visibleSize.height - mapSpriteSize.height) / 2));
     homeTitle->setPosition(cocos2d::Vec2((visibleSize.width - homeTitleSpriteSize.width) / 2, 660));
-    leaderSprite->setPosition(cocos2d::Vec2(280, 350));
+    leaderSprite->setPosition(cocos2d::Vec2(this->_heroPositionX, this->_heroPositionY));
 
-    // this->addChild(tileMapSprite, -1);
-    // this->addChild(homeTitle, 0);
+    // add to the layer
+    this->addChild(tileMapSprite, -1);
+    this->addChild(homeTitle, 0);
     this->addChild(leaderSprite, 1);
 
-    this->obstacle = Obstacle::getInstance();
-
-    this->durationTop = false;
-    this->durationBottom = false;
-    this->durationLeft = false;
-    this->durationRight = false;
-
-    this->_xxx = 280;
-    this->_yyy = 350;
-
+    // add keyboard listener
     auto listener = cocos2d::EventListenerKeyboard::create();
     listener->onKeyPressed = CC_CALLBACK_2(HomeLayer::onKeyPressed, this);
     listener->onKeyReleased = CC_CALLBACK_2(HomeLayer::onKeyReleased, this);
-
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
-    keyManager = new KeyManager("STOP");
-
+    // get background barrier
     cocos2d::TMXTiledMap* map = cocos2d::TMXTiledMap::create("homePath.tmx");
-
     auto objectGroup = map->getObjectGroup("path");
-    auto objects = objectGroup->getObjects();    
+    auto objects = objectGroup->getObjects();
 
     for (auto object: objects)
     {
-
       auto dic= object.asValueMap();
-      objectX = dic.at("x").asFloat();
-      objectY = dic.at("y").asFloat();        
+      auto objectX = dic.at("x").asFloat();
+      auto objectY = dic.at("y").asFloat();        
 
       auto pointsVector = dic.at("polylinePoints").asValueVector();
-
       auto size = pointsVector.size();
 
       cocos2d::Vec2 verts[size] = {};
@@ -119,14 +102,13 @@ namespace jiangweigithub {
       edgeSpace->getPhysicsBody()->setCollisionBitmask(0x00);
     }
 
-    cocos2d::EventListenerPhysicsContact* contactListener = cocos2d::EventListenerPhysicsContact::create(); 
-
+    // add physics listener
+    cocos2d::EventListenerPhysicsContact* contactListener = cocos2d::EventListenerPhysicsContact::create();
     contactListener->onContactBegin = CC_CALLBACK_1(HomeLayer::onContactBegin, this);
-    contactListener->onContactSeparate = CC_CALLBACK_1(HomeLayer::onContactSeparate, this); 
-
+    contactListener->onContactSeparate = CC_CALLBACK_1(HomeLayer::onContactSeparate, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(contactListener, this);
 
-
+    // enable frame update
     this->scheduleUpdate();
 
     return true;
@@ -138,30 +120,30 @@ namespace jiangweigithub {
     {
       if(this->_keyboardNameCache.top().compare("TOP") == 0)
       {
-        if(this->durationTop == true)
+        if(this->_durationTop == true)
         {
-          keyManager->pressTop(this->leaderSprite, this->_xxx, this->_yyy);
+          keyManager->pressTop(this->leaderSprite, this->_heroPositionX, this->_heroPositionY);
         }        
       }
       if(this->_keyboardNameCache.top().compare("BOTTOM") == 0)
       {
-        if(this->durationBottom == true)
+        if(this->_durationBottom == true)
         {
-          keyManager->pressBottom(this->leaderSprite, this->_xxx, this->_yyy);
+          keyManager->pressBottom(this->leaderSprite, this->_heroPositionX, this->_heroPositionY);
         } 
       }
       if(this->_keyboardNameCache.top().compare("LEFT") == 0)
       {
-        if(this->durationLeft == true)
+        if(this->_durationLeft == true)
         {
-          keyManager->pressLeft(this->leaderSprite, this->_xxx, this->_yyy);
+          keyManager->pressLeft(this->leaderSprite, this->_heroPositionX, this->_heroPositionY);
         }
       }
       if(this->_keyboardNameCache.top().compare("RIGHT") == 0)
       {
-        if(this->durationRight == true)
+        if(this->_durationRight == true)
         {
-          keyManager->pressRight(this->leaderSprite, this->_xxx, this->_yyy);
+          keyManager->pressRight(this->leaderSprite, this->_heroPositionX, this->_heroPositionY);
         }
       }
     }
@@ -173,7 +155,7 @@ namespace jiangweigithub {
     {
       case 28:
         // top
-        this->durationTop = true;
+        this->_durationTop = true;
         this->_keyboardNameCache.push("TOP");
 
         leaderSprite->stopAllActions();
@@ -181,7 +163,7 @@ namespace jiangweigithub {
         break;
       case 29:
         // bottom
-        this->durationBottom = true;
+        this->_durationBottom = true;
         this->_keyboardNameCache.push("BOTTOM");
 
         leaderSprite->stopAllActions();
@@ -189,7 +171,7 @@ namespace jiangweigithub {
         break;
       case 26:
         // left
-        this->durationLeft = true;
+        this->_durationLeft = true;
         this->_keyboardNameCache.push("LEFT");
 
         leaderSprite->stopAllActions();
@@ -197,7 +179,7 @@ namespace jiangweigithub {
         break;
       case 27:
         // right
-        this->durationRight = true;
+        this->_durationRight = true;
         this->_keyboardNameCache.push("RIGHT");
 
         leaderSprite->stopAllActions();
@@ -214,7 +196,7 @@ namespace jiangweigithub {
     {
       case 28:
         // top
-        this->durationTop = false;
+        this->_durationTop = false;
 
         if(this->_keyboardNameCache.top().compare("TOP") == 0)
         {
@@ -223,17 +205,17 @@ namespace jiangweigithub {
 
         if(this->_keyboardNameCache.empty() == false)
         {
-          if(this->_keyboardNameCache.top().compare("BOTTOM") == 0 && this->durationBottom == true)
+          if(this->_keyboardNameCache.top().compare("BOTTOM") == 0 && this->_durationBottom == true)
           {
             leaderSprite->stopAllActions();
             leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationTop())));
           }
-          else if(this->_keyboardNameCache.top().compare("LEFT") == 0 && this->durationLeft == true)
+          else if(this->_keyboardNameCache.top().compare("LEFT") == 0 && this->_durationLeft == true)
           {
             leaderSprite->stopAllActions();
             leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationLeft())));
           }
-          else if(this->_keyboardNameCache.top().compare("RIGHT") == 0 && this->durationRight == true)
+          else if(this->_keyboardNameCache.top().compare("RIGHT") == 0 && this->_durationRight == true)
           {
             leaderSprite->stopAllActions();
             leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationRight())));
@@ -243,7 +225,7 @@ namespace jiangweigithub {
         break;
       case 29:
         // bottom
-        this->durationBottom = false;
+        this->_durationBottom = false;
 
         if(this->_keyboardNameCache.top().compare("BOTTOM") == 0)
         {
@@ -252,17 +234,17 @@ namespace jiangweigithub {
 
         if(this->_keyboardNameCache.empty() == false)
         {
-          if(this->_keyboardNameCache.top().compare("TOP") == 0 && this->durationTop == true)
+          if(this->_keyboardNameCache.top().compare("TOP") == 0 && this->_durationTop == true)
           {
             leaderSprite->stopAllActions();
             leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationBottom())));
           }
-          else if(this->_keyboardNameCache.top().compare("LEFT") == 0 && this->durationLeft == true)
+          else if(this->_keyboardNameCache.top().compare("LEFT") == 0 && this->_durationLeft == true)
           {
             leaderSprite->stopAllActions();
             leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationLeft())));
           }
-          else if(this->_keyboardNameCache.top().compare("RIGHT") == 0 && this->durationRight == true)
+          else if(this->_keyboardNameCache.top().compare("RIGHT") == 0 && this->_durationRight == true)
           {
             leaderSprite->stopAllActions();
             leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationRight())));
@@ -272,7 +254,7 @@ namespace jiangweigithub {
         break;
       case 26:
         // left
-        this->durationLeft = false;
+        this->_durationLeft = false;
 
         if(this->_keyboardNameCache.top().compare("LEFT") == 0)
         {
@@ -281,17 +263,17 @@ namespace jiangweigithub {
 
         if(this->_keyboardNameCache.empty() == false)
         {
-          if(this->_keyboardNameCache.top().compare("BOTTOM") == 0 && this->durationBottom == true)
+          if(this->_keyboardNameCache.top().compare("BOTTOM") == 0 && this->_durationBottom == true)
           {
             leaderSprite->stopAllActions();
             leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationTop())));
           }
-          else if(this->_keyboardNameCache.top().compare("TOP") == 0 && this->durationTop == true)
+          else if(this->_keyboardNameCache.top().compare("TOP") == 0 && this->_durationTop == true)
           {
             leaderSprite->stopAllActions();
             leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationBottom())));
           }
-          else if(this->_keyboardNameCache.top().compare("RIGHT") == 0 && this->durationRight == true)
+          else if(this->_keyboardNameCache.top().compare("RIGHT") == 0 && this->_durationRight == true)
           {
             leaderSprite->stopAllActions();
             leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationRight())));
@@ -301,7 +283,7 @@ namespace jiangweigithub {
         break;
       case 27:
         // right
-        this->durationRight = false;
+        this->_durationRight = false;
 
         if(this->_keyboardNameCache.top().compare("RIGHT") == 0)
         {
@@ -310,17 +292,17 @@ namespace jiangweigithub {
 
         if(this->_keyboardNameCache.empty() == false)
         {
-          if(this->_keyboardNameCache.top().compare("BOTTOM") == 0 && this->durationBottom == true)
+          if(this->_keyboardNameCache.top().compare("BOTTOM") == 0 && this->_durationBottom == true)
           {
             leaderSprite->stopAllActions();
             leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationTop())));
           }
-          else if(this->_keyboardNameCache.top().compare("LEFT") == 0 && this->durationLeft == true)
+          else if(this->_keyboardNameCache.top().compare("LEFT") == 0 && this->_durationLeft == true)
           {
             leaderSprite->stopAllActions();
             leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationLeft())));
           }
-          else if(this->_keyboardNameCache.top().compare("TOP") == 0 && this->durationTop == true)
+          else if(this->_keyboardNameCache.top().compare("TOP") == 0 && this->_durationTop == true)
           {
             leaderSprite->stopAllActions();
             leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationBottom())));

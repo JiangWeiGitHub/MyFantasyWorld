@@ -30,17 +30,19 @@ namespace jiangweigithub {
     bool onContactSeparate(const cocos2d::PhysicsContact& contact);
 
   private:
-    float _xxx, _yyy;
-    
+    float _heroPositionX = 280, _heroPositionY = 350;
+   
     cocos2d::Sprite* leaderSprite;
 
-    bool durationTop, durationBottom, durationLeft, durationRight;
+    bool _durationTop = false;
+    bool _durationBottom = false;
+    bool _durationLeft = false;
+    bool _durationRight = false;
+
     std::stack<std::string> _keyboardNameCache;
 
-    KeyManager* keyManager;
-    Obstacle* obstacle;
-
-    float objectX, objectY;
+    KeyManager* keyManager = new KeyManager("STOP");
+    Obstacle* obstacle = Obstacle::getInstance();
 
     int heroMask = 1 << 0;
     int wallMask = 1 << 1;
