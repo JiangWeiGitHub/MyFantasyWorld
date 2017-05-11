@@ -16,6 +16,15 @@ namespace jiangweigithub {
       return false;
     }
 
+    if(this->_keyboardNameCache.size() != 0)
+    {
+      std::cout<<"Something not good"<<std::endl;
+      while(this->_keyboardNameCache.empty() == false)
+      {
+        this->_keyboardNameCache.pop();
+      }
+    }
+
     auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
     cocos2d::Vec2 origin = cocos2d::Director::getInstance()->getVisibleOrigin();
 
@@ -44,11 +53,9 @@ namespace jiangweigithub {
     homeTitle->setPosition(cocos2d::Vec2((visibleSize.width - homeTitleSpriteSize.width) / 2, 660));
     leaderSprite->setPosition(cocos2d::Vec2(280, 350));
 
-    this->addChild(tileMapSprite, -1);
-    this->addChild(homeTitle, 0);
+    // this->addChild(tileMapSprite, -1);
+    // this->addChild(homeTitle, 0);
     this->addChild(leaderSprite, 1);
-
-    flag_obstacle_top = flag_obstacle_bottom = flag_obstacle_left = flag_obstacle_right = false;
 
     this->obstacle = Obstacle::getInstance();
 
@@ -66,10 +73,7 @@ namespace jiangweigithub {
 
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
-    stop_top = stop_bottom = stop_left = stop_right = false;
-
     keyManager = new KeyManager("STOP");
-
 
     cocos2d::TMXTiledMap* map = cocos2d::TMXTiledMap::create("homePath.tmx");
 
@@ -130,112 +134,37 @@ namespace jiangweigithub {
 
   void HomeLayer::update(float delta)
   {
-    // rectangleZone = cocos2d::Vec2(this->_xxx, this->_yyy);
-
-    if(this->kissed == true)
+    if(this->_keyboardNameCache.empty() == false)
     {
-      if(this->durationTop == true)
+      if(this->_keyboardNameCache.top().compare("TOP") == 0)
       {
-        // if(obstacle->getException() == jiangweigithub::Obstacle::NONE)
-        // {
-        //   obstacle->setException(jiangweigithub::Obstacle::BOTTOM);
-        // }
-
-        // obstacle->obstacleTop();
-        // if(this->dir == TOP)
-        // {
-        // obstacle->obstacleTop();
-        // obstacle->unObstacleBottom();
-        // obstacle->unObstacleLeft();
-        // obstacle->unObstacleRight();
-        // }
-
-        keyManager->pressTop(this->leaderSprite, this->_xxx, this->_yyy);
+        if(this->durationTop == true)
+        {
+          keyManager->pressTop(this->leaderSprite, this->_xxx, this->_yyy);
+        }        
       }
-      else if(this->durationBottom == true)
+      if(this->_keyboardNameCache.top().compare("BOTTOM") == 0)
       {
-        // if(obstacle->getException() == jiangweigithub::Obstacle::NONE)
-        // {
-        //   obstacle->setException(jiangweigithub::Obstacle::TOP);
-        // }
-
-        // obstacle->obstacleBottom();
-        // obstacle->obstacleBottom();
-        // obstacle->unObstacleTop();
-        // obstacle->unObstacleLeft();
-        // obstacle->unObstacleRight();
-
-        keyManager->pressBottom(this->leaderSprite, this->_xxx, this->_yyy);
+        if(this->durationBottom == true)
+        {
+          keyManager->pressBottom(this->leaderSprite, this->_xxx, this->_yyy);
+        } 
       }
-      else if(this->durationLeft == true)
+      if(this->_keyboardNameCache.top().compare("LEFT") == 0)
       {
-        // if(obstacle->getException() == jiangweigithub::Obstacle::NONE)
-        // {
-        //   obstacle->setException(jiangweigithub::Obstacle::RIGHT);
-        // }
-
-        // obstacle->obstacleLeft();
-        // obstacle->obstacleLeft();
-        // obstacle->unObstacleBottom();
-        // obstacle->unObstacleTop();
-        // obstacle->unObstacleRight();
-
-        keyManager->pressLeft(this->leaderSprite, this->_xxx, this->_yyy);
+        if(this->durationLeft == true)
+        {
+          keyManager->pressLeft(this->leaderSprite, this->_xxx, this->_yyy);
+        }
       }
-      else if(this->durationRight == true)
+      if(this->_keyboardNameCache.top().compare("RIGHT") == 0)
       {
-        // if(obstacle->getException() == jiangweigithub::Obstacle::NONE)
-        // {
-        //   obstacle->setException(jiangweigithub::Obstacle::LEFT);
-        // }
-
-        // obstacle->obstacleRight();
-
-        // obstacle->obstacleRight();
-        // obstacle->unObstacleBottom();
-        // obstacle->unObstacleLeft();
-        // obstacle->unObstacleTop();
-
-        keyManager->pressRight(this->leaderSprite, this->_xxx, this->_yyy);
+        if(this->durationRight == true)
+        {
+          keyManager->pressRight(this->leaderSprite, this->_xxx, this->_yyy);
+        }
       }
     }
-    else
-    {
-      // obstacle->setException(jiangweigithub::Obstacle::NONE);
-
-      // obstacle->unObstacleTop();
-      // obstacle->unObstacleBottom();
-      // obstacle->unObstacleLeft();
-      // obstacle->unObstacleRight();
-
-      if(this->durationTop == true)
-      {
-        keyManager->pressTop(this->leaderSprite, this->_xxx, this->_yyy);
-      }
-      else if(this->durationBottom == true)
-      {
-        keyManager->pressBottom(this->leaderSprite, this->_xxx, this->_yyy);
-      }
-      else if(this->durationLeft == true)
-      {
-        keyManager->pressLeft(this->leaderSprite, this->_xxx, this->_yyy);
-      }
-      else if(this->durationRight == true)
-      {
-        keyManager->pressRight(this->leaderSprite, this->_xxx, this->_yyy);
-      }
-    }
-
-    // if(rectangle.containsPoint(rectangleZone))
-    // {
-
-    // }
-    // else
-    // {
-
-    // }
-
-    // this->kissed = false;
   }
 
   void HomeLayer::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event)
@@ -245,10 +174,7 @@ namespace jiangweigithub {
       case 28:
         // top
         this->durationTop = true;
-        this->durationBottom = false;
-        this->durationLeft = false;
-        this->durationRight = false;
-        this->dir = TOP;
+        this->_keyboardNameCache.push("TOP");
 
         leaderSprite->stopAllActions();
         leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationBottom())));
@@ -256,10 +182,7 @@ namespace jiangweigithub {
       case 29:
         // bottom
         this->durationBottom = true;
-        this->durationTop = false;
-        this->durationLeft = false;
-        this->durationRight = false;
-        this->dir = BOTTOM;
+        this->_keyboardNameCache.push("BOTTOM");
 
         leaderSprite->stopAllActions();
         leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationTop())));
@@ -267,10 +190,7 @@ namespace jiangweigithub {
       case 26:
         // left
         this->durationLeft = true;
-        this->durationTop = false;
-        this->durationBottom = false;
-        this->durationRight = false;
-        this->dir = LEFT;
+        this->_keyboardNameCache.push("LEFT");
 
         leaderSprite->stopAllActions();
         leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationLeft())));
@@ -278,10 +198,7 @@ namespace jiangweigithub {
       case 27:
         // right
         this->durationRight = true;
-        this->durationTop = false;
-        this->durationLeft = false;
-        this->durationBottom = false;
-        this->dir = RIGHT;
+        this->_keyboardNameCache.push("RIGHT");
 
         leaderSprite->stopAllActions();
         leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationRight())));
@@ -298,34 +215,118 @@ namespace jiangweigithub {
       case 28:
         // top
         this->durationTop = false;
-        this->durationBottom = false;
-        this->durationLeft = false;
-        this->durationRight = false;
-        this->dir = NONE;
+
+        if(this->_keyboardNameCache.top().compare("TOP") == 0)
+        {
+          this->_keyboardNameCache.pop();
+        }
+
+        if(this->_keyboardNameCache.empty() == false)
+        {
+          if(this->_keyboardNameCache.top().compare("BOTTOM") == 0 && this->durationBottom == true)
+          {
+            leaderSprite->stopAllActions();
+            leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationTop())));
+          }
+          else if(this->_keyboardNameCache.top().compare("LEFT") == 0 && this->durationLeft == true)
+          {
+            leaderSprite->stopAllActions();
+            leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationLeft())));
+          }
+          else if(this->_keyboardNameCache.top().compare("RIGHT") == 0 && this->durationRight == true)
+          {
+            leaderSprite->stopAllActions();
+            leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationRight())));
+          }
+        }
+
         break;
       case 29:
         // bottom
-        this->durationTop = false;
         this->durationBottom = false;
-        this->durationLeft = false;
-        this->durationRight = false;
-        this->dir = NONE;
+
+        if(this->_keyboardNameCache.top().compare("BOTTOM") == 0)
+        {
+          this->_keyboardNameCache.pop();
+        }
+
+        if(this->_keyboardNameCache.empty() == false)
+        {
+          if(this->_keyboardNameCache.top().compare("TOP") == 0 && this->durationTop == true)
+          {
+            leaderSprite->stopAllActions();
+            leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationBottom())));
+          }
+          else if(this->_keyboardNameCache.top().compare("LEFT") == 0 && this->durationLeft == true)
+          {
+            leaderSprite->stopAllActions();
+            leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationLeft())));
+          }
+          else if(this->_keyboardNameCache.top().compare("RIGHT") == 0 && this->durationRight == true)
+          {
+            leaderSprite->stopAllActions();
+            leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationRight())));
+          }
+        }
+
         break;
       case 26:
         // left
-        this->durationTop = false;
-        this->durationBottom = false;
         this->durationLeft = false;
-        this->durationRight = false;
-        this->dir = NONE;
+
+        if(this->_keyboardNameCache.top().compare("LEFT") == 0)
+        {
+          this->_keyboardNameCache.pop();
+        }
+
+        if(this->_keyboardNameCache.empty() == false)
+        {
+          if(this->_keyboardNameCache.top().compare("BOTTOM") == 0 && this->durationBottom == true)
+          {
+            leaderSprite->stopAllActions();
+            leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationTop())));
+          }
+          else if(this->_keyboardNameCache.top().compare("TOP") == 0 && this->durationTop == true)
+          {
+            leaderSprite->stopAllActions();
+            leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationBottom())));
+          }
+          else if(this->_keyboardNameCache.top().compare("RIGHT") == 0 && this->durationRight == true)
+          {
+            leaderSprite->stopAllActions();
+            leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationRight())));
+          }
+        }
+
         break;
       case 27:
         // right
-        this->durationTop = false;
-        this->durationBottom = false;
-        this->durationLeft = false;
         this->durationRight = false;
-        this->dir = NONE;
+
+        if(this->_keyboardNameCache.top().compare("RIGHT") == 0)
+        {
+          this->_keyboardNameCache.pop();
+        }
+
+        if(this->_keyboardNameCache.empty() == false)
+        {
+          if(this->_keyboardNameCache.top().compare("BOTTOM") == 0 && this->durationBottom == true)
+          {
+            leaderSprite->stopAllActions();
+            leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationTop())));
+          }
+          else if(this->_keyboardNameCache.top().compare("LEFT") == 0 && this->durationLeft == true)
+          {
+            leaderSprite->stopAllActions();
+            leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationLeft())));
+          }
+          else if(this->_keyboardNameCache.top().compare("TOP") == 0 && this->durationTop == true)
+          {
+            leaderSprite->stopAllActions();
+            leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationBottom())));
+          }
+        }
+
         break;
       default:
         break;
@@ -335,65 +336,48 @@ namespace jiangweigithub {
   bool HomeLayer::onContactBegin(const cocos2d::PhysicsContact& contact)
   {
 
-    if((contact.getShapeA()->getBody()->getCategoryBitmask() & heroMask) == heroMask)
-    {  
-      this->kissed = true;
-    }
+    // if((contact.getShapeA()->getBody()->getCategoryBitmask() & heroMask) == heroMask)
+    // {  
 
-    if((contact.getShapeB()->getBody()->getCategoryBitmask() & heroMask) == heroMask)
-    {  
-      this->kissed = true;
-    }
-
-    if((contact.getShapeA()->getBody()->getCategoryBitmask() & wallMask) == wallMask)
-    {  
-      this->kissed = true;
-    }
-
-    if((contact.getShapeB()->getBody()->getCategoryBitmask() & wallMask) == wallMask)
-    {  
-      this->kissed = true;
-    }
-
-    // if(this->dir == TOP)
-    // {
-    //   obstacle->obstacleTop();
-    // }
-    // else if(this->dir == BOTTOM)
-    // {
-    //   obstacle->obstacleBottom();
-    // }
-    // else if(this->dir == LEFT)
-    // {
-    //   obstacle->obstacleLeft();
-    // }
-    // else if(this->dir == RIGHT)
-    // {
-    //   obstacle->obstacleRight();
     // }
 
-    if(this->durationTop == true)
+    // if((contact.getShapeB()->getBody()->getCategoryBitmask() & heroMask) == heroMask)
+    // {  
+
+    // }
+
+    // if((contact.getShapeA()->getBody()->getCategoryBitmask() & wallMask) == wallMask)
+    // {  
+
+    // }
+
+    // if((contact.getShapeB()->getBody()->getCategoryBitmask() & wallMask) == wallMask)
+    // {  
+
+    // }
+
+    if(this->_keyboardNameCache.top().compare("TOP") == 0)
     {
       obstacle->obstacleTop();
       obstacle->unObstacleBottom();
       obstacle->unObstacleLeft();
       obstacle->unObstacleRight();
     }
-    else if(this->durationBottom == true)
+    if(this->_keyboardNameCache.top().compare("BOTTOM") == 0)
     {
       obstacle->obstacleBottom();
       obstacle->unObstacleTop();
       obstacle->unObstacleLeft();
       obstacle->unObstacleRight();
     }
-    else if(this->durationLeft == true)
+    if(this->_keyboardNameCache.top().compare("LEFT") == 0)
     {
       obstacle->obstacleLeft();
       obstacle->unObstacleTop();
       obstacle->unObstacleBottom();
       obstacle->unObstacleRight();
     }
-    else if(this->durationRight == true)
+    if(this->_keyboardNameCache.top().compare("RIGHT") == 0)
     {
       obstacle->obstacleRight();
       obstacle->unObstacleTop();
@@ -407,25 +391,25 @@ namespace jiangweigithub {
   bool HomeLayer::onContactSeparate(const cocos2d::PhysicsContact& contact)
   {
 
-    if((contact.getShapeA()->getBody()->getCategoryBitmask() & heroMask) == heroMask)
-    {  
-      this->kissed = false;
-    }
+    // if((contact.getShapeA()->getBody()->getCategoryBitmask() & heroMask) == heroMask)
+    // {  
 
-    if((contact.getShapeB()->getBody()->getCategoryBitmask() & heroMask) == heroMask)
-    {  
-      this->kissed = false;
-    }
+    // }
 
-    if((contact.getShapeA()->getBody()->getCategoryBitmask() & wallMask) == wallMask)
-    {  
-      this->kissed = false;
-    }
+    // if((contact.getShapeB()->getBody()->getCategoryBitmask() & heroMask) == heroMask)
+    // {  
 
-    if((contact.getShapeB()->getBody()->getCategoryBitmask() & wallMask) == wallMask)
-    {  
-      this->kissed = false;
-    } 
+    // }
+
+    // if((contact.getShapeA()->getBody()->getCategoryBitmask() & wallMask) == wallMask)
+    // {  
+
+    // }
+
+    // if((contact.getShapeB()->getBody()->getCategoryBitmask() & wallMask) == wallMask)
+    // {  
+
+    // } 
 
     obstacle->unObstacleTop();
     obstacle->unObstacleBottom();
