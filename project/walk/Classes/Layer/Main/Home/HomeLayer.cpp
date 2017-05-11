@@ -48,6 +48,7 @@ namespace jiangweigithub {
     tileMapSprite->setPosition(cocos2d::Vec2((visibleSize.width - mapSpriteSize.width) / 2, (visibleSize.height - mapSpriteSize.height) / 2));
     homeTitle->setPosition(cocos2d::Vec2((visibleSize.width - homeTitleSpriteSize.width) / 2, 660));
     leaderSprite->setPosition(cocos2d::Vec2(this->_heroPositionX, this->_heroPositionY));
+    leaderSprite->setAnchorPoint(cocos2d::Vec2(0, 0));
 
     // add to the layer
     this->addChild(tileMapSprite, -1);
@@ -317,54 +318,131 @@ namespace jiangweigithub {
 
   bool HomeLayer::onContactBegin(const cocos2d::PhysicsContact& contact)
   {
-
-    // if((contact.getShapeA()->getBody()->getCategoryBitmask() & heroMask) == heroMask)
-    // {  
-
-    // }
-
-    // if((contact.getShapeB()->getBody()->getCategoryBitmask() & heroMask) == heroMask)
-    // {  
-
-    // }
-
-    // if((contact.getShapeA()->getBody()->getCategoryBitmask() & wallMask) == wallMask)
-    // {  
-
-    // }
-
-    // if((contact.getShapeB()->getBody()->getCategoryBitmask() & wallMask) == wallMask)
-    // {  
-
-    // }
-
-    if(this->_keyboardNameCache.top().compare("TOP") == 0)
+    int counter = 0;
+    int tmp = 0;
+    bool bottom, left, top, right;
+    bottom = left = top = right = false;
+    // bottom
+    for(tmp = 0; tmp < 30; tmp++)
     {
-      obstacle->obstacleTop();
-      obstacle->unObstacleBottom();
-      obstacle->unObstacleLeft();
-      obstacle->unObstacleRight();
+      if(contact.getShapeA()->containsPoint(cocos2d::Vec2(this->_heroPositionX + tmp, this->_heroPositionY - 1)) == true)
+      {
+        counter++;
+      }
     }
-    if(this->_keyboardNameCache.top().compare("BOTTOM") == 0)
+
+    if(counter > 1)
     {
-      obstacle->obstacleBottom();
-      obstacle->unObstacleTop();
-      obstacle->unObstacleLeft();
-      obstacle->unObstacleRight();
+      bottom = true;
     }
-    if(this->_keyboardNameCache.top().compare("LEFT") == 0)
+
+    counter = 0;
+
+    // left
+    for(tmp = 0; tmp < 20; tmp++)
     {
-      obstacle->obstacleLeft();
-      obstacle->unObstacleTop();
-      obstacle->unObstacleBottom();
-      obstacle->unObstacleRight();
+      if(contact.getShapeA()->containsPoint(cocos2d::Vec2(this->_heroPositionX - 1, this->_heroPositionY + tmp)) == true)
+      {
+        counter++;
+      }
     }
-    if(this->_keyboardNameCache.top().compare("RIGHT") == 0)
+
+    if(counter > 1)
     {
-      obstacle->obstacleRight();
-      obstacle->unObstacleTop();
-      obstacle->unObstacleLeft();
-      obstacle->unObstacleBottom();
+      left = true;
+    }
+
+    counter = 0;
+
+    // top
+    for(tmp = 0; tmp < 30; tmp++)
+    {
+      if(contact.getShapeA()->containsPoint(cocos2d::Vec2(this->_heroPositionX + tmp, this->_heroPositionY + 21)) == true)
+      {
+        counter++;
+      }
+    }
+
+    if(counter > 1)
+    {
+      top = true;
+    }
+
+    counter = 0;
+
+    // right
+    for(tmp = 0; tmp < 20; tmp++)
+    {
+      if(contact.getShapeA()->containsPoint(cocos2d::Vec2(this->_heroPositionX + 31, this->_heroPositionY + tmp)) == true)
+      {
+        counter++;
+      }
+    }
+
+    if(counter > 1)
+    {
+      right = true;
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+
+    if((contact.getShapeA()->getBody()->getCategoryBitmask() & heroMask) == heroMask)
+    {  
+
+    }
+
+    if((contact.getShapeB()->getBody()->getCategoryBitmask() & heroMask) == heroMask)
+    {  
+
+    }
+
+    if((contact.getShapeA()->getBody()->getCategoryBitmask() & wallMask) == wallMask)
+    {  
+      if(this->_keyboardNameCache.top().compare("TOP") == 0)
+      {
+        if(top == true)
+        {
+          obstacle->obstacleTop();
+          obstacle->unObstacleBottom();
+          obstacle->unObstacleLeft();
+          obstacle->unObstacleRight();
+        }
+      }
+      if(this->_keyboardNameCache.top().compare("BOTTOM") == 0)
+      {
+        if(bottom == true)
+        {
+          obstacle->obstacleBottom();
+          obstacle->unObstacleTop();
+          obstacle->unObstacleLeft();
+          obstacle->unObstacleRight();
+        }
+      }
+      if(this->_keyboardNameCache.top().compare("LEFT") == 0)
+      {
+        if(left == true)
+        {
+          obstacle->obstacleLeft();
+          obstacle->unObstacleTop();
+          obstacle->unObstacleBottom();
+          obstacle->unObstacleRight();
+        }  
+      }
+      if(this->_keyboardNameCache.top().compare("RIGHT") == 0)
+      {
+        if(right == true)
+        {
+          obstacle->obstacleRight();
+          obstacle->unObstacleTop();
+          obstacle->unObstacleLeft();
+          obstacle->unObstacleBottom();
+        }
+      }
+    }
+
+    if((contact.getShapeB()->getBody()->getCategoryBitmask() & wallMask) == wallMask)
+    {  
+
     }
 
     return true;
@@ -372,31 +450,28 @@ namespace jiangweigithub {
 
   bool HomeLayer::onContactSeparate(const cocos2d::PhysicsContact& contact)
   {
+    if((contact.getShapeA()->getBody()->getCategoryBitmask() & heroMask) == heroMask)
+    {  
 
-    // if((contact.getShapeA()->getBody()->getCategoryBitmask() & heroMask) == heroMask)
-    // {  
+    }
 
-    // }
+    if((contact.getShapeB()->getBody()->getCategoryBitmask() & heroMask) == heroMask)
+    {  
 
-    // if((contact.getShapeB()->getBody()->getCategoryBitmask() & heroMask) == heroMask)
-    // {  
+    }
 
-    // }
+    if((contact.getShapeA()->getBody()->getCategoryBitmask() & wallMask) == wallMask)
+    {  
+      obstacle->unObstacleTop();
+      obstacle->unObstacleBottom();
+      obstacle->unObstacleLeft();
+      obstacle->unObstacleRight();
+    }
 
-    // if((contact.getShapeA()->getBody()->getCategoryBitmask() & wallMask) == wallMask)
-    // {  
+    if((contact.getShapeB()->getBody()->getCategoryBitmask() & wallMask) == wallMask)
+    {  
 
-    // }
-
-    // if((contact.getShapeB()->getBody()->getCategoryBitmask() & wallMask) == wallMask)
-    // {  
-
-    // } 
-
-    obstacle->unObstacleTop();
-    obstacle->unObstacleBottom();
-    obstacle->unObstacleLeft();
-    obstacle->unObstacleRight();
+    }
 
     return true;
   }
