@@ -51,8 +51,8 @@ namespace jiangweigithub {
     leaderSprite->setAnchorPoint(cocos2d::Vec2(0, 0));
 
     // add to the layer
-    this->addChild(tileMapSprite, -1);
-    this->addChild(homeTitle, 0);
+    // this->addChild(tileMapSprite, -1);
+    // this->addChild(homeTitle, 0);
     this->addChild(leaderSprite, 1);
 
     // add keyboard listener
@@ -162,6 +162,7 @@ namespace jiangweigithub {
         leaderSprite->stopAllActions();
         leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationBottom())));
         break;
+        
       case 29:
         // bottom
         this->_durationBottom = true;
@@ -178,6 +179,7 @@ namespace jiangweigithub {
         leaderSprite->stopAllActions();
         leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationLeft())));
         break;
+
       case 27:
         // right
         this->_durationRight = true;
@@ -186,6 +188,7 @@ namespace jiangweigithub {
         leaderSprite->stopAllActions();
         leaderSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(Leader::getAnimationRight())));
         break;
+
       default:
         break;
     }
@@ -224,6 +227,7 @@ namespace jiangweigithub {
         }
 
         break;
+
       case 29:
         // bottom
         this->_durationBottom = false;
@@ -253,6 +257,7 @@ namespace jiangweigithub {
         }
 
         break;
+
       case 26:
         // left
         this->_durationLeft = false;
@@ -282,6 +287,7 @@ namespace jiangweigithub {
         }
 
         break;
+
       case 27:
         // right
         this->_durationRight = false;
@@ -311,6 +317,7 @@ namespace jiangweigithub {
         }
 
         break;
+
       default:
         break;
     }
@@ -318,73 +325,12 @@ namespace jiangweigithub {
 
   bool HomeLayer::onContactBegin(const cocos2d::PhysicsContact& contact)
   {
-    int counter = 0;
-    int tmp = 0;
-    bool bottom, left, top, right;
-    bottom = left = top = right = false;
-    // bottom
-    for(tmp = 0; tmp < 30; tmp++)
-    {
-      if(contact.getShapeA()->containsPoint(cocos2d::Vec2(this->_heroPositionX + tmp, this->_heroPositionY - 1)) == true)
-      {
-        counter++;
-      }
-    }
+    this->_contactedTop = false;
+    this->_contactedBottom = false;
+    this->_contactedLeft = false;
+    this->_contactedRight = false;
 
-    if(counter > 1)
-    {
-      bottom = true;
-    }
-
-    counter = 0;
-
-    // left
-    for(tmp = 0; tmp < 20; tmp++)
-    {
-      if(contact.getShapeA()->containsPoint(cocos2d::Vec2(this->_heroPositionX - 1, this->_heroPositionY + tmp)) == true)
-      {
-        counter++;
-      }
-    }
-
-    if(counter > 1)
-    {
-      left = true;
-    }
-
-    counter = 0;
-
-    // top
-    for(tmp = 0; tmp < 30; tmp++)
-    {
-      if(contact.getShapeA()->containsPoint(cocos2d::Vec2(this->_heroPositionX + tmp, this->_heroPositionY + 21)) == true)
-      {
-        counter++;
-      }
-    }
-
-    if(counter > 1)
-    {
-      top = true;
-    }
-
-    counter = 0;
-
-    // right
-    for(tmp = 0; tmp < 20; tmp++)
-    {
-      if(contact.getShapeA()->containsPoint(cocos2d::Vec2(this->_heroPositionX + 31, this->_heroPositionY + tmp)) == true)
-      {
-        counter++;
-      }
-    }
-
-    if(counter > 1)
-    {
-      right = true;
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////////////
+    this->_calculateContactPixel(contact);
 
     if((contact.getShapeA()->getBody()->getCategoryBitmask() & heroMask) == heroMask)
     {  
@@ -397,47 +343,27 @@ namespace jiangweigithub {
     }
 
     if((contact.getShapeA()->getBody()->getCategoryBitmask() & wallMask) == wallMask)
-    {  
-      if(this->_keyboardNameCache.top().compare("TOP") == 0)
+    {
+      if(this->_contactedTop == true)
       {
-        if(top == true)
-        {
-          obstacle->obstacleTop();
-          obstacle->unObstacleBottom();
-          obstacle->unObstacleLeft();
-          obstacle->unObstacleRight();
-        }
+        obstacle->obstacleTop();
       }
-      if(this->_keyboardNameCache.top().compare("BOTTOM") == 0)
+
+      if(this->_contactedBottom == true)
       {
-        if(bottom == true)
-        {
-          obstacle->obstacleBottom();
-          obstacle->unObstacleTop();
-          obstacle->unObstacleLeft();
-          obstacle->unObstacleRight();
-        }
+        obstacle->obstacleBottom();
       }
-      if(this->_keyboardNameCache.top().compare("LEFT") == 0)
+
+      if(this->_contactedLeft == true)
       {
-        if(left == true)
-        {
-          obstacle->obstacleLeft();
-          obstacle->unObstacleTop();
-          obstacle->unObstacleBottom();
-          obstacle->unObstacleRight();
-        }  
+        obstacle->obstacleLeft();
       }
-      if(this->_keyboardNameCache.top().compare("RIGHT") == 0)
+
+      if(this->_contactedRight == true)
       {
-        if(right == true)
-        {
-          obstacle->obstacleRight();
-          obstacle->unObstacleTop();
-          obstacle->unObstacleLeft();
-          obstacle->unObstacleBottom();
-        }
+        obstacle->obstacleRight();
       }
+
     }
 
     if((contact.getShapeB()->getBody()->getCategoryBitmask() & wallMask) == wallMask)
@@ -450,6 +376,13 @@ namespace jiangweigithub {
 
   bool HomeLayer::onContactSeparate(const cocos2d::PhysicsContact& contact)
   {
+    this->_contactedTop = false;
+    this->_contactedBottom = false;
+    this->_contactedLeft = false;
+    this->_contactedRight = false;
+
+    this->_calculateContactPixel(contact);
+
     if((contact.getShapeA()->getBody()->getCategoryBitmask() & heroMask) == heroMask)
     {  
 
@@ -461,16 +394,133 @@ namespace jiangweigithub {
     }
 
     if((contact.getShapeA()->getBody()->getCategoryBitmask() & wallMask) == wallMask)
-    {  
-      obstacle->unObstacleTop();
-      obstacle->unObstacleBottom();
-      obstacle->unObstacleLeft();
-      obstacle->unObstacleRight();
+    {
+      if(this->_keyboardNameCache.top().compare("TOP") == 0)
+      {
+        if(this->_contactedBottom == true)
+        {
+          obstacle->unObstacleBottom();
+        }
+      }
+
+      if(this->_keyboardNameCache.top().compare("BOTTOM") == 0)
+      {
+        if(this->_contactedTop == true)
+        {
+          obstacle->unObstacleTop();
+        }
+      }
+
+      if(this->_keyboardNameCache.top().compare("LEFT") == 0)
+      {
+        if(this->_contactedRight == true)
+        {
+          obstacle->unObstacleRight();
+        }
+      }
+
+      if(this->_keyboardNameCache.top().compare("RIGHT") == 0)
+      {
+        if(this->_contactedLeft == true)
+        {
+          obstacle->unObstacleLeft();
+        }
+      }
+
+      if(this->_contactedTop == false)
+      {
+        obstacle->unObstacleTop();
+      }
+
+      if(this->_contactedBottom == false)
+      {
+        obstacle->unObstacleBottom();
+      }
+
+      if(this->_contactedLeft == false)
+      {
+        obstacle->unObstacleLeft();
+      }
+
+      if(this->_contactedRight == false)
+      {
+        obstacle->unObstacleRight();
+      }
     }
 
     if((contact.getShapeB()->getBody()->getCategoryBitmask() & wallMask) == wallMask)
     {  
 
+    }
+
+    return true;
+  }
+
+  bool HomeLayer::_calculateContactPixel(const cocos2d::PhysicsContact& contact)
+  {
+    int counter = 0;
+    int tmp = 0;
+
+    // bottom
+    for(tmp = -1; tmp <= 30; tmp++)
+    {
+      if(contact.getShapeA()->containsPoint(cocos2d::Vec2(this->_heroPositionX + tmp, this->_heroPositionY - 1)) == true)
+      {
+        counter++;
+      }
+    }
+
+    if(counter >= 1)
+    {
+      this->_contactedBottom = true;
+    }
+
+    counter = 0;
+
+    // left
+    for(tmp = -1; tmp <= 20; tmp++)
+    {
+      if(contact.getShapeA()->containsPoint(cocos2d::Vec2(this->_heroPositionX - 1, this->_heroPositionY + tmp)) == true)
+      {
+        counter++;
+      }
+    }
+
+    if(counter >= 1)
+    {
+      this->_contactedLeft = true;
+    }
+
+    counter = 0;
+
+    // top
+    for(tmp = -1; tmp <= 30; tmp++)
+    {
+      if(contact.getShapeA()->containsPoint(cocos2d::Vec2(this->_heroPositionX + tmp, this->_heroPositionY + 21)) == true)
+      {
+        counter++;
+      }
+    }
+
+    if(counter >= 1)
+    {
+      this->_contactedTop = true;
+    }
+
+    counter = 0;
+
+    // right
+    for(tmp = -1; tmp <= 20; tmp++)
+    {
+      if(contact.getShapeA()->containsPoint(cocos2d::Vec2(this->_heroPositionX + 31, this->_heroPositionY + tmp)) == true)
+      {
+        counter++;
+      }
+    }
+
+    if(counter >= 1)
+    {
+      this->_contactedRight = true;
     }
 
     return true;

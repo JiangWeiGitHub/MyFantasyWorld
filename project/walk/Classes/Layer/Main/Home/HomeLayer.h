@@ -30,6 +30,8 @@ namespace jiangweigithub {
     bool onContactSeparate(const cocos2d::PhysicsContact& contact);
 
   private:
+    bool _calculateContactPixel(const cocos2d::PhysicsContact& contact);
+
     float _heroPositionX = 280, _heroPositionY = 350;
    
     cocos2d::Sprite* leaderSprite;
@@ -38,6 +40,11 @@ namespace jiangweigithub {
     bool _durationBottom = false;
     bool _durationLeft = false;
     bool _durationRight = false;
+
+    bool _contactedTop = false;
+    bool _contactedBottom = false;
+    bool _contactedLeft = false;
+    bool _contactedRight = false;
 
     std::stack<std::string> _keyboardNameCache;
 
