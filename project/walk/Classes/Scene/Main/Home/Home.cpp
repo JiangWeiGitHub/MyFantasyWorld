@@ -16,7 +16,7 @@ namespace jiangweigithub {
       return false;
     }
 
-    this->getPhysicsWorld()->setDebugDrawMask(cocos2d::PhysicsWorld::DEBUGDRAW_ALL);
+    // this->getPhysicsWorld()->setDebugDrawMask(cocos2d::PhysicsWorld::DEBUGDRAW_ALL);
 
     auto tmp = HomeLayer::getHomeLayer();
     this->addChild(tmp);

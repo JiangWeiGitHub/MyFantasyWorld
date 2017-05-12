@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="24" tileheight="24" nextobjectid="15">
+ <tileset firstgid="1" name="Inside_A4" tilewidth="24" tileheight="24" tilecount="960">
+  <image source="Inside_A4.png" trans="ff00ff" width="768" height="720"/>
+ </tileset>
+ <tileset firstgid="961" name="Inside_A1" tilewidth="24" tileheight="24" tilecount="768">
+  <image source="Inside_A1.png" trans="ff00ff" width="768" height="576"/>
+ </tileset>
+ <tileset firstgid="1729" name="Inside_A2" tilewidth="24" tileheight="24" tilecount="768">
+  <image source="Inside_A2.png" trans="ff00ff" width="768" height="576"/>
+ </tileset>
+ <tileset firstgid="2497" name="Inside_A5" tilewidth="24" tileheight="24" tilecount="512">
+  <image source="Inside_A5.png" trans="ff00ff" width="384" height="768"/>
+ </tileset>
+ <tileset firstgid="3009" name="Inside_B" tilewidth="24" tileheight="24" tilecount="1024">
+  <image source="Inside_B.png" trans="ff00ff" width="768" height="768"/>
+ </tileset>
+ <tileset firstgid="4033" name="Inside_C" tilewidth="24" tileheight="24" tilecount="1024">
+  <image source="Inside_C.png" trans="ff00ff" width="768" height="768"/>
+ </tileset>
+ <layer name="shadow" width="40" height="20" opacity="0.42">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2DwgIOcA+0C/GDUfaNgFNAOgNIvPjwKRsFgBNRKm6PpnjgwGibDAwAA6TEO/w==
+  </data>
+ </layer>
+</map>

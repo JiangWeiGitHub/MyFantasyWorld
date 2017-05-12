@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="24" tileheight="24" nextobjectid="15">
+ <tileset firstgid="1" name="Inside_A4" tilewidth="24" tileheight="24" tilecount="960">
+  <image source="Inside_A4.png" trans="ff00ff" width="768" height="720"/>
+ </tileset>
+ <tileset firstgid="961" name="Inside_A1" tilewidth="24" tileheight="24" tilecount="768">
+  <image source="Inside_A1.png" trans="ff00ff" width="768" height="576"/>
+ </tileset>
+ <tileset firstgid="1729" name="Inside_A2" tilewidth="24" tileheight="24" tilecount="768">
+  <image source="Inside_A2.png" trans="ff00ff" width="768" height="576"/>
+ </tileset>
+ <tileset firstgid="2497" name="Inside_A5" tilewidth="24" tileheight="24" tilecount="512">
+  <image source="Inside_A5.png" trans="ff00ff" width="384" height="768"/>
+ </tileset>
+ <tileset firstgid="3009" name="Inside_B" tilewidth="24" tileheight="24" tilecount="1024">
+  <image source="Inside_B.png" trans="ff00ff" width="768" height="768"/>
+ </tileset>
+ <tileset firstgid="4033" name="Inside_C" tilewidth="24" tileheight="24" tilecount="1024">
+  <image source="Inside_C.png" trans="ff00ff" width="768" height="768"/>
+ </tileset>
+ <layer name="backgroud-1" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzNVssNwjAMTQ+ULkJhkUJvsASlN1gCbnyWgBsSi1RikVJGwJFsKXLSxoh+sPSURH5+fgpW6DFQ6gQ4N+AkQFO9VIPrXAB3wA7w8mAr5P2qUyE074n+HoCRshECxrgnXsRykaOuTsvU4fXmOUQe+dPrRNmIAVPcE2/GcjNHXZ2WXgv0x+vNc+zwlygbc8AC98RLWS511NVpJYY/Xm+e58yf5q+VjQywwT3xc5bLHXV1WqSj+/F685w57s8XUp4v6P58UQLnPYA/6usLmsm+/dFv6QuayX/1N9T97QEHAW+o+7sCbl/wpX2lc912SP3Rf1DfIfVH89pGP8n79+37TPP6a3TlT/ouSPp24a+tKIT9iKfXVWB/77YdpLtk/Xje5Gl/ZcO37JCo8D37AOTOzsk=
+  </data>
+ </layer>
+ <layer name="backgroud-2" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztVMsOwzAIy40oP1D+/0u3w6JZlnm0O00KEmpLCXacwBjHjh37d7M1xlzf537f35j31KM6Uzwrfv726+O+4ryr6YyLccSchKdw1b6yvEirbp0JvHzV+uF+lX47h/Uxwrtu8HPA6pxvVFdh4l3g2J1zmA/4Vfcv4tbRz4K11f3L9FP8mEumn4l8XlfpZyvXj/fqUH/HjWKRfojR5dc5F67Nzj3Z4Yce8cOexJ7CPO5XNVuc1md9hvyy+axmV3T/slnssDbiZyIn46d0Y7wZ/K9cnUM379hv9gKKYiMG
+  </data>
+ </layer>
+ <layer name="backgroup-3" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztzjkNACAABLBb8a8IHIAiMMDKk7QKmgAAp9SStHJ7sdfXbTz8A/43AYHVA0s=
+  </data>
+ </layer>
+ <layer name="furniture-1" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztlddKA0EYhUdBQd1N1BfQBBTsJbm3l9fQxHKjYHkBYwFLoq+goGD3FZJbvdF7W+7s5d7yiRkyuCkbs8QgOfCR2c2Z/z/szM4KkdNfKKgJEdLMecx4k+lYF+JE/x4PUGsQPOCNU/ea++HIf+f8XsAlXGlGj+qVkj3M6o5s95F8M8zzwSzMxamRhzc/4n/D8w4fX17d6FG9UrKHWZXYhNBs0et5uxALMAM+e/R+EeNicNDPqRvrqJKeWN4OanRCF3RDD/RCH/TbjbXqyFav5NvEswXrsKH4axjXxpifqgaoMQge8MIQDMMIjKZQvwBvoeLPY5xvQT6rVEWWaiWPg7EzQb5F1nEJlmEF/BCAVViDU/bcWZrvcjraJsMO7MIe7MMBHMIRvJDt9Uc+uSZB9lfIFrtuPI3hH09xTiKVkbH8x7si1+SaPuEUe/nxByzMZ7X2yXag5JPn5AM8whM8JzlnMqEKMlTq0XNSBxvYoTQLnm8b2dr16DnZAI3QBM2/yNfCfmsFF7iz6Lz6r5LfrRvW6jYD+8lFD7fSZ4LekzAF07n1tkyfDT9O1A==
+  </data>
+ </layer>
+ <layer name="furniture-2" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztkUEKgDAQA/fYr1v9iNWPWP2I1UeYY0DwsBTcQwbmGkJiJoQQIjpDMstwhFP6u82bGZ0KXOAasN+GThXu8HD04/0z2euPExkNXvB25PH+hYzyB+9fSe8fveH9G+n9QwjxzQMQRCR1
+  </data>
+ </layer>
+ <layer name="furniture-3" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztzsERABAQBMEN4WwmpEX+bxLwU06V6QhaAu4oITmyF3t13drDPwAAcFa3NJy9+M8E80wBwg==
+  </data>
+ </layer>
+</map>

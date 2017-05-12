@@ -45,6 +45,10 @@ namespace jiangweigithub {
     bool _contactedBottom = false;
     bool _contactedLeft = false;
     bool _contactedRight = false;
+    bool _contactedTopLeft = false;
+    bool _contactedTopRight = false;
+    bool _contactedBottomLeft = false;
+    bool _contactedBottomRight = false;
 
     std::stack<std::string> _keyboardNameCache;
 

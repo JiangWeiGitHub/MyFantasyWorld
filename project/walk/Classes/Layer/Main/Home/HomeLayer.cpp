@@ -50,10 +50,21 @@ namespace jiangweigithub {
     leaderSprite->setPosition(cocos2d::Vec2(this->_heroPositionX, this->_heroPositionY));
     leaderSprite->setAnchorPoint(cocos2d::Vec2(0, 0));
 
+
+    auto aaa = cocos2d::TMXTiledMap::create("homeBackground.tmx");
+    auto bbb = cocos2d::TMXTiledMap::create("homeFront.tmx");
+    auto ccc = cocos2d::TMXTiledMap::create("homeShadow.tmx");
+    aaa->setPosition(cocos2d::Vec2((visibleSize.width - mapSpriteSize.width) / 2, (visibleSize.height - mapSpriteSize.height) / 2));
+    bbb->setPosition(cocos2d::Vec2((visibleSize.width - mapSpriteSize.width) / 2, (visibleSize.height - mapSpriteSize.height) / 2));
+    ccc->setPosition(cocos2d::Vec2((visibleSize.width - mapSpriteSize.width) / 2, (visibleSize.height - mapSpriteSize.height) / 2));
+
+
     // add to the layer
-    // this->addChild(tileMapSprite, -1);
-    // this->addChild(homeTitle, 0);
-    this->addChild(leaderSprite, 1);
+    this->addChild(aaa, -10);
+    this->addChild(homeTitle, 0);
+    this->addChild(ccc, 3);
+    this->addChild(leaderSprite, 5);
+    this->addChild(bbb, 10);
 
     // add keyboard listener
     auto listener = cocos2d::EventListenerKeyboard::create();
@@ -325,12 +336,17 @@ namespace jiangweigithub {
 
   bool HomeLayer::onContactBegin(const cocos2d::PhysicsContact& contact)
   {
-    this->_contactedTop = false;
-    this->_contactedBottom = false;
-    this->_contactedLeft = false;
-    this->_contactedRight = false;
-
     this->_calculateContactPixel(contact);
+
+    // std::cout<<"Begin->_contactedTop: "<<this->_contactedTop<<std::endl;
+    // std::cout<<"Begin->_contactedBottom: "<<this->_contactedBottom<<std::endl;
+    // std::cout<<"Begin->_contactedLeft: "<<this->_contactedLeft<<std::endl;
+    // std::cout<<"Begin->_contactedRight: "<<this->_contactedRight<<std::endl;
+
+    // std::cout<<"Begin->_contactedTopLeft: "<<this->_contactedTopLeft<<std::endl;
+    // std::cout<<"Begin->_contactedTopRight: "<<this->_contactedTopRight<<std::endl;
+    // std::cout<<"Begin->_contactedBottomLeft: "<<this->_contactedBottomLeft<<std::endl;
+    // std::cout<<"Begin->_contactedBottomRight: "<<this->_contactedBottomRight<<std::endl;
 
     if((contact.getShapeA()->getBody()->getCategoryBitmask() & heroMask) == heroMask)
     {  
@@ -364,6 +380,29 @@ namespace jiangweigithub {
         obstacle->obstacleRight();
       }
 
+      if(this->_contactedTopLeft == true && this->_contactedTop == false && this->_contactedLeft == false)
+      {
+        obstacle->obstacleLeft();
+        obstacle->obstacleTop();
+      }
+
+      if(this->_contactedTopRight == true && this->_contactedTop == false && this->_contactedRight == false)
+      {
+        obstacle->obstacleTop();
+        obstacle->obstacleRight();
+      }
+
+      if(this->_contactedBottomLeft == true && this->_contactedBottom == false && this->_contactedLeft == false)
+      {
+        obstacle->obstacleBottom();
+        obstacle->obstacleLeft();
+      }
+
+      if(this->_contactedBottomRight == true && this->_contactedBottom == false && this->_contactedRight == false)
+      {
+        obstacle->obstacleBottom();
+        obstacle->obstacleRight();
+      }
     }
 
     if((contact.getShapeB()->getBody()->getCategoryBitmask() & wallMask) == wallMask)
@@ -376,12 +415,17 @@ namespace jiangweigithub {
 
   bool HomeLayer::onContactSeparate(const cocos2d::PhysicsContact& contact)
   {
-    this->_contactedTop = false;
-    this->_contactedBottom = false;
-    this->_contactedLeft = false;
-    this->_contactedRight = false;
-
     this->_calculateContactPixel(contact);
+
+    // std::cout<<"Separate->_contactedTop: "<<this->_contactedTop<<std::endl;
+    // std::cout<<"Separate->_contactedBottom: "<<this->_contactedBottom<<std::endl;
+    // std::cout<<"Separate->_contactedLeft: "<<this->_contactedLeft<<std::endl;
+    // std::cout<<"Separate->_contactedRight: "<<this->_contactedRight<<std::endl;
+
+    // std::cout<<"Separate->_contactedTopLeft: "<<this->_contactedTopLeft<<std::endl;
+    // std::cout<<"Separate->_contactedTopRight: "<<this->_contactedTopRight<<std::endl;
+    // std::cout<<"Separate->_contactedBottomLeft: "<<this->_contactedBottomLeft<<std::endl;
+    // std::cout<<"Separate->_contactedBottomRight: "<<this->_contactedBottomRight<<std::endl;
 
     if((contact.getShapeA()->getBody()->getCategoryBitmask() & heroMask) == heroMask)
     {  
@@ -446,6 +490,30 @@ namespace jiangweigithub {
       {
         obstacle->unObstacleRight();
       }
+
+      if(this->_contactedTopLeft == true && this->_contactedTop == false && this->_contactedLeft == false)
+      {
+        obstacle->unObstacleLeft();
+        obstacle->unObstacleTop();
+      }
+
+      if(this->_contactedTopRight == true && this->_contactedTop == false && this->_contactedRight == false)
+      {
+        obstacle->unObstacleTop();
+        obstacle->unObstacleRight();
+      }
+
+      if(this->_contactedBottomLeft == true && this->_contactedBottom == false && this->_contactedLeft == false)
+      {
+        obstacle->unObstacleBottom();
+        obstacle->unObstacleLeft();
+      }
+
+      if(this->_contactedBottomRight == true && this->_contactedBottom == false && this->_contactedRight == false)
+      {
+        obstacle->unObstacleBottom();
+        obstacle->unObstacleRight();
+      }
     }
 
     if((contact.getShapeB()->getBody()->getCategoryBitmask() & wallMask) == wallMask)
@@ -458,11 +526,20 @@ namespace jiangweigithub {
 
   bool HomeLayer::_calculateContactPixel(const cocos2d::PhysicsContact& contact)
   {
+    this->_contactedTop = false;
+    this->_contactedBottom = false;
+    this->_contactedLeft = false;
+    this->_contactedRight = false;
+    this->_contactedTopLeft = false;
+    this->_contactedTopRight = false;
+    this->_contactedBottomLeft = false;
+    this->_contactedBottomRight = false;
+
     int counter = 0;
     int tmp = 0;
 
     // bottom
-    for(tmp = -1; tmp <= 30; tmp++)
+    for(tmp = 0; tmp < 30; tmp++)
     {
       if(contact.getShapeA()->containsPoint(cocos2d::Vec2(this->_heroPositionX + tmp, this->_heroPositionY - 1)) == true)
       {
@@ -478,7 +555,7 @@ namespace jiangweigithub {
     counter = 0;
 
     // left
-    for(tmp = -1; tmp <= 20; tmp++)
+    for(tmp = 0; tmp < 20; tmp++)
     {
       if(contact.getShapeA()->containsPoint(cocos2d::Vec2(this->_heroPositionX - 1, this->_heroPositionY + tmp)) == true)
       {
@@ -494,7 +571,7 @@ namespace jiangweigithub {
     counter = 0;
 
     // top
-    for(tmp = -1; tmp <= 30; tmp++)
+    for(tmp = 0; tmp < 30; tmp++)
     {
       if(contact.getShapeA()->containsPoint(cocos2d::Vec2(this->_heroPositionX + tmp, this->_heroPositionY + 21)) == true)
       {
@@ -510,7 +587,7 @@ namespace jiangweigithub {
     counter = 0;
 
     // right
-    for(tmp = -1; tmp <= 20; tmp++)
+    for(tmp = 0; tmp < 20; tmp++)
     {
       if(contact.getShapeA()->containsPoint(cocos2d::Vec2(this->_heroPositionX + 31, this->_heroPositionY + tmp)) == true)
       {
@@ -521,6 +598,30 @@ namespace jiangweigithub {
     if(counter >= 1)
     {
       this->_contactedRight = true;
+    }
+
+    // top left
+    if(contact.getShapeA()->containsPoint(cocos2d::Vec2(this->_heroPositionX - 1, this->_heroPositionY + 21)) == true)
+    {
+      _contactedTopLeft = true;
+    }
+
+    // top right
+    if(contact.getShapeA()->containsPoint(cocos2d::Vec2(this->_heroPositionX + 31, this->_heroPositionY + 21)) == true)
+    {
+      _contactedTopRight = true;
+    }
+
+    // bottom left
+    if(contact.getShapeA()->containsPoint(cocos2d::Vec2(this->_heroPositionX - 1, this->_heroPositionY - 1)) == true)
+    {
+      _contactedBottomLeft = true;
+    }
+
+    // bottom right
+    if(contact.getShapeA()->containsPoint(cocos2d::Vec2(this->_heroPositionX + 31, this->_heroPositionY - 1)) == true)
+    {
+      _contactedBottomRight = true;
     }
 
     return true;
