@@ -84,35 +84,52 @@ namespace jiangweigithub {
     ggg->setPosition(cocos2d::Vec2(15, 15));
     this->addChild(ggg, 101);
 
-    auto ddd =  cocos2d::Sprite::create("test1.png");
+    auto ddd =  cocos2d::Sprite::create("avatar.png");
     ddd->setScale(0.9);
     ddd->setAnchorPoint(cocos2d::Vec2(0, 0));
     ddd->setPosition(cocos2d::Vec2(21, 26));
     this->addChild(ddd, 100);
 
-    auto eee = cocos2d::Label::createWithTTF("Today is a good day!", "fonts/arial.ttf", 22);
-    eee->setAnchorPoint(cocos2d::Vec2(0, 0));
-    eee->setTextColor(cocos2d::Color4B(255,255,255,200));
-    eee->enableShadow();
-    eee->setPosition(cocos2d::Vec2(350, 125));
-    // eee->enableOutline(cocos2d::Color4B::BLACK, 1);
-    this->addChild(eee, 102);
+    _firstLine = cocos2d::Label::createWithTTF("Today is a good day.", "fonts/arial.ttf", 22);
+    _firstLine->setAnchorPoint(cocos2d::Vec2(0, 0));
+    _firstLine->setTextColor(cocos2d::Color4B(255,255,255,200));
+    _firstLine->enableShadow();
+    _firstLine->setPosition(cocos2d::Vec2(350, 125));
+    this->addChild(_firstLine, 102);
 
-    auto hhh = cocos2d::Label::createWithTTF("I've watched a good movie this evening!", "fonts/arial.ttf", 22);
-    hhh->setAnchorPoint(cocos2d::Vec2(0, 0));
-    hhh->setTextColor(cocos2d::Color4B(255,255,255,200));
-    hhh->enableShadow();
-    hhh->setPosition(cocos2d::Vec2(350, 90));
-    // eee->enableOutline(cocos2d::Color4B::BLACK, 1);
-    this->addChild(hhh, 102);
+    _secondLine = cocos2d::Label::createWithTTF("I've watched a good movie this evening!", "fonts/arial.ttf", 22);
+    _secondLine->setAnchorPoint(cocos2d::Vec2(0, 0));
+    _secondLine->setTextColor(cocos2d::Color4B(255,255,255,200));
+    _secondLine->enableShadow();
+    _secondLine->setPosition(cocos2d::Vec2(350, 90));
+    this->addChild(_secondLine, 102);
 
-    auto i = cocos2d::Label::createWithTTF("Hero:", "fonts/arial.ttf", 26);
-    i->setAnchorPoint(cocos2d::Vec2(0, 0));
-    i->setTextColor(cocos2d::Color4B(255,255,255,200));
-    i->enableShadow();
-    i->setPosition(cocos2d::Vec2(320, 165));
-    // eee->enableOutline(cocos2d::Color4B::BLACK, 1);
-    this->addChild(i, 102);
+    _thirdLine = cocos2d::Label::createWithTTF("Have a good dream, stranger.", "fonts/arial.ttf", 22);
+    _thirdLine->setAnchorPoint(cocos2d::Vec2(0, 0));
+    _thirdLine->setTextColor(cocos2d::Color4B(255,255,255,200));
+    _thirdLine->enableShadow();
+    _thirdLine->setPosition(cocos2d::Vec2(350, 55));
+    this->addChild(_thirdLine, 102);
+
+    _nameLine = cocos2d::Label::createWithTTF("Hero:", "fonts/arial.ttf", 26);
+    _nameLine->setAnchorPoint(cocos2d::Vec2(0, 0));
+    _nameLine->setTextColor(cocos2d::Color4B(255,255,255,200));
+    _nameLine->enableShadow();
+    _nameLine->setPosition(cocos2d::Vec2(320, 165));
+    this->addChild(_nameLine, 102);
+
+
+    auto nextString = cocos2d::MenuItemImage::create(
+                                            "CloseNormal.png",
+                                            "CloseSelected.png",
+                                            CC_CALLBACK_1(HomeLayer::_nextStringCallback, this));
+    
+    nextString->setPosition(cocos2d::Vec2(1200, 60));
+
+    auto menu = cocos2d::Menu::create(nextString, NULL);
+    menu->setPosition(cocos2d::Vec2::ZERO);
+    this->addChild(menu, 103);
+
 
     // add to the layer
     this->addChild(aaa, -10);
@@ -120,6 +137,7 @@ namespace jiangweigithub {
     this->addChild(ccc, 3);
     this->addChild(leaderSprite, 5);
     this->addChild(bbb, 10);
+
 
     // add keyboard listener
     auto listener = cocos2d::EventListenerKeyboard::create();
@@ -680,6 +698,18 @@ namespace jiangweigithub {
     }
 
     return true;
+  }
+
+  void HomeLayer::_nextStringCallback(cocos2d::Ref* pSender)
+  {
+    this->_firstLine->setString("Tomorrow is another day!");
+    this->_firstLine->updateContent();
+
+    this->_secondLine->setString("See you then.");
+    this->_secondLine->updateContent();
+
+    this->_thirdLine->setString("");
+    this->_thirdLine->updateContent();
   }
 
 }

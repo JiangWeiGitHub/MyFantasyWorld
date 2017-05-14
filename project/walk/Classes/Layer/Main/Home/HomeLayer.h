@@ -58,6 +58,11 @@ namespace jiangweigithub {
 
     int heroMask = 1 << 0;
     int wallMask = 1 << 1;
+
+    cocos2d::Label* _nameLine;
+    cocos2d::Label* _firstLine;
+    cocos2d::Label* _secondLine;
+    cocos2d::Label* _thirdLine;
   };
 
 }
