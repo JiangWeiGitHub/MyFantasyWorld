@@ -31,6 +31,7 @@ namespace jiangweigithub {
 
   private:
     bool _calculateContactPixel(const cocos2d::PhysicsContact& contact);
+    void _nextStringCallback(cocos2d::Ref* pSender);
 
     float _heroPositionX = 280, _heroPositionY = 350;
    

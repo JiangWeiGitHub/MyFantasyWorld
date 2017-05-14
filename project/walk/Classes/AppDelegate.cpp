@@ -111,9 +111,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
   // run
   // auto loadingScene = jiangweigithub::HelloWorld::createScene();
 
-  auto homeScene = jiangweigithub::Home::getHomeScene();
+  auto scene = jiangweigithub::LoadingScene::getLoadingScene();
 
-  director->runWithScene(homeScene);
+  director->runWithScene(scene);
 
 
 

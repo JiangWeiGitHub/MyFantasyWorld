@@ -21,7 +21,7 @@
  </tileset>
  <layer name="backgroud-1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJzNVssNwjAMTQ+ULkJhkUJvsASlN1gCbnyWgBsSi1RikVJGwJFsKXLSxoh+sPSURH5+fgpW6DFQ6gQ4N+AkQFO9VIPrXAB3wA7w8mAr5P2qUyE074n+HoCRshECxrgnXsRykaOuTsvU4fXmOUQe+dPrRNmIAVPcE2/GcjNHXZ2WXgv0x+vNc+zwlygbc8AC98RLWS511NVpJYY/Xm+e58yf5q+VjQywwT3xc5bLHXV1WqSj+/F685w57s8XUp4v6P58UQLnPYA/6usLmsm+/dFv6QuayX/1N9T97QEHAW+o+7sCbl/wpX2lc912SP3Rf1DfIfVH89pGP8n79+37TPP6a3TlT/ouSPp24a+tKIT9iKfXVWB/77YdpLtk/Xje5Gl/ZcO37JCo8D37AOTOzsk=
+   eJzNlk0OgjAQhctC5SIiFwHd4SVUdnoJ3YFeQncmXoTEi/hzBKfJTNIMxQ4piJN8oU3fzLyUplAESpXA8QulgG/50hq8zgm4Ajvg6WAr1PnWeSFad0d/N2Ck6oyBCY5JF7K10JLXVMusw/PN+Rh15E8/p6pOBMxwTLqYrcWWvKZa+lmhP55vziOLv0TVSYE5jkm3YGsLS15TrcTwx/PNecr8af1K1VkDGxyTPmdruSWvqRbV0f14vjlfW/bPFVKdK2j/XPEAzXsAf9TXFXQmf+2P3qUr6Ez+q7+h9m8PHAS6ofbvDFxa6KV9pee665D6o2+QbxT43ZfqpP7ovPoG3c8SXZv7mc6rb/TlT3ovSPr24a+rqIT9SKefy8D9/9sVmbBfhv70veH7T9wHL7zPPrTv3Wc=
   </data>
  </layer>
  <layer name="backgroud-2" width="40" height="20">

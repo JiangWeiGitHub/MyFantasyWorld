@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="24" tileheight="24" nextobjectid="15">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="24" tileheight="24" nextobjectid="16">
  <tileset firstgid="1" name="Inside_A4" tilewidth="24" tileheight="24" tilecount="960">
   <image source="Inside_A4.png" trans="ff00ff" width="768" height="720"/>
  </tileset>
@@ -21,7 +21,7 @@
  </tileset>
  <layer name="backgroud-1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJztzUEKACAMA8H0/4g+2Sd4KRRhBvYWSAIAMGtVcqpvBxN29fb6+dUF3JIOnw==
+   eJztzcsJACAQQ8Fs/4iWbAle/CDMwLsFkgAAvNUqGbVvB7f1OtPq50cT1KwQ3w==
   </data>
  </layer>
  <layer name="furniture-1" width="40" height="20">
@@ -39,9 +39,4 @@
    eJxjYBgF1AAHOamrjtrmjLqPMnNG3UeZOaPuo8ycUfdRZg693XdxkLuPVDAav5SZM1zcR2q6ptQ+ctVTCqjlz1GAHwAAnnckfQ==
   </data>
  </layer>
- <objectgroup name="path">
-  <object id="10" name="can" x="49.3333" y="166.667">
-   <polyline points="-1.3333,1.333 46.6667,1.333 46.6667,-22.667 94.6667,-22.667 94.6667,1.333 142.667,1.333 142.667,49.333 190.667,49.333 190.667,73.333 142.667,73.333 142.667,145.333 190.667,145.333 190.667,241.333 238.667,241.333 238.667,193.333 382.667,193.333 382.667,121.333 238.667,121.333 238.667,49.333 286.667,49.333 286.667,-22.667 622.667,-22.667 622.667,25.333 430.667,25.333 430.667,73.333 622.667,73.333 622.667,121.333 670.667,121.333 670.667,1.333 742.667,1.333 862.667,1.333 862.667,97.333 910.667,97.333 910.667,169.333 862.667,169.333 862.667,241.333 766.667,241.333 766.667,289.333 718.667,289.333 718.667,241.333 670.667,241.333 670.667,193.333 766.667,193.333 766.667,169.333 622.667,169.333 622.667,241.333 574.667,241.333 574.667,289.333 94.6667,289.333 94.6667,241.333 -1.3333,241.333"/>
-  </object>
- </objectgroup>
 </map>

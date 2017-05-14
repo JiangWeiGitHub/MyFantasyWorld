@@ -58,6 +58,61 @@ namespace jiangweigithub {
     bbb->setPosition(cocos2d::Vec2((visibleSize.width - mapSpriteSize.width) / 2, (visibleSize.height - mapSpriteSize.height) / 2));
     ccc->setPosition(cocos2d::Vec2((visibleSize.width - mapSpriteSize.width) / 2, (visibleSize.height - mapSpriteSize.height) / 2));
 
+    cocos2d::DrawNode* drawNode = cocos2d::DrawNode::create();
+
+    cocos2d::Vec2 point[4];
+    point[0] = cocos2d::Vec2(20, 25);
+    point[1] = cocos2d::Vec2(1260, 25);
+    point[2] = cocos2d::Vec2(1260, 210);
+    point[3] = cocos2d::Vec2(20, 210);
+    drawNode->drawPolygon(point, 4, cocos2d::Color4F(66/255.0f, 66/255.0f, 66/255.0f, 0.5f), 1, cocos2d::Color4F(243/255.0f, 198/255.0f, 108/255.0f, 0.7f));    
+    drawNode->setPosition(cocos2d::Vec2(0,0));
+    this->addChild(drawNode, 100);
+
+    auto fff =  cocos2d::Sprite::create("golderFlower.png");
+    fff->setScale(0.6);
+    fff->setOpacity(235);
+    fff->setAnchorPoint(cocos2d::Vec2(0, 0));
+    fff->setRotation(180);
+    fff->setPosition(cocos2d::Vec2(1265, 225));
+    this->addChild(fff, 101);
+
+    auto ggg =  cocos2d::Sprite::create("golderFlower.png");
+    ggg->setScale(0.6);
+    ggg->setOpacity(235);
+    ggg->setAnchorPoint(cocos2d::Vec2(0, 0));
+    ggg->setPosition(cocos2d::Vec2(15, 15));
+    this->addChild(ggg, 101);
+
+    auto ddd =  cocos2d::Sprite::create("test1.png");
+    ddd->setScale(0.9);
+    ddd->setAnchorPoint(cocos2d::Vec2(0, 0));
+    ddd->setPosition(cocos2d::Vec2(21, 26));
+    this->addChild(ddd, 100);
+
+    auto eee = cocos2d::Label::createWithTTF("Today is a good day!", "fonts/arial.ttf", 22);
+    eee->setAnchorPoint(cocos2d::Vec2(0, 0));
+    eee->setTextColor(cocos2d::Color4B(255,255,255,200));
+    eee->enableShadow();
+    eee->setPosition(cocos2d::Vec2(350, 125));
+    // eee->enableOutline(cocos2d::Color4B::BLACK, 1);
+    this->addChild(eee, 102);
+
+    auto hhh = cocos2d::Label::createWithTTF("I've watched a good movie this evening!", "fonts/arial.ttf", 22);
+    hhh->setAnchorPoint(cocos2d::Vec2(0, 0));
+    hhh->setTextColor(cocos2d::Color4B(255,255,255,200));
+    hhh->enableShadow();
+    hhh->setPosition(cocos2d::Vec2(350, 90));
+    // eee->enableOutline(cocos2d::Color4B::BLACK, 1);
+    this->addChild(hhh, 102);
+
+    auto i = cocos2d::Label::createWithTTF("Hero:", "fonts/arial.ttf", 26);
+    i->setAnchorPoint(cocos2d::Vec2(0, 0));
+    i->setTextColor(cocos2d::Color4B(255,255,255,200));
+    i->enableShadow();
+    i->setPosition(cocos2d::Vec2(320, 165));
+    // eee->enableOutline(cocos2d::Color4B::BLACK, 1);
+    this->addChild(i, 102);
 
     // add to the layer
     this->addChild(aaa, -10);
