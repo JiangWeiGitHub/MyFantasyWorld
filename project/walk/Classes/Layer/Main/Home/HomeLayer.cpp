@@ -84,11 +84,11 @@ namespace jiangweigithub {
     // ggg->setPosition(cocos2d::Vec2(15, 15));
     // this->addChild(ggg, 101);
 
-    auto ddd =  cocos2d::Sprite::create("avatar.png");
-    ddd->setScale(0.9);
-    ddd->setAnchorPoint(cocos2d::Vec2(0, 0));
-    ddd->setPosition(cocos2d::Vec2(21, 26));
-    this->addChild(ddd, 100);
+    // auto ddd =  cocos2d::Sprite::create("avatar.png");
+    // ddd->setScale(0.9);
+    // ddd->setAnchorPoint(cocos2d::Vec2(0, 0));
+    // ddd->setPosition(cocos2d::Vec2(21, 26));
+    // this->addChild(ddd, 100);
 
     // _firstLine = cocos2d::Label::createWithTTF("Today is a good day.", "fonts/arial.ttf", 22);
     // _firstLine->setAnchorPoint(cocos2d::Vec2(0, 0));

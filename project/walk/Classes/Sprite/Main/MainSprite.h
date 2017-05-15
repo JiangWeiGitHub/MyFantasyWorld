@@ -28,6 +28,8 @@ namespace jiangweigithub {
     static cocos2d::DrawNode* getDrawFrame();
     static cocos2d::Sprite* getFrameLeftFlowers();
     static cocos2d::Sprite* getFrameRightFlowers();
+
+    static cocos2d::Sprite* getAvatar();
     static cocos2d::Label* getFirstLine();
     static cocos2d::Label* getSecondLine();
     static cocos2d::Label* getThirdLine();

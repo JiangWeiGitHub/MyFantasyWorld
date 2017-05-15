@@ -202,5 +202,15 @@ namespace jiangweigithub {
     return tmp;
   }
 
+  cocos2d::Sprite* MainSprite::getAvatar();
+  {
+    auto tmp =  cocos2d::Sprite::create("avatar.png");
+    tmp->setScale(0.9);
+    tmp->setAnchorPoint(cocos2d::Vec2(0, 0));
+    tmp->setPosition(cocos2d::Vec2(21, 26));
+
+    return tmp;
+  }
+
 }
 
