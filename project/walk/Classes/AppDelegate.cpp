@@ -7,10 +7,6 @@ USING_NS_CC;
 // static cocos2d::Size mediumResolutionSize = cocos2d::Size(1024, 768);
 // static cocos2d::Size largeResolutionSize = cocos2d::Size(2048, 1536);
 
-static cocos2d::Size designResolutionSize = cocos2d::Size(1280, 720);
-static cocos2d::Size smallResolutionSize = cocos2d::Size(1280, 720);
-static cocos2d::Size mediumResolutionSize = cocos2d::Size(1280, 720);
-static cocos2d::Size largeResolutionSize = cocos2d::Size(1280, 720);
 
 AppDelegate::AppDelegate()
 {
@@ -41,88 +37,49 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
   register_all_packages();
 
-  // initialize director
-  auto director = Director::getInstance();
-  auto glview = director->getOpenGLView();
-  if(!glview) {
-  #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-    glview = GLViewImpl::createWithRect("walk", cocos2d::Rect(0, 0, designResolutionSize.width, designResolutionSize.height));
-  #else
-    glview = GLViewImpl::create("walk");
-  #endif
+  // // initialize director
+  // auto director = Director::getInstance();
+  // auto glview = director->getOpenGLView();
+  // if(!glview) {
+  // #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+  //   glview = GLViewImpl::createWithRect("walk", cocos2d::Rect(0, 0, designResolutionSize.width, designResolutionSize.height));
+  // #else
+  //   glview = GLViewImpl::create("walk");
+  // #endif
   
-    director->setOpenGLView(glview);
-  }
+  //   director->setOpenGLView(glview);
+  // }
 
-  // turn on display FPS
-  director->setDisplayStats(true);
+  // // turn on display FPS
+  // director->setDisplayStats(true);
 
-  // set FPS. the default value is 1.0/60 if you don't call this
-  director->setAnimationInterval(1.0f / 60);
+  // // set FPS. the default value is 1.0/60 if you don't call this
+  // director->setAnimationInterval(1.0f / 60);
 
-  // Set the design resolution
-  glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::NO_BORDER);
-  auto frameSize = glview->getFrameSize();
-  // if the frame's height is larger than the height of medium size.
-  if (frameSize.height > mediumResolutionSize.height)
-  {        
-    director->setContentScaleFactor(MIN(largeResolutionSize.height/designResolutionSize.height, largeResolutionSize.width/designResolutionSize.width));
-  }
-  // if the frame's height is larger than the height of small size.
-  else if (frameSize.height > smallResolutionSize.height)
-  {        
-    director->setContentScaleFactor(MIN(mediumResolutionSize.height/designResolutionSize.height, mediumResolutionSize.width/designResolutionSize.width));
-  }
-  // if the frame's height is smaller than the height of medium size.
-  else
-  {        
-    director->setContentScaleFactor(MIN(smallResolutionSize.height/designResolutionSize.height, smallResolutionSize.width/designResolutionSize.width));
-  }
+  // // Set the design resolution
+  // glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::NO_BORDER);
+  // auto frameSize = glview->getFrameSize();
+  // // if the frame's height is larger than the height of medium size.
+  // if (frameSize.height > mediumResolutionSize.height)
+  // {        
+  //   director->setContentScaleFactor(MIN(largeResolutionSize.height/designResolutionSize.height, largeResolutionSize.width/designResolutionSize.width));
+  // }
+  // // if the frame's height is larger than the height of small size.
+  // else if (frameSize.height > smallResolutionSize.height)
+  // {        
+  //   director->setContentScaleFactor(MIN(mediumResolutionSize.height/designResolutionSize.height, mediumResolutionSize.width/designResolutionSize.width));
+  // }
+  // // if the frame's height is smaller than the height of medium size.
+  // else
+  // {        
+  //   director->setContentScaleFactor(MIN(smallResolutionSize.height/designResolutionSize.height, smallResolutionSize.width/designResolutionSize.width));
+  // }
 
+  // auto scene = jiangweigithub::LoadingScene::getLoadingScene();
+  // director->runWithScene(scene);
 
-  // create a scene. it's an autorelease object
-  // auto scene = HelloWorld::createScene();
-
-  // auto tmp = new jiangweigithub::LoadingScene();
-  // auto scene = tmp->getLoadingScene();
-
-// auto dirs = Director::getInstance();
-// Size visibleSize = dirs->getVisibleSize();
-
-// auto myScene = Scene::create();
-
-// std::cout<<myScene->getDescription()<<std::endl;
-
-// auto label1 = Label::createWithTTF("My Game", "Marker Felt.ttf", 36);
-
-// std::cout<<label1->getString()<<std::endl;
-
-// label1->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-
-// myScene->addChild(label1);
-
-// auto sprite1 = Sprite::create("mysprite.png");
-// sprite1->setPosition(Vec2(100, 100));
-
-// myScene->addChild(sprite1);
-  // auto aaa = new jiangweigithub::Home();
-  // auto bbb = aaa->getMainScene();
-
-  // run
-  // auto loadingScene = jiangweigithub::HelloWorld::createScene();
-
-  auto scene = jiangweigithub::LoadingScene::getLoadingScene();
-
-  director->runWithScene(scene);
-
-
-
-  //   // CCLOG("hehe scene: %p", hehe);
-
-  // std::thread wa(&jiangweigithub::LoadingScene::loadingSceneCallback, homeScene);
-  // wa.detach();
-
-  // tmp->loadingSceneCallback(director, hehe);
+  jiangweigithub::Director::initDirector();
+  jiangweigithub::Director::openLoadingScene();
 
   return true;
 }

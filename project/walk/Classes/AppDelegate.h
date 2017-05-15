@@ -2,13 +2,13 @@
 #define  _APP_DELEGATE_H_
 
 #include "cocos2d.h"
-#include "thread"
+// #include "thread"
 
-#include "HelloWorldScene.h"
-#include "./Scene/Loading/LoadingScene.h"
-#include "./Scene/Main/Home/Home.h"
+// #include "./Scene/Loading/LoadingScene.h"
+// #include "./Scene/Main/Home/Home.h"
 
-#include "./Scene/HelloWorld/HelloWorld.h"
+
+#include "./Director/Director.h"
 
 /**
 @brief    The cocos2d Application.

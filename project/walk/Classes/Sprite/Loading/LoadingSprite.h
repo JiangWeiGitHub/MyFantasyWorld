@@ -13,6 +13,10 @@ namespace jiangweigithub {
   public:
     static cocos2d::Sprite* getLoadingSprite();
     static cocos2d::Label* getLoadingTitle();
+
+    static void setLoadingTitle(std::string name);
+
+    static std::string name;    
   };
   
 }

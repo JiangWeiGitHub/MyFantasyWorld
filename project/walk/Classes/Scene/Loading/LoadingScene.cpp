@@ -10,20 +10,14 @@ namespace jiangweigithub {
     }
 
     auto tmp = LoadingLayer::getLoadingLayer();
-
     this->addChild(tmp);
 
-
-
-    // add a "close" icon to exit the progress. it's an autorelease object
     auto closeItem = cocos2d::MenuItemImage::create(
                                             "CloseNormal.png",
                                             "CloseSelected.png",
                                             CC_CALLBACK_1(LoadingScene::menuCloseCallback, this));
     
     closeItem->setPosition(cocos2d::Vec2(1100 ,100));
-
-    // create menu, it's an autorelease object
     auto menu = cocos2d::Menu::create(closeItem, NULL);
     menu->setPosition(cocos2d::Vec2::ZERO);
     this->addChild(menu, 1);
@@ -44,43 +38,28 @@ namespace jiangweigithub {
                                     ->addImageAsync("Inside_B.png", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
     cocos2d::Director::getInstance()->getTextureCache()
                                     ->addImageAsync("Inside_C.png", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
-    cocos2d::Director::getInstance()->getTextureCache()
-                                    ->addImageAsync("1.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
-    cocos2d::Director::getInstance()->getTextureCache()
-                                    ->addImageAsync("2.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
-    cocos2d::Director::getInstance()->getTextureCache()
-                                    ->addImageAsync("3.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
-    cocos2d::Director::getInstance()->getTextureCache()
-                                    ->addImageAsync("4.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
-    cocos2d::Director::getInstance()->getTextureCache()
-                                    ->addImageAsync("5.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
-    cocos2d::Director::getInstance()->getTextureCache()
-                                    ->addImageAsync("6.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
-    cocos2d::Director::getInstance()->getTextureCache()
-                                    ->addImageAsync("7.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
-    cocos2d::Director::getInstance()->getTextureCache()
-                                    ->addImageAsync("8.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
-    cocos2d::Director::getInstance()->getTextureCache()
-                                    ->addImageAsync("9.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
-    cocos2d::Director::getInstance()->getTextureCache()
-                                    ->addImageAsync("10.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
-
-    // std::thread tA(&LoadingScene::myThreadA,this);
-    // tA.detach();
+    // cocos2d::Director::getInstance()->getTextureCache()
+    //                                 ->addImageAsync("1.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
+    // cocos2d::Director::getInstance()->getTextureCache()
+    //                                 ->addImageAsync("2.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
+    // cocos2d::Director::getInstance()->getTextureCache()
+    //                                 ->addImageAsync("3.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
+    // cocos2d::Director::getInstance()->getTextureCache()
+    //                                 ->addImageAsync("4.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
+    // cocos2d::Director::getInstance()->getTextureCache()
+    //                                 ->addImageAsync("5.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
+    // cocos2d::Director::getInstance()->getTextureCache()
+    //                                 ->addImageAsync("6.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
+    // cocos2d::Director::getInstance()->getTextureCache()
+    //                                 ->addImageAsync("7.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
+    // cocos2d::Director::getInstance()->getTextureCache()
+    //                                 ->addImageAsync("8.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
+    // cocos2d::Director::getInstance()->getTextureCache()
+    //                                 ->addImageAsync("9.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
+    // cocos2d::Director::getInstance()->getTextureCache()
+    //                                 ->addImageAsync("10.jpg", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
 
     return true;
-  }
-
-  void LoadingScene::myThreadA()
-  {
-    std::cout<<"aaaaaaaaaaaa"<<std::endl;
-    sleep(5);
-    std::cout<<"bbbbbbbbbbbb"<<std::endl;
-    
-    auto homeScene = jiangweigithub::Home::getHomeScene();
-    cocos2d::Director::getInstance()->replaceScene(homeScene);
-
-    std::cout<<"cccccccccccc"<<std::endl;
   }
 
   cocos2d::Scene* LoadingScene::getLoadingScene()
@@ -102,16 +81,17 @@ namespace jiangweigithub {
 
   void LoadingScene::loadingCallback(cocos2d::Ref* callback)
   {
-    if((this->flag)++ >= 17)
+    if((this->flag)++ >= 7)
     {
-      this->gotoLoginScene();
+      // this->gotoLoginScene();
+      Director::loadingSceneCallback();
     }
   }
 
   void LoadingScene::gotoLoginScene()
   {
-    auto loginScene = jiangweigithub::Login::getLoginScene();
-    cocos2d::Director::getInstance()->replaceScene(loginScene);
+    // auto loginScene = jiangweigithub::Login::getLoginScene();
+    // cocos2d::Director::getInstance()->replaceScene(loginScene);
   }
 
 }

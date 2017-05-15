@@ -9,23 +9,18 @@
 
 #include "../../Layer/Loading/LoadingLayer.h"
 #include "../../Scene/Main/Login/Login.h"
+#include "../../Director/Director.h"
 
 namespace jiangweigithub {
 
   class LoadingScene: public cocos2d::Scene
   {
   public:
-    // LoadingScene();
-    // ~LoadingScene();
-
     virtual bool init();
 
     CREATE_FUNC(LoadingScene);
 
-    void myThreadA();
-
     static cocos2d::Scene* getLoadingScene();
-    // void loadingSceneCallback();
 
     void menuCloseCallback(cocos2d::Ref* pSender);
 

@@ -20,7 +20,7 @@ namespace jiangweigithub {
 
   cocos2d::Sprite* MainSprite::getLeaderSprite()
   {
-    cocos2d::Texture2D* textTure = cocos2d::TextureCache::getInstance()->addImage("sabin.png");
+    cocos2d::Texture2D* textTure = cocos2d::Director::getInstance()->getTextureCache()->addImage("sabin.png");
 
     // top
     cocos2d::SpriteFrame* frame0 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(270,0,30,50));
@@ -72,11 +72,6 @@ namespace jiangweigithub {
 
     auto leaderSprite = cocos2d::Sprite::createWithSpriteFrame(frame0);
 
-    auto animation_top = cocos2d::Animation::createWithSpriteFrames(bottom,0.2f);
-    auto animation_bottom = cocos2d::Animation::createWithSpriteFrames(top,0.2f);
-    auto animation_left = cocos2d::Animation::createWithSpriteFrames(left,0.2f);
-    auto animation_right = cocos2d::Animation::createWithSpriteFrames(right,0.2f);
-
     leaderSprite->setPosition(cocos2d::Vec2(100,360));
 
     auto animationTop = cocos2d::Animation::createWithSpriteFrames(top,0.2f);
@@ -85,13 +80,6 @@ namespace jiangweigithub {
 
 
     return leaderSprite;
-  }
-
-  cocos2d::Rect MainSprite::getObstacle()
-  {
-    auto obstacle = cocos2d::Rect(0, 0, 0, 0);
-
-    return obstacle;
   }
 
   cocos2d::Sprite* MainSprite::getBackgroundSprite()

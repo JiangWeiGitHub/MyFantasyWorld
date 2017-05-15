@@ -2,9 +2,11 @@
 
 namespace jiangweigithub {
 
+  std::string LoadingSprite::name = "Loading...";
+
   cocos2d::Sprite* LoadingSprite::getLoadingSprite()
   {
-    cocos2d::Texture2D* textTure = cocos2d::TextureCache::getInstance()->addImage("sabin.png");
+    cocos2d::Texture2D* textTure = cocos2d::Director::getInstance()->getTextureCache()->addImage("sabin.png");
 
     // right
     cocos2d::SpriteFrame* frame1 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(180,0,30,50));
@@ -29,12 +31,17 @@ namespace jiangweigithub {
 
   cocos2d::Label* LoadingSprite::getLoadingTitle()
   {
-    auto name = "Loading...";
     auto loadingTitle = cocos2d::Label::createWithTTF(name, "fonts/arial.ttf", 24);
     loadingTitle->enableBold();
     loadingTitle->setAdditionalKerning(1);
 
     return loadingTitle;
+  }
+
+  void LoadingSprite::setLoadingTitle(std::string name)
+  {
+    LoadingSprite::getLoadingTitle()->setString(name);
+    LoadingSprite::getLoadingTitle()->updateContent();
   }
 
 }

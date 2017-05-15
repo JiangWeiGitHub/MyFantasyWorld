@@ -16,7 +16,6 @@ namespace jiangweigithub {
     // Home
     static cocos2d::Sprite* getLeaderSprite();
     static cocos2d::Label* getHomeTitle();
-    static cocos2d::Rect getObstacle();
     static cocos2d::TMXTiledMap* getTileMapSprite();
 
     // Login

@@ -411,16 +411,6 @@ namespace jiangweigithub {
   {
     this->_calculateContactPixel(contact);
 
-    // std::cout<<"Begin->_contactedTop: "<<this->_contactedTop<<std::endl;
-    // std::cout<<"Begin->_contactedBottom: "<<this->_contactedBottom<<std::endl;
-    // std::cout<<"Begin->_contactedLeft: "<<this->_contactedLeft<<std::endl;
-    // std::cout<<"Begin->_contactedRight: "<<this->_contactedRight<<std::endl;
-
-    // std::cout<<"Begin->_contactedTopLeft: "<<this->_contactedTopLeft<<std::endl;
-    // std::cout<<"Begin->_contactedTopRight: "<<this->_contactedTopRight<<std::endl;
-    // std::cout<<"Begin->_contactedBottomLeft: "<<this->_contactedBottomLeft<<std::endl;
-    // std::cout<<"Begin->_contactedBottomRight: "<<this->_contactedBottomRight<<std::endl;
-
     if((contact.getShapeA()->getBody()->getCategoryBitmask() & heroMask) == heroMask)
     {  
 
@@ -489,16 +479,6 @@ namespace jiangweigithub {
   bool HomeLayer::onContactSeparate(const cocos2d::PhysicsContact& contact)
   {
     this->_calculateContactPixel(contact);
-
-    // std::cout<<"Separate->_contactedTop: "<<this->_contactedTop<<std::endl;
-    // std::cout<<"Separate->_contactedBottom: "<<this->_contactedBottom<<std::endl;
-    // std::cout<<"Separate->_contactedLeft: "<<this->_contactedLeft<<std::endl;
-    // std::cout<<"Separate->_contactedRight: "<<this->_contactedRight<<std::endl;
-
-    // std::cout<<"Separate->_contactedTopLeft: "<<this->_contactedTopLeft<<std::endl;
-    // std::cout<<"Separate->_contactedTopRight: "<<this->_contactedTopRight<<std::endl;
-    // std::cout<<"Separate->_contactedBottomLeft: "<<this->_contactedBottomLeft<<std::endl;
-    // std::cout<<"Separate->_contactedBottomRight: "<<this->_contactedBottomRight<<std::endl;
 
     if((contact.getShapeA()->getBody()->getCategoryBitmask() & heroMask) == heroMask)
     {  

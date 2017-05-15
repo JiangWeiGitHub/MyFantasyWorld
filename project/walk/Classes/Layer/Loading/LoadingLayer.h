@@ -13,9 +13,6 @@ namespace jiangweigithub {
   class LoadingLayer : public cocos2d::Layer
   {
   public:
-    // LoadingLayer();
-    // ~LoadingLayer();
-    
     virtual bool init();
 
     static cocos2d::Layer* getLoadingLayer();

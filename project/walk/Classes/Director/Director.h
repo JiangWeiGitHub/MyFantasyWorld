@@ -6,20 +6,29 @@
 #include "iostream"
 #include "cocos2d.h"
 
+#include "../Scene/Loading/LoadingScene.h"
+
+static cocos2d::Size designResolutionSize = cocos2d::Size(1280, 720);
+static cocos2d::Size smallResolutionSize = cocos2d::Size(1280, 720);
+static cocos2d::Size mediumResolutionSize = cocos2d::Size(1280, 720);
+static cocos2d::Size largeResolutionSize = cocos2d::Size(1280, 720);
+
 namespace jiangweigithub {
 
   class Director
   {
   public:
-    Director();
-    ~Director();
+    // Director();
+    // ~Director();
 
-    cocos2d::Director* getDirector();
+    // cocos2d::Director* getDirector();
 
-    void loadingSceneCallback();
+    static void initDirector();
+    static void openLoadingScene();
+    static void loadingSceneCallback();
+    static void loginSceneCallback();
 
-  private:    
-    cocos2d::Director* director;
+    static cocos2d::Director* director;
   };
 
 }
