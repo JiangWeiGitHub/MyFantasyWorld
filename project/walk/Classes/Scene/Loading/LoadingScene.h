@@ -25,10 +25,9 @@ namespace jiangweigithub {
     void menuCloseCallback(cocos2d::Ref* pSender);
 
     void loadingCallback(cocos2d::Ref* callback);
-    void gotoLoginScene();
 
   private:
-    int flag = 0;
+    int _counter = 0;
   };
   
 }

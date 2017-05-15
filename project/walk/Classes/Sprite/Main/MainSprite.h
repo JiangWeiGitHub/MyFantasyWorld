@@ -24,6 +24,14 @@ namespace jiangweigithub {
     static cocos2d::MenuItemLabel* getLoadGame();
     static cocos2d::MenuItemLabel* getConfigGame();
 
+    // Dialog box
+    static cocos2d::DrawNode* getDrawFrame();
+    static cocos2d::Sprite* getFrameLeftFlowers();
+    static cocos2d::Sprite* getFrameRightFlowers();
+    static cocos2d::Label* getFirstLine();
+    static cocos2d::Label* getSecondLine();
+    static cocos2d::Label* getThirdLine();
+    static cocos2d::Label* getPeopleName();
   };
   
 }

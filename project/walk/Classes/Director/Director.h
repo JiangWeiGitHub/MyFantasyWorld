@@ -18,11 +18,6 @@ namespace jiangweigithub {
   class Director
   {
   public:
-    // Director();
-    // ~Director();
-
-    // cocos2d::Director* getDirector();
-
     static void initDirector();
     static void openLoadingScene();
     static void loadingSceneCallback();

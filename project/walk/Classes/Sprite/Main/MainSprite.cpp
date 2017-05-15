@@ -121,5 +121,86 @@ namespace jiangweigithub {
     return tmp;
   }
 
+  cocos2d::DrawNode* MainSprite::getDrawFrame()
+  {
+    cocos2d::DrawNode* tmp = cocos2d::DrawNode::create();
+
+    cocos2d::Vec2 point[4];
+    point[0] = cocos2d::Vec2(20, 25);
+    point[1] = cocos2d::Vec2(1260, 25);
+    point[2] = cocos2d::Vec2(1260, 210);
+    point[3] = cocos2d::Vec2(20, 210);
+    drawNode->drawPolygon(point, 4, cocos2d::Color4F(66/255.0f, 66/255.0f, 66/255.0f, 0.5f), 1, cocos2d::Color4F(243/255.0f, 198/255.0f, 108/255.0f, 0.7f));    
+
+    return tmp;
+  }
+
+  cocos2d::Sprite* MainSprite::getFrameLeftFlowers()
+  {
+    auto tmp =  cocos2d::Sprite::create("golderFlower.png");
+    tmp->setScale(0.6);
+    tmp->setOpacity(235);
+    tmp->setAnchorPoint(cocos2d::Vec2(0, 0));
+    tmp->setRotation(180);
+    tmp->setPosition(cocos2d::Vec2(1265, 225));
+
+    return tmp;
+  }
+
+  cocos2d::Sprite* MainSprite::getFrameRightFlowers()
+  {
+    auto tmp =  cocos2d::Sprite::create("golderFlower.png");
+    tmp->setScale(0.6);
+    tmp->setOpacity(235);
+    tmp->setAnchorPoint(cocos2d::Vec2(0, 0));
+    tmp->setPosition(cocos2d::Vec2(15, 15));
+
+    return tmp;
+  }
+
+  cocos2d::Label* MainSprite::getFirstLine()
+  {
+    auto tmp = cocos2d::Label::createWithTTF("Today is a good day.", "fonts/arial.ttf", 22);
+    tmp->setAnchorPoint(cocos2d::Vec2(0, 0));
+    tmp->setTextColor(cocos2d::Color4B(255,255,255,200));
+    tmp->enableShadow();
+    tmp->setPosition(cocos2d::Vec2(350, 125));
+
+    return tmp;
+  }
+
+  cocos2d::Label* MainSprite::getSecondLine()
+  {
+    auto tmp = cocos2d::Label::createWithTTF("I've watched a good movie this evening!", "fonts/arial.ttf", 22);
+    tmp->setAnchorPoint(cocos2d::Vec2(0, 0));
+    tmp->setTextColor(cocos2d::Color4B(255,255,255,200));
+    tmp->enableShadow();
+    tmp->setPosition(cocos2d::Vec2(350, 90));
+
+    return tmp;
+  }
+
+  cocos2d::Label* MainSprite::getThirdLine()
+  {
+    auto tmp = cocos2d::Label::createWithTTF("Have a good dream, stranger.", "fonts/arial.ttf", 22);
+    tmp->setAnchorPoint(cocos2d::Vec2(0, 0));
+    tmp->setTextColor(cocos2d::Color4B(255,255,255,200));
+    tmp->enableShadow();
+    tmp->setPosition(cocos2d::Vec2(350, 55));
+
+    return tmp;
+  }
+
+  cocos2d::Label* MainSprite::getPeopleName()
+  {
+    auto tmp = cocos2d::Label::createWithTTF("Hero:", "fonts/arial.ttf", 26);
+    tmp->setAnchorPoint(cocos2d::Vec2(0, 0));
+    tmp->setTextColor(cocos2d::Color4B(255,255,255,200));
+    tmp->enableShadow();
+    tmp->setPosition(cocos2d::Vec2(320, 165));
+
+    return tmp;
+  }
+
 }
 

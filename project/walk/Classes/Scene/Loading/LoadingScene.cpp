@@ -81,17 +81,10 @@ namespace jiangweigithub {
 
   void LoadingScene::loadingCallback(cocos2d::Ref* callback)
   {
-    if((this->flag)++ >= 7)
+    if((this->_counter)++ >= 7)
     {
-      // this->gotoLoginScene();
       Director::loadingSceneCallback();
     }
-  }
-
-  void LoadingScene::gotoLoginScene()
-  {
-    // auto loginScene = jiangweigithub::Login::getLoginScene();
-    // cocos2d::Director::getInstance()->replaceScene(loginScene);
   }
 
 }
