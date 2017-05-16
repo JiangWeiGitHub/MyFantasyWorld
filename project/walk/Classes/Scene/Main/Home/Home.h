@@ -7,6 +7,7 @@
 #include "cocos2d.h"
 
 #include "../../../Layer/Main/Home/HomeLayer.h"
+#include "../../../Layer/Main/Component/TalkFrame.h"
 
 namespace jiangweigithub {
 

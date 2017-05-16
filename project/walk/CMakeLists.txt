@@ -148,6 +148,7 @@ set(GAME_SRC
   Classes/Sprite/Loading/LoadingSprite.cpp
   Classes/Sprite/Main/MainSprite.cpp
   Classes/Director/Director.cpp
+  Classes/Layer/Main/Component/TalkFrame.cpp
   ${PLATFORM_SPECIFIC_SRC}
 )
 
@@ -172,6 +173,7 @@ set(GAME_HEADERS
   Classes/Sprite/Loading/LoadingSprite.h
   Classes/Sprite/Main/MainSprite.cpp
   Classes/Director/Director.h
+  Classes/Layer/Main/Component/TalkFrame.h
   ${PLATFORM_SPECIFIC_HEADERS}
 )
 

@@ -19,7 +19,10 @@ namespace jiangweigithub {
     // this->getPhysicsWorld()->setDebugDrawMask(cocos2d::PhysicsWorld::DEBUGDRAW_ALL);
 
     auto tmp = HomeLayer::getHomeLayer();
-    this->addChild(tmp);
+    auto talkFrame = TalkFrame::getTalkFrame();
+
+    this->addChild(tmp, 0);
+    this->addChild(talkFrame, 1);
 
     return true;
   }

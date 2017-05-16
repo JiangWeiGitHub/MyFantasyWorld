@@ -130,7 +130,7 @@ namespace jiangweigithub {
     point[1] = cocos2d::Vec2(1260, 25);
     point[2] = cocos2d::Vec2(1260, 210);
     point[3] = cocos2d::Vec2(20, 210);
-    drawNode->drawPolygon(point, 4, cocos2d::Color4F(66/255.0f, 66/255.0f, 66/255.0f, 0.5f), 1, cocos2d::Color4F(243/255.0f, 198/255.0f, 108/255.0f, 0.7f));    
+    tmp->drawPolygon(point, 4, cocos2d::Color4F(66/255.0f, 66/255.0f, 66/255.0f, 0.5f), 1, cocos2d::Color4F(243/255.0f, 198/255.0f, 108/255.0f, 0.7f));    
 
     return tmp;
   }
@@ -202,7 +202,7 @@ namespace jiangweigithub {
     return tmp;
   }
 
-  cocos2d::Sprite* MainSprite::getAvatar();
+  cocos2d::Sprite* MainSprite::getAvatar()
   {
     auto tmp =  cocos2d::Sprite::create("avatar.png");
     tmp->setScale(0.9);
