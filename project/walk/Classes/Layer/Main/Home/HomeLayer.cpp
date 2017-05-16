@@ -119,16 +119,16 @@ namespace jiangweigithub {
     // this->addChild(_nameLine, 102);
 
 
-    auto nextString = cocos2d::MenuItemImage::create(
-                                            "CloseNormal.png",
-                                            "CloseSelected.png",
-                                            CC_CALLBACK_1(HomeLayer::_nextStringCallback, this));
+    // auto nextString = cocos2d::MenuItemImage::create(
+    //                                         "CloseNormal.png",
+    //                                         "CloseSelected.png",
+    //                                         CC_CALLBACK_1(HomeLayer::_nextStringCallback, this));
     
-    nextString->setPosition(cocos2d::Vec2(1200, 60));
+    // nextString->setPosition(cocos2d::Vec2(1200, 60));
 
-    auto menu = cocos2d::Menu::create(nextString, NULL);
-    menu->setPosition(cocos2d::Vec2::ZERO);
-    this->addChild(menu, 103);
+    // auto menu = cocos2d::Menu::create(nextString, NULL);
+    // menu->setPosition(cocos2d::Vec2::ZERO);
+    // this->addChild(menu, 103);
 
 
     // add to the layer
@@ -313,7 +313,16 @@ namespace jiangweigithub {
         break;
 
       case 29:
-        // bottom
+        // bottom    // auto nextString = cocos2d::MenuItemImage::create(
+    //                                         "CloseNormal.png",
+    //                                         "CloseSelected.png",
+    //                                         CC_CALLBACK_1(HomeLayer::_nextStringCallback, this));
+    
+    // nextString->setPosition(cocos2d::Vec2(1200, 60));
+
+    // auto menu = cocos2d::Menu::create(nextString, NULL);
+    // menu->setPosition(cocos2d::Vec2::ZERO);
+    // this->addChild(menu, 103);
         this->_durationBottom = false;
 
         if(this->_keyboardNameCache.top().compare("BOTTOM") == 0)
@@ -680,16 +689,16 @@ namespace jiangweigithub {
     return true;
   }
 
-  void HomeLayer::_nextStringCallback(cocos2d::Ref* pSender)
-  {
-    this->_firstLine->setString("Tomorrow is another day!");
-    this->_firstLine->updateContent();
+  // void HomeLayer::_nextStringCallback(cocos2d::Ref* pSender)
+  // {
+  //   this->_firstLine->setString("Tomorrow is another day!");
+  //   this->_firstLine->updateContent();
 
-    this->_secondLine->setString("See you then.");
-    this->_secondLine->updateContent();
+  //   this->_secondLine->setString("See you then.");
+  //   this->_secondLine->updateContent();
 
-    this->_thirdLine->setString("");
-    this->_thirdLine->updateContent();
-  }
+  //   this->_thirdLine->setString("");
+  //   this->_thirdLine->updateContent();
+  // }
 
 }

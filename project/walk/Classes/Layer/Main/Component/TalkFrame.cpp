@@ -43,6 +43,9 @@ namespace jiangweigithub {
     // background->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2));
     // tmp->setPosition(cocos2d::Vec2(visibleSize.width / 2, 100));
 
+    this->addChild(menu, 1);
+
+
     this->addChild(drawFrame, 0);
     this->addChild(leftFlower, 2);
     this->addChild(rightFlower, 2);

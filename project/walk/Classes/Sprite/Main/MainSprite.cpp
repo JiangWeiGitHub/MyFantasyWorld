@@ -212,5 +212,32 @@ namespace jiangweigithub {
     return tmp;
   }
 
+  cocos2d::Menu* MainSprite::getNextPage()
+  {
+    auto nextString = cocos2d::MenuItemImage::create(
+                                            "CloseNormal.png",
+                                            "CloseSelected.png",
+                                            CC_CALLBACK_1(MainSprite::_NextPageCallback, this));
+    
+    nextString->setPosition(cocos2d::Vec2(1200, 60));
+
+    auto tmp = cocos2d::Menu::create(nextString, NULL);
+    tmp->setPosition(cocos2d::Vec2::ZERO);
+
+    return tmp;
+  }
+
+  void MainSprite::_NextPageCallback(cocos2d::Ref* pSender)
+  {
+    this->_firstLine->setString("Tomorrow is another day!");
+    this->_firstLine->updateContent();
+
+    this->_secondLine->setString("See you then.");
+    this->_secondLine->updateContent();
+
+    this->_thirdLine->setString("");
+    this->_thirdLine->updateContent();
+  }
+
 }
 

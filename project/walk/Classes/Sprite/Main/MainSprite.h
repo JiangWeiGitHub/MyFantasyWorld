@@ -34,6 +34,7 @@ namespace jiangweigithub {
     static cocos2d::Label* getSecondLine();
     static cocos2d::Label* getThirdLine();
     static cocos2d::Label* getPeopleName();
+    static cocos2d::Menu* getNextPage();
   };
   
 }
