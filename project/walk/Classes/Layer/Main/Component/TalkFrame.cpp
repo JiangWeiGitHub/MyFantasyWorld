@@ -26,6 +26,11 @@ namespace jiangweigithub {
     auto thirdLine = MainSprite::getThirdLine();
     auto peopleName = MainSprite::getPeopleName();
 
+    auto nextPageItem = MainSprite::getNextPageItem();
+    nextPageItem->setCallback(CC_CALLBACK_1(TalkFrame::_NextPageCallback, this));
+
+    auto nextPage = MainSprite::getNextPage();
+
     // auto background = MainSprite::getBackgroundSprite();
     // auto newGame = MainSprite::getNewGame();
     // auto loadGame = MainSprite::getLoadGame();
@@ -43,9 +48,6 @@ namespace jiangweigithub {
     // background->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2));
     // tmp->setPosition(cocos2d::Vec2(visibleSize.width / 2, 100));
 
-    this->addChild(menu, 1);
-
-
     this->addChild(drawFrame, 0);
     this->addChild(leftFlower, 2);
     this->addChild(rightFlower, 2);
@@ -54,8 +56,17 @@ namespace jiangweigithub {
     this->addChild(secondeLine, 1);
     this->addChild(thirdLine, 1);
     this->addChild(peopleName, 1);
+    this->addChild(nextPage, 1);
 
     return true;
+  }
+
+  void TalkFrame::_NextPageCallback(cocos2d::Ref* pSender)
+  {
+    MainSprite::setFirstLine("Tomorrow is another day!");
+    MainSprite::setSecondLine("See you then.");
+    MainSprite::setThirdLine("");
+    MainSprite::setPeopleName("God");
   }
 
 }

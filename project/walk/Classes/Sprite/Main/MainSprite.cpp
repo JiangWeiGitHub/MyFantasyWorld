@@ -2,6 +2,15 @@
 
 namespace jiangweigithub {
 
+  cocos2d::Label* MainSprite::_firstLine = cocos2d::Label::createWithTTF("Today is a good day.", "fonts/arial.ttf", 22);
+  cocos2d::Label* MainSprite::_secondLine = cocos2d::Label::createWithTTF("I've watched a good movie this evening!", "fonts/arial.ttf", 22);
+  cocos2d::Label* MainSprite::_thirdLine = cocos2d::Label::createWithTTF("Have a good dream, stranger.", "fonts/arial.ttf", 22);
+  cocos2d::Label* MainSprite::_peopleName = cocos2d::Label::createWithTTF("Hero:", "fonts/arial.ttf", 26);
+  cocos2d::MenuItemImage* MainSprite::nextPageItem = cocos2d::MenuItemImage::create(
+                                                                                    "CloseNormal.png",
+                                                                                    "CloseSelected.png"
+                                                                                    );
+
   cocos2d::Label* MainSprite::getHomeTitle()
   {
     auto homeTitle = cocos2d::Label::createWithTTF("Home", "fonts/arial.ttf", 24);
@@ -160,46 +169,42 @@ namespace jiangweigithub {
 
   cocos2d::Label* MainSprite::getFirstLine()
   {
-    auto tmp = cocos2d::Label::createWithTTF("Today is a good day.", "fonts/arial.ttf", 22);
-    tmp->setAnchorPoint(cocos2d::Vec2(0, 0));
-    tmp->setTextColor(cocos2d::Color4B(255,255,255,200));
-    tmp->enableShadow();
-    tmp->setPosition(cocos2d::Vec2(350, 125));
+    _firstLine->setAnchorPoint(cocos2d::Vec2(0, 0));
+    _firstLine->setTextColor(cocos2d::Color4B(255,255,255,200));
+    _firstLine->enableShadow();
+    _firstLine->setPosition(cocos2d::Vec2(350, 125));
 
-    return tmp;
+    return _firstLine;
   }
 
   cocos2d::Label* MainSprite::getSecondLine()
   {
-    auto tmp = cocos2d::Label::createWithTTF("I've watched a good movie this evening!", "fonts/arial.ttf", 22);
-    tmp->setAnchorPoint(cocos2d::Vec2(0, 0));
-    tmp->setTextColor(cocos2d::Color4B(255,255,255,200));
-    tmp->enableShadow();
-    tmp->setPosition(cocos2d::Vec2(350, 90));
+    _secondLine->setAnchorPoint(cocos2d::Vec2(0, 0));
+    _secondLine->setTextColor(cocos2d::Color4B(255,255,255,200));
+    _secondLine->enableShadow();
+    _secondLine->setPosition(cocos2d::Vec2(350, 90));
 
-    return tmp;
+    return _secondLine;
   }
 
   cocos2d::Label* MainSprite::getThirdLine()
   {
-    auto tmp = cocos2d::Label::createWithTTF("Have a good dream, stranger.", "fonts/arial.ttf", 22);
-    tmp->setAnchorPoint(cocos2d::Vec2(0, 0));
-    tmp->setTextColor(cocos2d::Color4B(255,255,255,200));
-    tmp->enableShadow();
-    tmp->setPosition(cocos2d::Vec2(350, 55));
+    _thirdLine->setAnchorPoint(cocos2d::Vec2(0, 0));
+    _thirdLine->setTextColor(cocos2d::Color4B(255,255,255,200));
+    _thirdLine->enableShadow();
+    _thirdLine->setPosition(cocos2d::Vec2(350, 55));
 
-    return tmp;
+    return _thirdLine;
   }
 
   cocos2d::Label* MainSprite::getPeopleName()
   {
-    auto tmp = cocos2d::Label::createWithTTF("Hero:", "fonts/arial.ttf", 26);
-    tmp->setAnchorPoint(cocos2d::Vec2(0, 0));
-    tmp->setTextColor(cocos2d::Color4B(255,255,255,200));
-    tmp->enableShadow();
-    tmp->setPosition(cocos2d::Vec2(320, 165));
+    _peopleName->setAnchorPoint(cocos2d::Vec2(0, 0));
+    _peopleName->setTextColor(cocos2d::Color4B(255,255,255,200));
+    _peopleName->enableShadow();
+    _peopleName->setPosition(cocos2d::Vec2(320, 165));
 
-    return tmp;
+    return _peopleName;
   }
 
   cocos2d::Sprite* MainSprite::getAvatar()
@@ -212,32 +217,43 @@ namespace jiangweigithub {
     return tmp;
   }
 
+  cocos2d::MenuItemImage* MainSprite::getNextPageItem()
+  {
+    nextPageItem->setPosition(cocos2d::Vec2(1200, 60));
+
+    return nextPageItem;
+  }
+
   cocos2d::Menu* MainSprite::getNextPage()
   {
-    auto nextString = cocos2d::MenuItemImage::create(
-                                            "CloseNormal.png",
-                                            "CloseSelected.png",
-                                            CC_CALLBACK_1(MainSprite::_NextPageCallback, this));
-    
-    nextString->setPosition(cocos2d::Vec2(1200, 60));
-
-    auto tmp = cocos2d::Menu::create(nextString, NULL);
+    auto tmp = cocos2d::Menu::create(nextPageItem, NULL);
     tmp->setPosition(cocos2d::Vec2::ZERO);
 
     return tmp;
   }
 
-  void MainSprite::_NextPageCallback(cocos2d::Ref* pSender)
+  void MainSprite::setFirstLine(std::string contents)
   {
-    this->_firstLine->setString("Tomorrow is another day!");
-    this->_firstLine->updateContent();
-
-    this->_secondLine->setString("See you then.");
-    this->_secondLine->updateContent();
-
-    this->_thirdLine->setString("");
-    this->_thirdLine->updateContent();
+    _firstLine->setString(contents);
+    _firstLine->updateContent();
   }
 
+  void MainSprite::setSecondLine(std::string contents)
+  {
+    _secondLine->setString(contents);
+    _secondLine->updateContent();
+  }
+
+  void MainSprite::setThirdLine(std::string contents)
+  {
+    _thirdLine->setString(contents);
+    _thirdLine->updateContent();
+  }
+
+  void MainSprite::setPeopleName(std::string contents)
+  {
+    _peopleName->setString(contents);
+    _peopleName->updateContent();
+  }
 }
 

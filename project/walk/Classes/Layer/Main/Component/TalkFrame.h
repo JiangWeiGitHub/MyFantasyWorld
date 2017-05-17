@@ -17,12 +17,7 @@ namespace jiangweigithub {
     CREATE_FUNC(TalkFrame);
 
   private:
-    // // Login callback
-    // void onConfigGame(cocos2d::Ref* callback);
-    // void onNewGame(cocos2d::Ref* callback);
-    // void onLoadGame(cocos2d::Ref* callback);
-
-    // void gotoHomeScene();
+    void _NextPageCallback(cocos2d::Ref* pSender);
   };
   
 }
