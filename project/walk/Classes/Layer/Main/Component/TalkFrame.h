@@ -17,7 +17,18 @@ namespace jiangweigithub {
     CREATE_FUNC(TalkFrame);
 
   private:
-    void _NextPageCallback(cocos2d::Ref* pSender);
+    void _nextPageCallback(cocos2d::Ref* pSender);
+    void _readTalkContents(int id);
+    void _dealTalkContents(int id);
+    std::string _talkContents;
+    unsigned int _lineCounter;
+    std::string _avatar;
+    std::string _firstLine;
+    std::string _secondLine;
+    std::string _thirdLine;
+    std::string _peopleName;
+
+    int _position = 0;
   };
   
 }

@@ -2,14 +2,12 @@
 
 namespace jiangweigithub {
 
-  cocos2d::Label* MainSprite::_firstLine = cocos2d::Label::createWithTTF("Today is a good day.", "fonts/arial.ttf", 22);
-  cocos2d::Label* MainSprite::_secondLine = cocos2d::Label::createWithTTF("I've watched a good movie this evening!", "fonts/arial.ttf", 22);
-  cocos2d::Label* MainSprite::_thirdLine = cocos2d::Label::createWithTTF("Have a good dream, stranger.", "fonts/arial.ttf", 22);
-  cocos2d::Label* MainSprite::_peopleName = cocos2d::Label::createWithTTF("Hero:", "fonts/arial.ttf", 26);
-  cocos2d::MenuItemImage* MainSprite::nextPageItem = cocos2d::MenuItemImage::create(
-                                                                                    "CloseNormal.png",
-                                                                                    "CloseSelected.png"
-                                                                                    );
+  cocos2d::Label* MainSprite::_firstLine = NULL;
+  cocos2d::Label* MainSprite::_secondLine = NULL;
+  cocos2d::Label* MainSprite::_thirdLine = NULL;
+  cocos2d::Label* MainSprite::_peopleName = NULL;
+  cocos2d::Sprite* MainSprite::_avatar = NULL;
+  cocos2d::MenuItemImage* MainSprite::_nextPageItem = NULL;
 
   cocos2d::Label* MainSprite::getHomeTitle()
   {
@@ -167,8 +165,9 @@ namespace jiangweigithub {
     return tmp;
   }
 
-  cocos2d::Label* MainSprite::getFirstLine()
+  cocos2d::Label* MainSprite::getFirstLine(std::string contents)
   {
+    _firstLine = cocos2d::Label::createWithTTF(contents, "fonts/arial.ttf", 22);
     _firstLine->setAnchorPoint(cocos2d::Vec2(0, 0));
     _firstLine->setTextColor(cocos2d::Color4B(255,255,255,200));
     _firstLine->enableShadow();
@@ -177,8 +176,9 @@ namespace jiangweigithub {
     return _firstLine;
   }
 
-  cocos2d::Label* MainSprite::getSecondLine()
+  cocos2d::Label* MainSprite::getSecondLine(std::string contents)
   {
+    _secondLine = cocos2d::Label::createWithTTF(contents, "fonts/arial.ttf", 22);
     _secondLine->setAnchorPoint(cocos2d::Vec2(0, 0));
     _secondLine->setTextColor(cocos2d::Color4B(255,255,255,200));
     _secondLine->enableShadow();
@@ -187,8 +187,9 @@ namespace jiangweigithub {
     return _secondLine;
   }
 
-  cocos2d::Label* MainSprite::getThirdLine()
+  cocos2d::Label* MainSprite::getThirdLine(std::string contents)
   {
+    _thirdLine = cocos2d::Label::createWithTTF(contents, "fonts/arial.ttf", 22);
     _thirdLine->setAnchorPoint(cocos2d::Vec2(0, 0));
     _thirdLine->setTextColor(cocos2d::Color4B(255,255,255,200));
     _thirdLine->enableShadow();
@@ -197,8 +198,9 @@ namespace jiangweigithub {
     return _thirdLine;
   }
 
-  cocos2d::Label* MainSprite::getPeopleName()
+  cocos2d::Label* MainSprite::getPeopleName(std::string contents)
   {
+    _peopleName = cocos2d::Label::createWithTTF(contents, "fonts/arial.ttf", 26);
     _peopleName->setAnchorPoint(cocos2d::Vec2(0, 0));
     _peopleName->setTextColor(cocos2d::Color4B(255,255,255,200));
     _peopleName->enableShadow();
@@ -207,26 +209,30 @@ namespace jiangweigithub {
     return _peopleName;
   }
 
-  cocos2d::Sprite* MainSprite::getAvatar()
+  cocos2d::Sprite* MainSprite::getAvatar(std::string contents)
   {
-    auto tmp =  cocos2d::Sprite::create("avatar.png");
-    tmp->setScale(0.9);
-    tmp->setAnchorPoint(cocos2d::Vec2(0, 0));
-    tmp->setPosition(cocos2d::Vec2(21, 26));
+    _avatar = cocos2d::Sprite::create(contents);
+    _avatar->setScale(0.9);
+    _avatar->setAnchorPoint(cocos2d::Vec2(0, 0));
+    _avatar->setPosition(cocos2d::Vec2(21, 26));
 
-    return tmp;
+    return _avatar;
   }
 
   cocos2d::MenuItemImage* MainSprite::getNextPageItem()
   {
-    nextPageItem->setPosition(cocos2d::Vec2(1200, 60));
+    _nextPageItem = cocos2d::MenuItemImage::create(
+                                                    "CloseNormal.png",
+                                                    "CloseSelected.png"
+                                                  );
+    _nextPageItem->setPosition(cocos2d::Vec2(1200, 60));
 
-    return nextPageItem;
+    return _nextPageItem;
   }
 
   cocos2d::Menu* MainSprite::getNextPage()
   {
-    auto tmp = cocos2d::Menu::create(nextPageItem, NULL);
+    auto tmp = cocos2d::Menu::create(_nextPageItem, NULL);
     tmp->setPosition(cocos2d::Vec2::ZERO);
 
     return tmp;
@@ -255,5 +261,11 @@ namespace jiangweigithub {
     _peopleName->setString(contents);
     _peopleName->updateContent();
   }
+
+  void MainSprite::setAvatar(std::string contents)
+  {
+    _avatar->setTexture(contents);
+  }
+
 }
 

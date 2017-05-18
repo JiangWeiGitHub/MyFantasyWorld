@@ -29,24 +29,28 @@ namespace jiangweigithub {
     static cocos2d::Sprite* getFrameLeftFlowers();
     static cocos2d::Sprite* getFrameRightFlowers();
 
-    static cocos2d::Sprite* getAvatar();
-    static cocos2d::Label* getFirstLine();
+    static cocos2d::Sprite* getAvatar(std::string contents);
+    static void setAvatar(std::string contents);
+    static cocos2d::Label* getFirstLine(std::string contents);
     static void setFirstLine(std::string contents);
-    static cocos2d::Label* getSecondLine();
+    static cocos2d::Label* getSecondLine(std::string contents);
     static void setSecondLine(std::string contents);
-    static cocos2d::Label* getThirdLine();
+    static cocos2d::Label* getThirdLine(std::string contents);
     static void setThirdLine(std::string contents);
-    static cocos2d::Label* getPeopleName();
+    static cocos2d::Label* getPeopleName(std::string contents);
     static void setPeopleName(std::string contents);
+
     static cocos2d::MenuItemImage* getNextPageItem();
     static cocos2d::Menu* getNextPage();
 
+  private:
+    static cocos2d::Sprite* _avatar;
     static cocos2d::Label* _firstLine;
     static cocos2d::Label* _secondLine;
     static cocos2d::Label* _thirdLine;
     static cocos2d::Label* _peopleName;
 
-    static cocos2d::MenuItemImage* nextPageItem;
+    static cocos2d::MenuItemImage* _nextPageItem;
   };
   
 }

@@ -16,37 +16,31 @@ namespace jiangweigithub {
       return false;
     }
 
+    _talkContents = "";
+    _lineCounter = 0;
+    _avatar = "avatar.png";
+    _firstLine = "";
+    _secondLine = "";
+    _thirdLine = "";
+    _peopleName = "Hero";
+
     auto drawFrame = MainSprite::getDrawFrame();
     auto leftFlower = MainSprite::getFrameLeftFlowers();
     auto rightFlower = MainSprite::getFrameRightFlowers();
 
-    auto avatar = MainSprite::getAvatar();
-    auto firstLine = MainSprite::getFirstLine();
-    auto secondeLine = MainSprite::getSecondLine();
-    auto thirdLine = MainSprite::getThirdLine();
-    auto peopleName = MainSprite::getPeopleName();
+    _readTalkContents(1);
+    _dealTalkContents(1);
+
+    auto avatar = MainSprite::getAvatar(_avatar);
+    auto firstLine = MainSprite::getFirstLine(_firstLine);
+    auto secondeLine = MainSprite::getSecondLine(_secondLine);
+    auto thirdLine = MainSprite::getThirdLine(_thirdLine);
+    auto peopleName = MainSprite::getPeopleName(_peopleName);
 
     auto nextPageItem = MainSprite::getNextPageItem();
-    nextPageItem->setCallback(CC_CALLBACK_1(TalkFrame::_NextPageCallback, this));
+    nextPageItem->setCallback(CC_CALLBACK_1(TalkFrame::_nextPageCallback, this));
 
     auto nextPage = MainSprite::getNextPage();
-
-    // auto background = MainSprite::getBackgroundSprite();
-    // auto newGame = MainSprite::getNewGame();
-    // auto loadGame = MainSprite::getLoadGame();
-    // auto configGame = MainSprite::getConfigGame();
-
-    // newGame->setCallback(CC_CALLBACK_1(LoginLayer::onNewGame, this));
-    // loadGame->setCallback(CC_CALLBACK_1(LoginLayer::onLoadGame, this));
-    // configGame->setCallback(CC_CALLBACK_1(LoginLayer::onConfigGame, this));
-
-    // auto tmp = cocos2d::Menu::create(newGame, loadGame, configGame, NULL);
-    // tmp->alignItemsVerticallyWithPadding(10);
-
-    // auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
-
-    // background->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2));
-    // tmp->setPosition(cocos2d::Vec2(visibleSize.width / 2, 100));
 
     this->addChild(drawFrame, 0);
     this->addChild(leftFlower, 2);
@@ -61,12 +55,32 @@ namespace jiangweigithub {
     return true;
   }
 
-  void TalkFrame::_NextPageCallback(cocos2d::Ref* pSender)
+  void TalkFrame::_nextPageCallback(cocos2d::Ref* pSender)
   {
-    MainSprite::setFirstLine("Tomorrow is another day!");
-    MainSprite::setSecondLine("See you then.");
-    MainSprite::setThirdLine("");
-    MainSprite::setPeopleName("God");
+    _dealTalkContents(1);
+
+    MainSprite::setFirstLine(_firstLine);
+    MainSprite::setSecondLine(_secondLine);
+    MainSprite::setThirdLine(_thirdLine);
+  }
+
+  void TalkFrame::_readTalkContents(int id)
+  {
+    _talkContents = "Artificial intelligence (AI) is intelligence exhibited by machines. \
+    In computer science, the field of AI research defines itself as the study of \"intelligent agents\": \
+    any device that perceives its environment and takes actions that maximize its chance of success \
+    at some goal.[1] Colloquially, the term \"artificial intelligence\" is applied when a machine \
+     mimics \"cognitive\" functions that humans associate with other human minds, such as \"learning\" \
+      and \"problem solving\".";
+  }
+
+  void TalkFrame::_dealTalkContents(int id)
+  {
+    int tmp = _talkContents.find_first_of(". ", _position);
+
+    _firstLine = _talkContents.substr(50 * _lineCounter++, 50);
+    _secondLine = _talkContents.substr(50 * _lineCounter++, 50);
+    _thirdLine = _talkContents.substr(50 * _lineCounter++, 50);
   }
 
 }
