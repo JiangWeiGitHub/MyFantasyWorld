@@ -42,6 +42,10 @@ namespace jiangweigithub {
 
     auto nextPage = MainSprite::getNextPage();
 
+    MainSprite::setFirstLine(_line[(_counter++) % 3]);
+    MainSprite::setSecondLine(_line[(_counter++) % 3]);
+    MainSprite::setThirdLine(_line[(_counter++) % 3]);
+
     this->addChild(drawFrame, 0);
     this->addChild(leftFlower, 2);
     this->addChild(rightFlower, 2);
@@ -57,30 +61,31 @@ namespace jiangweigithub {
 
   void TalkFrame::_nextPageCallback(cocos2d::Ref* pSender)
   {
-    _dealTalkContents(1);
+    // _dealTalkContents(1);
 
-    MainSprite::setFirstLine(_firstLine);
-    MainSprite::setSecondLine(_secondLine);
-    MainSprite::setThirdLine(_thirdLine);
+    MainSprite::setFirstLine(_line[(_counter++) % 3]);
+    MainSprite::setSecondLine(_line[(_counter++) % 3]);
+    MainSprite::setThirdLine(_line[(_counter++) % 3]);
   }
 
   void TalkFrame::_readTalkContents(int id)
   {
     _talkContents = "Artificial intelligence (AI) is intelligence exhibited by machines. \
-    In computer science, the field of AI research defines itself as the study of \"intelligent agents\": \
-    any device that perceives its environment and takes actions that maximize its chance of success \
-    at some goal.[1] Colloquially, the term \"artificial intelligence\" is applied when a machine \
-     mimics \"cognitive\" functions that humans associate with other human minds, such as \"learning\" \
-      and \"problem solving\".";
+In computer science, the field of AI research defines itself as the study of \"intelligent agents\": \
+any device that perceives its environment and takes actions that maximize its chance of success \
+at some goal. Colloquially, the term \"artificial intelligence\" is applied when a machine \
+mimics \"cognitive\" functions that humans associate with other human minds, such as \"learning\" \
+and \"problem solving\". ";
   }
 
   void TalkFrame::_dealTalkContents(int id)
   {
-    int tmp = _talkContents.find_first_of(". ", _position);
-
-    _firstLine = _talkContents.substr(50 * _lineCounter++, 50);
-    _secondLine = _talkContents.substr(50 * _lineCounter++, 50);
-    _thirdLine = _talkContents.substr(50 * _lineCounter++, 50);
+    int tmp = 0;
+    while((tmp = _talkContents.find(". ", _position)) > 0)
+    {
+      _line.push_back(_talkContents.substr(_position, tmp + 2 - _position));
+      _position = (tmp + 2);
+    }
   }
 
 }

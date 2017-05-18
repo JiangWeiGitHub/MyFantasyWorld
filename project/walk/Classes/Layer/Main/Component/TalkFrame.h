@@ -29,6 +29,9 @@ namespace jiangweigithub {
     std::string _peopleName;
 
     int _position = 0;
+    int _counter = 0;
+
+    std::vector<std::string> _line; 
   };
   
 }
