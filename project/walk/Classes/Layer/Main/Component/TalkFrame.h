@@ -28,7 +28,7 @@ namespace jiangweigithub {
     std::string _thirdLine;
     std::string _peopleName;
 
-    int _position = 0;
+    unsigned int _position = 0;
     int _counter = 0;
 
     std::vector<std::string> _line; 

@@ -42,9 +42,9 @@ namespace jiangweigithub {
 
     auto nextPage = MainSprite::getNextPage();
 
-    MainSprite::setFirstLine(_line[(_counter++) % 3]);
-    MainSprite::setSecondLine(_line[(_counter++) % 3]);
-    MainSprite::setThirdLine(_line[(_counter++) % 3]);
+    MainSprite::setFirstLine(_line[_counter++]);
+    MainSprite::setSecondLine(_line[_counter++]);
+    MainSprite::setThirdLine(_line[_counter++]);
 
     this->addChild(drawFrame, 0);
     this->addChild(leftFlower, 2);
@@ -63,9 +63,9 @@ namespace jiangweigithub {
   {
     // _dealTalkContents(1);
 
-    MainSprite::setFirstLine(_line[(_counter++) % 3]);
-    MainSprite::setSecondLine(_line[(_counter++) % 3]);
-    MainSprite::setThirdLine(_line[(_counter++) % 3]);
+    MainSprite::setFirstLine(_line[_counter++]);
+    MainSprite::setSecondLine(_line[_counter++]);
+    MainSprite::setThirdLine(_line[_counter++]);
   }
 
   void TalkFrame::_readTalkContents(int id)
@@ -81,11 +81,46 @@ and \"problem solving\". ";
   void TalkFrame::_dealTalkContents(int id)
   {
     int tmp = 0;
-    while((tmp = _talkContents.find(". ", _position)) > 0)
+    std::vector<std::string> lineTmp;
+    _position = 0;
+    while((tmp = _talkContents.find(". ", _position)) > 0
+          || (tmp = _talkContents.find("? ", _position)) > 0
+          ||(tmp = _talkContents.find("! ", _position)) > 0
+         )
     {
-      _line.push_back(_talkContents.substr(_position, tmp + 2 - _position));
+      std::string blank = "    " + _talkContents.substr(_position, tmp + 2 - _position);
+      lineTmp.push_back(blank);
       _position = (tmp + 2);
     }
+
+    int len = lineTmp.size();
+
+    for(int i = 0; i < len; i ++)
+    {
+      _position = 0;
+
+      while(_position <= lineTmp[i].length())
+      {
+        if((tmp = _talkContents.find(" ", _position + 50)) >= 0 && (tmp - _position - 50) <= 5)
+        {
+          _line.push_back(lineTmp[i].substr(_position, tmp));
+          _position = tmp;
+          std::cout<<"t1: "<<tmp<<std::endl;
+          std::cout<<"p1: "<<_position<<std::endl;
+        }
+        else
+        {
+          _line.push_back(lineTmp[i].substr(_position, 50));
+          _position += 50;
+          std::cout<<"t2: "<<tmp<<std::endl;
+          std::cout<<"p2: "<<_position<<std::endl;
+        }
+
+        
+      }
+
+    }
+
   }
 
 }
