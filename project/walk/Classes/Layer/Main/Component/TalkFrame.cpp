@@ -88,9 +88,9 @@ and \"problem solving\". ";
           ||(tmp = _talkContents.find("! ", _position)) > 0
          )
     {
-      std::string blank = "    " + _talkContents.substr(_position, tmp + 2 - _position);
-      lineTmp.push_back(blank);
+      lineTmp.push_back(_talkContents.substr(_position, tmp + 2 - _position));
       _position = (tmp + 2);
+      // lineTmp.push_back("");
     }
 
     int len = lineTmp.size();
@@ -101,19 +101,15 @@ and \"problem solving\". ";
 
       while(_position <= lineTmp[i].length())
       {
-        if((tmp = _talkContents.find(" ", _position + 50)) >= 0 && (tmp - _position - 50) <= 5)
+        if((tmp = lineTmp[i].find(" ", _position + 70)) >= 0 && (tmp - _position - 70) <= 20)
         {
-          _line.push_back(lineTmp[i].substr(_position, tmp));
+          _line.push_back(lineTmp[i].substr(_position, tmp - _position));
           _position = tmp;
-          std::cout<<"t1: "<<tmp<<std::endl;
-          std::cout<<"p1: "<<_position<<std::endl;
         }
         else
         {
-          _line.push_back(lineTmp[i].substr(_position, 50));
-          _position += 50;
-          std::cout<<"t2: "<<tmp<<std::endl;
-          std::cout<<"p2: "<<_position<<std::endl;
+          _line.push_back(lineTmp[i].substr(_position, 70));
+          _position += 70;
         }
 
         
