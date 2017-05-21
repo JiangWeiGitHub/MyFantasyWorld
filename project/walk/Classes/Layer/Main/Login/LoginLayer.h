@@ -7,6 +7,7 @@
 #include "cocos2d.h"
 
 #include "../../../Sprite/Main/MainSprite.h"
+#include "../../../Scene/Main/Preface/Preface.h"
 
 namespace jiangweigithub {
   

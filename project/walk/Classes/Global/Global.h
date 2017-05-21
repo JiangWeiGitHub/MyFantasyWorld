@@ -6,6 +6,8 @@
 namespace jiangweigithub {
 
 #define TALKLINEWIDTH 111
+#define PREFACEWIDTH 99
+#define PREFACESPEED 2
 
 }
 

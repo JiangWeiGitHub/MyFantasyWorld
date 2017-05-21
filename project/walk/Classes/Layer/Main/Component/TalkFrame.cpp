@@ -71,8 +71,7 @@ namespace jiangweigithub {
   void TalkFrame::_readTalkContents(int id)
   {
     _talkContents = cocos2d::FileUtils::getInstance()->getStringFromFile("scripts/home/001.script");
-    std::cout<<_talkContents<<std::endl;
-
+    // std::cout<<_talkContents<<std::endl;
   }
 
   void TalkFrame::_dealTalkContents(int id)
@@ -85,56 +84,18 @@ namespace jiangweigithub {
       std::cout <<tmp<< std::endl;
     }
 
-    // std::string _talkContentsTmp = json_object["script"]["contents"];
-
     unsigned int i = 0;
     for(i = 0; i < json_object["script"]["contents"].size(); i++)
     {
-unsigned int _tmpPosition = 0;
-while(_tmpPosition <= json_object["script"]["contents"][i].asString().size())
-{
-  std::cout<<"_tmpPosition: "<<_tmpPosition<<std::endl;
-  std::cout<<"son: "<<json_object["script"]["contents"][i].asString().substr(_tmpPosition, TALKLINEWIDTH)<<std::endl;
-  _line.push_back(json_object["script"]["contents"][i].asString().substr(_tmpPosition, TALKLINEWIDTH));
-  _tmpPosition += TALKLINEWIDTH;
-}
-
+      unsigned int _tmpPosition = 0;
+      while(_tmpPosition <= json_object["script"]["contents"][i].asString().size())
+      {
+        // std::cout<<"_tmpPosition: "<<_tmpPosition<<std::endl;
+        // std::cout<<"son: "<<json_object["script"]["contents"][i].asString().substr(_tmpPosition, TALKLINEWIDTH)<<std::endl;
+        _line.push_back(json_object["script"]["contents"][i].asString().substr(_tmpPosition, TALKLINEWIDTH));
+        _tmpPosition += TALKLINEWIDTH;
+      }
     }
-    
-    // // std::string _talkContentsTmp = _talkContents;
-
-    // tmp = 0;
-    // std::string lineTmp;
-    // _position = 0;
-    // unsigned int _tmpPosition = 0;
-    // while((tmp = _talkContentsTmp.find("。", _position)) > 0
-    //       || (tmp = _talkContentsTmp.find("？", _position)) > 0
-    //       ||(tmp = _talkContentsTmp.find("！", _position)) > 0
-    //       ||(tmp = _talkContentsTmp.find("\n", _position)) > 0
-    //      )
-    // {
-    //   std::cout<<"tmp: "<<tmp<<std::endl;
-    //   std::cout<<"position: "<<_position<<std::endl;
-    //   lineTmp = _talkContentsTmp.substr(_position, tmp - _position + 3);
-
-    //   _position = (tmp + 3);
-
-    //   std::cout<<"contents: "<<lineTmp<<std::endl;
-
-    //   while(_tmpPosition <= lineTmp.size())
-    //   {
-    //     std::cout<<"_tmpPosition: "<<_tmpPosition<<std::endl;
-    //     std::cout<<"son: "<<lineTmp.substr(_tmpPosition, 111)<<std::endl;
-    //     _line.push_back(lineTmp.substr(_tmpPosition, 111));
-    //     _tmpPosition += 111;
-    //   }
-
-    //   // _line.push_back("");
-
-    //   _tmpPosition = 0;
-
-    // }
-
   }
 
 }
