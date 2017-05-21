@@ -22,7 +22,7 @@ namespace jiangweigithub {
     _firstLine = "";
     _secondLine = "";
     _thirdLine = "";
-    _peopleName = "Hero";
+    _peopleName = "- 快夸宝宝 -";
 
     auto drawFrame = MainSprite::getDrawFrame();
     auto leftFlower = MainSprite::getFrameLeftFlowers();
@@ -70,52 +70,70 @@ namespace jiangweigithub {
 
   void TalkFrame::_readTalkContents(int id)
   {
-    _talkContents = "Artificial intelligence (AI) is intelligence exhibited by machines. \
-In computer science, the field of AI research defines itself as the study of \"intelligent agents\": \
-any device that perceives its environment and takes actions that maximize its chance of success \
-at some goal. Colloquially, the term \"artificial intelligence\" is applied when a machine \
-mimics \"cognitive\" functions that humans associate with other human minds, such as \"learning\" \
-and \"problem solving\". ";
+    _talkContents = cocos2d::FileUtils::getInstance()->getStringFromFile("scripts/home/001.script");
+    std::cout<<_talkContents<<std::endl;
+
   }
 
   void TalkFrame::_dealTalkContents(int id)
   {
+    Json::Reader reader;
+    Json::Value json_object;
     int tmp = 0;
-    std::vector<std::string> lineTmp;
-    _position = 0;
-    while((tmp = _talkContents.find(". ", _position)) > 0
-          || (tmp = _talkContents.find("? ", _position)) > 0
-          ||(tmp = _talkContents.find("! ", _position)) > 0
-         )
+    if (!(tmp = reader.parse(_talkContents, json_object)))
     {
-      lineTmp.push_back(_talkContents.substr(_position, tmp + 2 - _position));
-      _position = (tmp + 2);
-      // lineTmp.push_back("");
+      std::cout <<tmp<< std::endl;
     }
 
-    int len = lineTmp.size();
+    // std::string _talkContentsTmp = json_object["script"]["contents"];
 
-    for(int i = 0; i < len; i ++)
+    unsigned int i = 0;
+    for(i = 0; i < json_object["script"]["contents"].size(); i++)
     {
-      _position = 0;
-
-      while(_position <= lineTmp[i].length())
-      {
-        if((tmp = lineTmp[i].find(" ", _position + 70)) >= 0 && (tmp - _position - 70) <= 20)
-        {
-          _line.push_back(lineTmp[i].substr(_position, tmp - _position));
-          _position = tmp;
-        }
-        else
-        {
-          _line.push_back(lineTmp[i].substr(_position, 70));
-          _position += 70;
-        }
-
-        
-      }
+unsigned int _tmpPosition = 0;
+while(_tmpPosition <= json_object["script"]["contents"][i].asString().size())
+{
+  std::cout<<"_tmpPosition: "<<_tmpPosition<<std::endl;
+  std::cout<<"son: "<<json_object["script"]["contents"][i].asString().substr(_tmpPosition, TALKLINEWIDTH)<<std::endl;
+  _line.push_back(json_object["script"]["contents"][i].asString().substr(_tmpPosition, TALKLINEWIDTH));
+  _tmpPosition += TALKLINEWIDTH;
+}
 
     }
+    
+    // // std::string _talkContentsTmp = _talkContents;
+
+    // tmp = 0;
+    // std::string lineTmp;
+    // _position = 0;
+    // unsigned int _tmpPosition = 0;
+    // while((tmp = _talkContentsTmp.find("。", _position)) > 0
+    //       || (tmp = _talkContentsTmp.find("？", _position)) > 0
+    //       ||(tmp = _talkContentsTmp.find("！", _position)) > 0
+    //       ||(tmp = _talkContentsTmp.find("\n", _position)) > 0
+    //      )
+    // {
+    //   std::cout<<"tmp: "<<tmp<<std::endl;
+    //   std::cout<<"position: "<<_position<<std::endl;
+    //   lineTmp = _talkContentsTmp.substr(_position, tmp - _position + 3);
+
+    //   _position = (tmp + 3);
+
+    //   std::cout<<"contents: "<<lineTmp<<std::endl;
+
+    //   while(_tmpPosition <= lineTmp.size())
+    //   {
+    //     std::cout<<"_tmpPosition: "<<_tmpPosition<<std::endl;
+    //     std::cout<<"son: "<<lineTmp.substr(_tmpPosition, 111)<<std::endl;
+    //     _line.push_back(lineTmp.substr(_tmpPosition, 111));
+    //     _tmpPosition += 111;
+    //   }
+
+    //   // _line.push_back("");
+
+    //   _tmpPosition = 0;
+
+    // }
 
   }
 

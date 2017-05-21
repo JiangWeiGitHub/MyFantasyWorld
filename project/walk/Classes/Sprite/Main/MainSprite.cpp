@@ -11,8 +11,8 @@ namespace jiangweigithub {
 
   cocos2d::Label* MainSprite::getHomeTitle()
   {
-    auto homeTitle = cocos2d::Label::createWithTTF("Home", "fonts/arial.ttf", 24);
-    homeTitle->enableBold();
+    auto homeTitle = cocos2d::Label::createWithTTF("家", "fonts/MSYHBD.TTF", 24);
+    // homeTitle->enableBold();
     homeTitle->setAdditionalKerning(1);
 
     return homeTitle;
@@ -98,10 +98,10 @@ namespace jiangweigithub {
 
   cocos2d::MenuItemLabel* MainSprite::getNewGame()
   {
-    auto myLabel = cocos2d::Label::createWithTTF("New Game", "fonts/arial.ttf", 30);
-    myLabel->enableShadow();
-    myLabel->enableBold();
-    myLabel->enableOutline(cocos2d::Color4B::BLACK, 1);
+    auto myLabel = cocos2d::Label::createWithTTF("新 游 戏", "fonts/MSYHBD.TTF", 30);
+    // myLabel->enableShadow();
+    // myLabel->enableBold();
+    myLabel->enableOutline(cocos2d::Color4B(0, 0, 0, 255), 2);
 
     auto tmp = cocos2d::MenuItemLabel::create(myLabel);
 
@@ -110,20 +110,24 @@ namespace jiangweigithub {
 
   cocos2d::MenuItemLabel* MainSprite::getLoadGame()
   {
-    cocos2d::TTFConfig ttfConfig("fonts/arial.ttf", 30, cocos2d::GlyphCollection::DYNAMIC, NULL, false, 1);
+    auto myLabel = cocos2d::Label::createWithTTF("读 取 进 度", "fonts/MSYHBD.TTF", 30);
+    // myLabel->enableShadow();
+    // myLabel->enableBold();
+    myLabel->enableOutline(cocos2d::Color4B(0, 0, 0, 255), 2);
 
-    auto tmp = cocos2d::MenuItemLabel::
-         create(cocos2d::Label::createWithTTF(ttfConfig, "Load Game"));
+    auto tmp = cocos2d::MenuItemLabel::create(myLabel);
 
     return tmp;
   }
 
   cocos2d::MenuItemLabel* MainSprite::getConfigGame()
   {
-    cocos2d::TTFConfig ttfConfig("fonts/arial.ttf", 30, cocos2d::GlyphCollection::DYNAMIC, NULL, false, 1);
+    auto myLabel = cocos2d::Label::createWithTTF("配 置", "fonts/MSYHBD.TTF", 30);
+    // myLabel->enableShadow();
+    // myLabel->enableBold();
+    myLabel->enableOutline(cocos2d::Color4B(0, 0, 0, 255), 2);
 
-    auto tmp = cocos2d::MenuItemLabel::
-         create(cocos2d::Label::createWithTTF(ttfConfig, "Config"));
+    auto tmp = cocos2d::MenuItemLabel::create(myLabel);
 
     return tmp;
   }
@@ -167,7 +171,7 @@ namespace jiangweigithub {
 
   cocos2d::Label* MainSprite::getFirstLine(std::string contents)
   {
-    _firstLine = cocos2d::Label::createWithTTF(contents, "fonts/arial.ttf", 22);
+    _firstLine = cocos2d::Label::createWithTTF(contents, "fonts/MSYHBD.TTF", 22);
     _firstLine->setAnchorPoint(cocos2d::Vec2(0, 0));
     _firstLine->setTextColor(cocos2d::Color4B(255,255,255,200));
     _firstLine->enableShadow();
@@ -178,7 +182,7 @@ namespace jiangweigithub {
 
   cocos2d::Label* MainSprite::getSecondLine(std::string contents)
   {
-    _secondLine = cocos2d::Label::createWithTTF(contents, "fonts/arial.ttf", 22);
+    _secondLine = cocos2d::Label::createWithTTF(contents, "fonts/MSYHBD.TTF", 22);
     _secondLine->setAnchorPoint(cocos2d::Vec2(0, 0));
     _secondLine->setTextColor(cocos2d::Color4B(255,255,255,200));
     _secondLine->enableShadow();
@@ -189,7 +193,7 @@ namespace jiangweigithub {
 
   cocos2d::Label* MainSprite::getThirdLine(std::string contents)
   {
-    _thirdLine = cocos2d::Label::createWithTTF(contents, "fonts/arial.ttf", 22);
+    _thirdLine = cocos2d::Label::createWithTTF(contents, "fonts/MSYHBD.TTF", 22);
     _thirdLine->setAnchorPoint(cocos2d::Vec2(0, 0));
     _thirdLine->setTextColor(cocos2d::Color4B(255,255,255,200));
     _thirdLine->enableShadow();
@@ -200,10 +204,11 @@ namespace jiangweigithub {
 
   cocos2d::Label* MainSprite::getPeopleName(std::string contents)
   {
-    _peopleName = cocos2d::Label::createWithTTF(contents, "fonts/arial.ttf", 26);
+    _peopleName = cocos2d::Label::createWithTTF(contents, "fonts/MSYHBD.TTF", 22);
     _peopleName->setAnchorPoint(cocos2d::Vec2(0, 0));
-    _peopleName->setTextColor(cocos2d::Color4B(255,255,255,200));
-    _peopleName->enableShadow();
+    _peopleName->enableOutline(cocos2d::Color4B(0, 0, 0, 200), 2);
+    // _peopleName->setTextColor(cocos2d::Color4B(255,255,255,200));
+    // _peopleName->enableShadow();
     _peopleName->setPosition(cocos2d::Vec2(320, 165));
 
     return _peopleName;

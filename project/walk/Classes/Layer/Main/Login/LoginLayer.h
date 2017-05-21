@@ -24,7 +24,14 @@ namespace jiangweigithub {
     void onNewGame(cocos2d::Ref* callback);
     void onLoadGame(cocos2d::Ref* callback);
 
+    void onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
+
     void gotoHomeScene();
+
+    cocos2d::Sprite* _background = NULL;
+    cocos2d::MenuItemLabel* _newGame = NULL;
+    cocos2d::MenuItemLabel* _loadGame = NULL;
+    cocos2d::MenuItemLabel* _configGame = NULL;
   };
 
 }

@@ -16,25 +16,31 @@ namespace jiangweigithub {
       return false;
     }
 
-    auto background = MainSprite::getBackgroundSprite();
-    auto newGame = MainSprite::getNewGame();
-    auto loadGame = MainSprite::getLoadGame();
-    auto configGame = MainSprite::getConfigGame();
+    this->_background = MainSprite::getBackgroundSprite();
+    this->_newGame = MainSprite::getNewGame();
+    this->_loadGame = MainSprite::getLoadGame();
+    this->_configGame = MainSprite::getConfigGame();
 
-    newGame->setCallback(CC_CALLBACK_1(LoginLayer::onNewGame, this));
-    loadGame->setCallback(CC_CALLBACK_1(LoginLayer::onLoadGame, this));
-    configGame->setCallback(CC_CALLBACK_1(LoginLayer::onConfigGame, this));
+    this->_newGame->setCallback(CC_CALLBACK_1(LoginLayer::onNewGame, this));
+    this->_loadGame->setCallback(CC_CALLBACK_1(LoginLayer::onLoadGame, this));
+    this->_configGame->setCallback(CC_CALLBACK_1(LoginLayer::onConfigGame, this));
 
-    auto tmp = cocos2d::Menu::create(newGame, loadGame, configGame, NULL);
+    this->_newGame->selected();
+
+    auto tmp = cocos2d::Menu::create(this->_newGame, this->_loadGame, this->_configGame, NULL);
     tmp->alignItemsVerticallyWithPadding(10);
 
     auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
 
-    background->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    this->_background->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2));
     tmp->setPosition(cocos2d::Vec2(visibleSize.width / 2, 100));
 
-    this->addChild(background, -1);
+    this->addChild(this->_background, -1);
     this->addChild(tmp, 0);
+
+    auto listener = cocos2d::EventListenerKeyboard::create();
+    listener->onKeyPressed = CC_CALLBACK_2(LoginLayer::onKeyPressed, this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
     return true;
   }
@@ -59,6 +65,75 @@ namespace jiangweigithub {
     auto homeScene = jiangweigithub::Home::getHomeScene();
     cocos2d::Director::getInstance()->replaceScene(homeScene);
   }
-  
+
+  void LoginLayer::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event)
+  {
+    switch((int)keyCode)
+    {
+      case 28:
+        // top
+        if(this->_newGame->isSelected())
+        {
+          this->_newGame->unselected();
+          this->_loadGame->unselected();
+          this->_configGame->selected();
+        }
+        else if(this->_loadGame->isSelected())
+        {
+          this->_newGame->selected();
+          this->_loadGame->unselected();
+          this->_configGame->unselected();
+        }
+        else if(this->_configGame->isSelected())
+        {
+          this->_newGame->unselected();
+          this->_loadGame->selected();
+          this->_configGame->unselected();
+        }
+
+        break;
+        
+      case 29:
+        // bottom
+        if(this->_newGame->isSelected())
+        {
+          this->_newGame->unselected();
+          this->_loadGame->selected();
+          this->_configGame->unselected();
+        }
+        else if(this->_loadGame->isSelected())
+        {
+          this->_newGame->unselected();
+          this->_loadGame->unselected();
+          this->_configGame->selected();
+        }
+        else if(this->_configGame->isSelected())
+        {
+          this->_newGame->selected();
+          this->_loadGame->unselected();
+          this->_configGame->unselected();
+        }
+
+        break;
+
+      case 164:
+        // enter
+        if(this->_newGame->isSelected())
+        {
+          this->gotoHomeScene();
+        }
+        else if(this->_loadGame->isSelected())
+        {
+          this->gotoHomeScene();
+        }
+        else if(this->_configGame->isSelected())
+        {
+          this->gotoHomeScene();
+        }        
+
+      default:
+        break;
+    }
+  }
 
 }

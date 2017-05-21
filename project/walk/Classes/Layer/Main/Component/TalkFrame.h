@@ -4,7 +4,10 @@
 #include "iostream"
 #include "cocos2d.h"
 
+#include "../../../Global/Global.h"
 #include "../../../Sprite/Main/MainSprite.h"
+#include "../../../Producer/JsonCpp/json/json.h"
+#include "../../../Producer/JsonCpp/json/json-forwards.h"
 
 namespace jiangweigithub {
 

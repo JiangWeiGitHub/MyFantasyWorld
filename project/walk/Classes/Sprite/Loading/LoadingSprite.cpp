@@ -31,7 +31,7 @@ namespace jiangweigithub {
 
   cocos2d::Label* LoadingSprite::getLoadingTitle()
   {
-    auto loadingTitle = cocos2d::Label::createWithTTF(name, "fonts/arial.ttf", 24);
+    auto loadingTitle = cocos2d::Label::createWithTTF(name, "fonts/MSYHBD.TTF", 24);
     loadingTitle->enableBold();
     loadingTitle->setAdditionalKerning(1);
 

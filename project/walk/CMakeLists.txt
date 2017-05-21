@@ -139,6 +139,7 @@ set(GAME_SRC
   Classes/Producer/KeyboardState/KeyStop.cpp
   Classes/Producer/KeyboardState/KeyTop.cpp
   Classes/Producer/Obstacle/Obstacle.cpp
+  Classes/Producer/JsonCpp/jsoncpp.cpp
   Classes/Scene/Loading/LoadingScene.cpp
   Classes/Scene/Main/Home/Home.cpp
   Classes/Scene/Main/Login/Login.cpp
@@ -164,6 +165,7 @@ set(GAME_HEADERS
   Classes/Producer/KeyboardState/KeyStop.h
   Classes/Producer/KeyboardState/KeyTop.h
   Classes/Producer/Obstacle/Obstacle.h
+  Classes/Producer/JsonCpp/json/json.h
   Classes/Scene/Loading/LoadingScene.h
   Classes/Scene/Main/Home/Home.h
   Classes/Scene/Main/Login/Login.h
@@ -173,6 +175,7 @@ set(GAME_HEADERS
   Classes/Sprite/Loading/LoadingSprite.h
   Classes/Sprite/Main/MainSprite.cpp
   Classes/Director/Director.h
+  Classes/Global/Global.h
   Classes/Layer/Main/Component/TalkFrame.h
   ${PLATFORM_SPECIFIC_HEADERS}
 )
