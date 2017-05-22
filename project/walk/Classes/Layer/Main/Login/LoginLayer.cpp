@@ -25,7 +25,9 @@ namespace jiangweigithub {
     this->_loadGame->setCallback(CC_CALLBACK_1(LoginLayer::onLoadGame, this));
     this->_configGame->setCallback(CC_CALLBACK_1(LoginLayer::onConfigGame, this));
 
-    this->_newGame->selected();
+    this->_newGame->unselected();
+    this->_loadGame->unselected();
+    this->_configGame->unselected();
 
     auto tmp = cocos2d::Menu::create(this->_newGame, this->_loadGame, this->_configGame, NULL);
     tmp->alignItemsVerticallyWithPadding(10);
@@ -92,6 +94,12 @@ namespace jiangweigithub {
           this->_loadGame->selected();
           this->_configGame->unselected();
         }
+        else
+        {
+          this->_newGame->unselected();
+          this->_loadGame->unselected();
+          this->_configGame->selected();
+        }
 
         break;
         
@@ -110,6 +118,12 @@ namespace jiangweigithub {
           this->_configGame->selected();
         }
         else if(this->_configGame->isSelected())
+        {
+          this->_newGame->selected();
+          this->_loadGame->unselected();
+          this->_configGame->unselected();
+        }
+        else
         {
           this->_newGame->selected();
           this->_loadGame->unselected();
