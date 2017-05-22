@@ -71,11 +71,22 @@ namespace jiangweigithub {
     cliper->setAnchorPoint(cocos2d::Vec2(0, 0));
     cliper->addChild(this->_text);
 
-    addChild(cliper);  
-      
+    this->addChild(cliper, 0);
+
+    auto nextPageItem = MainSprite::getNextPageItem();
+    nextPageItem->setCallback(CC_CALLBACK_1(PrefaceLayer::_nextPageCallback, this));
+    auto nextPage = MainSprite::getNextPage();
+
+    this->addChild(nextPage, 1);
+
     this->scheduleUpdate();
 
     return true;  
+  }
+
+  void PrefaceLayer::_nextPageCallback(cocos2d::Ref* pSender)
+  {
+    this->_gotoHomeScene();
   }
 
   void PrefaceLayer::update(float delta)

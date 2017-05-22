@@ -23,6 +23,7 @@ namespace jiangweigithub {
   private:
     void update(float delta) override;
     void _gotoHomeScene();
+    void _nextPageCallback(cocos2d::Ref* pSender);
 
     cocos2d::Label* _text = NULL;
     cocos2d::Size _textSize;
