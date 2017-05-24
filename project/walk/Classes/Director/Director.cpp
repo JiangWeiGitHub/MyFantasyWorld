@@ -3,6 +3,7 @@
 namespace jiangweigithub {
 
   cocos2d::Director* Director::director = cocos2d::Director::getInstance();
+  enum CHAPTER _chapter = CHAPTER::HOME;
 
   void Director::initDirector()
   {
@@ -55,6 +56,16 @@ namespace jiangweigithub {
   {
     auto homeScene = jiangweigithub::Home::getHomeScene();
     director->replaceScene(homeScene);
+  }
+
+  void Director::setChapter(enum CHAPTER chapter)
+  {
+    _chapter = chapter;
+  }
+
+  enum CHAPTER Director::getChapter()
+  {
+    return _chapter;
   }
 
 }

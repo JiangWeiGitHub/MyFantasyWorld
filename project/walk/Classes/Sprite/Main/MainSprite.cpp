@@ -272,5 +272,55 @@ namespace jiangweigithub {
     _avatar->setTexture(contents);
   }
 
+  cocos2d::DrawNode* MainSprite::getLittleTalkFrame(int width, int height, littleTalkFrameArrowDirection direction,
+                       float lineWidth, cocos2d::Color4F lineColor, cocos2d::Color4F fillColor
+                     )
+  {
+    cocos2d::DrawNode* tmp = cocos2d::DrawNode::create();
+
+    cocos2d::Vec2 point[11];
+
+    if(direction == LEFT)
+    {
+      point[0] = cocos2d::Vec2(width / 2 + LITTLETALKFRAMEARROWWIDTH / 2, 0);
+      point[1] = cocos2d::Vec2(width / 2 - LITTLETALKFRAMEARROWWIDTH / 2 / 2, -LITTLETALKFRAMEARROWHEIGHT);
+      point[2] = cocos2d::Vec2(width / 2 - LITTLETALKFRAMEARROWWIDTH / 2, 0);
+      point[3] = cocos2d::Vec2(LITTLETALKFRAMEEDGE, 0);
+      point[4] = cocos2d::Vec2(0, LITTLETALKFRAMEEDGE);
+      point[5] = cocos2d::Vec2(0, height - LITTLETALKFRAMEEDGE);
+      point[6] = cocos2d::Vec2(LITTLETALKFRAMEEDGE, height);
+      point[7] = cocos2d::Vec2(width - LITTLETALKFRAMEEDGE, height);
+      point[8] = cocos2d::Vec2(width, height - LITTLETALKFRAMEEDGE);
+      point[9] = cocos2d::Vec2(width, LITTLETALKFRAMEEDGE);
+      point[10] = cocos2d::Vec2(width - LITTLETALKFRAMEEDGE, 0);
+    }
+    else if(direction == RIGHT)
+    {
+      point[0] = cocos2d::Vec2(width / 2 + LITTLETALKFRAMEARROWWIDTH / 2, 0);
+      point[1] = cocos2d::Vec2(width / 2 + LITTLETALKFRAMEARROWWIDTH / 2 / 2, -LITTLETALKFRAMEARROWHEIGHT);
+      point[2] = cocos2d::Vec2(width / 2 - LITTLETALKFRAMEARROWWIDTH / 2, 0);
+      point[3] = cocos2d::Vec2(LITTLETALKFRAMEEDGE, 0);
+      point[4] = cocos2d::Vec2(0, LITTLETALKFRAMEEDGE);
+      point[5] = cocos2d::Vec2(0, height - LITTLETALKFRAMEEDGE);
+      point[6] = cocos2d::Vec2(LITTLETALKFRAMEEDGE, height);
+      point[7] = cocos2d::Vec2(width - LITTLETALKFRAMEEDGE, height);
+      point[8] = cocos2d::Vec2(width, height - LITTLETALKFRAMEEDGE);
+      point[9] = cocos2d::Vec2(width, LITTLETALKFRAMEEDGE);
+      point[10] = cocos2d::Vec2(width - LITTLETALKFRAMEEDGE, 0);
+    }
+
+    tmp->drawPolygon(point, 11, fillColor, lineWidth, lineColor);
+
+    // tmp->setContentSize(cocos2d::Size(width + LITTLETALKFRAMEARROWWIDTH,
+    //                                   height + LITTLETALKFRAMEARROWHEIGHT
+    //                                  ));
+
+    tmp->setContentSize(cocos2d::Size(width, height));
+
+    return tmp;
+  }
+
+
+
 }
 

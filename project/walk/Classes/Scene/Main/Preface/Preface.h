@@ -18,8 +18,6 @@ namespace jiangweigithub {
 
     CREATE_FUNC(PrefaceScene);
 
-  private:
-    cocos2d::DrawNode* drawRoundRect(int width, int height, float lineWidth, cocos2d::Color4F color, int radius, unsigned int segments);
   };
 
 }

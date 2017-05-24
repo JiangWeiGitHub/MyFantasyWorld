@@ -21,6 +21,11 @@ namespace jiangweigithub {
     auto tmp = HomeLayer::getHomeLayer();
     auto talkFrame = TalkFrame::getTalkFrame();
 
+    if(Director::getChapter() == CHAPTER::HOME)
+    {
+
+    }
+
     this->addChild(tmp, 0);
     this->addChild(talkFrame, 1);
 

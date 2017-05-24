@@ -6,6 +6,7 @@
 #include "iostream"
 #include "cocos2d.h"
 
+#include "../Global/Global.h"
 #include "../Scene/Loading/LoadingScene.h"
 
 static cocos2d::Size designResolutionSize = cocos2d::Size(1280, 720);
@@ -23,7 +24,13 @@ namespace jiangweigithub {
     static void loadingSceneCallback();
     static void loginSceneCallback();
 
+    static enum CHAPTER getChapter();
+    void setChapter(enum CHAPTER chapter);
+
     static cocos2d::Director* director;
+
+  private:
+    static enum CHAPTER _chapter;
   };
 
 }

@@ -6,6 +6,7 @@
 #include "iostream"
 #include "cocos2d.h"
 
+#include "../../Global/Global.h"
 #include "../../Scene/Main/Home/Home.h"
 
 namespace jiangweigithub {
@@ -42,6 +43,12 @@ namespace jiangweigithub {
 
     static cocos2d::MenuItemImage* getNextPageItem();
     static cocos2d::Menu* getNextPage();
+
+    static cocos2d::DrawNode* getLittleTalkFrame(int width, int height,
+                                littleTalkFrameArrowDirection direction,
+                                float lineWidth, cocos2d::Color4F lineColor,
+                                cocos2d::Color4F fillColor
+                              );
 
   private:
     static cocos2d::Sprite* _avatar;
