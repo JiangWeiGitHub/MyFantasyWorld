@@ -1,1 +1,6 @@
 # Walking Test
+
+```
+    cmake .
+    make
+```
