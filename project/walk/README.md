@@ -1,6 +1,0 @@
-# Walking Test
-
-```
-    cmake .
-    make
-```

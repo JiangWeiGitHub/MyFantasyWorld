@@ -1,0 +1,61 @@
+#include "./Loading.h"
+
+namespace jiangweigithub {
+
+  bool LoadingLayer::init()
+  {
+    if ( !Layer::init() )
+    {
+      return false;
+    }
+
+    // jiangweigithub::Role* role = new jiangweigithub::Role();
+    // std::vector<cocos2d::Rect> vec;
+    // vec.push_back(cocos2d::Rect(180,0,30,50));
+    // vec.push_back(cocos2d::Rect(210,0,30,50));
+    // vec.push_back(cocos2d::Rect(240,0,30,50));
+    // vec.push_back(cocos2d::Rect(210,0,30,50));
+    // cocos2d::Animation* walkRight = role->getAnimationRight(vec);
+
+    // auto tmp = LoadingSprite::getLoadingSprite();
+
+    // this->addChild(tmp, 0);
+
+
+
+    cocos2d::Texture2D* textTure = cocos2d::Director::getInstance()->getTextureCache()->addImage("sabin.png");
+
+    // right
+    cocos2d::SpriteFrame* frame1 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(180,0,30,50));
+    cocos2d::SpriteFrame* frame2 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(210,0,30,50));
+    cocos2d::SpriteFrame* frame3 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(240,0,30,50));
+    cocos2d::SpriteFrame* frame4 = cocos2d::SpriteFrame::createWithTexture(textTure, cocos2d::Rect(210,0,30,50));
+
+    cocos2d::Vector<cocos2d::SpriteFrame*> right;
+    right.pushBack(frame1);
+    right.pushBack(frame2);
+    right.pushBack(frame3);
+    right.pushBack(frame4);
+
+    auto loadingSprite = Protagonist::createWithSpriteFrame(frame1);
+
+    auto animationRight = cocos2d::Animation::createWithSpriteFrames(right,0.2f);
+
+    loadingSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(animationRight)));
+
+    this->addChild(loadingSprite, 0);
+    this->setPosition(cocos2d::Point(100, 200));
+
+
+
+    return true;
+  }
+
+  cocos2d::Layer* LoadingLayer::getLoadingLayer()
+  {
+    auto tmp = LoadingLayer::create();
+
+    return tmp;
+  }
+
+}
