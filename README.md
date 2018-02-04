@@ -1,1 +1,4 @@
-# Walking Test
+# Build
+### cmake .
+### make
+### ./bin/MyFantasyWorld

@@ -9,20 +9,6 @@ namespace jiangweigithub {
       return false;
     }
 
-    // jiangweigithub::Role* role = new jiangweigithub::Role();
-    // std::vector<cocos2d::Rect> vec;
-    // vec.push_back(cocos2d::Rect(180,0,30,50));
-    // vec.push_back(cocos2d::Rect(210,0,30,50));
-    // vec.push_back(cocos2d::Rect(240,0,30,50));
-    // vec.push_back(cocos2d::Rect(210,0,30,50));
-    // cocos2d::Animation* walkRight = role->getAnimationRight(vec);
-
-    // auto tmp = LoadingSprite::getLoadingSprite();
-
-    // this->addChild(tmp, 0);
-
-
-
     cocos2d::Texture2D* textTure = cocos2d::Director::getInstance()->getTextureCache()->addImage("sabin.png");
 
     // right
@@ -44,9 +30,9 @@ namespace jiangweigithub {
     loadingSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(animationRight)));
 
     this->addChild(loadingSprite, 0);
-    this->setPosition(cocos2d::Point(100, 200));
 
-
+    auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
+    this->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2));
 
     return true;
   }

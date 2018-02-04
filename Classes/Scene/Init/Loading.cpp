@@ -63,7 +63,7 @@ namespace jiangweigithub {
   {
     if((this->_counter)++ >= 7)
     {
-      // Director::loadingSceneCallback();
+      Director::loadingSceneCallback();
     }
   }
 
