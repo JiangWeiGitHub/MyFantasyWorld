@@ -32,7 +32,7 @@ bool AppDelegate::applicationDidFinishLaunching()
   register_all_packages();
 
   jiangweigithub::Director::initDirector();
-  jiangweigithub::Director::openLoadingScene();
+  jiangweigithub::Director::openIntroduceScene();
 
   return true;
 }

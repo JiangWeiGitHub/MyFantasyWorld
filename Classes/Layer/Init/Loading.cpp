@@ -29,10 +29,16 @@ namespace jiangweigithub {
 
     loadingSprite->runAction(cocos2d::RepeatForever::create(cocos2d::Animate::create(animationRight)));
 
+    auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
+
+    loadingSprite->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2));
     this->addChild(loadingSprite, 0);
 
-    auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
-    this->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    auto loadingTitle = cocos2d::Label::createWithTTF("Loading", "fonts/MSYHBD.TTF", 24);
+    loadingTitle->enableBold();
+    loadingTitle->setAdditionalKerning(1);    
+    loadingTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2 + 60));
+    this->addChild(loadingTitle, 0);
 
     return true;
   }

@@ -156,9 +156,11 @@ set(GAME_SRC
   Classes/Processor/Obstacle/Obstacle.cpp
 
   Classes/Scene/City/Home.cpp
+  Classes/Scene/Init/Introduce.cpp
   Classes/Scene/Init/Loading.cpp
   Classes/Scene/Init/Login.cpp
   Classes/Scene/Init/Preface.cpp
+  Classes/Scene/Init/Thanks.cpp
 
   Classes/AppDelegate.cpp
 
@@ -198,9 +200,11 @@ set(GAME_HEADERS
   Classes/Processor/Obstacle/Obstacle.h
 
   Classes/Scene/City/Home.h
+  Classes/Scene/Init/Introduce.h
   Classes/Scene/Init/Loading.h
   Classes/Scene/Init/Login.h
   Classes/Scene/Init/Preface.h
+  Classes/Scene/Init/Thanks.h
 
   Classes/AppDelegate.h
 
