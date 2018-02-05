@@ -29,7 +29,7 @@ cmake_minimum_required(VERSION 3.1)
 set(APP_NAME MyFantasyWorld)
 project (${APP_NAME})
 
-set(COCOS2D_ROOT ${CMAKE_SOURCE_DIR}/cocos2d)
+set(COCOS2D_ROOT ${CMAKE_SOURCE_DIR}/cocos2d-x-3.16)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${COCOS2D_ROOT}/cmake/Modules/")
 include(CocosBuildHelpers)
