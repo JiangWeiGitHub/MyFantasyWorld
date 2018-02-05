@@ -12,18 +12,20 @@ namespace jiangweigithub {
     auto tmp = LoadingLayer::getLoadingLayer();
     this->addChild(tmp);
 
-    auto closeItem = cocos2d::MenuItemImage::create(
-                                            "CloseNormal.png",
-                                            "CloseSelected.png",
-                                            CC_CALLBACK_1(LoadingScene::menuCloseCallback, this));
+    // auto closeItem = cocos2d::MenuItemImage::create(
+    //                                         "CloseNormal.png",
+    //                                         "CloseSelected.png",
+    //                                         CC_CALLBACK_1(LoadingScene::menuCloseCallback, this));
     
-    closeItem->setPosition(cocos2d::Vec2(1100 ,100));
-    auto menu = cocos2d::Menu::create(closeItem, NULL);
-    menu->setPosition(cocos2d::Vec2::ZERO);
-    this->addChild(menu, 1);
+    // closeItem->setPosition(cocos2d::Vec2(1100 ,100));
+    // auto menu = cocos2d::Menu::create(closeItem, NULL);
+    // menu->setPosition(cocos2d::Vec2::ZERO);
+    // this->addChild(menu, 1);
 
-    cocos2d::Director::getInstance()->getTextureCache()
-                                    ->addImageAsync("Sabin.png", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
+    this->scheduleUpdate();
+
+    // cocos2d::Director::getInstance()->getTextureCache()
+                                    // ->addImageAsync("Sabin.png", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
     cocos2d::Director::getInstance()->getTextureCache()
                                     ->addImageAsync("backgroud.png", CC_CALLBACK_1(LoadingScene::loadingCallback, this));
     cocos2d::Director::getInstance()->getTextureCache()
@@ -61,10 +63,26 @@ namespace jiangweigithub {
 
   void LoadingScene::loadingCallback(cocos2d::Ref* callback)
   {
-    if((this->_counter)++ >= 7)
-    {
-      Director::loadingSceneCallback();
-    }
+    // if((this->_counter)++ >= 7)
+    // {
+    //   // Director::loadingSceneCallback();
+    // }
+
+    this->_counter++;
   }
 
+  void LoadingScene::update(float delta)
+  {
+    if((this->updateCounter > DEFAULT_SWITCH_TIME * 3) && this->_counter >= 7) 
+    {
+      auto loginScene = jiangweigithub::LoginScene::getLoginScene();
+      cocos2d::Director::getInstance()->replaceScene(cocos2d::TransitionFade::create(DEFAULT_SWITCH_TRANSITION, loginScene, cocos2d::Color3B(0,0,0)));
+
+      this->unscheduleUpdate();
+    }
+    else
+    {
+      this->updateCounter++;
+    }
+  }
 }

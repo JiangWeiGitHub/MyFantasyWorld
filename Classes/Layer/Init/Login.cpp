@@ -37,7 +37,7 @@ namespace jiangweigithub {
     this->_background->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2));
     tmp->setPosition(cocos2d::Vec2(visibleSize.width / 2, 100));
 
-    // this->addChild(this->_background, -1);
+    this->addChild(this->_background, -1);
     this->addChild(tmp, 0);
 
     auto listener = cocos2d::EventListenerKeyboard::create();

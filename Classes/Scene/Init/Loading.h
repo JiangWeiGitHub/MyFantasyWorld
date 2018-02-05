@@ -27,6 +27,8 @@ namespace jiangweigithub {
     void loadingCallback(cocos2d::Ref* callback);
 
   private:
+    void update(float delta) override;
+    int updateCounter = 0;
     int _counter = 0;
   };
   

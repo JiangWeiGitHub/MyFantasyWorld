@@ -20,6 +20,9 @@ namespace jiangweigithub {
 
   #define FRAMES_DELAY 0.2f
 
+  #define DEFAULT_SWITCH_TIME 90
+  #define DEFAULT_SWITCH_TRANSITION 3
+
   enum SEX
   {
     MAN = 1,

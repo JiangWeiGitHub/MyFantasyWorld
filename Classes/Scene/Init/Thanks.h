@@ -6,6 +6,9 @@
 #include "iostream"
 #include "cocos2d.h"
 
+#include "./Loading.h"
+#include "./Login.h"
+
 namespace jiangweigithub {
 
   class ThanksScene : public cocos2d::Scene
@@ -13,6 +16,10 @@ namespace jiangweigithub {
   public:
     static cocos2d::Scene* getThanksScene();
     virtual bool init();
+
+  private:
+    void update(float delta) override;
+    int counter = 0;
 
     CREATE_FUNC(ThanksScene);
   };

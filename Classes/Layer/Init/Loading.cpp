@@ -35,7 +35,7 @@ namespace jiangweigithub {
     this->addChild(loadingSprite, 0);
 
     auto loadingTitle = cocos2d::Label::createWithTTF("Loading", "fonts/MSYHBD.TTF", 24);
-    loadingTitle->enableBold();
+    // loadingTitle->enableBold();
     loadingTitle->setAdditionalKerning(1);    
     loadingTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2 + 60));
     this->addChild(loadingTitle, 0);

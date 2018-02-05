@@ -55,15 +55,7 @@ namespace jiangweigithub {
   {
     auto introduceScene = jiangweigithub::IntroduceScene::getIntroduceScene();
 
-    director->schedule(schedule_selector(Director::IntroduceToThanks), 60.0f);  
-
     director->runWithScene(introduceScene);
-  }
-
-  void Director::IntroduceToThanks()  
-  {  
-    auto loginScene = jiangweigithub::LoginScene::getLoginScene();
-    director->replaceScene(loginScene);
   }
 
   void Director::loadingSceneCallback()

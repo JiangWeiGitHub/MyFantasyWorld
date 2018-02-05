@@ -33,8 +33,6 @@ namespace jiangweigithub {
 
     static cocos2d::Director* director;
 
-    void IntroduceToThanks(); 
-
   // private:
     static enum CHAPTER _chapter;
   };

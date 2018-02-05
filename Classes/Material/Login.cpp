@@ -98,10 +98,10 @@ namespace jiangweigithub {
 
   cocos2d::MenuItemLabel* LoginMaterial::getNewGame()
   {
-    auto myLabel = cocos2d::Label::createWithTTF("新 游 戏", "fonts/MSYHBD.TTF", 30);
-    // myLabel->enableShadow();
+    auto myLabel = cocos2d::Label::createWithTTF("New Game", "fonts/MSYHBD.TTF", 26);
+    myLabel->enableShadow();
     // myLabel->enableBold();
-    myLabel->enableOutline(cocos2d::Color4B(0, 0, 0, 255), 2);
+    myLabel->enableOutline(cocos2d::Color4B(0, 0, 0, 100), 1);
 
     auto tmp = cocos2d::MenuItemLabel::create(myLabel);
 
@@ -110,10 +110,10 @@ namespace jiangweigithub {
 
   cocos2d::MenuItemLabel* LoginMaterial::getLoadGame()
   {
-    auto myLabel = cocos2d::Label::createWithTTF("读 取 进 度", "fonts/MSYHBD.TTF", 30);
-    // myLabel->enableShadow();
+    auto myLabel = cocos2d::Label::createWithTTF("Load Game", "fonts/MSYHBD.TTF", 26);
+    myLabel->enableShadow();
     // myLabel->enableBold();
-    myLabel->enableOutline(cocos2d::Color4B(0, 0, 0, 255), 2);
+    myLabel->enableOutline(cocos2d::Color4B(0, 0, 0, 100), 1);
 
     auto tmp = cocos2d::MenuItemLabel::create(myLabel);
 
@@ -122,10 +122,10 @@ namespace jiangweigithub {
 
   cocos2d::MenuItemLabel* LoginMaterial::getConfigGame()
   {
-    auto myLabel = cocos2d::Label::createWithTTF("配 置", "fonts/MSYHBD.TTF", 30);
-    // myLabel->enableShadow();
+    auto myLabel = cocos2d::Label::createWithTTF("Configuration", "fonts/MSYHBD.TTF", 26);
+    myLabel->enableShadow();
     // myLabel->enableBold();
-    myLabel->enableOutline(cocos2d::Color4B(0, 0, 0, 255), 2);
+    myLabel->enableOutline(cocos2d::Color4B(0, 0, 0, 100), 1);
 
     auto tmp = cocos2d::MenuItemLabel::create(myLabel);
 
