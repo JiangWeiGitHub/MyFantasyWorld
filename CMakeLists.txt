@@ -135,6 +135,7 @@ set(GAME_SRC
   Classes/Layer/Init/Login.cpp
   Classes/Layer/Init/Preface.cpp
   Classes/Layer/Person/Protagonist.cpp
+  Classes/Layer/System/Background.cpp
   Classes/Layer/Talk/TalkFrame.cpp
 
   Classes/Material/Role/Role.cpp
@@ -156,6 +157,7 @@ set(GAME_SRC
   Classes/Processor/Obstacle/Obstacle.cpp
 
   Classes/Scene/City/Home.cpp
+  Classes/Scene/Configuration/System.cpp
   Classes/Scene/Init/Introduce.cpp
   Classes/Scene/Init/Loading.cpp
   Classes/Scene/Init/Login.cpp
@@ -177,6 +179,7 @@ set(GAME_HEADERS
   Classes/Layer/Init/Login.h
   Classes/Layer/Init/Preface.h
   Classes/Layer/Person/Protagonist.h
+  Classes/Layer/System/Background.h
   Classes/Layer/Talk/TalkFrame.h
 
   Classes/Material/Role/Role.h
@@ -200,6 +203,7 @@ set(GAME_HEADERS
   Classes/Processor/Obstacle/Obstacle.h
 
   Classes/Scene/City/Home.h
+  Classes/Scene/Configuration/System.h
   Classes/Scene/Init/Introduce.h
   Classes/Scene/Init/Loading.h
   Classes/Scene/Init/Login.h

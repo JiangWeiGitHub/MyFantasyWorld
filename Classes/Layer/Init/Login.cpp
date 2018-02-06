@@ -49,7 +49,7 @@ namespace jiangweigithub {
 
   void LoginLayer::onConfigGame(cocos2d::Ref* callback)
   {
-    this->gotoHomeScene();
+    this->gotoSystemScene();
   }
 
   void LoginLayer::onNewGame(cocos2d::Ref* callback)
@@ -68,6 +68,13 @@ namespace jiangweigithub {
     auto homeScene = jiangweigithub::PrefaceScene::getPrefaceScene();
 
     cocos2d::Director::getInstance()->replaceScene(homeScene);
+  }
+
+  void LoginLayer::gotoSystemScene()
+  {
+    auto systemScene = jiangweigithub::SystemScene::getSystemScene();
+
+    cocos2d::Director::getInstance()->replaceScene(cocos2d::TransitionFade::create(DEFAULT_SWITCH_TRANSITION / 2, systemScene, cocos2d::Color3B(0,0,0)));
   }
 
   void LoginLayer::onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event)

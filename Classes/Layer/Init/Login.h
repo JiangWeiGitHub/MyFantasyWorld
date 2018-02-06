@@ -9,6 +9,7 @@
 #include "../../Material/Login.h"
 #include "../../Material/Role/Role.h"
 #include "../../Scene/Init/Preface.h"
+#include "../../Scene/Configuration/System.h"
 
 namespace jiangweigithub {
   
@@ -29,6 +30,7 @@ namespace jiangweigithub {
     void onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
 
     void gotoHomeScene();
+    void gotoSystemScene();
 
     cocos2d::Sprite* _background = NULL;
     cocos2d::MenuItemLabel* _newGame = NULL;
