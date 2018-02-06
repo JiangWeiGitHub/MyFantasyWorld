@@ -36,7 +36,7 @@ namespace jiangweigithub {
     auto ThanksTitle = cocos2d::Label::createWithTTF("- Thanks -", "fonts/MSYHBD.TTF", 28);
     ThanksTitle->enableBold();
     ThanksTitle->setAdditionalKerning(1);    
-    ThanksTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2 + 50));
+    ThanksTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2 + 100));
     this->addChild(ThanksTitle, 0);
 
     auto nameOne = cocos2d::Label::createWithTTF("I", "fonts/MSYHBD.TTF", 24);

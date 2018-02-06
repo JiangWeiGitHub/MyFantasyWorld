@@ -101,7 +101,7 @@ namespace jiangweigithub {
     auto myLabel = cocos2d::Label::createWithTTF("New Game", "fonts/MSYHBD.TTF", 26);
     myLabel->enableShadow();
     // myLabel->enableBold();
-    myLabel->enableOutline(cocos2d::Color4B(0, 0, 0, 100), 1);
+    myLabel->enableOutline(cocos2d::Color4B(10, 10, 10, 128), 1);
 
     auto tmp = cocos2d::MenuItemLabel::create(myLabel);
 
@@ -113,7 +113,7 @@ namespace jiangweigithub {
     auto myLabel = cocos2d::Label::createWithTTF("Load Game", "fonts/MSYHBD.TTF", 26);
     myLabel->enableShadow();
     // myLabel->enableBold();
-    myLabel->enableOutline(cocos2d::Color4B(0, 0, 0, 100), 1);
+    myLabel->enableOutline(cocos2d::Color4B(10, 10, 10, 128), 1);
 
     auto tmp = cocos2d::MenuItemLabel::create(myLabel);
 
@@ -125,7 +125,7 @@ namespace jiangweigithub {
     auto myLabel = cocos2d::Label::createWithTTF("Configuration", "fonts/MSYHBD.TTF", 26);
     myLabel->enableShadow();
     // myLabel->enableBold();
-    myLabel->enableOutline(cocos2d::Color4B(0, 0, 0, 100), 1);
+    myLabel->enableOutline(cocos2d::Color4B(10, 10, 10, 128), 1);
 
     auto tmp = cocos2d::MenuItemLabel::create(myLabel);
 

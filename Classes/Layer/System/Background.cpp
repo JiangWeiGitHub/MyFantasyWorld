@@ -23,10 +23,9 @@ namespace jiangweigithub {
     this->addChild(backPic, 0);
 
     auto title = cocos2d::Label::createWithTTF("Configuration", "fonts/MSYHBD.TTF", 28);
-    title->setAnchorPoint(cocos2d::Vec2(0, 0));
     title->setTextColor(cocos2d::Color4B(255,255,255,200));
     title->enableShadow();
-    title->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2 + 200));
+    title->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2 + 300));
     this->addChild(title, 1);
 
     // this->scheduleUpdate();
