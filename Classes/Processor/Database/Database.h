@@ -14,8 +14,13 @@ namespace jiangweigithub {
   class Database
   {
   public:
-    static Database* getDatabaseInstance();
     ~Database();
+    // int openDatabase();
+    // int closeDatabase();
+
+    static Database* getDatabaseInstance();
+
+    int runSQL(std::string sql, std::map<std::string, std::string> storeData);
 
     int addData(std::string json_format);
     int deleteData(std::string json_format);
@@ -23,8 +28,13 @@ namespace jiangweigithub {
     int editData(std::string json_format);
   
   private:
-    int _sqliteInit();
-    sqlite3* _sqlitedb;
+    Database();
+    int _initDatabase();
+    static int _sqlite_callback(void *param, int f_num, char **f_value, char **f_name);
+
+    static Database* _databaseInstance;
+    static sqlite3* _sqlitedb;
+    static std::map<std::string, std::string> _data;
   };
 
 }

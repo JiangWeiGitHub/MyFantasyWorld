@@ -17,7 +17,10 @@ namespace jiangweigithub {
     }
 
     jiangweigithub::Database* systemData = jiangweigithub::Database::getDatabaseInstance();
-    systemData->findData("fdasfsdfsddfsfsdfsfs");
+    // systemData->openDatabase();
+    std::map<std::string, std::string> databaseData;
+    systemData->runSQL("select * from system", databaseData);
+    // systemData->closeDatabase();
 
     auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
 

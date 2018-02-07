@@ -148,7 +148,7 @@ set(GAME_SRC
 
   Classes/Processor/JsonCpp/jsoncpp.cpp
 
-  Classes/Processor/Database/Sqlite/shell.c
+# Classes/Processor/Database/Sqlite/shell.c
   Classes/Processor/Database/Sqlite/sqlite3.c
   Classes/Processor/Database/Database.cpp
 
