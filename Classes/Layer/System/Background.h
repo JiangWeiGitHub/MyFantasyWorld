@@ -5,8 +5,12 @@
 
 #include "iostream"
 #include "cocos2d.h"
+#include "ui/CocosGUI.h"
+#include "ui/UICheckBox.h"
 
 #include "../../Global/Global.h"
+#include "../../Scene/Init/Login.h"
+#include "../../Processor/Database/Database.h"
 
 namespace jiangweigithub {
   
@@ -20,6 +24,16 @@ namespace jiangweigithub {
 
   private:
     void update(float delta) override;
+    void _musicVolumeEvent(cocos2d::Ref *pSender, cocos2d::ui::Slider::EventType type);
+    void _BGMVolumeEvent(cocos2d::Ref *pSender, cocos2d::ui::Slider::EventType type);
+    void _selectedSubCheckBoxEvent(cocos2d::Ref* pSender,cocos2d::ui::CheckBox::EventType type);
+    void _saveButtonEvent(cocos2d::Ref* pSender,cocos2d::ui::Widget::TouchEventType type);
+    void _resetButtonEvent(cocos2d::Ref* pSender,cocos2d::ui::Widget::TouchEventType type);
+    void _backButtonEvent(cocos2d::Ref* pSender,cocos2d::ui::Widget::TouchEventType type);
+    
+    cocos2d::ui::Text* _musicVolumeLabel;
+    cocos2d::ui::Text* _BGMVolumeLabel;
+    cocos2d::ui::Text* _subLabel;
     // void _gotoHomeScene();
     // void _nextPageCallback(cocos2d::Ref* pSender);
 

@@ -147,6 +147,11 @@ set(GAME_SRC
   Classes/Material/Login.cpp
 
   Classes/Processor/JsonCpp/jsoncpp.cpp
+
+  Classes/Processor/Database/Sqlite/shell.c
+  Classes/Processor/Database/Sqlite/sqlite3.c
+  Classes/Processor/Database/Database.cpp
+
   Classes/Processor/KeyboardState/KeyboardState.cpp
   Classes/Processor/KeyboardState/KeyBottom.cpp
   Classes/Processor/KeyboardState/KeyLeft.cpp
@@ -189,6 +194,10 @@ set(GAME_HEADERS
   Classes/Material/Home.h
   Classes/Material/Loading.h
   Classes/Material/Login.h
+
+  Classes/Processor/Database/Sqlite/sqlite3.h
+  Classes/Processor/Database/Sqlite/sqlite3ext.h
+  Classes/Processor/Database/Database.h
 
   Classes/Processor/JsonCpp/json/json-forwards.h
   Classes/Processor/JsonCpp/json/json.h
