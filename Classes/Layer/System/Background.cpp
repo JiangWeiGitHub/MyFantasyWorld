@@ -19,7 +19,40 @@ namespace jiangweigithub {
     jiangweigithub::Database* systemData = jiangweigithub::Database::getDatabaseInstance();
     // systemData->openDatabase();
     std::map<std::string, std::string> databaseData;
-    systemData->runSQL("select * from system", databaseData);
+    systemData->runSQL("select * from system", (void *)(&databaseData));
+
+    std::cout<<"1111111111111"<<std::endl;
+    int _musicVolume, _bgmVolume, _subtitle;
+    std::map<std::string, std::string>::iterator iter;  
+  
+    for(iter = databaseData.begin(); iter != databaseData.end(); iter++)
+    {
+      std::cout<<iter->first<<' '<<iter->second<<std::endl;
+      if(iter->first == "musicVolume")
+      {
+        std::istringstream iss(iter->second);  
+        // int num;  
+        iss >> _musicVolume;  
+        // return num;  
+        // _musicVolume = iter->second;
+      }
+      else if(iter->first == "bgmVolume")
+      {
+        std::istringstream iss(iter->second);  
+        iss >> _bgmVolume;  
+      }
+      else if(iter->first == "subtitle")
+      {
+        std::istringstream iss(iter->second);  
+        iss >> _subtitle;  
+      }
+    }
+
+
+ 
+
+  std::cout<<"222222222222222222222"<<std::endl;
+       
     // systemData->closeDatabase();
 
     auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
@@ -44,13 +77,13 @@ namespace jiangweigithub {
     musicSlider->loadBarTexture("sliderTrack.png");
     musicSlider->loadSlidBallTextures("sliderThumb.png", "sliderThumb.png", "");
     musicSlider->loadProgressBarTexture("sliderProgress.png");
-    musicSlider->setPercent(50);
+    musicSlider->setPercent(_musicVolume);
     musicSlider->setMaxPercent(100);
     musicSlider->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2 + 120));
     musicSlider->addEventListener(CC_CALLBACK_2(BackgroundLayer::_musicVolumeEvent, this));
     this->addChild(musicSlider);
 
-    _musicVolumeLabel = cocos2d::ui::Text::create("50","fonts/MSYHBD.ttf",24);
+    _musicVolumeLabel = cocos2d::ui::Text::create(std::to_string(_musicVolume),"fonts/MSYHBD.ttf",24);
     _musicVolumeLabel->setPosition(cocos2d::Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 + 120));
     this->addChild(_musicVolumeLabel);
 
@@ -62,13 +95,13 @@ namespace jiangweigithub {
     BGMSlider->loadBarTexture("sliderTrack.png");
     BGMSlider->loadSlidBallTextures("sliderThumb.png", "sliderThumb.png", "");
     BGMSlider->loadProgressBarTexture("sliderProgress.png");
-    BGMSlider->setPercent(50);
+    BGMSlider->setPercent(_bgmVolume);
     BGMSlider->setMaxPercent(100);
     BGMSlider->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2 + 50));
     BGMSlider->addEventListener(CC_CALLBACK_2(BackgroundLayer::_BGMVolumeEvent, this));
     this->addChild(BGMSlider);
 
-    _BGMVolumeLabel = cocos2d::ui::Text::create("50","fonts/MSYHBD.ttf",24);
+    _BGMVolumeLabel = cocos2d::ui::Text::create(std::to_string(_bgmVolume),"fonts/MSYHBD.ttf",24);
     _BGMVolumeLabel->setPosition(cocos2d::Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 + 50));
     this->addChild(_BGMVolumeLabel);
 
@@ -82,14 +115,29 @@ namespace jiangweigithub {
                                                         "check_box_normal_disable.png",
                                                         "check_box_active_disable.png");
     _subCheckBox->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2 - 20));
-    _subCheckBox->setSelected(true);
+    if(_subtitle != 0)
+    {
+      _subCheckBox->setSelected(true);
+    }
+    else
+    {
+      _subCheckBox->setSelected(false);
+    }
+    
     _subCheckBox->addEventListener(CC_CALLBACK_2(BackgroundLayer::_selectedSubCheckBoxEvent, this));
     this->addChild(_subCheckBox);
 
-    _subLabel = cocos2d::ui::Text::create("On","fonts/MSYHBD.ttf",24);
+    if(_subtitle != 0)
+    {
+      _subLabel = cocos2d::ui::Text::create("On","fonts/MSYHBD.ttf",24);
+    }
+    else
+    {
+      _subLabel = cocos2d::ui::Text::create("Off","fonts/MSYHBD.ttf",24);
+    }
+    
     _subLabel->setPosition(cocos2d::Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 - 20));
     this->addChild(_subLabel);
-
 
     auto saveButton = cocos2d::ui::Button::create("animationbuttonnormal.png",
                                           "animationbuttonpressed.png");

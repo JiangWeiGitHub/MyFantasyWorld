@@ -20,7 +20,7 @@ namespace jiangweigithub {
 
     static Database* getDatabaseInstance();
 
-    int runSQL(std::string sql, std::map<std::string, std::string> storeData);
+    int runSQL(std::string sql, void * hehe);
 
     int addData(std::string json_format);
     int deleteData(std::string json_format);

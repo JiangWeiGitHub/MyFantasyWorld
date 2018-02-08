@@ -32,7 +32,7 @@ namespace jiangweigithub {
 
   int Database::_initDatabase()
   {
-    int result = sqlite3_open("database/coreData.db", &_sqlitedb);
+    int result = sqlite3_open("/home/john/git/MyFantasyWorld/Resources/database/coreData.db", &_sqlitedb);
 
     if(result == SQLITE_OK)
     {
@@ -41,6 +41,7 @@ namespace jiangweigithub {
     else
     {
       std::cout << "open database failed!" << std::endl;
+      sqlite3_close(_sqlitedb);
     }
 
     return 0;
@@ -81,21 +82,31 @@ namespace jiangweigithub {
 
   }
 
-  int Database::runSQL(std::string sql, std::map<std::string, std::string> storeData)
+  int Database::runSQL(std::string sql, void * storeData)
   {
     char* errmsg;
 
-    int nResult = sqlite3_exec(_sqlitedb, sql.c_str(), _sqlite_callback, NULL, &errmsg);
-
+    int nResult = sqlite3_exec(_sqlitedb, sql.c_str(), _sqlite_callback, storeData, &errmsg);
     if (nResult != SQLITE_OK)
     {
-      sqlite3_close(_sqlitedb);
-      sqlite3_free(errmsg);
+      std::cout<<"nResult: "<<nResult<<std::endl;
+      // sqlite3_close(_sqlitedb);
+      // sqlite3_free(errmsg);
 
       return 0;
     }
 
-    storeData = _data;
+    // storeData = _data;
+
+    // std::cout<<"aaaaaa"<<std::endl;
+    // std::map<std::string, std::string>::iterator iter;  
+  
+    // for(iter = storeData.begin(); iter != storeData.end(); iter++)
+    // {
+    //   std::cout<<iter->first<<' '<<iter->second<<std::endl;
+    // }
+    // std::cout<<"bbbbbbbb"<<std::endl;
+       
 
     return 0;
   }
@@ -128,7 +139,7 @@ namespace jiangweigithub {
       for(i = 0; i < f_num; i++)
       {
         std::cout<<*(f_name + i)<<": "<<*(f_value + i)<<std::endl;
-        _data.insert(std::pair<std::string, std::string>(*(f_name + i), *(f_value + i)));  
+        ((std::map<std::string, std::string>*)(param))->insert(std::pair<std::string, std::string>(*(f_name + i), *(f_value + i)));  
       }
     }
   }

@@ -4,6 +4,7 @@
 #pragma once
 
 #include "iostream"
+#include <sstream>
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 #include "ui/UICheckBox.h"
