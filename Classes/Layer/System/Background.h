@@ -32,11 +32,15 @@ namespace jiangweigithub {
     void _resetButtonEvent(cocos2d::Ref* pSender,cocos2d::ui::Widget::TouchEventType type);
     void _backButtonEvent(cocos2d::Ref* pSender,cocos2d::ui::Widget::TouchEventType type);
     
+    cocos2d::ui::Slider* _musicSlider;
+    cocos2d::ui::Slider* _bgmSlider;
+    cocos2d::ui::CheckBox* _subCheckBox;
     cocos2d::ui::Text* _musicVolumeLabel;
-    cocos2d::ui::Text* _BGMVolumeLabel;
+    cocos2d::ui::Text* _bgmVolumeLabel;
     cocos2d::ui::Text* _subLabel;
 
     int _musicVolume, _bgmVolume, _subtitle;
+
     // void _gotoHomeScene();
     // void _nextPageCallback(cocos2d::Ref* pSender);
 

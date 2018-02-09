@@ -62,15 +62,15 @@ namespace jiangweigithub {
     musicTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 + 120));
     this->addChild(musicTitle);
 
-    auto musicSlider = cocos2d::ui::Slider::create();
-    musicSlider->loadBarTexture("sliderTrack.png");
-    musicSlider->loadSlidBallTextures("sliderThumb.png", "sliderThumb.png", "");
-    musicSlider->loadProgressBarTexture("sliderProgress.png");
-    musicSlider->setPercent(_musicVolume);
-    musicSlider->setMaxPercent(100);
-    musicSlider->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2 + 120));
-    musicSlider->addEventListener(CC_CALLBACK_2(BackgroundLayer::_musicVolumeEvent, this));
-    this->addChild(musicSlider);
+    _musicSlider = cocos2d::ui::Slider::create();
+    _musicSlider->loadBarTexture("sliderTrack.png");
+    _musicSlider->loadSlidBallTextures("sliderThumb.png", "sliderThumb.png", "");
+    _musicSlider->loadProgressBarTexture("sliderProgress.png");
+    _musicSlider->setPercent(_musicVolume);
+    _musicSlider->setMaxPercent(100);
+    _musicSlider->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2 + 120));
+    _musicSlider->addEventListener(CC_CALLBACK_2(BackgroundLayer::_musicVolumeEvent, this));
+    this->addChild(_musicSlider);
 
     _musicVolumeLabel = cocos2d::ui::Text::create(std::to_string(_musicVolume),"fonts/MSYHBD.ttf",24);
     _musicVolumeLabel->setPosition(cocos2d::Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 + 120));
@@ -80,25 +80,25 @@ namespace jiangweigithub {
     BGMTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 + 50));
     this->addChild(BGMTitle);
 
-    auto BGMSlider = cocos2d::ui::Slider::create();
-    BGMSlider->loadBarTexture("sliderTrack.png");
-    BGMSlider->loadSlidBallTextures("sliderThumb.png", "sliderThumb.png", "");
-    BGMSlider->loadProgressBarTexture("sliderProgress.png");
-    BGMSlider->setPercent(_bgmVolume);
-    BGMSlider->setMaxPercent(100);
-    BGMSlider->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2 + 50));
-    BGMSlider->addEventListener(CC_CALLBACK_2(BackgroundLayer::_BGMVolumeEvent, this));
-    this->addChild(BGMSlider);
+    _bgmSlider = cocos2d::ui::Slider::create();
+    _bgmSlider->loadBarTexture("sliderTrack.png");
+    _bgmSlider->loadSlidBallTextures("sliderThumb.png", "sliderThumb.png", "");
+    _bgmSlider->loadProgressBarTexture("sliderProgress.png");
+    _bgmSlider->setPercent(_bgmVolume);
+    _bgmSlider->setMaxPercent(100);
+    _bgmSlider->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2 + 50));
+    _bgmSlider->addEventListener(CC_CALLBACK_2(BackgroundLayer::_BGMVolumeEvent, this));
+    this->addChild(_bgmSlider);
 
-    _BGMVolumeLabel = cocos2d::ui::Text::create(std::to_string(_bgmVolume),"fonts/MSYHBD.ttf",24);
-    _BGMVolumeLabel->setPosition(cocos2d::Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 + 50));
-    this->addChild(_BGMVolumeLabel);
+    _bgmVolumeLabel = cocos2d::ui::Text::create(std::to_string(_bgmVolume),"fonts/MSYHBD.ttf",24);
+    _bgmVolumeLabel->setPosition(cocos2d::Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 + 50));
+    this->addChild(_bgmVolumeLabel);
 
     auto subTitle = cocos2d::ui::Text::create("Subtitle","fonts/MSYHBD.ttf",24);
     subTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 - 20));
     this->addChild(subTitle);
 
-    auto _subCheckBox = cocos2d::ui::CheckBox::create("check_box_normal.png",
+    _subCheckBox = cocos2d::ui::CheckBox::create("check_box_normal.png",
                                                         "check_box_normal_press.png",
                                                         "check_box_active.png",
                                                         "check_box_normal_disable.png",
@@ -182,7 +182,7 @@ namespace jiangweigithub {
       cocos2d::ui::Slider* slider = dynamic_cast<cocos2d::ui::Slider*>(pSender);
       _bgmVolume = slider->getPercent();
       int maxPercent = slider->getMaxPercent();
-      _BGMVolumeLabel->setString(cocos2d::StringUtils::format("%d", 100 * _bgmVolume / maxPercent));
+      _bgmVolumeLabel->setString(cocos2d::StringUtils::format("%d", 100 * _bgmVolume / maxPercent));
     }
   }
 
@@ -213,55 +213,79 @@ namespace jiangweigithub {
     }
     else if(type == cocos2d::ui::Widget::TouchEventType::ENDED)
     {
-        std::map<std::string, std::string> returnResult;
-        std::map<std::string, std::string>::iterator iter;
-        jiangweigithub::Database* aaa = jiangweigithub::Database::getDatabaseInstance();
+      std::map<std::string, std::string> returnResult;
+      std::map<std::string, std::string>::iterator iter;
+      jiangweigithub::Database* aaa = jiangweigithub::Database::getDatabaseInstance();
 
-std::string tmp = "UPDATE system SET bgmVolume=" + std::to_string(_bgmVolume) + "，musicVolume=" + std::to_string(_musicVolume) + ",subtitle=" + std::to_string(_subtitle) + " WHERE id=1";
-        aaa->runSQL(tmp, (void *)(&returnResult));
-
-        for(iter = returnResult.begin(); iter != returnResult.end(); iter++)
-        {
-          std::cout<<iter->first<<' '<<iter->second<<std::endl;
-        }
+      std::string tmp = "UPDATE system SET bgmVolume=" + std::to_string(_bgmVolume) + ",musicVolume=" + std::to_string(_musicVolume) + ",subtitle=" + std::to_string(_subtitle);
+      std::cout<<tmp<<std::endl;
+      aaa->runSQL(tmp, (void *)(&returnResult));
+      for(iter = returnResult.begin(); iter != returnResult.end(); iter++)
+      {
+        std::cout<<iter->first<<' '<<iter->second<<std::endl;
+      }
     }
     else
     {
 
-    }
-
-    // switch (type)
-    // {
-    //   case cocos2d::ui::Widget::TouchEventType::BEGAN:
-    //     break;  
-    //   case cocos2d::ui::Widget::TouchEventType::ENDED:
-    //     std::map<std::string, std::string> returnResult;
-    //     std::map<std::string, std::string>::iterator iter;
-    //     jiangweigithub::Database* aaa = jiangweigithub::Database::getDatabaseInstance();
-    //     aaa->runSQL("select * from system", (void *)(&returnResult));
-
-    //     for(iter = returnResult.begin(); iter != returnResult.end(); iter++)
-    //     {
-    //       std::cout<<iter->first<<' '<<iter->second<<std::endl;
-    //     }
-
-    //     break;
-    //   default:
-    //     break;
-    // }     
+    }  
   }
 
   void BackgroundLayer::_resetButtonEvent(cocos2d::Ref* pSender,cocos2d::ui::Widget::TouchEventType type)
   {
-    switch (type)
+    if(type == cocos2d::ui::Widget::TouchEventType::BEGAN)
     {
-      case cocos2d::ui::Widget::TouchEventType::BEGAN:
-        break;  
-      case cocos2d::ui::Widget::TouchEventType::ENDED:
-        std::cout << "Button Save clicked" << std::endl;
-        break;
-      default:
-        break;
+
+    }
+    else if(type == cocos2d::ui::Widget::TouchEventType::ENDED)
+    {
+      std::map<std::string, std::string> returnResult;
+      std::map<std::string, std::string>::iterator iter;
+      jiangweigithub::Database* tmpSQLite = jiangweigithub::Database::getDatabaseInstance();
+
+      std::string tmp = "SELECT musicVolume,bgmVolume,subtitle FROM system";
+      std::cout<<tmp<<std::endl;
+      tmpSQLite->runSQL(tmp, (void *)(&returnResult));
+      for(iter = returnResult.begin(); iter != returnResult.end(); iter++)
+      {
+        // std::cout<<iter->first<<' '<<iter->second<<std::endl;
+        if(iter->first == "musicVolume")
+        {
+          std::istringstream iss(iter->second);
+          iss >> _musicVolume;
+
+          _musicSlider->setPercent(_musicVolume);
+          _musicVolumeLabel->setString(cocos2d::StringUtils::format("%d", _musicVolume));
+        }
+        else if(iter->first == "bgmVolume")
+        {
+          std::istringstream iss(iter->second);  
+          iss >> _bgmVolume;
+
+          _bgmSlider->setPercent(_bgmVolume);
+          _bgmVolumeLabel->setString(cocos2d::StringUtils::format("%d", _bgmVolume));
+        }
+        else if(iter->first == "subtitle")
+        {
+          std::istringstream iss(iter->second);  
+          iss >> _subtitle;
+
+          if(_subtitle == 1)
+          {
+            _subCheckBox->setSelected(true);
+            _subLabel->setString(cocos2d::StringUtils::format("On"));
+          }
+          else
+          {
+            _subCheckBox->setSelected(false);
+            _subLabel->setString(cocos2d::StringUtils::format("Off"));
+          }
+        }
+      }
+    }
+    else
+    {
+
     }     
   }
 
