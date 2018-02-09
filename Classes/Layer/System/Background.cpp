@@ -17,17 +17,13 @@ namespace jiangweigithub {
     }
 
     jiangweigithub::Database* systemData = jiangweigithub::Database::getDatabaseInstance();
-    // systemData->openDatabase();
     std::map<std::string, std::string> databaseData;
     systemData->runSQL("select * from system", (void *)(&databaseData));
 
-    std::cout<<"1111111111111"<<std::endl;
-    int _musicVolume, _bgmVolume, _subtitle;
     std::map<std::string, std::string>::iterator iter;  
-  
     for(iter = databaseData.begin(); iter != databaseData.end(); iter++)
     {
-      std::cout<<iter->first<<' '<<iter->second<<std::endl;
+      // std::cout<<iter->first<<' '<<iter->second<<std::endl;
       if(iter->first == "musicVolume")
       {
         std::istringstream iss(iter->second);  
@@ -47,13 +43,6 @@ namespace jiangweigithub {
         iss >> _subtitle;  
       }
     }
-
-
- 
-
-  std::cout<<"222222222222222222222"<<std::endl;
-       
-    // systemData->closeDatabase();
 
     auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
 
@@ -180,9 +169,9 @@ namespace jiangweigithub {
     if (type == cocos2d::ui::Slider::EventType::ON_PERCENTAGE_CHANGED)
     {
       cocos2d::ui::Slider* slider = dynamic_cast<cocos2d::ui::Slider*>(pSender);
-      int percent = slider->getPercent();
+      _musicVolume = slider->getPercent();
       int maxPercent = slider->getMaxPercent();
-      _musicVolumeLabel->setString(cocos2d::StringUtils::format("%d", 100 * percent / maxPercent));
+      _musicVolumeLabel->setString(cocos2d::StringUtils::format("%d", 100 * _musicVolume / maxPercent));
     }
   }
 
@@ -191,9 +180,9 @@ namespace jiangweigithub {
     if (type == cocos2d::ui::Slider::EventType::ON_PERCENTAGE_CHANGED)
     {
       cocos2d::ui::Slider* slider = dynamic_cast<cocos2d::ui::Slider*>(pSender);
-      int percent = slider->getPercent();
+      _bgmVolume = slider->getPercent();
       int maxPercent = slider->getMaxPercent();
-      _BGMVolumeLabel->setString(cocos2d::StringUtils::format("%d", 100 * percent / maxPercent));
+      _BGMVolumeLabel->setString(cocos2d::StringUtils::format("%d", 100 * _bgmVolume / maxPercent));
     }
   }
 
@@ -202,10 +191,12 @@ namespace jiangweigithub {
     switch (type)
     {
       case cocos2d::ui::CheckBox::EventType::SELECTED:
+        _subtitle = 1;
         _subLabel->setString(cocos2d::StringUtils::format("On"));
         break;
           
       case cocos2d::ui::CheckBox::EventType::UNSELECTED:
+        _subtitle = 0;
         _subLabel->setString(cocos2d::StringUtils::format("Off"));
         break;
           
@@ -216,16 +207,48 @@ namespace jiangweigithub {
 
   void BackgroundLayer::_saveButtonEvent(cocos2d::Ref* pSender,cocos2d::ui::Widget::TouchEventType type)
   {
-    switch (type)
+    if(type == cocos2d::ui::Widget::TouchEventType::BEGAN)
     {
-      case cocos2d::ui::Widget::TouchEventType::BEGAN:
-        break;  
-      case cocos2d::ui::Widget::TouchEventType::ENDED:
-        std::cout << "Button Save clicked" << std::endl;
-        break;
-      default:
-        break;
-    }     
+
+    }
+    else if(type == cocos2d::ui::Widget::TouchEventType::ENDED)
+    {
+        std::map<std::string, std::string> returnResult;
+        std::map<std::string, std::string>::iterator iter;
+        jiangweigithub::Database* aaa = jiangweigithub::Database::getDatabaseInstance();
+
+std::string tmp = "UPDATE system SET bgmVolume=" + std::to_string(_bgmVolume) + "，musicVolume=" + std::to_string(_musicVolume) + ",subtitle=" + std::to_string(_subtitle) + " WHERE id=1";
+        aaa->runSQL(tmp, (void *)(&returnResult));
+
+        for(iter = returnResult.begin(); iter != returnResult.end(); iter++)
+        {
+          std::cout<<iter->first<<' '<<iter->second<<std::endl;
+        }
+    }
+    else
+    {
+
+    }
+
+    // switch (type)
+    // {
+    //   case cocos2d::ui::Widget::TouchEventType::BEGAN:
+    //     break;  
+    //   case cocos2d::ui::Widget::TouchEventType::ENDED:
+    //     std::map<std::string, std::string> returnResult;
+    //     std::map<std::string, std::string>::iterator iter;
+    //     jiangweigithub::Database* aaa = jiangweigithub::Database::getDatabaseInstance();
+    //     aaa->runSQL("select * from system", (void *)(&returnResult));
+
+    //     for(iter = returnResult.begin(); iter != returnResult.end(); iter++)
+    //     {
+    //       std::cout<<iter->first<<' '<<iter->second<<std::endl;
+    //     }
+
+    //     break;
+    //   default:
+    //     break;
+    // }     
   }
 
   void BackgroundLayer::_resetButtonEvent(cocos2d::Ref* pSender,cocos2d::ui::Widget::TouchEventType type)
