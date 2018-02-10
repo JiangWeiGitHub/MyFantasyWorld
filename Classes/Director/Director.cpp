@@ -80,4 +80,36 @@ namespace jiangweigithub {
     return _chapter;
   }
 
+  void Director::playBackgroundMusic(std::string name)
+  {
+    auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
+    audio->playBackgroundMusic(name.c_str(), true);
+  }
+
+  void Director::stopBackgroundMusic()
+  {
+
+  }
+
+  void Director::setBackgroundMusicVolume(float volume)
+  {
+    auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
+    audio->setBackgroundMusicVolume(volume / 100);
+  }
+
+  void Director::playEffectMusic(std::string name)
+  {
+
+  }
+
+  void Director::stopEffectMusic()
+  {
+
+  }
+
+  void Director::setEffectMusicVolume(float volume)
+  {
+
+  }
+
 }

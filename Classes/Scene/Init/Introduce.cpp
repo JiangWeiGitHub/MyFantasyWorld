@@ -38,7 +38,7 @@ namespace jiangweigithub {
     IntroduceTitle->setAdditionalKerning(1);    
     IntroduceTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2));
     this->addChild(IntroduceTitle, 0);
-
+    
     this->scheduleUpdate();
 
     return true;

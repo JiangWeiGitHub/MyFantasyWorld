@@ -18,7 +18,7 @@ namespace jiangweigithub {
 
     jiangweigithub::Database* systemData = jiangweigithub::Database::getDatabaseInstance();
     std::map<std::string, std::string> databaseData;
-    systemData->runSQL("select * from system", (void *)(&databaseData));
+    systemData->runSQL("SELECT musicVolume,bgmVolume,subtitle FROM system", (void *)(&databaseData));
 
     std::map<std::string, std::string>::iterator iter;  
     for(iter = databaseData.begin(); iter != databaseData.end(); iter++)
@@ -183,6 +183,8 @@ namespace jiangweigithub {
       _bgmVolume = slider->getPercent();
       int maxPercent = slider->getMaxPercent();
       _bgmVolumeLabel->setString(cocos2d::StringUtils::format("%d", 100 * _bgmVolume / maxPercent));
+
+      jiangweigithub::Director::setBackgroundMusicVolume(_bgmVolume);
     }
   }
 

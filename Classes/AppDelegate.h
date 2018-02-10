@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 
 #include "./Director/Director.h"
+#include "./Processor/Database/Database.h"
 
 /**
 @brief    The cocos2d Application.

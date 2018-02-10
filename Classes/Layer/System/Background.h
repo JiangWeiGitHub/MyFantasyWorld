@@ -40,13 +40,6 @@ namespace jiangweigithub {
     cocos2d::ui::Text* _subLabel;
 
     int _musicVolume, _bgmVolume, _subtitle;
-
-    // void _gotoHomeScene();
-    // void _nextPageCallback(cocos2d::Ref* pSender);
-
-    // cocos2d::Label* _text = NULL;
-    // cocos2d::Size _textSize;
-    // int counter = 0;
   };
 
 }

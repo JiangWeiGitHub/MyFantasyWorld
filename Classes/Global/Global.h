@@ -5,6 +5,7 @@
 
 #include "iostream"
 #include "cocos2d.h"
+#include "SimpleAudioEngine.h"
 
 namespace jiangweigithub {
 

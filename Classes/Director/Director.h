@@ -31,6 +31,14 @@ namespace jiangweigithub {
     static enum CHAPTER getChapter();
     static void setChapter(enum CHAPTER chapter);
 
+    static void playBackgroundMusic(std::string name);
+    static void stopBackgroundMusic();
+    static void setBackgroundMusicVolume(float volume);
+
+    static void playEffectMusic(std::string name);
+    static void stopEffectMusic();
+    static void setEffectMusicVolume(float volume);
+
     static cocos2d::Director* director;
 
   // private:

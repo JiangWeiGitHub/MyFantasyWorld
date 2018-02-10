@@ -32,6 +32,39 @@ bool AppDelegate::applicationDidFinishLaunching()
   register_all_packages();
 
   jiangweigithub::Director::initDirector();
+
+  std::map<std::string, std::string> returnResult;
+  std::map<std::string, std::string>::iterator iter;
+  jiangweigithub::Database* tmpSQLite = jiangweigithub::Database::getDatabaseInstance();
+
+  int _musicVolume, _bgmVolume, _subtitle;
+
+  std::string tmp = "SELECT musicVolume,bgmVolume,subtitle FROM system";
+  std::cout<<tmp<<std::endl;
+  tmpSQLite->runSQL(tmp, (void *)(&returnResult));
+  for(iter = returnResult.begin(); iter != returnResult.end(); iter++)
+  {
+    // std::cout<<iter->first<<' '<<iter->second<<std::endl;
+    if(iter->first == "musicVolume")
+    {
+      std::istringstream iss(iter->second);
+      iss >> _musicVolume;
+    }
+    else if(iter->first == "bgmVolume")
+    {
+      std::istringstream iss(iter->second);  
+      iss >> _bgmVolume;
+    }
+    else if(iter->first == "subtitle")
+    {
+      std::istringstream iss(iter->second);  
+      iss >> _subtitle;
+    }
+  }
+
+  jiangweigithub::Director::playBackgroundMusic("music/The Sixth Station.mp3");
+  jiangweigithub::Director::setBackgroundMusicVolume(_bgmVolume);
+
   jiangweigithub::Director::openIntroduceScene();
 
   return true;
