@@ -99,7 +99,8 @@ namespace jiangweigithub {
 
   void Director::playEffectMusic(std::string name)
   {
-
+    auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
+    audio->playEffect(name.c_str(), false, 1.0f, 1.0f, 1.0f);
   }
 
   void Director::stopEffectMusic()

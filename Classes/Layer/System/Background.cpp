@@ -94,7 +94,7 @@ namespace jiangweigithub {
     _bgmVolumeLabel->setPosition(cocos2d::Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 + 50));
     this->addChild(_bgmVolumeLabel);
 
-    auto subTitle = cocos2d::ui::Text::create("Subtitle","fonts/MSYHBD.ttf",24);
+    auto subTitle = cocos2d::ui::Text::create("Tips","fonts/MSYHBD.ttf",24);
     subTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 - 20));
     this->addChild(subTitle);
 
@@ -215,6 +215,8 @@ namespace jiangweigithub {
     }
     else if(type == cocos2d::ui::Widget::TouchEventType::ENDED)
     {
+      jiangweigithub::Director::playEffectMusic("music/effect/Cartoon Weird Noise Short Lip Smack 01.wav");
+
       std::map<std::string, std::string> returnResult;
       std::map<std::string, std::string>::iterator iter;
       jiangweigithub::Database* aaa = jiangweigithub::Database::getDatabaseInstance();
@@ -241,6 +243,8 @@ namespace jiangweigithub {
     }
     else if(type == cocos2d::ui::Widget::TouchEventType::ENDED)
     {
+      jiangweigithub::Director::playEffectMusic("music/effect/Cartoon Weird Noise Short Lip Smack 01.wav");
+
       std::map<std::string, std::string> returnResult;
       std::map<std::string, std::string>::iterator iter;
       jiangweigithub::Database* tmpSQLite = jiangweigithub::Database::getDatabaseInstance();
@@ -299,6 +303,8 @@ namespace jiangweigithub {
         break;  
       case cocos2d::ui::Widget::TouchEventType::ENDED:
       {
+        jiangweigithub::Director::playEffectMusic("music/effect/Cartoon Weird Noise Short Lip Smack 01.wav");
+        
         auto loginScene = jiangweigithub::LoginScene::getLoginScene();
         cocos2d::Director::getInstance()->replaceScene(cocos2d::TransitionFade::create(DEFAULT_SWITCH_TRANSITION / 2, loginScene, cocos2d::Color3B(0,0,0)));
       }

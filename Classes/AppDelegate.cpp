@@ -62,7 +62,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     }
   }
 
-  jiangweigithub::Director::playBackgroundMusic("music/The Sixth Station.mp3");
+  jiangweigithub::Director::playBackgroundMusic("music/background/The Sixth Station.mp3");
   jiangweigithub::Director::setBackgroundMusicVolume(_bgmVolume);
 
   jiangweigithub::Director::openIntroduceScene();

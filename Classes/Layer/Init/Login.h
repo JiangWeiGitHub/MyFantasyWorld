@@ -9,6 +9,7 @@
 #include "../../Material/Login.h"
 #include "../../Material/Role/Role.h"
 #include "../../Scene/Init/Preface.h"
+#include "../../Scene/City/Home.h"
 #include "../../Scene/Configuration/System.h"
 
 namespace jiangweigithub {

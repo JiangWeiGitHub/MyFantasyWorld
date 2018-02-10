@@ -64,8 +64,8 @@ namespace jiangweigithub {
 
   void LoginLayer::gotoHomeScene()
   {
-    // auto homeScene = jiangweigithub::Home::getHomeScene();
-    auto homeScene = jiangweigithub::PrefaceScene::getPrefaceScene();
+    auto homeScene = jiangweigithub::HomeScene::getHomeScene();
+    // auto homeScene = jiangweigithub::PrefaceScene::getPrefaceScene();
 
     cocos2d::Director::getInstance()->replaceScene(homeScene);
   }
