@@ -113,4 +113,82 @@ namespace jiangweigithub {
 
   }
 
+  int Director::getBGMVolume()
+  {
+    std::map<std::string, std::string> returnResult;
+    std::map<std::string, std::string>::iterator iter;
+    jiangweigithub::Database* tmpSQLite = jiangweigithub::Database::getDatabaseInstance();
+
+    int _musicVolume, _bgmVolume, _subtitle;
+
+    std::string tmp = "SELECT musicVolume,bgmVolume,subtitle FROM system";
+    std::cout<<tmp<<std::endl;
+    tmpSQLite->runSQL(tmp, (void *)(&returnResult));
+    for(iter = returnResult.begin(); iter != returnResult.end(); iter++)
+    {
+      // std::cout<<iter->first<<' '<<iter->second<<std::endl;
+      if(iter->first == "musicVolume")
+      {
+        std::istringstream iss(iter->second);
+        iss >> _musicVolume;
+      }
+      else if(iter->first == "bgmVolume")
+      {
+        std::istringstream iss(iter->second);  
+        iss >> _bgmVolume;
+
+        return _bgmVolume;
+      }
+      else if(iter->first == "subtitle")
+      {
+        std::istringstream iss(iter->second);  
+        iss >> _subtitle;
+      }
+    }
+  }
+
+  int Director::setBGMVolume(int volume)
+  {
+
+  }
+
+  int Director::getLanguage()
+  {
+    std::map<std::string, std::string> returnResult;
+    std::map<std::string, std::string>::iterator iter;
+    jiangweigithub::Database* tmpSQLite = jiangweigithub::Database::getDatabaseInstance();
+
+    int _musicVolume, _bgmVolume, _subtitle;
+
+    std::string tmp = "SELECT musicVolume,bgmVolume,subtitle FROM system";
+    std::cout<<tmp<<std::endl;
+    tmpSQLite->runSQL(tmp, (void *)(&returnResult));
+    for(iter = returnResult.begin(); iter != returnResult.end(); iter++)
+    {
+      // std::cout<<iter->first<<' '<<iter->second<<std::endl;
+      if(iter->first == "musicVolume")
+      {
+        std::istringstream iss(iter->second);
+        iss >> _musicVolume;
+      }
+      else if(iter->first == "bgmVolume")
+      {
+        std::istringstream iss(iter->second);  
+        iss >> _bgmVolume;
+      }
+      else if(iter->first == "subtitle")
+      {
+        std::istringstream iss(iter->second);  
+        iss >> _subtitle;
+
+        return _subtitle;
+      }
+    }
+  }
+
+  int Director::setLanguage(enum LANGUAGE type)
+  {
+
+  }
+
 }

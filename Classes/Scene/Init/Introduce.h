@@ -23,7 +23,6 @@ namespace jiangweigithub {
 
     CREATE_FUNC(IntroduceScene);
   };
-
 }
 
 #endif // __INTRODUCESCENE_H__

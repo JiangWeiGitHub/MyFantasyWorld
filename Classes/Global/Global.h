@@ -90,6 +90,12 @@ namespace jiangweigithub {
 
     ACCESSORY_EMPTY = 999,
   };
+
+  enum LANGUAGE
+  {
+    ENGLISH = 1,
+    CHINESE = 2,
+  };
 }
 
 #endif // __GLOBAL_H__
