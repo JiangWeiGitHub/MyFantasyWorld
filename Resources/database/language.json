@@ -4,42 +4,28 @@
     "fill": 
     [
       {
-        "id":1,
+        "id":2,
         "info":
         [
           {
-            "font":"yahei",
-            "size":"30",
-            "position_x":"120",
-            "position_y":"120",
-            "content":"haha"
-          },
-          {
-            "font":"yahei",
-            "size":"30",
-            "position_x":"220",
-            "position_y":"120",
-            "content":"hehe"
+            "font":"fonts/MSYHBD.TTF",
+            "size":28,
+            "position_x":"center",
+            "position_y":"center",
+            "content":"John's Production"
           }
         ]
       },
       {
-        "id":"2",
+        "id":1,
         "info":
         [
           {
-            "font":"yahei",
-            "size":"30",
-            "position_x":"120",
-            "position_y":"120",
-            "content":"台北"
-          },
-          {
-            "font":"yahei",
-            "size":"30",
-            "position_x":"220",
-            "position_y":"120",
-            "content":"深圳"
+            "font":"fonts/MSYHBD.TTF",
+            "size":28,
+            "position_x":"center",
+            "position_y":"center",
+            "content":"江伟 作品"
           }
         ]
       }

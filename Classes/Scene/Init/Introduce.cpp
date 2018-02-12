@@ -46,33 +46,32 @@ namespace jiangweigithub {
       std::cout <<tmp<< std::endl;
     }
 
-// std::cout <<json_object<< std::endl;
-// std::cout <<json_object.size()<< std::endl;
-
     unsigned int i = 0;
     for(i = 0; i < json_object.size(); i++)
     {
-       std::cout<<"aaa"<<std::endl;
       if(json_object[i]["name"] == "introduce")
       {
-        std::cout<<"bbb"<<std::endl;
         unsigned int j = 0;
         for(j = 0; j < json_object[i]["fill"].size(); j++)
         {
-          std::cout<<"ccc"<<std::endl;
-          if(json_object[i]["fill"][j]["id"] == jiangweigithub::Director::getLanguage())
+          if(json_object[i]["fill"][j]["id"].asInt() == jiangweigithub::Director::getLanguage())
           {
-            std::cout<<"ddd"<<std::endl;
             unsigned int k = 0;
             for(k = 0; k < json_object[i]["fill"][j]["info"].size(); k++)
             {
-              std::cout<<"eee"<<std::endl;
-              std::cout<<json_object[i]["fill"][j]["info"][k]["content"].asString()<<std::endl;
-// auto IntroduceTitle = cocos2d::Label::createWithTTF(json_object[i]["fill"][j]["info"][k]["content"].asString(), "fonts/MSYHBD.TTF", 28);
-// IntroduceTitle->enableBold();
-// IntroduceTitle->setAdditionalKerning(1);    
-// IntroduceTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2));
-// this->addChild(IntroduceTitle, k);
+              auto IntroduceTitle = cocos2d::Label::createWithTTF(json_object[i]["fill"][j]["info"][k]["content"].asString(), json_object[i]["fill"][j]["info"][k]["font"].asString(), json_object[i]["fill"][j]["info"][k]["size"].asInt());
+              IntroduceTitle->enableBold();
+              IntroduceTitle->setAdditionalKerning(1);
+              if(json_object[i]["fill"][j]["info"][k]["position_x"].asString() == "center" && json_object[i]["fill"][j]["info"][k]["position_y"].asString() == "center")
+              {
+                IntroduceTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2));
+              }
+              else
+              {
+                IntroduceTitle->setPosition(cocos2d::Vec2(json_object[i]["fill"][j]["info"][k]["position_x"].asInt(), json_object[i]["fill"][j]["info"][k]["position_y"].asInt()));
+              }
+
+              this->addChild(IntroduceTitle, k);
             }
           }
         }
