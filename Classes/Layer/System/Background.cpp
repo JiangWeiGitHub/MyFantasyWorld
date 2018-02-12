@@ -23,14 +23,10 @@ namespace jiangweigithub {
     std::map<std::string, std::string>::iterator iter;  
     for(iter = databaseData.begin(); iter != databaseData.end(); iter++)
     {
-      // std::cout<<iter->first<<' '<<iter->second<<std::endl;
       if(iter->first == "musicVolume")
       {
         std::istringstream iss(iter->second);  
-        // int num;  
         iss >> _musicVolume;  
-        // return num;  
-        // _musicVolume = iter->second;
       }
       else if(iter->first == "bgmVolume")
       {
@@ -40,7 +36,7 @@ namespace jiangweigithub {
       else if(iter->first == "subtitle")
       {
         std::istringstream iss(iter->second);  
-        iss >> _subtitle;  
+        iss >> _language;  
       }
     }
 
@@ -50,17 +46,54 @@ namespace jiangweigithub {
     backPic->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2));
     this->addChild(backPic, 0);
 
-    auto title = cocos2d::Label::createWithTTF("Configuration", "fonts/MSYHBD.TTF", 30);
-    title->setTextColor(cocos2d::Color4B(255,255,255,200));
-    title->enableShadow();
-    title->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2 + 250));
-    this->addChild(title, 1);
+    if(_language == 0)
+    {
+      auto title = cocos2d::Label::createWithTTF("Configuration", "fonts/MSYH.TTF", 30);
+      // auto title = cocos2d::Label::createWithTTF("Configuration", "fonts/MSYH.TTF", 30);
+      title->setTextColor(cocos2d::Color4B(255,255,255,200));
+      title->enableShadow();
+      title->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2 + 250));
+      this->addChild(title, 1);
+
+    }
+    else if(_language == 1)
+    {
+      auto title = cocos2d::Label::createWithTTF("配置", "fonts/MSYHBD.TTF", 30);
+      // auto title = cocos2d::Label::createWithTTF("Configuration", "fonts/MSYH.TTF", 30);
+      title->setTextColor(cocos2d::Color4B(255,255,255,200));
+      title->enableShadow();
+      title->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2 + 250));
+      this->addChild(title, 1);
+    }
 
     // this->scheduleUpdate();
 
-    auto musicTitle = cocos2d::ui::Text::create("Music Volume","fonts/MSYHBD.ttf",24);
-    musicTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 + 120));
-    this->addChild(musicTitle);
+    if(_language == 0)
+    {
+      // auto musicTitle = cocos2d::ui::Text::create("Music Volume","fonts/MSYH.TTF",24);
+      // musicTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 + 120));
+      // this->addChild(musicTitle);
+
+      auto musicTitle = cocos2d::Label::createWithTTF("Music Volume", "fonts/MSYH.TTF", 24);
+      musicTitle->enableBold();
+      musicTitle->setAdditionalKerning(1);
+      musicTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 + 120));
+
+      this->addChild(musicTitle);
+    }
+    else if(_language == 1)
+    {
+      // auto musicTitle = cocos2d::ui::Text::create("音效音量","fonts/MSYH.TTF",24);
+      // musicTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 + 120));
+      // this->addChild(musicTitle);
+
+      auto musicTitle = cocos2d::Label::createWithTTF("音效音量", "fonts/MSYH.TTF", 24);
+      musicTitle->enableBold();
+      musicTitle->setAdditionalKerning(1);
+      musicTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 + 120));
+
+      this->addChild(musicTitle);
+    }
 
     _musicSlider = cocos2d::ui::Slider::create();
     _musicSlider->loadBarTexture("sliderTrack.png");
@@ -72,13 +105,38 @@ namespace jiangweigithub {
     _musicSlider->addEventListener(CC_CALLBACK_2(BackgroundLayer::_musicVolumeEvent, this));
     this->addChild(_musicSlider);
 
-    _musicVolumeLabel = cocos2d::ui::Text::create(std::to_string(_musicVolume),"fonts/MSYHBD.ttf",24);
+    // _musicVolumeLabel = cocos2d::ui::Text::create(std::to_string(_musicVolume),"fonts/MSYH.TTF",24);
+    _musicVolumeLabel = cocos2d::Label::createWithTTF(std::to_string(_musicVolume),"fonts/MSYH.TTF",24);
     _musicVolumeLabel->setPosition(cocos2d::Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 + 120));
     this->addChild(_musicVolumeLabel);
 
-    auto BGMTitle = cocos2d::ui::Text::create("BGM Volume","fonts/MSYHBD.ttf",24);
-    BGMTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 + 50));
-    this->addChild(BGMTitle);
+
+    if(_language == 0)
+    {
+      // auto BGMTitle = cocos2d::ui::Text::create("BGM Volume","fonts/MSYH.TTF",24);
+      // BGMTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 + 50));
+      // this->addChild(BGMTitle);
+
+      auto BGMTitle = cocos2d::Label::createWithTTF("BGM Volume", "fonts/MSYH.TTF", 24);
+      BGMTitle->enableBold();
+      BGMTitle->setAdditionalKerning(1);
+      BGMTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 + 50));
+
+      this->addChild(BGMTitle);
+    }
+    else if(_language == 1)
+    {
+      // auto BGMTitle = cocos2d::ui::Text::create("背景音音量","fonts/MSYH.TTF",24);
+      // BGMTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 + 50));
+      // this->addChild(BGMTitle);
+
+      auto BGMTitle = cocos2d::Label::createWithTTF("背景音音量", "fonts/MSYH.TTF", 24);
+      BGMTitle->enableBold();
+      BGMTitle->setAdditionalKerning(1);
+      BGMTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 + 50));
+
+      this->addChild(BGMTitle);
+    }
 
     _bgmSlider = cocos2d::ui::Slider::create();
     _bgmSlider->loadBarTexture("sliderTrack.png");
@@ -90,43 +148,96 @@ namespace jiangweigithub {
     _bgmSlider->addEventListener(CC_CALLBACK_2(BackgroundLayer::_BGMVolumeEvent, this));
     this->addChild(_bgmSlider);
 
-    _bgmVolumeLabel = cocos2d::ui::Text::create(std::to_string(_bgmVolume),"fonts/MSYHBD.ttf",24);
+    // _bgmVolumeLabel = cocos2d::ui::Text::create(std::to_string(_bgmVolume),"fonts/MSYH.TTF",24);
+    _bgmVolumeLabel = cocos2d::Label::createWithTTF(std::to_string(_bgmVolume),"fonts/MSYH.TTF",24);
     _bgmVolumeLabel->setPosition(cocos2d::Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 + 50));
     this->addChild(_bgmVolumeLabel);
 
-    auto subTitle = cocos2d::ui::Text::create("Tips","fonts/MSYHBD.ttf",24);
-    subTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 - 20));
-    this->addChild(subTitle);
+    if(_language == 0)
+    {
+      // auto subTitle = cocos2d::ui::Text::create("Language","fonts/MSYH.TTF",24);
+      // subTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 - 20));
+      // this->addChild(subTitle);
 
-    _subCheckBox = cocos2d::ui::CheckBox::create("check_box_normal.png",
+      auto subTitle = cocos2d::Label::createWithTTF("Language", "fonts/MSYH.TTF", 24);
+      subTitle->enableBold();
+      subTitle->setAdditionalKerning(1);
+      subTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 - 55));
+
+      this->addChild(subTitle);
+    }
+    else if(_language == 1)
+    {
+      // auto subTitle = cocos2d::ui::Text::create("语言","fonts/MSYH.TTF",24);
+      // subTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 - 20));
+      // this->addChild(subTitle);
+
+      auto subTitle = cocos2d::Label::createWithTTF("语言", "fonts/MSYH.TTF", 24);
+      subTitle->enableBold();
+      subTitle->setAdditionalKerning(1);
+      subTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2 - 300, visibleSize.height / 2 - 55));
+
+      this->addChild(subTitle);
+    }
+
+    _languageEnglishCheckBox = cocos2d::ui::CheckBox::create("check_box_normal.png",
                                                         "check_box_normal_press.png",
                                                         "check_box_active.png",
                                                         "check_box_normal_disable.png",
                                                         "check_box_active_disable.png");
-    _subCheckBox->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2 - 20));
-    if(_subtitle != 0)
+    _languageEnglishCheckBox->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2 - 20));
+    if(_language == 0)
     {
-      _subCheckBox->setSelected(true);
+      _languageEnglishCheckBox->setSelected(true);
+      _languageEnglishCheckBox->addEventListener(CC_CALLBACK_2(BackgroundLayer::_selectedEnglishCheckBoxEvent, this));
+      this->addChild(_languageEnglishCheckBox);
     }
     else
     {
-      _subCheckBox->setSelected(false);
+      _languageEnglishCheckBox->setSelected(false);
+      _languageEnglishCheckBox->addEventListener(CC_CALLBACK_2(BackgroundLayer::_selectedEnglishCheckBoxEvent, this));
+      this->addChild(_languageEnglishCheckBox);
     }
     
-    _subCheckBox->addEventListener(CC_CALLBACK_2(BackgroundLayer::_selectedSubCheckBoxEvent, this));
-    this->addChild(_subCheckBox);
+    // if(_language == 0)
+    // {
+    //   _englishLabel = cocos2d::ui::Text::create("中文","fonts/MSYH.TTF",24);
+    // }
+    // else
+    // {
+    //   _englishLabel = cocos2d::ui::Text::create("English","fonts/MSYH.TTF",24);
+    // }
+    
+    // _englishLabel = cocos2d::ui::Text::create("English","fonts/MSYH.TTF",24);
+    _englishLabel = cocos2d::Label::createWithTTF("English","fonts/MSYH.TTF",24);
+    _englishLabel->setPosition(cocos2d::Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 - 20));
+    this->addChild(_englishLabel);
 
-    if(_subtitle != 0)
+
+    _languageChineseCheckBox = cocos2d::ui::CheckBox::create("check_box_normal.png",
+                                                        "check_box_normal_press.png",
+                                                        "check_box_active.png",
+                                                        "check_box_normal_disable.png",
+                                                        "check_box_active_disable.png");
+    _languageChineseCheckBox->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2 - 90));
+    if(_language == 0)
     {
-      _subLabel = cocos2d::ui::Text::create("On","fonts/MSYHBD.ttf",24);
+      _languageChineseCheckBox->setSelected(false);
+      _languageChineseCheckBox->addEventListener(CC_CALLBACK_2(BackgroundLayer::_selectedChineseCheckBoxEvent, this));
+      this->addChild(_languageChineseCheckBox);
     }
     else
     {
-      _subLabel = cocos2d::ui::Text::create("Off","fonts/MSYHBD.ttf",24);
+      _languageChineseCheckBox->setSelected(true);
+      _languageChineseCheckBox->addEventListener(CC_CALLBACK_2(BackgroundLayer::_selectedChineseCheckBoxEvent, this));
+      this->addChild(_languageChineseCheckBox);
     }
     
-    _subLabel->setPosition(cocos2d::Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 - 20));
-    this->addChild(_subLabel);
+    // _chineseLabel = cocos2d::ui::Text::create("中文","fonts/MSYH.TTF",24);
+    _chineseLabel = cocos2d::Label::createWithTTF("中文","fonts/MSYH.TTF",24);
+    _chineseLabel->setPosition(cocos2d::Vec2(visibleSize.width / 2 + 300, visibleSize.height / 2 - 90));
+    this->addChild(_chineseLabel);
+
 
     auto saveButton = cocos2d::ui::Button::create("animationbuttonnormal.png",
                                           "animationbuttonpressed.png");
@@ -188,18 +299,41 @@ namespace jiangweigithub {
     }
   }
 
-  void BackgroundLayer::_selectedSubCheckBoxEvent(cocos2d::Ref* pSender,cocos2d::ui::CheckBox::EventType type)
+  void BackgroundLayer::_selectedEnglishCheckBoxEvent(cocos2d::Ref* pSender,cocos2d::ui::CheckBox::EventType type)
   {
     switch (type)
     {
       case cocos2d::ui::CheckBox::EventType::SELECTED:
-        _subtitle = 1;
-        _subLabel->setString(cocos2d::StringUtils::format("On"));
+        _language = 0;
+        _languageEnglishCheckBox->setSelected(true);
+        _languageChineseCheckBox->setSelected(false);
         break;
           
       case cocos2d::ui::CheckBox::EventType::UNSELECTED:
-        _subtitle = 0;
-        _subLabel->setString(cocos2d::StringUtils::format("Off"));
+        _language = 1;
+        _languageEnglishCheckBox->setSelected(false);
+        _languageChineseCheckBox->setSelected(true);
+        break;
+          
+      default:
+        break;
+    }      
+  }
+
+  void BackgroundLayer::_selectedChineseCheckBoxEvent(cocos2d::Ref* pSender,cocos2d::ui::CheckBox::EventType type)
+  {
+    switch (type)
+    {
+      case cocos2d::ui::CheckBox::EventType::SELECTED:
+        _language = 1;
+        _languageEnglishCheckBox->setSelected(false);
+        _languageChineseCheckBox->setSelected(true);
+        break;
+          
+      case cocos2d::ui::CheckBox::EventType::UNSELECTED:
+        _language = 0;
+        _languageEnglishCheckBox->setSelected(true);
+        _languageChineseCheckBox->setSelected(false);
         break;
           
       default:
@@ -221,7 +355,7 @@ namespace jiangweigithub {
       std::map<std::string, std::string>::iterator iter;
       jiangweigithub::Database* aaa = jiangweigithub::Database::getDatabaseInstance();
 
-      std::string tmp = "UPDATE system SET bgmVolume=" + std::to_string(_bgmVolume) + ",musicVolume=" + std::to_string(_musicVolume) + ",subtitle=" + std::to_string(_subtitle);
+      std::string tmp = "UPDATE system SET bgmVolume=" + std::to_string(_bgmVolume) + ",musicVolume=" + std::to_string(_musicVolume) + ",subtitle=" + std::to_string(_language);
       std::cout<<tmp<<std::endl;
       aaa->runSQL(tmp, (void *)(&returnResult));
       for(iter = returnResult.begin(); iter != returnResult.end(); iter++)
@@ -274,17 +408,17 @@ namespace jiangweigithub {
         else if(iter->first == "subtitle")
         {
           std::istringstream iss(iter->second);  
-          iss >> _subtitle;
+          iss >> _language;
 
-          if(_subtitle == 1)
+          if(_language == 1)
           {
-            _subCheckBox->setSelected(true);
-            _subLabel->setString(cocos2d::StringUtils::format("On"));
+            _languageEnglishCheckBox->setSelected(true);
+            _englishLabel->setString(cocos2d::StringUtils::format("On"));
           }
           else
           {
-            _subCheckBox->setSelected(false);
-            _subLabel->setString(cocos2d::StringUtils::format("Off"));
+            _languageEnglishCheckBox->setSelected(false);
+            _englishLabel->setString(cocos2d::StringUtils::format("Off"));
           }
         }
       }

@@ -33,29 +33,64 @@ namespace jiangweigithub {
 
     auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
 
-    auto ThanksTitle = cocos2d::Label::createWithTTF("- Thanks -\n\nSquare & Enix\nFinal Fantasy 8\n\n- It makes me fall in love with RPG game. -", "fonts/MSYHBD.TTF", 28);
-    ThanksTitle->enableBold();
-    ThanksTitle->setAdditionalKerning(1);    
-    ThanksTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2 + 100));
-    this->addChild(ThanksTitle, 0);
+    auto jsonData = cocos2d::FileUtils::getInstance()->getStringFromFile("database/language.json");
+    Json::Reader reader;
+    Json::Value json_object;
+    int tmp = 0;
+    if (!(tmp = reader.parse(jsonData, json_object)))
+    {
+      std::cout <<tmp<< std::endl;
+    }
 
-    // auto nameOne = cocos2d::Label::createWithTTF("Square & Enix", "fonts/MSYHBD.TTF", 24);
-    // nameOne->enableBold();
-    // nameOne->setAdditionalKerning(1);    
-    // nameOne->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2));
-    // this->addChild(nameOne, 0);
+    unsigned int i = 0;
+    for(i = 0; i < json_object.size(); i++)
+    {
+      if(json_object[i]["name"] == "thanks")
+      {
+        unsigned int j = 0;
+        for(j = 0; j < json_object[i]["fill"].size(); j++)
+        {
+          if(json_object[i]["fill"][j]["id"].asInt() == jiangweigithub::Director::getLanguage())
+          {
+            unsigned int k = 0;
+            for(k = 0; k < json_object[i]["fill"][j]["info"].size(); k++)
+            {
+              auto IntroduceTitle = cocos2d::Label::createWithTTF(json_object[i]["fill"][j]["info"][k]["content"].asString(), 
+                                                                  json_object[i]["fill"][j]["info"][k]["font"].asString(), 
+                                                                  json_object[i]["fill"][j]["info"][k]["size"].asInt());
+              IntroduceTitle->enableBold();
+              IntroduceTitle->setAdditionalKerning(1);
 
-    // auto nameTwo = cocos2d::Label::createWithTTF("Final Fantasy 8", "fonts/MSYHBD.TTF", 24);
-    // nameTwo->enableBold();
-    // nameTwo->setAdditionalKerning(1);    
-    // nameTwo->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2 - 50));
-    // this->addChild(nameTwo, 0);
+              int tmpx, tmpy;
+              if(json_object[i]["fill"][j]["info"][k]["position_x"].asInt() == 9999)
+              {
+                tmpx = 0;
+              }
+              else
+              {
+                tmpx = json_object[i]["fill"][j]["info"][k]["position_x"].asInt();
+              }
 
-    // auto nameThree = cocos2d::Label::createWithTTF("- It makes me fall in love with RPG game. -", "fonts/MSYHBD.TTF", 24);
-    // nameThree->enableBold();
-    // nameThree->setAdditionalKerning(1);    
-    // nameThree->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height / 2 - 140));
-    // this->addChild(nameThree, 0);
+              if(json_object[i]["fill"][j]["info"][k]["position_y"].asInt() == 9999)
+              {
+                tmpy = 0;
+              }
+              else
+              {
+                tmpy = json_object[i]["fill"][j]["info"][k]["position_y"].asInt();
+              }
+
+              IntroduceTitle->setPosition(cocos2d::Vec2(visibleSize.width / 2 + tmpx, 
+                                                        visibleSize.height / 2 + tmpy));
+
+              this->addChild(IntroduceTitle, k);
+            }
+          }
+        }
+
+        break;
+      }
+    }
 
     this->scheduleUpdate();
 

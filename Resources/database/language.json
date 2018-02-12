@@ -4,14 +4,14 @@
     "fill": 
     [
       {
-        "id":2,
+        "id":0,
         "info":
         [
           {
             "font":"fonts/MSYHBD.TTF",
             "size":28,
-            "position_x":"center",
-            "position_y":"center",
+            "position_x":9999,
+            "position_y":9999,
             "content":"John's Production"
           }
         ]
@@ -23,8 +23,8 @@
           {
             "font":"fonts/MSYHBD.TTF",
             "size":28,
-            "position_x":"center",
-            "position_y":"center",
+            "position_x":9999,
+            "position_y":9999,
             "content":"江伟 作品"
           }
         ]
@@ -36,42 +36,102 @@
     "fill": 
     [
       {
-        "id":"1",
+        "id":0,
         "info":
         [
           {
-            "font":"yahei",
-            "size":"30",
-            "position_x":"120",
-            "position_y":"120",
-            "content":"haha"
+            "font":"fonts/MSYHBD.TTF",
+            "size":28,
+            "position_x":9999,
+            "position_y":100,
+            "content":"- Thanks -"
           },
           {
-            "font":"yahei",
-            "size":"30",
-            "position_x":"220",
-            "position_y":"120",
-            "content":"hehe"
+            "font":"fonts/MSYHBD.TTF",
+            "size":24,
+            "position_x":9999,
+            "position_y":9999,
+            "content":"SQUARE ENIX"
+          },
+          {
+            "font":"fonts/MSYHBD.TTF",
+            "size":24,
+            "position_x":9999,
+            "position_y":-50,
+            "content":"Final Fantasy 8"
+          },
+          {
+            "font":"fonts/MSYHBD.TTF",
+            "size":24,
+            "position_x":9999,
+            "position_y":-140,
+            "content":"- It makes me fall in love with RPG game. -"
           }
         ]
       },
       {
-        "id":"2",
+        "id":1,
         "info":
         [
           {
-            "font":"yahei",
-            "size":"30",
-            "position_x":"120",
-            "position_y":"120",
-            "content":"台北"
+            "font":"fonts/MSYHBD.TTF",
+            "size":30,
+            "position_x":9999,
+            "position_y":150,
+            "content":"- 感谢 -"
           },
           {
-            "font":"yahei",
-            "size":"30",
-            "position_x":"220",
-            "position_y":"120",
-            "content":"深圳"
+            "font":"fonts/MSYHBD.TTF",
+            "size":24,
+            "position_x":9999,
+            "position_y":9999,
+            "content":"史克威尔艾尼克斯公司"
+          },
+          {
+            "font":"fonts/MSYHBD.TTF",
+            "size":24,
+            "position_x":9999,
+            "position_y":-50,
+            "content":"最终幻想8"
+          },
+          {
+            "font":"fonts/MSYHBD.TTF",
+            "size":24,
+            "position_x":9999,
+            "position_y":-160,
+            "content":"让我从此独爱RPG游戏!"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "loading",
+    "fill": 
+    [
+      {
+        "id":0,
+        "info":
+        [
+          {
+            "font":"fonts/MSYHBD.TTF",
+            "size":22,
+            "position_x":9999,
+            "position_y":200,
+            "content":"Loading..."
+          }
+        ]
+      },
+      {
+        "id":1,
+        "info":
+        [
+          {
+            "font":"fonts/MSYHBD.TTF",
+            "size":22,
+            "position_x":9999,
+            "position_y":60,
+            "content":"读 取 中 ..."
           }
         ]
       }

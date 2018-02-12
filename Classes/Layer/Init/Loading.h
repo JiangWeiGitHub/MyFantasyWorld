@@ -4,8 +4,9 @@
 #pragma once
 
 #include "../../Global/Global.h"
+#include "../../Director/Director.h"
+#include "../../Processor/JsonCpp/json/json.h"
 #include "../../Material/Role/Role.h"
-
 #include "../../Material/Loading.h"
 #include "../../Material/Role/Human/Protagonist.h"
 

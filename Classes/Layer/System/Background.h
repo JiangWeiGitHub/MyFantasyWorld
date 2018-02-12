@@ -27,19 +27,22 @@ namespace jiangweigithub {
     void update(float delta) override;
     void _musicVolumeEvent(cocos2d::Ref *pSender, cocos2d::ui::Slider::EventType type);
     void _BGMVolumeEvent(cocos2d::Ref *pSender, cocos2d::ui::Slider::EventType type);
-    void _selectedSubCheckBoxEvent(cocos2d::Ref* pSender,cocos2d::ui::CheckBox::EventType type);
+    void _selectedEnglishCheckBoxEvent(cocos2d::Ref* pSender,cocos2d::ui::CheckBox::EventType type);
+    void _selectedChineseCheckBoxEvent(cocos2d::Ref* pSender,cocos2d::ui::CheckBox::EventType type);
     void _saveButtonEvent(cocos2d::Ref* pSender,cocos2d::ui::Widget::TouchEventType type);
     void _resetButtonEvent(cocos2d::Ref* pSender,cocos2d::ui::Widget::TouchEventType type);
     void _backButtonEvent(cocos2d::Ref* pSender,cocos2d::ui::Widget::TouchEventType type);
     
     cocos2d::ui::Slider* _musicSlider;
     cocos2d::ui::Slider* _bgmSlider;
-    cocos2d::ui::CheckBox* _subCheckBox;
-    cocos2d::ui::Text* _musicVolumeLabel;
-    cocos2d::ui::Text* _bgmVolumeLabel;
-    cocos2d::ui::Text* _subLabel;
+    cocos2d::ui::CheckBox* _languageEnglishCheckBox;
+    cocos2d::ui::CheckBox* _languageChineseCheckBox;
+    cocos2d::Label* _musicVolumeLabel;
+    cocos2d::Label* _bgmVolumeLabel;
+    cocos2d::Label* _englishLabel;
+    cocos2d::Label* _chineseLabel;
 
-    int _musicVolume, _bgmVolume, _subtitle;
+    int _musicVolume, _bgmVolume, _language;
   };
 
 }
