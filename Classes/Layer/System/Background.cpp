@@ -412,13 +412,13 @@ namespace jiangweigithub {
 
           if(_language == 1)
           {
-            _languageEnglishCheckBox->setSelected(true);
-            _englishLabel->setString(cocos2d::StringUtils::format("On"));
+            _languageEnglishCheckBox->setSelected(false);
+            _languageChineseCheckBox->setSelected(true);
           }
           else
           {
-            _languageEnglishCheckBox->setSelected(false);
-            _englishLabel->setString(cocos2d::StringUtils::format("Off"));
+            _languageEnglishCheckBox->setSelected(true);
+            _languageChineseCheckBox->setSelected(false);
           }
         }
       }
