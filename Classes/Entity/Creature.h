@@ -7,7 +7,7 @@
 
 namespace jiangweigithub {
 
-  class Role: public cocos2d::Sprite
+  class Creature: public cocos2d::Sprite
   {
   public:
     static Role* create();
