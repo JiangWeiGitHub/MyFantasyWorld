@@ -1,5 +1,5 @@
-#ifndef __ROLE_H__
-#define __ROLE_H__
+#ifndef __CREATURE_H__
+#define __CREATURE_H__
 
 #pragma once
 
@@ -7,12 +7,9 @@
 
 namespace jiangweigithub {
 
-  class Creature: public cocos2d::Sprite
+  class Creature
   {
   public:
-    static Role* create();
-    static Role* create(const std::string &filename);
-    static Role* createWithSpriteFrame(cocos2d::SpriteFrame *spriteFrame);
 
     bool setName(std::string name);
     std::string getName();
@@ -83,4 +80,4 @@ namespace jiangweigithub {
   
 }
 
-#endif // __ROLE_H__
+#endif // __CREATURE_H__
