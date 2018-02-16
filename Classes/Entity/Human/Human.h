@@ -9,8 +9,6 @@ namespace jiangweigithub {
   class Human: public Creature
   {
   public:
-    static Human* Instance();
-
     bool setTalkContents(std::string contents);
     std::string getTalkContents();
 
@@ -24,9 +22,6 @@ namespace jiangweigithub {
     cocos2d::Point getMovePosition();
 
   private:
-    Human();  
-    static Human * m_pInstance;
-
     std::string _talkContents;
     SEX _sex;
     MOOD _mood;

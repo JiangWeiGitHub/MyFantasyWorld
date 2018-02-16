@@ -2,26 +2,6 @@
 
 namespace jiangweigithub {
 
-  Human* Human::m_pInstance = 0;
-
-  Human::Human()
-  {
-  cout<<"Singleton...."<<endl;
-  }
-
-  Human* Human::Instance()
-  {
-    if(NULL == m_pInstance)
-    {
-      if(NULL == m_pInstance)
-      {
-        m_pInstance = new Human();
-      }
-    }
-
-    return m_pInstance;
-  }
-
   bool Human::setTalkContents(std::string contents)
   {
     this->_talkContents = contents;
