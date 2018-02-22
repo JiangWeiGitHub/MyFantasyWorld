@@ -1,44 +1,44 @@
-#include "./Human.h"
+#include "./Reptile.h"
 
 namespace jiangweigithub {
 
-  bool Human::setTalkContents(std::string contents)
+  bool Reptile::setTalkContents(std::string contents)
   {
     this->_talkContents = contents;
 
     return true;
   }
 
-  std::string Human::getTalkContents()
+  std::string Reptile::getTalkContents()
   {
     return this->_talkContents;
   }
 
-  bool Human::setSex(SEX sex)
+  bool Reptile::setSex(SEX sex)
   {
     this->_sex = sex;
 
     return true;
   }
 
-  SEX Human::getSex()
+  SEX Reptile::getSex()
   {
     return this->_sex;
   }
 
-  bool Human::setMood(MOOD mood)
+  bool Reptile::setMood(MOOD mood)
   {
     this->_mood = mood;
 
     return true;
   }
 
-  MOOD Human::getMood()
+  MOOD Reptile::getMood()
   {
     return this->_mood;
   }
 
-  bool Human::setMovePosition(cocos2d::Point position)
+  bool Reptile::setMovePosition(cocos2d::Point position)
   {
     (this->_position).x = position.x;
     (this->_position).y = position.y;
@@ -46,7 +46,7 @@ namespace jiangweigithub {
     return true;
   }
 
-  cocos2d::Point Human::getMovePosition()
+  cocos2d::Point Reptile::getMovePosition()
   {
     return this->_position;
   }

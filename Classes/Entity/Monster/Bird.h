@@ -1,17 +1,17 @@
-#ifndef __HUMAN_H__
-#define __HUMAN_H__
+#ifndef __Bird_H__
+#define __Bird_H__
 
 #include "../../../Global/Global.h"
 #include "../Role.h"
 
 namespace jiangweigithub {
 
-  class Human: public Role
+  class Bird: public Role
   {
   public:
-    static Human* create();
-    static Human* create(const std::string &filename);
-    static Human* createWithSpriteFrame(cocos2d::SpriteFrame *spriteFrame);
+    static Bird* create();
+    static Bird* create(const std::string &filename);
+    static Bird* createWithSpriteFrame(cocos2d::SpriteFrame *spriteFrame);
 
     bool setTalkContents(std::string contents);
     std::string getTalkContents();
@@ -34,4 +34,4 @@ namespace jiangweigithub {
   
 }
 
-#endif // __HUMAN_H__
+#endif // __Bird_H__
