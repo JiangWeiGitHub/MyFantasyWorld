@@ -25,8 +25,6 @@ namespace jiangweigithub {
     cocos2d::Animation* getAnimationRight();
 
   private:
-    // static bool createAnimation(std::string fileName);
-
     unsigned int HP;
     std::string heroName;
     std::string fileName;
