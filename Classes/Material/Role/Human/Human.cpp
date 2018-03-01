@@ -1,90 +1,90 @@
-#include "./Human.h"
+// #include "./Human.h"
 
-namespace jiangweigithub {
+// namespace jiangweigithub {
 
-  Human* Human::create()
-  {
-    Human *sprite = new Human();
-    if(sprite)
-    {
-      sprite->autorelease();
-      return sprite;
-    }
-    CC_SAFE_DELETE(sprite);
-    return nullptr;
-  }
+//   Human* Human::create()
+//   {
+//     Human *sprite = new Human();
+//     if(sprite)
+//     {
+//       sprite->autorelease();
+//       return sprite;
+//     }
+//     CC_SAFE_DELETE(sprite);
+//     return nullptr;
+//   }
 
-  Human* Human::create(const std::string &filename)
-  {
-    Human *sprite = new Human();
-    if(sprite && sprite->initWithFile(filename))
-    {
-      sprite->autorelease();
-      return sprite;
-    }
-    CC_SAFE_DELETE(sprite);
-    return nullptr;
-  }
+//   Human* Human::create(const std::string &filename)
+//   {
+//     Human *sprite = new Human();
+//     if(sprite && sprite->initWithFile(filename))
+//     {
+//       sprite->autorelease();
+//       return sprite;
+//     }
+//     CC_SAFE_DELETE(sprite);
+//     return nullptr;
+//   }
 
-  Human* Human::createWithSpriteFrame(cocos2d::SpriteFrame *spriteFrame)
-  {
-    Human *sprite = new Human();
-    if(sprite && sprite->initWithSpriteFrame(spriteFrame))
-    {
-      sprite->autorelease();
-      return sprite;
-    }
-    CC_SAFE_DELETE(sprite);
-    return nullptr;
-  }
+//   Human* Human::createWithSpriteFrame(cocos2d::SpriteFrame *spriteFrame)
+//   {
+//     Human *sprite = new Human();
+//     if(sprite && sprite->initWithSpriteFrame(spriteFrame))
+//     {
+//       sprite->autorelease();
+//       return sprite;
+//     }
+//     CC_SAFE_DELETE(sprite);
+//     return nullptr;
+//   }
 
-  bool Human::setTalkContents(std::string contents)
-  {
-    this->_talkContents = contents;
+//   bool Human::setTalkContents(std::string contents)
+//   {
+//     this->_talkContents = contents;
 
-    return true;
-  }
+//     return true;
+//   }
 
-  std::string Human::getTalkContents()
-  {
-    return this->_talkContents;
-  }
+//   std::string Human::getTalkContents()
+//   {
+//     return this->_talkContents;
+//   }
 
-  bool Human::setSex(SEX sex)
-  {
-    this->_sex = sex;
+//   bool Human::setSex(SEX sex)
+//   {
+//     this->_sex = sex;
 
-    return true;
-  }
+//     return true;
+//   }
 
-  SEX Human::getSex()
-  {
-    return this->_sex;
-  }
+//   SEX Human::getSex()
+//   {
+//     return this->_sex;
+//   }
 
-  bool Human::setMood(MOOD mood)
-  {
-    this->_mood = mood;
+//   bool Human::setMood(MOOD mood)
+//   {
+//     this->_mood = mood;
 
-    return true;
-  }
+//     return true;
+//   }
 
-  MOOD Human::getMood()
-  {
-    return this->_mood;
-  }
+//   MOOD Human::getMood()
+//   {
+//     return this->_mood;
+//   }
 
-  bool Human::setMovePosition(cocos2d::Point position)
-  {
-    (this->_position).x = position.x;
-    (this->_position).y = position.y;
+//   bool Human::setMovePosition(cocos2d::Point position)
+//   {
+//     (this->_position).x = position.x;
+//     (this->_position).y = position.y;
 
-    return true;
-  }
+//     return true;
+//   }
 
-  cocos2d::Point Human::getMovePosition()
-  {
-    return this->_position;
-  }
+//   cocos2d::Point Human::getMovePosition()
+//   {
+//     return this->_position;
+//   }
 
-}
+// }
