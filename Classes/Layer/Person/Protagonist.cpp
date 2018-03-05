@@ -615,17 +615,4 @@ namespace jiangweigithub {
 
     return true;
   }
-
-  // void ProtagonistLayer::_nextStringCallback(cocos2d::Ref* pSender)
-  // {
-  //   this->_firstLine->setString("Tomorrow is another day!");
-  //   this->_firstLine->updateContent();
-
-  //   this->_secondLine->setString("See you then.");
-  //   this->_secondLine->updateContent();
-
-  //   this->_thirdLine->setString("");
-  //   this->_thirdLine->updateContent();
-  // }
-
 }
