@@ -10,14 +10,6 @@ namespace jiangweigithub {
   class Role: public cocos2d::Sprite
   {
   public:
-    // Role();
-
-    // virtual bool init();
-
-    // CREATE_FUNC(Role);
-
-    // jiangweigithub::Role* getRoleSprite();
-
     static Role* create();
     static Role* create(const std::string &filename);
     static Role* createWithSpriteFrame(cocos2d::SpriteFrame *spriteFrame);
